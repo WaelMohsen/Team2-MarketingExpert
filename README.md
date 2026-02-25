@@ -36,3 +36,11 @@ $ cp .env.example .env
 
 Set your environment variables in the `.env` file. Like `OPENAI_API_KEY` value.
 
+## Running the Application
+
+To start the application, run:
+
+```bash
+$ streamlit run app.py
+```
+
