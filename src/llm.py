@@ -15,6 +15,8 @@ CATEGORIES = [
     "Customer Retention"
 ]
 
+# Removed classify_query function as it's no longer needed
+
 def load_prompt(filename, **kwargs):
     """
     Loads a prompt from the 'prompts' directory and formats it with kwargs.
