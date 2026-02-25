@@ -39,12 +39,49 @@ def get_metrics_for_category(category_name, df):
         metrics['Conversion Rate'] = f"{round((total_conversions / total_clicks) * 100, 2)}%" if total_clicks > 0 else "0%"
 
     elif category_name == "Customer Satisfaction":
-        # Ad & Content Relevance metrics
-        metrics['Average CSAT Score'] = round(float(df['customer_satisfaction_score'].mean()), 2)
-        # Click Through Rate (indicative of relevance)
-        metrics['CTR'] = f"{round((total_clicks / total_impressions) * 100, 2)}%" if total_impressions > 0 else "0%"
-        metrics['Total Clicks'] = total_clicks
+        # --- Totals ---
+        total_reach = df['reach'].sum()
+        total_impressions = df['impressions'].sum()
+        total_clicks = df['clicks'].sum()
 
+        total_engagements = (
+            df['likes'].sum() +
+            df['comments'].sum() +
+            df['shares'].sum()
+        )
+
+        # --- Engagement Rate ---
+        engagement_rate = (
+            (total_engagements / total_reach) * 100
+            if total_reach > 0 else 0
+        )
+
+        # --- Click Through Rate ---
+        ctr = (
+            (total_clicks / total_impressions) * 100
+            if total_impressions > 0 else 0
+        )
+
+        # --- Average Bounce Rate ---
+        avg_bounce_rate = round(float(df['bounce_rate'].mean()), 2)
+
+        # --- Average Frequency ---
+        avg_frequency = round(float(df['frequency'].mean()), 2)
+
+        # --- Optional Relevance Score ---
+        avg_relevance_score = (
+            round(float(df['relevance_score'].mean()), 2)
+            if 'relevance_score' in df.columns
+            else None
+        )
+
+        # --- Store Metrics ---
+        metrics['Engagement Rate'] = f"{round(engagement_rate, 2)}%"
+        metrics['CTR'] = f"{round(ctr, 2)}%"
+        metrics['Average Bounce Rate'] = f"{avg_bounce_rate}%"
+        metrics['Average Frequency'] = avg_frequency
+
+        
     elif category_name == "Revenue Growth":
         metrics['Total Revenue'] = total_revenue
         metrics['Total Spend'] = total_spend
