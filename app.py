@@ -14,9 +14,10 @@ st.markdown("""
 <style>
     .stButton > button {
         width: 100%;
-        height: 100px;
-        font_size: 20px !important;
-        font-weight: bold;
+        height: 115px;
+        font-size: 21px !important;
+        font-weight: 800 !important;
+        line-height: 1.35;
         border-radius: 10px;
         background-color: #f0f2f6;
         border: 1px solid #d1d5db;
@@ -141,52 +142,107 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                     # Display Metrics nicely in a grid
                     st.markdown("### Key Metrics")
                     
-                    metric_items = list(metrics.items())
-                    num_metrics = len(metric_items)
-                    # Simple automated grid layout
-                    cols_per_row = 4
+                    # Define strict UI cards with emojis
+                    # Format numbers nicely
+                    revenue = metrics.get('Total Revenue', 0)
+                    spend = metrics.get('Total Spend', 0)
+                    formatted_revenue = f"${revenue:,.0f}" if isinstance(revenue, (int, float)) else str(revenue)
+                    formatted_spend = f"${spend:,.0f}" if isinstance(spend, (int, float)) else str(spend)
                     
-                    for i in range(0, num_metrics, cols_per_row):
-                        cols = st.columns(cols_per_row)
-                        for j in range(cols_per_row):
-                            if i + j < num_metrics:
-                                key, value = metric_items[i+j]
-                                with cols[j]:
-                                    st.markdown(f"""
-                                    <div style="
-                                        background-color: white; 
-                                        padding: 15px; 
-                                        border-radius: 10px; 
-                                        box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
-                                        border: 1px solid #e5e7eb;
-                                        text-align: center;
-                                        height: 100%;
-                                    ">
-                                        <p style="margin: 0; font-size: 0.85em; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em;">{key}</p>
-                                        <p style="margin: 5px 0 0 0; font-size: 1.5em; font-weight: 700; color: #111827;">{value}</p>
-                                    </div>
-                                    """, unsafe_allow_html=True)
+                    # Note: Using 'Total Conversions' as proxy for New Customers if 'Total New Customers' is missing/0 based on data.py logic
+                    new_customers = metrics.get('Total New Customers', metrics.get('Total Conversions', 0))
+                    
+                    ui_cards = [
+                        ("📢 Campaign Name", metrics.get('Campaign Name', 'Unknown')),
+                        ("👥 Total New Customers", str(new_customers)),
+                        ("💰 Total Revenue", formatted_revenue),
+                        ("💸 Total Spend", formatted_spend)
+                    ]
+                    
+                    cols = st.columns(4)
+                    for idx, (label, value) in enumerate(ui_cards):
+                        with cols[idx]:
+                            st.markdown(f"""
+                            <div style="
+                                background-color: white; 
+                                padding: 18px; 
+                                border-radius: 12px; 
+                                box-shadow: 0 2px 8px rgba(0,0,0,0.10); 
+                                border: 2px solid #6366f1;
+                                text-align: center;
+                                height: 100%;
+                            ">
+                                <span style="display:block; font-size:1.1em; font-weight:400; color:#4338ca; margin-bottom:6px; letter-spacing:0.03em;">{label}</span>
+                                <span style="display:block; font-size:2.1em; font-weight:400; color:#111827;">{value}</span>
+                            </div>
+                            """, unsafe_allow_html=True)
                     
                     st.markdown("<br>", unsafe_allow_html=True)
 
-                    # Generate AI Response
-                    response = llm_handler.generate_response(f"Analyze metrics for {category}", category, metrics)
+                    # Generate AI Response (now returns JSON string)
+                    response_json_str = llm_handler.generate_response(f"Analyze metrics for {category}", category, metrics)
                     
-                    st.markdown("### 📝 AI Evaluation Report")
-                    st.markdown(f"""
-                    <div style="
-                        background-color: #f8fafc; 
-                        padding: 25px; 
-                        border-radius: 12px; 
-                        border-left: 5px solid #4338ca;
-                        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-                        font-family: 'Helvetica', sans-serif;
-                        line-height: 1.6;
-                        color: #374151;
-                    ">
-                        {response}
-                    </div>
-                    """, unsafe_allow_html=True)
+                    try:
+                        import json
+                        # Attempt to parse as JSON
+                        report = json.loads(response_json_str)
+                        
+                        st.markdown("""
+                        <div style="margin-top: 2.5em; margin-bottom: 1.5em;">
+                            <div style="font-size:2.0em; font-weight:900; color:#4338ca; margin-bottom:0.5em;">📝 AI Evaluation Report</div>
+                            <div style="font-size:1.3em; font-weight:800; color:#1e293b; margin-bottom:1.2em;">{headline}</div>
+                            <div style="font-size:1.1em; font-weight:400; color:#0f172a; margin-bottom:1.1em;">
+                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">🔬 Analysis:</span><br>{analysis}</span>
+                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">🚨 Core Issue:</span><br>{core_issue}</span>
+                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">📉 Why it matters:</span><br>{why_it_matters}</span>
+                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">✅ Recommended Action:</span><br>{recommended_action}</span>
+                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">🔮 Expected Outcome:</span><br>{expected_outcome}</span>
+                            </div>
+                        </div>
+                        """.format(
+                            headline=report.get('headline', 'Analysis Report'),
+                            analysis=report.get('analysis', ''),
+                            core_issue=report.get('core_issue', ''),
+                            why_it_matters=report.get('why_it_matters', ''),
+                            recommended_action=report.get('recommended_action', ''),
+                            expected_outcome=report.get('expected_outcome', '')
+                        ), unsafe_allow_html=True)
+                        
+                        # Check confidence score and normalize it
+                        confidence = report.get('confidence_score', 0)
+                        if isinstance(confidence, str):
+                            try:
+                                confidence = int(confidence.strip('%'))
+                            except ValueError:
+                                confidence = 0
+                        
+                        # Ensure confidence is within 0-100 range
+                        confidence = max(0, min(100, confidence))
+                        
+                        st.progress(confidence / 100, text=f"Confidence Score: {confidence}%")
+                        
+                        # Detected Issues List
+                        with st.expander("Detailed Issues Found"):
+                            for issue in report.get('detected_issues', []):
+                                st.write(f"- {issue}")
+                                
+                    except json.JSONDecodeError:
+                        # Fallback if LLM didn't return valid JSON
+                        st.markdown("### 📝 AI Evaluation Report")
+                        st.markdown(f"""
+                        <div style="
+                            background-color: #f8fafc; 
+                            padding: 25px; 
+                            border-radius: 12px; 
+                            border-left: 5px solid #4338ca;
+                            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                            font-family: 'Helvetica', sans-serif;
+                            line-height: 1.6;
+                            color: #374151;
+                        ">
+                            {response_json_str}
+                        </div>
+                        """, unsafe_allow_html=True)
             else:
                 st.error("Data file not found. Please check data/campaign_data.csv")
         except Exception as e:
