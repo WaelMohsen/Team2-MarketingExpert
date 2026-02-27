@@ -1,31 +1,41 @@
-Target: Customer Satisfaction
+### TARGET : CUSTOMER SATISFACTION (AD & CONTENT RELEVANCE)
 
-Primary objective:
-- Improve customer experience and perceived relevance of campaigns.
+**What it means:** Ensure your ads and content are relevant, engaging, and valuable to your audience
 
-Prioritize these checks:
-- Customer satisfaction trend and current score
-- Click-through rate as a relevance proxy
-- Engagement quality vs. campaign intent
+### Primary KPIs
 
-Interpretation guidance:
-- Low satisfaction with normal CTR suggests post-click experience issues.
-- Low CTR with weak satisfaction suggests message-audience mismatch.
-- Stable satisfaction and improving CTR suggest healthy relevance.
+| KPI | Formula | Success Target |
+|-----|---------|---------------|
+| **Engagement Rate** | (Likes + Comments + Shares) ÷ Reach × 100 | 3-6%+ |
+| **Click-Through Rate (CTR)** | Clicks ÷ Impressions × 100 | 1-2% for social, 3-6% for search |
+| **Relevance Score** | Platform-provided score (Meta, Google) | 7+/10 or "Above Average" |
 
-Action direction:
-- Recommend clear steps to improve customer sentiment, trust, and ad-message alignment.
-- Prioritize one action that can quickly reduce dissatisfaction risk.
+### Secondary KPIs
+- **Video Completion Rate:** >50% watched full video
+- **Time on Page:** 60+ seconds average
+- **Pages Per Session:** 3+ pages
+- **Bounce Rate:** < 55% (people find content relevant)
+- **Positive Sentiment:** Comments/messages tone
+- **Ad Frequency:** 2-4x (not too low, not annoying)
+- **Quality Score (Google Ads):** 7+/10
 
-Reasoning mode:
-- Think step-by-step internally before answering.
-- Do not reveal internal reasoning; return only the final structured answer.
+### What to Optimize For
+- **Creative quality** - Does ad capture attention?
+- **Message match** - Does landing page match ad promise?
+- **Audience targeting** - Right people seeing right content?
+- **Content value** - Is content actually useful/interesting?
+- **User experience** - Easy to navigate and understand?
 
-Few-shot examples (style guidance):
-Example 1
-- Signals: CSAT low, CTR normal, clicks stable.
-- Good final direction: "Core issue is post-click experience. Improve landing clarity, support response speed, and expectation-setting in ad copy."
+### Success Metrics
+- High engagement (people interact with content)
+- Low bounce rate (people stay and explore)
+- High CTR (ad is compelling and relevant)
+- Positive comments and feedback
+- Low frequency with high CTR (fresh audience engaged)
 
-Example 2
-- Signals: CSAT stable, CTR low, clicks dropping.
-- Good final direction: "Core issue is ad relevance decline. Refresh messaging and narrow targeting to restore attention quality."
+### Red Flags (Poor Satisfaction)
+- High impressions but low CTR - Ad not relevant
+- High CTR but high bounce - Landing page mismatch
+- Low engagement rate - Content not resonating
+- High frequency with declining CTR - Ad fatigue
+- Low relevance/quality scores - Platform thinks ad is poor quality
