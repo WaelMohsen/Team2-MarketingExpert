@@ -47,7 +47,7 @@ def load_target_prompt(file_path):
         return ""
 
 
-def generate_response(query, category, metrics):
+def generate_response(df,query, category, metrics):
     """
     Generates a response based on the category using a specific prompt file.
     Uses the new system_prompt and build_user_prompt structure while adapting to available metrics.
@@ -73,7 +73,7 @@ def generate_response(query, category, metrics):
     sys_prompt = system_prompt(category, target_prompt_path)
 
     # 2. Build User Prompt (adapting strictly to available metrics)
-    user_prompt_str = build_user_prompt(category, metrics)
+    user_prompt_str = build_user_prompt(category,df, metrics)
 
     try:
         response = client.chat.completions.create(
@@ -177,10 +177,24 @@ def system_prompt(target, target_prompt_path):
             """
 
 
-def build_user_prompt(category, metrics):
+def build_user_prompt(category, df,metrics):
     # Constructing a simulated 'user_input' based on the metrics we have
     # Since we moved to a single row CSV, we can assume the metrics dictionary 
     # has the raw values passed from data.py (which I need to verify in data.py next)
+    business_context = ""
+    if metrics.get("Campaign Goal"):
+        business_context = f"""
+                CAMPAIGN CONTEXT:
+                Ad Format: {metrics.get('Ad Format', 'N/A')}
+                Campaign Goal: {metrics.get('Campaign Goal', 'N/A')}
+
+                BUSINESS CONTEXT:
+                AOV: ${metrics.get('AOV', 'N/A')}
+                Annual Customer Value: ${metrics.get('Annual Customer Value', 'N/A')}
+                LTV:CAC Ratio: {metrics.get('LTV:CAC Ratio', 'N/A')}x
+                Break-Even ROAS: {metrics.get('Break-Even ROAS', 'N/A')}x
+                MER: {metrics.get('MER', 'N/A')}x
+                Product Profit Margin: {metrics.get('Product Profit Margin', 'N/A')}%"""
 
     return f"""
             BUSINESS:
@@ -188,18 +202,13 @@ def build_user_prompt(category, metrics):
             Goal: {category}
 
             CAMPAIGN:
-            Name: {metrics.get('Campaign Name', 'Unknown')}
-            Spend: ${metrics.get('Total Spend', 0)}
-            Revenue: ${metrics.get('Total Revenue', 0)}
-            Sales: {metrics.get('Total Conversions', 0)}
-            Impressions: {metrics.get('Total Impressions', 0)}
-            Clicks: {metrics.get('Total Clicks', 0)}
+            this is the campaing raw data
+           {df.iloc[0].to_dict()}
 
             METRICS:
-            Click-through rate: {metrics.get('CTR', 'N/A')}
-            Conversion rate: {metrics.get('Conversion Rate', 'N/A')}
-            Return on ad spend: {metrics.get('ROAS', 'N/A')}
-            Cost per customer: ${metrics.get('CPA', 'N/A')} (CPA estimated as Cost per Customer)
+            
+            {metrics}
+            
 
             Return JSON:
             {{

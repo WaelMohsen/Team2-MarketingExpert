@@ -114,7 +114,25 @@ def get_metrics_for_category(category_name, df):
     elif category_name == "Revenue Growth":
         # Additional metrics specific to Revenue
         # ROAS and Revenue are already in base metrics
-        pass
+        aov = round(total_revenue / total_conversions, 2) if total_conversions > 0 else 0
+        purchases = int(df["purchases_per_year"].iloc[0]) if "purchases_per_year" in df else 0
+        margin = float(df["product_profit_margin"].iloc[0]) if "product_profit_margin" in df else 0
+        monthly_spend = float(df["total_monthly_ad_spend"].iloc[0]) if "total_monthly_ad_spend" in df else 0
+
+        annual_customer_value = aov * purchases
+        ltv_cac_ratio = round(annual_customer_value / metrics["CPA"], 2) if metrics["CPA"] > 0 else 0
+        margin_decimal = margin / 100 if margin else 0
+        break_even_roas = round(1 / margin_decimal, 2) if margin_decimal else 0
+        mer = round(total_revenue / monthly_spend, 2) if monthly_spend else 0
+
+        metrics["AOV"] = aov
+        metrics["Annual Customer Value"] = round(annual_customer_value, 2)
+        metrics["LTV:CAC Ratio"] = ltv_cac_ratio
+        metrics["Break-Even ROAS"] = break_even_roas
+        metrics["MER"] = mer
+        metrics["Product Profit Margin"] = margin
+        metrics["Ad Format"] = df["ad_format"].iloc[0] if "ad_format" in df else "Unknown"
+        metrics["Campaign Goal"] = df["campaign_goal"].iloc[0] if "campaign_goal" in df else "Unknown"
 
     elif category_name == "Customer Retention":
         # Since the new CSV format does not have retention data (retained_customers, churn_rate),
