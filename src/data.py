@@ -23,20 +23,49 @@ def get_metrics_for_category(category_name, df):
     
     # Calculate overall totals/averages first
     # Convert numpy types to native Python types for JSON serialization
-    total_spend = float(df['spend'].sum())
-    total_revenue = float(df['revenue'].sum())
-    total_impressions = int(df['impressions'].sum())
-    total_clicks = int(df['clicks'].sum())
-    total_conversions = int(df['conversions'].sum())
-    total_new_customers = int(df['new_customers'].sum())
+    # Since we now have a single row, sum() works (it just sums the single value)
+    # but we should handle potential missing columns gracefully if needed.
     
+    # Extract values safely
+    total_spend = float(df['spend'].sum()) if 'spend' in df else 0.0
+    total_revenue = float(df['revenue'].sum()) if 'revenue' in df else 0.0
+    total_impressions = int(df['impressions'].sum()) if 'impressions' in df else 0
+    total_clicks = int(df['clicks'].sum()) if 'clicks' in df else 0
+    total_conversions = int(df['conversions'].sum()) if 'conversions' in df else 0
+    
+    # 'new_customers' might not exist in the new CSV format if we removed it, 
+    # but let's check. If not, use conversions as proxy for new customers?
+    # The prompts use Cost per Customer (CPA).
+    # If new_customers column is missing, we use conversions.
+    new_customers_col = 'new_customers' if 'new_customers' in df else 'conversions'
+    total_new_customers = int(df[new_customers_col].sum()) if new_customers_col in df else 0
+
+    campaign_name = df['campaign_name'].iloc[0] if 'campaign_name' in df and not df.empty else "Unknown Campaign"
+
+    # Common base metrics for the LLM prompt
+    metrics['Campaign Name'] = campaign_name
+    metrics['Total Spend'] = total_spend
+    metrics['Total Revenue'] = total_revenue
+    metrics['Total Impressions'] = total_impressions
+    metrics['Total Clicks'] = total_clicks
+    metrics['Total Conversions'] = total_conversions
+    metrics['Total New Customers'] = total_new_customers # Always include for UI consistency
+    
+    # Derived Metrics
+    # CPA (Cost Per Acquisition)
+    metrics['CPA'] = round(total_spend / total_new_customers, 2) if total_new_customers > 0 else 0.0
+    
+    # Conversion Rate
+    metrics['Conversion Rate'] = f"{round((total_conversions / total_clicks) * 100, 2)}%" if total_clicks > 0 else "0%"
+    
+    # CTR
+    metrics['CTR'] = f"{round((total_clicks / total_impressions) * 100, 2)}%" if total_impressions > 0 else "0%"
+    
+    # ROAS
+    metrics['ROAS'] = round(total_revenue / total_spend, 2) if total_spend > 0 else 0.0
+
     if category_name == "Customer Acquisition":
         metrics['Total New Customers'] = total_new_customers
-        metrics['Total Spend'] = total_spend
-        # Cost Per Acquisition (CPA)
-        metrics['CPA'] = round(total_spend / total_new_customers, 2) if total_new_customers > 0 else 0
-        # Conversion Rate
-        metrics['Conversion Rate'] = f"{round((total_conversions / total_clicks) * 100, 2)}%" if total_clicks > 0 else "0%"
 
     elif category_name == "Customer Satisfaction":
         # --- Totals ---
@@ -83,24 +112,18 @@ def get_metrics_for_category(category_name, df):
 
         
     elif category_name == "Revenue Growth":
-        metrics['Total Revenue'] = total_revenue
-        metrics['Total Spend'] = total_spend
-        # Return on Ad Spend (ROAS)
-        metrics['ROAS'] = round(total_revenue / total_spend, 2) if total_spend > 0 else 0
-        retained_sum = int(df['retained_customers'].sum())
-        metrics['Revenue Per Customer'] = round(total_revenue / (total_new_customers + retained_sum), 2)
+        # Additional metrics specific to Revenue
+        # ROAS and Revenue are already in base metrics
+        pass
 
     elif category_name == "Customer Retention":
-        avg_churn = float(df['churn_rate'].mean())
-        total_retained = int(df['retained_customers'].sum())
-        metrics['Average Churn Rate'] = f"{round(avg_churn * 100, 2)}%"
-        metrics['Total Retained Customers'] = total_retained
-        # Simple retention rate proxy
-        metrics['Retention Volume'] = total_retained
+        # Since the new CSV format does not have retention data (retained_customers, churn_rate),
+        # we will set these to N/A or derive proxies if possible.
+        # For this exercise, we'll mark them as Not Available.
+        metrics['Retention Volume'] = "Data Not Available"
+        metrics['Average Churn Rate'] = "Data Not Available"
 
     else:
         metrics['info'] = "General category, showing summary."
-        metrics['Total Revenue'] = total_revenue
-        metrics['Total Spend'] = total_spend
 
     return metrics
