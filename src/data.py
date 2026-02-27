@@ -135,11 +135,76 @@ def get_metrics_for_category(category_name, df):
         metrics["Campaign Goal"] = df["campaign_goal"].iloc[0] if "campaign_goal" in df else "Unknown"
 
     elif category_name == "Customer Retention":
-        # Since the new CSV format does not have retention data (retained_customers, churn_rate),
-        # we will set these to N/A or derive proxies if possible.
-        # For this exercise, we'll mark them as Not Available.
-        metrics['Retention Volume'] = "Data Not Available"
-        metrics['Average Churn Rate'] = "Data Not Available"
+        # Use provided retention fields if available.
+        retained_customers_total = (
+            int(df["retained_customers"].sum())
+            if "retained_customers" in df.columns
+            else 0
+        )
+
+        churn_rate_raw = (
+            float(df["churn_rate"].mean())
+            if "churn_rate" in df.columns
+            else None
+        )
+
+        # Churn rate may be expressed as a fraction (0-1) or a percent (0-100).
+        churn_rate_percent = None
+        if churn_rate_raw is not None:
+            churn_rate_percent = churn_rate_raw * 100 if churn_rate_raw <= 1 else churn_rate_raw
+
+        retention_rate_percent = (
+            round(100 - churn_rate_percent, 2)
+            if churn_rate_percent is not None
+            else None
+        )
+
+        purchases_per_year = (
+            float(df["purchases_per_year"].iloc[0])
+            if "purchases_per_year" in df.columns and not df.empty
+            else None
+        )
+
+        # Optional leading indicator that can correlate with future retention.
+        customer_satisfaction_score = (
+            float(df["customer_satisfaction_score"].iloc[0])
+            if "customer_satisfaction_score" in df.columns and not df.empty
+            else None
+        )
+
+        # Useful context to size the retained cohort vs new customers.
+        customer_base = retained_customers_total + total_new_customers
+        retained_customer_share_percent = (
+            round((retained_customers_total / customer_base) * 100, 2)
+            if customer_base > 0
+            else None
+        )
+
+        # Value proxy: average order value * purchases per year.
+        avg_order_value = round(total_revenue / total_conversions, 2) if total_conversions > 0 else 0.0
+        estimated_annual_value_per_customer = (
+            round(avg_order_value * purchases_per_year, 2)
+            if purchases_per_year is not None
+            else None
+        )
+
+        metrics["Retained Customers"] = retained_customers_total
+        metrics["Churn Rate"] = (
+            f"{round(churn_rate_percent, 2)}%" if churn_rate_percent is not None else "N/A"
+        )
+        metrics["Retention Rate"] = (
+            f"{retention_rate_percent}%" if retention_rate_percent is not None else "N/A"
+        )
+        metrics["Retained Customer Share"] = (
+            f"{retained_customer_share_percent}%" if retained_customer_share_percent is not None else "N/A"
+        )
+        metrics["Repeat Purchases Per Year"] = purchases_per_year if purchases_per_year is not None else "N/A"
+        metrics["Customer Satisfaction Score"] = (
+            customer_satisfaction_score if customer_satisfaction_score is not None else "N/A"
+        )
+        metrics["Estimated Annual Value Per Customer"] = (
+            estimated_annual_value_per_customer if estimated_annual_value_per_customer is not None else "N/A"
+        )
 
     else:
         metrics['info'] = "General category, showing summary."

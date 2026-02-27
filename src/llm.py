@@ -1,5 +1,4 @@
 import os
-import json
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -47,13 +46,11 @@ def load_target_prompt(file_path):
         return ""
 
 
-def generate_response(df,query, category, metrics):
+def generate_response(df, _query, category, metrics):
     """
     Generates a response based on the category using a specific prompt file.
     Uses the new system_prompt and build_user_prompt structure while adapting to available metrics.
     """
-    metrics_str = json.dumps(metrics, indent=2)
-
     # Map category to specific prompt file (Target Explanation)
     category_map = {
         "Customer Acquisition": "customer_acquisition.md",
@@ -72,8 +69,8 @@ def generate_response(df,query, category, metrics):
     # 1. Build System Prompt
     sys_prompt = system_prompt(category, target_prompt_path)
 
-    # 2. Build User Prompt (adapting strictly to available metrics)
-    user_prompt_str = build_user_prompt(category,df, metrics)
+    # 2. Build User Prompt (business-first, plain-language metrics)
+    user_prompt_str = build_user_prompt(category, df, metrics)
 
     try:
         response = client.chat.completions.create(
@@ -91,124 +88,90 @@ def generate_response(df,query, category, metrics):
 
 def system_prompt(target, target_prompt_path):
     # Load target campaign explanation prompt
-    # Note: Using load_prompt helper to handle path resolution relative to workspace if needed, 
-    # or the new load_target_prompt if path is absolute. Using load_target_prompt here as requested.
     target_explanation = load_target_prompt(target_prompt_path)
 
     return f"""
-            You are a senior marketing performance auditor.
+        You are advising a business lead who is not a marketing expert.
 
-            Your job is to diagnose paid advertising campaigns and deliver a decisive business verdict.
+        TARGET:
+        {target}
 
-            You think step-by-step internally but NEVER reveal your reasoning process.
+        TARGET EXPLANATION:
+        {target_explanation}
 
-            ------------------------------------------------------------
-            STEP 1 — Diagnose Performance
-            Evaluate every metric.
-            Label each as STRONG, NORMAL, or WEAK based on industry standards.
+        COMMUNICATION STYLE (STRICT):
+        1) Use simple business language.
+        2) Avoid abbreviations in final text (do NOT use CTR, ROAS, CPA, CAC,
+            LTV, MER). Spell terms out in plain English instead.
+        3) Focus on money impact, growth impact, and risk.
+        4) Give one clear decision and one clear next action.
+        5) Keep each field concise and understandable to a non-marketer.
+        6) Think step-by-step internally, but never reveal internal reasoning.
 
-            Do not analyze metrics in isolation.
-            Identify relationships between them.
-            Explain cause-and-effect chains.
-
-            ------------------------------------------------------------
-            STEP 2 — Identify Root Cause
-            Go beyond surface metrics.
-            Find the single biggest leverage point.
-            Is the problem:
-            - Audience
-            - Message
-            - Offer
-            - Budget allocation
-            - Landing page
-            - Timing
-
-            Choose ONE primary root cause.
-
-            ------------------------------------------------------------
-            STEP 3 — Make a Decision
-            Give ONE clear verdict:
-            - Continue
-            - Fix
-            - Cut
-
-            Be decisive.
-
-            ------------------------------------------------------------
-            IMPORTANT CONTEXT
-
-            The analysis MUST align with this campaign target:
-
-            TARGET:
-            {target}
-
-            TARGET EXPLANATION:
-            {target_explanation}
-
-            ------------------------------------------------------------
-            COMMUNICATION STYLE
-
-            Write for a smart business owner.
-
-            1) First explain in plain English (no acronyms).
-            2) Then briefly reference technical metrics (CTR, ROAS, CAC).
-
-            Be direct.
-            Be blunt if money is being wasted.
-            Never invent data.
-
-            ------------------------------------------------------------
-            OUTPUT RULES
-
-            Return ONLY valid JSON.
-            No markdown.
-            No explanation outside JSON.
-            Match the exact schema provided below:
-            {{
+        OUTPUT RULES:
+        - Return ONLY valid JSON
+        - No markdown
+        - No explanation outside JSON
+        - Match the exact schema below:
+        {{
             "headline": "Short punchy headline summary",
-            "analysis": "Detailed analysis of the performance step-by-step",
+            "analysis": "Plain-English business analysis with minimal jargon",
             "core_issue": "The one main problem",
             "why_it_matters": "Business impact explanation",
             "recommended_action": "Specific action to take",
             "expected_outcome": "What will happen after fix",
             "detected_issues": ["Issue 1", "Issue 2"],
             "confidence_score": 85
-            }}
-            """
+        }}
+"""
 
 
-def build_user_prompt(category, df,metrics):
-    # Constructing a simulated 'user_input' based on the metrics we have
-    # Since we moved to a single row CSV, we can assume the metrics dictionary 
-    # has the raw values passed from data.py (which I need to verify in data.py next)
+def build_user_prompt(category, df, metrics):
+    # Build business-first context to reduce technical/jargon-heavy output.
+    campaign = df.iloc[0].to_dict() if not df.empty else {}
+
+    business_metrics = {
+        "campaign_name": metrics.get("Campaign Name", "Unknown"),
+        "total_spend": metrics.get("Total Spend", "N/A"),
+        "total_revenue": metrics.get("Total Revenue", "N/A"),
+        "sales": metrics.get("Total Conversions", "N/A"),
+        "new_customers": metrics.get("Total New Customers", "N/A"),
+        "click_through_rate_percent": metrics.get("CTR", "N/A"),
+        "conversion_rate_percent": metrics.get("Conversion Rate", "N/A"),
+        "return_on_ad_spend": metrics.get("ROAS", "N/A"),
+        "cost_per_customer": metrics.get("CPA", "N/A"),
+    }
+
     business_context = ""
     if metrics.get("Campaign Goal"):
         business_context = f"""
-                CAMPAIGN CONTEXT:
-                Ad Format: {metrics.get('Ad Format', 'N/A')}
-                Campaign Goal: {metrics.get('Campaign Goal', 'N/A')}
+            CAMPAIGN CONTEXT:
+            - Ad format: {metrics.get('Ad Format', 'N/A')}
+            - Campaign goal: {metrics.get('Campaign Goal', 'N/A')}
 
-                BUSINESS CONTEXT:
-                AOV: ${metrics.get('AOV', 'N/A')}
-                Annual Customer Value: ${metrics.get('Annual Customer Value', 'N/A')}
-                LTV:CAC Ratio: {metrics.get('LTV:CAC Ratio', 'N/A')}x
-                Break-Even ROAS: {metrics.get('Break-Even ROAS', 'N/A')}x
-                MER: {metrics.get('MER', 'N/A')}x
-                Product Profit Margin: {metrics.get('Product Profit Margin', 'N/A')}%"""
+            BUSINESS CONTEXT:
+            - Average order value: ${metrics.get('AOV', 'N/A')}
+            - Annual customer value: ${metrics.get('Annual Customer Value', 'N/A')}
+            - Profit margin percent: {metrics.get('Product Profit Margin', 'N/A')}%
+            """
 
     return f"""
             BUSINESS:
             (Infer business type from campaign data)
             Goal: {category}
 
-            CAMPAIGN:
-            this is the campaing raw data
-           {df.iloc[0].to_dict()}
+            CAMPAIGN RAW DATA:
+            {campaign}
 
-            METRICS:
-            
-            {metrics}
-            
+            PLAIN BUSINESS METRICS:
+            {business_metrics}
+
+            {business_context}
+
+            IMPORTANT:
+            - Write for a business lead with no marketing background.
+            - Keep wording simple and practical.
+            - Avoid abbreviations in the final JSON text.
 
             Return JSON:
             {{
