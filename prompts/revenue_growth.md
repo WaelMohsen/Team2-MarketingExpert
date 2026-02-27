@@ -1,31 +1,31 @@
 Target: Revenue Growth
 
-Primary objective:
-- Increase revenue while maintaining healthy return on spend.
+Objective: Increase revenue while maintaining healthy return on spend.
 
-Prioritize these checks:
-- Total revenue versus total spend
-- ROAS efficiency and scalability
-- Sales/conversion volume supporting revenue trend
+Campaign Goal Context:
 
-Interpretation guidance:
-- Rising spend with weak revenue lift indicates poor incremental return.
-- Strong ROAS with controlled spend indicates scale-ready opportunities.
-- Good revenue but weak efficiency signals profitability risk.
+- Acquisition: Goal is getting new customers. Low or break-even ROAS is acceptable IF LTV:CAC ratio is strong (>3x). Judge by CPA and LTV:CAC, not short-term profit.
+- Monetization: Goal is generating immediate profit from existing customers. ROAS must be well above break-even. Low ROAS here is a real problem.
+- Engagement: Goal is turning customers into repeat buyers and advocates. Judge by conversion rate and revenue per click. ROAS matters less — retention and repeat purchases are the priority.
 
-Action direction:
-- Recommend revenue-focused actions for scaling winners and fixing/cutting weak segments.
-- Emphasize one highest-leverage change with expected financial impact.
+Ad Format Benchmarks (Good / Okay / Bad):
+| Metric      | Search            | Shopping          | Video             | Display           |
+|-------------|-------------------|-------------------|-------------------|-------------------|
+| ROAS        | 5+ / 3-5 / <2     | 6+ / 4-6 / <2     | 3+ / 2-3 / <1     | 3+ / 1.5-3 / <1   |
+| CPA ($)     | <30 / 30-50 / 50+ | <25 / 25-45 / 45+ | <50 / 50-80 / 80+ | <60 / 60-100 / 100+ |
+| Conv Rate % | 7+ / 4-7 / <4     | 5+ / 3-5 / <3     | 3+ / 1.5-3 / <1.5 | 2+ / 0.5-2 / <0.5 |
+| CTR %       | 5+ / 3-5 / <3     | 3+ / 1.5-3 / <1.5 | 2+ / 0.5-2 / <0.5 | 1+ / 0.3-1 / <0.3 |
 
-Reasoning mode:
-- Think step-by-step internally before answering.
-- Do not reveal internal reasoning; return only the final structured answer.
+Business Context Benchmarks:
+| Metric             | Good             | Warning        | Bad              |
+|--------------------|------------------|----------------|------------------|
+| LTV:CAC Ratio      | >3x              | 1-3x           | <1x              |
+| ROAS vs Break-Even | Above break-even | At break-even  | Below break-even |
+| MER                | >5x              | 3-5x           | <3x              |
 
-Few-shot examples (style guidance):
-Example 1
-- Signals: Spend up sharply, revenue nearly flat, ROAS declining.
-- Good final direction: "Core issue is inefficient spend expansion. Reallocate budget from low-return segments to proven high-ROAS campaigns."
-
-Example 2
-- Signals: Revenue up, ROAS strong, conversion volume increasing.
-- Good final direction: "Core issue is under-scaling. Increase spend in winning channels with staged budget lifts and weekly ROAS checks."
+CRITICAL RULES (follow strictly):
+- Check Campaign Goal FIRST before judging ANY metric.
+- If Goal is Acquisition: IGNORE break-even ROAS. IGNORE MER. Judge ONLY by CPA vs Annual Customer Value and LTV:CAC. Strong LTV:CAC (>3x) = campaign is working. Do NOT flag short-term losses as a problem.
+- If Goal is Monetization: IGNORE LTV:CAC. Judge ONLY by ROAS vs Break-Even ROAS. Below break-even = campaign is failing. Be blunt. Recommend Fix or Cut.
+- If Goal is Engagement: IGNORE ROAS. Judge ONLY by conversion rate and revenue per click.
+- MER below 1x means the business loses money on every dollar spent on ads. State the exact dollar loss.

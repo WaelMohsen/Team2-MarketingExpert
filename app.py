@@ -180,7 +180,7 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                     st.markdown("<br>", unsafe_allow_html=True)
 
                     # Generate AI Response (now returns JSON string)
-                    response_json_str = llm_handler.generate_response(f"Analyze metrics for {category}", category, metrics)
+                    response_json_str = llm_handler.generate_response(df,f"Analyze metrics for {category}", category, metrics)
                     
                     try:
                         import json
