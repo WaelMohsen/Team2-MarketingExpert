@@ -8,24 +8,30 @@ Prioritize these checks:
 - Conversion rate from clicks to sales
 - Traffic quality signals vs. spend level
 
-Interpretation guidance:
-- High CPA + low conversion rate usually indicates weak audience/offer/message fit.
-- High spend with flat customer growth indicates inefficient budget allocation.
-- Strong conversion rate with low volume suggests scaling opportunity.
+Interpretation guidance (Few-shot Examples):
+Example 1:
+- Signals: Conversion Rate: 1.1%, CPA: $60.00, ROAS: 1.2x
+- Thought Process: Low conversion rate is the bottleneck. The ad spend is wasted on a landing page that doesn't convert.
+- Final Direction: "Core issue is audience-message mismatch. Tighten audience segments and refresh creatives before adding budget."
 
-Action direction:
-- Recommend concrete acquisition improvements across targeting, creative, landing page, and budget split.
-- Focus on the single highest-impact change first.
+Example 2:
+- Signals: Conversion Rate: 3.2%, CPA: $15.00, ROAS: 4.5x
+- Thought Process: High efficiency detected. Scale is the only limit.
+- Final Direction: "Core issue is limited scale, not efficiency. Increase budget gradually on top-performing segments and monitor CPA guardrails."
 
-Reasoning mode:
-- Think step-by-step internally before answering.
-- Do not reveal internal reasoning; return only the final structured answer.
+Reasoning mode (Chain of Thought):
+- Let's think step-by-step.
+- First, analyze the relationship between the actual Conversion Rate and CPA provided below.
+- Compare them against industry benchmarks (CVR 1.5% - 2.5%).
+- Determine if the issue is Top-of-Funnel (CTR/Clicks) or Bottom-of-Funnel (CVR/Landing Page).
+- Return a structured actionable recommendation.
 
-Few-shot examples (style guidance):
-Example 1
-- Signals: CPA high, conversion rate low, spend increasing, customer growth flat.
-- Good final direction: "Core issue is audience-message mismatch. Tighten audience segments and refresh creatives before adding budget."
+Actual Campaign Metrics:
+- Campaign Name: {Campaign Name}
+- Conversion Rate: {Conversion Rate}
+- Cost per Customer (CPA): ${CPA}
+- Return on Ad Spend (ROAS): {ROAS}x
+- Click-Through Rate: {CTR}
 
-Example 2
-- Signals: CPA moderate, conversion rate strong, spend stable, customer growth rising.
-- Good final direction: "Core issue is limited scale, not efficiency. Increase budget gradually on top-performing segments and monitor CPA guardrails."
+Your Task:
+Based on the Actual Campaign Metrics above, provide your internal reasoning (Thought Process) then give the final Recommendation.
