@@ -1,4 +1,4 @@
-from .router import calculate_metrics
+from .router import calculate_metrics, load_data
 
 # Import modules 
 from . import acquisition

@@ -1,5 +1,14 @@
 from .base_metrics import calculate_base_metrics
 from .registry import KPI_REGISTRY
+import pandas as pd
+
+
+def load_data(filepath="data/campaign_data.csv"):
+    try:
+        df = pd.read_csv(filepath)
+        return df
+    except FileNotFoundError:
+        return None
 
 
 def calculate_metrics(df, target):
