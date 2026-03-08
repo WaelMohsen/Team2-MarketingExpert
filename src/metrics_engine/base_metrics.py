@@ -2,7 +2,7 @@ def calculate_base_metrics(df):
 
     if df is None or df.empty:
         return None
-
+    campaign_name = df['campaign_name'].iloc[0] if 'campaign_name' in df and not df.empty else "Unknown Campaign"
     total_spend = float(df['spend'].sum()) if 'spend' in df else 0.0
     total_revenue = float(df['revenue'].sum()) if 'revenue' in df else 0.0
     total_impressions = int(df['impressions'].sum()) if 'impressions' in df else 0
@@ -18,7 +18,7 @@ def calculate_base_metrics(df):
     )
 
     metrics = {}
-
+    metrics['Campaign Name'] = campaign_name
     metrics["Total Spend"] = total_spend
     metrics["Total Revenue"] = total_revenue
     metrics["Total Impressions"] = total_impressions

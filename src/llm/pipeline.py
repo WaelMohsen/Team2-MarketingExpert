@@ -1,4 +1,6 @@
 import os
+import json
+from datetime import datetime
 
 from .client import chat_completion, get_client
 from .prompts import (
@@ -23,6 +25,8 @@ _CATEGORY_PROMPT_FILES = {
     "Customer Retention": "customer_retention.md",
 }
 
+OUTPUT_LOG_DIR = "output_log"
+
 
 def _repo_root_dir() -> str:
     # pipeline.py lives at src/llm/pipeline.py
@@ -36,6 +40,14 @@ def _target_prompt_path_for_category(category: str) -> str:
         "response_generation.md",
     )
     return os.path.join(_repo_root_dir(), "prompts", prompt_file)
+
+def save_output(output: dict):
+    os.makedirs(OUTPUT_LOG_DIR, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = os.path.join(OUTPUT_LOG_DIR, f"pipeline_output_{timestamp}.json")
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=4, ensure_ascii=False)
+    print(f"Output saved to {filename}")
 
 
 def generate_response(df, category: str, metrics: dict) -> str:
@@ -61,6 +73,8 @@ def generate_response(df, category: str, metrics: dict) -> str:
         )
         print("Recommendation User Prompt:\n", rec_user)  # Debug print
         rec_resp = chat_completion(client, rec_sys, rec_user)
+        
+        save_output(rec_resp.dict())  # Save the full response for debugging
         return rec_resp.choices[0].message.content
     except Exception as exc:
         return f"Error generating response: {exc}"

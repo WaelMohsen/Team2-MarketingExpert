@@ -1,12 +1,15 @@
 from .base_metrics import calculate_base_metrics
+from src.schemas.input_schema import validate_campaign_data
 from .registry import KPI_REGISTRY
 import pandas as pd
 
 
-def load_data(filepath="data/campaign_data.csv"):
+def load_data(filepath="data/all_campaigns_data.csv"):
     try:
         df = pd.read_csv(filepath)
-        return df
+        canonical_data = validate_campaign_data(df)
+        canonical_df = pd.DataFrame([record.model_dump() for record in canonical_data])
+        return canonical_df
     except FileNotFoundError:
         return None
 

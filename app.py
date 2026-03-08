@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from dotenv import load_dotenv
-import metrics_engine as data_processor
+import src.metrics_engine as data_processor
 import src.llm as llm_handler
 
 # Load environment variables
