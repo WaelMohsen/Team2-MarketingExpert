@@ -45,3 +45,5 @@ def chat_completion(client, system_text, user_text):
         ],
         temperature=0.2,
     )
+# ANALYSIS: "gpt-4o-mini",
+# RECOMMENDATION: "gpt-4o"
