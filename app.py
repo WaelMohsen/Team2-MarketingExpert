@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from dotenv import load_dotenv
-import src.data as data_processor
+import src.metrics_engine as data_processor
 import src.llm as llm_handler
 
 # Load environment variables
@@ -133,7 +133,7 @@ if st.session_state.run_analysis and st.session_state.selected_category:
             # 1. Data Retrieval
             df = data_processor.load_data()
             if df is not None:
-                metrics = data_processor.get_metrics_for_category(category, df)
+                metrics = data_processor.calculate_metrics(df, category)
                 
                 # 2. LLM Generation
                 if "error" in metrics:
@@ -180,7 +180,7 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                     st.markdown("<br>", unsafe_allow_html=True)
 
                     # Generate AI Response (now returns JSON string)
-                    response_json_str = llm_handler.generate_response(df,f"Analyze metrics for {category}", category, metrics)
+                    response_json_str = llm_handler.generate_response(df, category, metrics)
                     
                     try:
                         import json
