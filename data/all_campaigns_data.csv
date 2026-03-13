@@ -1,0 +1,7 @@
+campaign_name,date,channel,impressions,clicks,conversions,spend,revenue,new_customers,reach,likes,comments,shares,bounce_rate,frequency,retained_customers,churn_rate,purchases_per_year,product_profit_margin
+Spring Launch,2026-03-01,Instagram,25000,1100,130,450.0,3200.0,110,20000,780,140,200,0.28,2.8,320,0.08,4.2,0.42
+Spring Launch,2026-03-01,Google Ads,18000,850,95,320.0,2400.0,82,,,,,0.24,2.0,280,0.11,3.8,0.42
+Spring Launch,2026-03-01,Email,10000,600,80,100.0,1500.0,68,,,,,0.36,1.4,410,0.06,5.1,0.42
+Spring Launch,2026-03-01,Facebook,13000,520,60,220.0,1100.0,50,11000,420,75,95,0.34,2.2,250,0.13,3.5,0.42
+Spring Launch,2026-03-01,TikTok,30000,1300,150,500.0,4000.0,125,26000,1400,310,620,0.21,3.5,340,0.07,4.8,0.42
+Spring Launch,2026-03-01,SMS,4000,280,55,40.0,750.0,48,3500,,,,0.19,1.2,290,0.09,3.9,0.42
