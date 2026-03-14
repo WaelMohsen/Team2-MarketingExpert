@@ -61,32 +61,12 @@ def analysis_system_prompt(target: str, target_prompt_path: str) -> str:
 """
 
 
-def recommendation_system_prompt(target: str, target_prompt_path: str) -> str:
+def recommendation_system_prompt(target: str, target_prompt_path: str, rec_prompt_path: str) -> str:
+    rec_prompt = load_target_prompt(rec_prompt_path)
     return f"""
         {_common_system_instructions(target, target_prompt_path)}
-
-        STEP 2 (RECOMMENDATION):
-        - You will be given the analysis JSON from Step 1.
-                - Use it as your primary input to produce ONE clear decision,
-                    and ONE clear next action.
-        - Your final output must match the report schema exactly.
-
-        OUTPUT RULES:
-        - Return ONLY valid JSON
-        - No markdown
-        - No text outside JSON
-        - Match the exact schema below:
-        {{
-            "headline": "Short punchy headline summary",
-            "analysis": "Plain-English business analysis with minimal jargon",
-            "core_issue": "The one main problem",
-            "why_it_matters": "Business impact explanation",
-            "recommended_action": "Specific action to take",
-            "expected_outcome": "What will happen after fix",
-            "detected_issues": ["Issue 1", "Issue 2"],
-            "confidence_score": 85
-        }}
-"""
+        {rec_prompt}
+    """
 
 
 def build_context_block(category: str, df, metrics: dict) -> str:
