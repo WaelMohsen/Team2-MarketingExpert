@@ -65,7 +65,8 @@ def generate_response(df, category: str, metrics: dict) -> str:
         analysis_resp = chat_completion(client, analysis_sys, analysis_user)
         analysis_json_str = analysis_resp.choices[0].message.content
 
-        rec_sys = recommendation_system_prompt(category, target_prompt_path)
+        rec_prompt_path = os.path.join(_repo_root_dir(), "prompts", "recommendation_system_prompt.md")
+        rec_sys = recommendation_system_prompt(category, target_prompt_path, rec_prompt_path)
         print("Recommendation System Prompt:\n", rec_sys)  # Debug print
         rec_user = build_recommendation_user_prompt(
             context_block,
@@ -73,8 +74,10 @@ def generate_response(df, category: str, metrics: dict) -> str:
         )
         print("Recommendation User Prompt:\n", rec_user)  # Debug print
         rec_resp = chat_completion(client, rec_sys, rec_user)
+        final_json = rec_resp.choices[0].message.content
+        print("Final Recommendation JSON:\n", final_json)  # Debug print
         
         save_output(rec_resp.dict())  # Save the full response for debugging
-        return rec_resp.choices[0].message.content
+        return final_json
     except Exception as exc:
         return f"Error generating response: {exc}"
