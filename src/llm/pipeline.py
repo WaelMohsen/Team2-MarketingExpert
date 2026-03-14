@@ -59,22 +59,24 @@ def generate_response(df, category: str, metrics: dict) -> str:
         context_block = build_context_block(category, df, metrics)
 
         analysis_sys = analysis_system_prompt(category, target_prompt_path)
-        #print("Analysis System Prompt:\n", analysis_sys)  # Debug print
+        print("Analysis System Prompt:\n", analysis_sys)  # Debug print
         analysis_user = build_analysis_user_prompt(context_block)
-        #print("Analysis User Prompt:\n", analysis_user)  # Debug print
+        print("Analysis User Prompt:\n", analysis_user)  # Debug print
         analysis_resp = chat_completion(client, analysis_sys, analysis_user)
         analysis_json_str = analysis_resp.choices[0].message.content
 
         rec_sys = recommendation_system_prompt(category, target_prompt_path)
-        #print("Recommendation System Prompt:\n", rec_sys)  # Debug print
+        print("Recommendation System Prompt:\n", rec_sys)  # Debug print
         rec_user = build_recommendation_user_prompt(
             context_block,
             analysis_input=analysis_json_str,
         )
         print("Recommendation User Prompt:\n", rec_user)  # Debug print
         rec_resp = chat_completion(client, rec_sys, rec_user)
+        final_json = rec_resp.choices[0].message.content
+        print("Final Recommendation JSON:\n", final_json)  # Debug print
         
         save_output(rec_resp.dict())  # Save the full response for debugging
-        return rec_resp.choices[0].message.content
+        return final_json
     except Exception as exc:
         return f"Error generating response: {exc}"
