@@ -16,6 +16,8 @@ def calculate_base_metrics(df):
         (total_clicks / total_impressions) * 100
         if total_impressions > 0 else 0
     )
+    # --- conversion rate ----
+    conversion_rate = (total_conversions / total_clicks) * 100 if total_clicks else 0
 
     metrics = {}
     metrics['Campaign Name'] = campaign_name
@@ -25,7 +27,7 @@ def calculate_base_metrics(df):
     metrics["Total Clicks"] = total_clicks
     metrics["Total Conversions"] = total_conversions
     metrics["Total New Customers"] = total_new_customers
-
+    metrics["Conversion Rate"] = f"{round(conversion_rate, 2)}%"
     metrics['CTR'] = f"{round(ctr, 2)}%"
     metrics["CPA"] = round(total_spend / total_new_customers, 2) if total_new_customers else 0
     metrics["ROAS"] = round(total_revenue / total_spend, 2) if total_spend else 0

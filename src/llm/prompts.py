@@ -126,13 +126,9 @@ def build_context_block(category: str, df, metrics: dict) -> str:
             return {
                 "average_order_value": _pick("AOV"),
                 "annual_value_per_customer": _pick("Annual Customer Value"),
-                # Use plain terms for ratios/benchmarks.
                 "annual_value_to_cost_ratio": _pick("LTV:CAC Ratio"),
-                "break_even_revenue_return": _pick("Break-Even ROAS"),
-                "revenue_per_total_ad_spend": _pick("MER"),
-                "profit_margin_percent": _pick("Product Profit Margin"),
-                "ad_format": _pick("Ad Format"),
-                "campaign_goal": _pick("Campaign Goal"),
+                "marketing_roi_percent": _pick("Marketing ROI"), 
+                "revenue_per_click": _pick("Revenue Per Click"),  
             }
 
         if category == "Customer Retention":
