@@ -35,15 +35,24 @@ def get_client():
     return _client
 
 
-def chat_completion(client, system_text, user_text):
-    """Small wrapper for chat.completions.create."""
-    return client.chat.completions.create(
+def chat_completion(client, system_text, user_text, response_format):
+    """Wrapper around the OpenAI structured-outputs beta endpoint.
+
+    `response_format` should be a **Pydantic model class** (e.g. AnalysisOutput).
+    The SDK automatically generates the JSON schema with additionalProperties: false,
+    sends it with strict: true, and parses the response into a Pydantic instance
+    accessible via `response.choices[0].message.parsed`.
+    """
+
+    return client.beta.chat.completions.parse(
         model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": system_text},
             {"role": "user", "content": user_text},
         ],
         temperature=0.2,
+        response_format=response_format,
     )
+
 # ANALYSIS: "gpt-4o-mini",
 # RECOMMENDATION: "gpt-4o"

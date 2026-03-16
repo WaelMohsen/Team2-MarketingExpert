@@ -44,3 +44,9 @@ To start the application, run:
 $ streamlit run app.py
 ```
 
+## Workflow Diagram
+
+- Editable source: [docs/diagrams/marketing-expert-workflow.drawio](docs/diagrams/marketing-expert-workflow.drawio)
+
+![Marketing Expert Workflow](docs/diagrams/marketing-expert-workflow.svg)
+

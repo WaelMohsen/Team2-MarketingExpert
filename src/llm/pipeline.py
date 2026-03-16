@@ -2,7 +2,11 @@ import os
 import json
 from datetime import datetime
 
-from .client import chat_completion, get_client
+from src.llm.client import chat_completion, get_client
+from ..schemas.analysis_output_schema import AnalysisOutput
+from ..schemas.analysis_output_schema import validate_analysis_output
+from ..schemas.recommendation_output_schema import RecommendationOutput
+from ..schemas.recommendation_output_schema import validate_recommendation_output
 from .prompts import (
     analysis_system_prompt,
     build_analysis_user_prompt,
@@ -62,8 +66,19 @@ def generate_response(df, category: str, metrics: dict) -> str:
         print("Analysis System Prompt:\n", analysis_sys)  # Debug print
         analysis_user = build_analysis_user_prompt(context_block)
         print("Analysis User Prompt:\n", analysis_user)  # Debug print
-        analysis_resp = chat_completion(client, analysis_sys, analysis_user)
-        analysis_json_str = analysis_resp.choices[0].message.content
+        analysis_resp = chat_completion(
+            client,
+            analysis_sys,
+            analysis_user,
+            response_format=AnalysisOutput,
+        )
+        # SDK parses the response into a Pydantic instance automatically.
+        analysis_model = analysis_resp.choices[0].message.parsed
+
+        # Run our custom validators (confidence normalization, empty-field checks).
+        analysis_json_str = json.dumps(analysis_model.dict(), ensure_ascii=False)
+        analysis_model = validate_analysis_output(analysis_json_str)
+        analysis_json_str = json.dumps(analysis_model.dict(), ensure_ascii=False)
 
         rec_prompt_path = os.path.join(_repo_root_dir(), "prompts", "recommendation_system_prompt.md")
         rec_sys = recommendation_system_prompt(category, target_prompt_path, rec_prompt_path)
@@ -73,11 +88,27 @@ def generate_response(df, category: str, metrics: dict) -> str:
             analysis_input=analysis_json_str,
         )
         print("Recommendation User Prompt:\n", rec_user)  # Debug print
-        rec_resp = chat_completion(client, rec_sys, rec_user)
-        final_json = rec_resp.choices[0].message.content
-        print("Final Recommendation JSON:\n", final_json)  # Debug print
-        
-        save_output(rec_resp.dict())  # Save the full response for debugging
-        return final_json
+        rec_resp = chat_completion(
+            client,
+            rec_sys,
+            rec_user,
+            response_format=RecommendationOutput,
+        )
+        rec_model = rec_resp.choices[0].message.parsed
+        print("Final Recommendation parsed:", rec_model)  # Debug print
+
+        # Run our custom validators (count check, empty-field checks).
+        rec_json_str = json.dumps(rec_model.dict(), ensure_ascii=False)
+        rec_model = validate_recommendation_output(rec_json_str)
+
+        # Combine both steps into a single response for the UI.
+        combined = {
+            "analysis": analysis_model.dict(),
+            "recommendations": [r.dict() for r in rec_model.recommendations],
+        }
+
+        combined_json = json.dumps(combined, ensure_ascii=False)
+        save_output(combined)  # Save the full response for debugging
+        return combined_json
     except Exception as exc:
         return f"Error generating response: {exc}"
