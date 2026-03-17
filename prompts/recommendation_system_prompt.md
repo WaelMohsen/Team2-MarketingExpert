@@ -24,24 +24,6 @@ You support business stakeholders who are not marketers. Based on a completed ca
 7. Output MUST be valid JSON following the exact output schema below.
 8. Do NOT include markdown, commentary, or code fences — return raw JSON only.
 
-## INPUT FORMAT
-
-```json
-{
-  "campaign_target": {
-    "primary_goal": "<string>",
-    "kpis": ["<string KPI 1>", "<string KPI 2>"]
-  },
-  "analysis": {
-    "executive_summary": "<string>",
-    "budget_and_efficiency": [],
-    "results_and_value": [],
-    "cross_channel_patterns_and_risks": [],
-    "channel_notes": [],
-    "missing_info": []
-  }
-}
-```
 
 ## OUTPUT FORMAT
 
