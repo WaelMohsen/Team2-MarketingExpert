@@ -10,6 +10,7 @@ from .prompts import (
     build_recommendation_user_prompt,
     recommendation_system_prompt,
 )
+from src.schemas import validate_recommendation_response
 
 CATEGORIES = [
     "Customer Acquisition",
@@ -64,6 +65,7 @@ def generate_response(df, category: str, metrics: dict) -> str:
         print("Analysis User Prompt:\n", analysis_user)  # Debug print
         analysis_resp = chat_completion(client, analysis_sys, analysis_user)
         analysis_json_str = analysis_resp.choices[0].message.content
+        print("Final analysis JSON:\n", analysis_json_str)
 
         rec_prompt_path = os.path.join(_repo_root_dir(), "prompts", "recommendation_system_prompt.md")
         rec_sys = recommendation_system_prompt(category, target_prompt_path, rec_prompt_path)
@@ -75,9 +77,14 @@ def generate_response(df, category: str, metrics: dict) -> str:
         print("Recommendation User Prompt:\n", rec_user)  # Debug print
         rec_resp = chat_completion(client, rec_sys, rec_user)
         final_json = rec_resp.choices[0].message.content
-        print("Final Recommendation JSON:\n", final_json)  # Debug print
-        
-        save_output(rec_resp.dict())  # Save the full response for debugging
+        validated_recommendations = validate_recommendation_response(final_json)
+        print("Final Recommendations validated:\n", validated_recommendations)  # Debug print
+
+        outpu_log={"context_block": context_block,
+                   "INSIGHTS": json.loads(analysis_json_str),
+                   "RECOMMENDATIONS": [r.model_dump() for r in validated_recommendations]
+                   }
+        save_output(outpu_log)  # Save the full response for debugging
         return final_json
     except Exception as exc:
         return f"Error generating response: {exc}"
