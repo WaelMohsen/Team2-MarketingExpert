@@ -16,11 +16,8 @@ def _common_system_instructions(target: str, target_prompt_path: str) -> str:
     target_explanation = load_target_prompt(target_prompt_path)
 
     return f"""
-        You are advising a business lead who is not a marketing expert.
-
-        TARGET:
-        {target}
-
+        Important Note : Take in mind to perform your role based on this marketing campaign target below 
+        TARGET: {target}
         TARGET EXPLANATION:
         {target_explanation}
 
@@ -34,30 +31,10 @@ def _common_system_instructions(target: str, target_prompt_path: str) -> str:
 """
 
 
-def analysis_system_prompt(target: str, target_prompt_path: str) -> str:
-    return f"""
-        {_common_system_instructions(target, target_prompt_path)}
-
-        STEP 1 (ANALYSIS ONLY):
-                - Your job is to analyze the situation.
-                    Do NOT propose the final recommendation.
-                - Identify what is working, what is not working,
-                    and the likely root cause.
-        - Extract the most important signals from the provided metrics.
-
-        OUTPUT RULES:
-        - Return ONLY valid JSON
-        - No markdown
-        - No text outside JSON
-        - Match the exact schema below:
-        {{
-            "analysis": "Plain-English analysis (no recommendation yet)",
-            "key_signals": ["Signal 1", "Signal 2"],
-            "detected_issues": ["Issue 1", "Issue 2"],
-            "root_cause_hypothesis": "Most likely root cause",
-            "business_risks": ["Risk 1", "Risk 2"],
-            "confidence_score": 0
-        }}
+def analysis_system_prompt(target: str, target_prompt_path: str, analysis_prompt_path: str) -> str:
+    analysis_prompt=load_target_prompt(analysis_prompt_path)
+    return f"""{analysis_prompt}
+        {_common_system_instructions(target, target_prompt_path)}       
 """
 
 
