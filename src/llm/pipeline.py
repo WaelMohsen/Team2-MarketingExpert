@@ -2,7 +2,7 @@ import os
 import json
 from datetime import datetime
 
-from .client import chat_completion, get_client
+from .client import run_insights,run_recommendations
 from .prompts import (
     analysis_system_prompt,
     build_analysis_user_prompt,
@@ -53,7 +53,6 @@ def save_output(output: dict):
 def generate_response(df, category: str, metrics: dict) -> str:
     """Two-step flow: analysis JSON -> recommendation JSON (final schema)."""
     try:
-        client = get_client()
 
         target_prompt_path = _target_prompt_path_for_category(category)
         context_block = build_context_block(category, df, metrics)
@@ -62,22 +61,21 @@ def generate_response(df, category: str, metrics: dict) -> str:
         print("Analysis System Prompt:\n", analysis_sys)  # Debug print
         analysis_user = build_analysis_user_prompt(context_block)
         print("Analysis User Prompt:\n", analysis_user)  # Debug print
-        analysis_resp = chat_completion(client, analysis_sys, analysis_user)
-        analysis_json_str = analysis_resp.choices[0].message.content
-
+        analysis_resp = run_insights(system=analysis_sys, user=analysis_user)
+        
         rec_prompt_path = os.path.join(_repo_root_dir(), "prompts", "recommendation_system_prompt.md")
         rec_sys = recommendation_system_prompt(category, target_prompt_path, rec_prompt_path)
         print("Recommendation System Prompt:\n", rec_sys)  # Debug print
         rec_user = build_recommendation_user_prompt(
             context_block,
-            analysis_input=analysis_json_str,
+            analysis_input=analysis_resp,
         )
         print("Recommendation User Prompt:\n", rec_user)  # Debug print
-        rec_resp = chat_completion(client, rec_sys, rec_user)
-        final_json = rec_resp.choices[0].message.content
+        rec_resp = run_recommendations(system=rec_sys, user=rec_user)
+        final_json = rec_resp
         print("Final Recommendation JSON:\n", final_json)  # Debug print
         
-        save_output(rec_resp.dict())  # Save the full response for debugging
+        save_output(json.loads(final_json))  # Save the full response for debugging
         return final_json
     except Exception as exc:
         return f"Error generating response: {exc}"
