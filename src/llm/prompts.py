@@ -40,9 +40,9 @@ def analysis_system_prompt(target: str, target_prompt_path: str, analysis_prompt
 
 def recommendation_system_prompt(target: str, target_prompt_path: str, rec_prompt_path: str) -> str:
     rec_prompt = load_target_prompt(rec_prompt_path)
-    return f"""
+    return f"""{rec_prompt}
         {_common_system_instructions(target, target_prompt_path)}
-        {rec_prompt}
+
     """
 
 
