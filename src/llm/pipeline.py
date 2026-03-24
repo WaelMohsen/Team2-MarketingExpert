@@ -14,6 +14,7 @@ from .prompts import (
     build_recommendation_user_prompt,
     recommendation_system_prompt,
 )
+from src.schemas import validate_recommendation_response
 
 CATEGORIES = [
     "Customer Acquisition",
@@ -62,7 +63,8 @@ def generate_response(df, category: str, metrics: dict) -> str:
         target_prompt_path = _target_prompt_path_for_category(category)
         context_block = build_context_block(category, df, metrics)
 
-        analysis_sys = analysis_system_prompt(category, target_prompt_path)
+        sys_analysis_prompt_path = os.path.join(_repo_root_dir(), "prompts", "system_analysis_prompt.md")
+        analysis_sys = analysis_system_prompt(category, target_prompt_path, sys_analysis_prompt_path)
         print("Analysis System Prompt:\n", analysis_sys)  # Debug print
         analysis_user = build_analysis_user_prompt(context_block)
         print("Analysis User Prompt:\n", analysis_user)  # Debug print
