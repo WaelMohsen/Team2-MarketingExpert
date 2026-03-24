@@ -181,59 +181,160 @@ if st.session_state.run_analysis and st.session_state.selected_category:
 
                     # Generate AI Response (now returns JSON string)
                     response_json_str = llm_handler.generate_response(df, category, metrics)
-                    
+
                     try:
                         import json
-                        # Attempt to parse as JSON
                         report = json.loads(response_json_str)
-                        
-                        st.markdown("""
-                        <div style="margin-top: 2.5em; margin-bottom: 1.5em;">
-                            <div style="font-size:2.0em; font-weight:900; color:#4338ca; margin-bottom:0.5em;">📝 AI Evaluation Report</div>
-                            <div style="font-size:1.3em; font-weight:800; color:#1e293b; margin-bottom:1.2em;">{headline}</div>
-                            <div style="font-size:1.1em; font-weight:400; color:#0f172a; margin-bottom:1.1em;">
-                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">🔬 Analysis:</span><br>{analysis}</span>
-                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">🚨 Core Issue:</span><br>{core_issue}</span>
-                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">📉 Why it matters:</span><br>{why_it_matters}</span>
-                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">✅ Recommended Action:</span><br>{recommended_action}</span>
-                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">🔮 Expected Outcome:</span><br>{expected_outcome}</span>
-                            </div>
-                        </div>
-                        """.format(
-                            headline=report.get('headline', 'Analysis Report'),
-                            analysis=report.get('analysis', ''),
-                            core_issue=report.get('core_issue', ''),
-                            why_it_matters=report.get('why_it_matters', ''),
-                            recommended_action=report.get('recommended_action', ''),
-                            expected_outcome=report.get('expected_outcome', '')
-                        ), unsafe_allow_html=True)
-                        
-                        # Check confidence score and normalize it
-                        confidence = report.get('confidence_score', 0)
+
+                        analysis = report.get('analysis', {})
+                        recommendations = report.get('recommendations', [])
+
+                        # ── Analysis Summary ──────────────────────────────
+                        st.markdown("### 🔬 Analysis Summary")
+                        st.markdown(analysis.get('analysis', ''))
+
+                        # Root-cause hypothesis
+                        root_cause = analysis.get('root_cause_hypothesis', '')
+                        if root_cause:
+                            st.info(f"**Root-cause hypothesis:** {root_cause}")
+
+                        # Key signals
+                        signals = analysis.get('key_signals', [])
+                        if signals:
+                            with st.expander("📡 Key Signals"):
+                                for sig in signals:
+                                    st.write(f"- {sig}")
+
+                        # Detected issues
+                        issues = analysis.get('detected_issues', [])
+                        if issues:
+                            with st.expander("🚨 Detected Issues"):
+                                for issue in issues:
+                                    st.write(f"- {issue}")
+
+                        # Business risks
+                        risks = analysis.get('business_risks', [])
+                        if risks:
+                            with st.expander("⚠️ Business Risks"):
+                                for risk in risks:
+                                    st.write(f"- {risk}")
+
+                        # Confidence score
+                        confidence = analysis.get('confidence_score', 0)
                         if isinstance(confidence, str):
                             try:
-                                confidence = int(confidence.strip('%'))
+                                confidence = float(confidence.strip('%'))
                             except ValueError:
                                 confidence = 0
-                        
-                        # Ensure confidence is within 0-100 range
-                        confidence = max(0, min(100, confidence))
-                        
+                        confidence = max(0, min(100, int(confidence)))
                         st.progress(confidence / 100, text=f"Confidence Score: {confidence}%")
-                        
-                        # Detected Issues List
-                        with st.expander("Detailed Issues Found"):
-                            for issue in report.get('detected_issues', []):
-                                st.write(f"- {issue}")
-                                
+
+                        # ── Recommendation Cards ─────────────────────────
+                        st.markdown("---")
+                        st.markdown("### 💡 Recommendations")
+
+                        PRIORITY_COLORS = {
+                            "high": "#dc2626",
+                            "medium": "#d97706",
+                            "low": "#16a34a",
+                        }
+
+                        for idx, rec in enumerate(recommendations, 1):
+                            priority = rec.get('priority', 'medium').lower()
+                            color = PRIORITY_COLORS.get(priority, "#6366f1")
+
+                            st.markdown(f"""
+                            <div style="
+                                background: #fff;
+                                border-left: 5px solid {color};
+                                border-radius: 10px;
+                                padding: 20px 24px;
+                                margin-bottom: 18px;
+                                box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+                            ">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                    <span style="font-size:1.25em; font-weight:700; color:#1e293b;">{idx}. {rec.get('title','')}</span>
+                                    <span style="
+                                        background:{color}22;
+                                        color:{color};
+                                        font-weight:700;
+                                        padding:3px 12px;
+                                        border-radius:20px;
+                                        font-size:0.85em;
+                                    ">{priority.upper()} priority</span>
+                                </div>
+                                <div style="color:#475569; font-size:0.95em; margin-bottom:6px;">
+                                    <b>Effort:</b> {rec.get('effort','')} · <b>Impact in:</b> {rec.get('time_to_see_impact','')} · <b>Confidence:</b> {rec.get('confidence','')}
+                                </div>
+                            </div>
+                            """, unsafe_allow_html=True)
+
+                            # What's happening
+                            st.markdown(f"**📋 What's happening:** {rec.get('whats_happening', '')}")
+
+                            # Evidence
+                            evidence = rec.get('evidence', [])
+                            if evidence:
+                                with st.expander("📊 Evidence"):
+                                    for ev in evidence:
+                                        st.write(f"- {ev}")
+
+                            # Action steps
+                            actions = rec.get('what_you_should_do', [])
+                            if actions:
+                                with st.expander("✅ Action Steps"):
+                                    for step in actions:
+                                        if isinstance(step, dict):
+                                            st.markdown(f"**{step.get('step', '')}**")
+                                            st.write(f"  *Where:* {step.get('where', '')}")
+                                            st.write(f"  *How:* {step.get('how', '')}")
+                                            guardrails = step.get('guardrails', [])
+                                            if guardrails:
+                                                st.write("  *Guardrails:* " + ", ".join(guardrails))
+                                        else:
+                                            st.write(f"- {step}")
+
+                            # Why this matters
+                            why = rec.get('why_this_matters', '')
+                            if why:
+                                st.markdown(f"**📉 Why this matters:** {why}")
+
+                            # Expected impact
+                            impact = rec.get('expected_impact', {})
+                            if isinstance(impact, dict) and impact:
+                                st.markdown(
+                                    f"**🔮 Expected impact:** {impact.get('primary_kpi','')} "
+                                    f"→ {impact.get('direction','')} — {impact.get('explanation','')}"
+                                )
+
+                            # Risks / Dependencies
+                            dep_risks = rec.get('dependency_or_risk', [])
+                            if dep_risks:
+                                with st.expander("⚠️ Risks & Dependencies"):
+                                    for dr in dep_risks:
+                                        st.write(f"- {dr}")
+
+                            # Measurement plan
+                            mplan = rec.get('measurement_plan', {})
+                            if isinstance(mplan, dict) and mplan:
+                                with st.expander("📏 Measurement Plan"):
+                                    st.write(f"**How to measure:** {mplan.get('how_to_measure', '')}")
+                                    st.write(f"**Success criteria:** {mplan.get('success_criteria', '')}")
+                                    st.write(f"**Check timing:** {mplan.get('check_timing', '')}")
+                                    notes = mplan.get('notes', '')
+                                    if notes:
+                                        st.write(f"**Notes:** {notes}")
+
+                            st.markdown(f"*Owner suggestion: {rec.get('owner_suggestion', '')}*")
+                            st.markdown("---")
+
                     except json.JSONDecodeError:
-                        # Fallback if LLM didn't return valid JSON
                         st.markdown("### 📝 AI Evaluation Report")
                         st.markdown(f"""
                         <div style="
-                            background-color: #f8fafc; 
-                            padding: 25px; 
-                            border-radius: 12px; 
+                            background-color: #f8fafc;
+                            padding: 25px;
+                            border-radius: 12px;
                             border-left: 5px solid #4338ca;
                             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
                             font-family: 'Helvetica', sans-serif;
