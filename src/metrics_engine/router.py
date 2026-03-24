@@ -27,3 +27,39 @@ def calculate_metrics(df, target):
         return base_metrics
 
     return calculator(df, base_metrics)
+
+
+def calculate_metrics_full(df, target):
+    """
+    Calculates metrics both across all channels (overall) and per individual channel.
+ 
+    Returns:
+        {
+            "overall": { ...metrics across all channels... },
+            "per_channel": {
+                "Instagram": { ...metrics... },
+                "Google Ads": { ...metrics... },
+                ...
+            }
+        }
+    """
+    if df is None or df.empty:
+        return {"error": "No data available"}
+ 
+    # --- Overall (across all channels) ---
+    overall = calculate_metrics(df, target)
+ 
+    # --- Per channel ---
+    per_channel = {}
+ 
+    if "channel" not in df.columns:
+        return {"overall": overall, "per_channel": {}}
+ 
+    for channel_name, channel_df in df.groupby("channel"):
+        channel_df = channel_df.reset_index(drop=True)
+        per_channel[channel_name] = calculate_metrics(channel_df, target)
+ 
+    return {
+        "overall": overall,
+        "per_channel": per_channel,
+    }

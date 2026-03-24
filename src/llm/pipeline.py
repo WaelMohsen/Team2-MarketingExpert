@@ -14,7 +14,6 @@ from .prompts import (
     build_recommendation_user_prompt,
     recommendation_system_prompt,
 )
-from src.schemas import validate_recommendation_response
 
 CATEGORIES = [
     "Customer Acquisition",

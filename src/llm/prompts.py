@@ -51,93 +51,9 @@ def build_context_block(category: str, df, metrics: dict) -> str:
 
     No schemas, and no step instructions.
     """
-    def _is_missing(value) -> bool:
-        return value is None or value == "" or value == "N/A"
-
-    def _pick(metric_key: str, default="N/A"):
-        return metrics.get(metric_key, default)
-
-    def _base_business_metrics() -> dict:
-        return {
-            "campaign_name": _pick("Campaign Name", "Unknown"),
-            "total_spend": _pick("Total Spend"),
-            "total_revenue": _pick("Total Revenue"),
-            "sales": _pick("Total Conversions"),
-            "new_customers": _pick("Total New Customers"),
-            # Keep keys business-friendly (avoid marketing acronyms).
-            "click_rate_percent": _pick("CTR"),
-            "purchase_rate_percent": _pick("Conversion Rate"),
-            "revenue_return_per_ad_dollar": _pick("ROAS"),
-            "cost_per_new_customer": _pick("CPA"),
-        }
-
-    def _category_business_metrics() -> dict:
-        if category == "Customer Satisfaction":
-            return {
-                "engagement_rate_percent": _pick("Engagement Rate"),
-                "average_bounce_rate_percent": _pick("Average Bounce Rate"),
-                "average_ad_frequency": _pick("Average Frequency"),
-            }
-
-        if category == "Revenue Growth":
-            return {
-                "average_order_value": _pick("AOV"),
-                "annual_value_per_customer": _pick("Annual Customer Value"),
-                "annual_value_to_cost_ratio": _pick("LTV:CAC Ratio"),
-                "marketing_roi_percent": _pick("Marketing ROI"), 
-                "revenue_per_click": _pick("Revenue Per Click"),  
-            }
-
-        if category == "Customer Retention":
-            return {
-                "retained_customers": _pick("Retained Customers"),
-                "churn_rate_percent": _pick("Churn Rate"),
-                "retention_rate_percent": _pick("Retention Rate"),
-                "retained_customer_share_percent": _pick(
-                    "Retained Customer Share"
-                ),
-                "repeat_purchases_per_year": _pick(
-                    "Repeat Purchases Per Year"
-                ),
-                "estimated_annual_value_per_customer": _pick(
-                    "Estimated Annual Value Per Customer"
-                ),
-                "customer_satisfaction_score": _pick(
-                    "Customer Satisfaction Score"
-                ),
-            }
-
-        # Customer Acquisition (and default)
-        return {}
-
-    campaign = df.iloc[0].to_dict() if df is not None and not df.empty else {}
-
-    # Build a single metrics block: base + category-specific,
-    # then drop missing values.
-    business_metrics = {
-        **_base_business_metrics(),
-        **_category_business_metrics(),
-    }
-    business_metrics = {
-        key: value
-        for key, value in business_metrics.items()
-        if not _is_missing(value)
-    }
-
-    # Optional: include small context block only when those fields exist.
-    business_context_lines = []
-    for label, key in (
-        ("Channel", "channel"),
-        ("Date", "date"),
-    ):
-        if key in campaign and not _is_missing(campaign.get(key)):
-            business_context_lines.append(f"- {label}: {campaign.get(key)}")
-
-    business_context = ""
-    if business_context_lines:
-        business_context = (
-            "CAMPAIGN CONTEXT:\n" + "\n".join(business_context_lines)
-        )
+    campaign_raw_data=df.to_dict("records")
+    metrics_overall= metrics.get('overall')
+    metrics_per_channel=metrics.get('per_channel')
 
     return f"""
         BUSINESS:
@@ -145,12 +61,13 @@ def build_context_block(category: str, df, metrics: dict) -> str:
         Goal: {category}
 
         CAMPAIGN RAW DATA:
-        {campaign}
+        {campaign_raw_data}
 
         PLAIN BUSINESS METRICS:
-        {business_metrics}
-
-        {business_context}
+         - Across all channels (overall)
+            {metrics_overall}
+         - per_channel
+            {metrics_per_channel}
 
         IMPORTANT:
         - Write for a business lead with no marketing background.

@@ -133,8 +133,8 @@ if st.session_state.run_analysis and st.session_state.selected_category:
             # 1. Data Retrieval
             df = data_processor.load_data()
             if df is not None:
-                metrics = data_processor.calculate_metrics(df, category)
-                
+                metrics = data_processor.calculate_metrics_full(df, category)
+                metrics_overall=metrics.get('overall')
                 # 2. LLM Generation
                 if "error" in metrics:
                     st.error(metrics["error"])
@@ -144,16 +144,16 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                     
                     # Define strict UI cards with emojis
                     # Format numbers nicely
-                    revenue = metrics.get('Total Revenue', 0)
-                    spend = metrics.get('Total Spend', 0)
+                    revenue = metrics_overall.get('Total Revenue', 0)
+                    spend = metrics_overall.get('Total Spend', 0)
                     formatted_revenue = f"${revenue:,.0f}" if isinstance(revenue, (int, float)) else str(revenue)
                     formatted_spend = f"${spend:,.0f}" if isinstance(spend, (int, float)) else str(spend)
                     
                     # Note: Using 'Total Conversions' as proxy for New Customers if 'Total New Customers' is missing/0 based on data.py logic
-                    new_customers = metrics.get('Total New Customers', metrics.get('Total Conversions', 0))
+                    new_customers = metrics_overall.get('Total New Customers', metrics.get('Total Conversions', 0))
                     
                     ui_cards = [
-                        ("📢 Campaign Name", metrics.get('Campaign Name', 'Unknown')),
+                        ("📢 Campaign Name", metrics_overall.get('Campaign Name', 'Unknown')),
                         ("👥 Total New Customers", str(new_customers)),
                         ("💰 Total Revenue", formatted_revenue),
                         ("💸 Total Spend", formatted_spend)
