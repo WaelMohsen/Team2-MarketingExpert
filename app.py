@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from dotenv import load_dotenv
+import json
 import src.metrics_engine as data_processor
 import src.llm as llm_handler
 
@@ -43,7 +44,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
 st.markdown('<h1 class="main-header">Marketing Expert Chatbot 🤖</h1>', unsafe_allow_html=True)
 st.markdown('<p class="sub-header">Select a category below to analyze your marketing performance</p>', unsafe_allow_html=True)
 
@@ -66,6 +66,72 @@ if "run_analysis" not in st.session_state:
 def handle_click_category(category_name):
     st.session_state.selected_category = category_name
     st.session_state.run_analysis = True
+
+
+def _render_recommendations(recommendations: list[dict]) -> None:
+    st.markdown("### AI Recommendations")
+
+    if not recommendations:
+        st.warning("No recommendations were returned by the model.")
+        return
+
+    for idx, recommendation in enumerate(recommendations, start=1):
+        rec_id = recommendation.get("id", f"REC-{idx:02d}")
+        title = recommendation.get("title", "Untitled Recommendation")
+
+        with st.expander(f"{rec_id} - {title}", expanded=(idx == 1)):
+            meta_cols = st.columns(4)
+            meta_cols[0].metric("Priority", recommendation.get("priority", "N/A"))
+            meta_cols[1].metric("Effort", recommendation.get("effort", "N/A"))
+            meta_cols[2].metric(
+                "Time To Impact",
+                recommendation.get("time_to_see_impact", "N/A"),
+            )
+            meta_cols[3].metric("Confidence", recommendation.get("confidence", "N/A"))
+
+            if recommendation.get("whats_happening"):
+                st.write(f"**What's happening:** {recommendation['whats_happening']}")
+
+            if recommendation.get("why_this_matters"):
+                st.write(f"**Why this matters:** {recommendation['why_this_matters']}")
+
+            evidence = recommendation.get("evidence", [])
+            if evidence:
+                st.write("**Evidence**")
+                for item in evidence:
+                    st.write(f"- {item}")
+
+            action_steps = recommendation.get("what_you_should_do", [])
+            if action_steps:
+                st.write("**Action Steps**")
+                for step in action_steps:
+                    guardrails = ", ".join(step.get("guardrails", [])) or "None"
+                    st.write(f"- {step.get('step', 'N/A')}")
+                    st.caption(
+                        f"Where: {step.get('where', 'N/A')} | "
+                        f"How: {step.get('how', 'N/A')} | "
+                        f"Guardrails: {guardrails}"
+                    )
+
+            expected_impact = recommendation.get("expected_impact")
+            if isinstance(expected_impact, dict) and expected_impact:
+                st.write("**Expected Impact**")
+                st.json(expected_impact)
+
+            risks = recommendation.get("dependency_or_risk", [])
+            if risks:
+                st.write("**Dependencies / Risks**")
+                for risk in risks:
+                    st.write(f"- {risk}")
+
+            measurement_plan = recommendation.get("measurement_plan")
+            if isinstance(measurement_plan, dict) and measurement_plan:
+                st.write("**Measurement Plan**")
+                st.json(measurement_plan)
+
+            owner = recommendation.get("owner_suggestion")
+            if owner:
+                st.write(f"**Suggested Owner:** {owner}")
 
 # Recommended Categories
 st.subheader("💡 Choose a Category to Analyze")
@@ -183,68 +249,27 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                     response_json_str = llm_handler.generate_response(df, category, metrics)
                     
                     try:
-                        import json
-                        # Attempt to parse as JSON
-                        report = json.loads(response_json_str)
-                        
-                        st.markdown("""
-                        <div style="margin-top: 2.5em; margin-bottom: 1.5em;">
-                            <div style="font-size:2.0em; font-weight:900; color:#4338ca; margin-bottom:0.5em;">📝 AI Evaluation Report</div>
-                            <div style="font-size:1.3em; font-weight:800; color:#1e293b; margin-bottom:1.2em;">{headline}</div>
-                            <div style="font-size:1.1em; font-weight:400; color:#0f172a; margin-bottom:1.1em;">
-                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">🔬 Analysis:</span><br>{analysis}</span>
-                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">🚨 Core Issue:</span><br>{core_issue}</span>
-                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">📉 Why it matters:</span><br>{why_it_matters}</span>
-                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">✅ Recommended Action:</span><br>{recommended_action}</span>
-                                <span style="display:block; margin-bottom:0.7em;"><span style="font-weight:800;">🔮 Expected Outcome:</span><br>{expected_outcome}</span>
-                            </div>
-                        </div>
-                        """.format(
-                            headline=report.get('headline', 'Analysis Report'),
-                            analysis=report.get('analysis', ''),
-                            core_issue=report.get('core_issue', ''),
-                            why_it_matters=report.get('why_it_matters', ''),
-                            recommended_action=report.get('recommended_action', ''),
-                            expected_outcome=report.get('expected_outcome', '')
-                        ), unsafe_allow_html=True)
-                        
-                        # Check confidence score and normalize it
-                        confidence = report.get('confidence_score', 0)
-                        if isinstance(confidence, str):
-                            try:
-                                confidence = int(confidence.strip('%'))
-                            except ValueError:
-                                confidence = 0
-                        
-                        # Ensure confidence is within 0-100 range
-                        confidence = max(0, min(100, confidence))
-                        
-                        st.progress(confidence / 100, text=f"Confidence Score: {confidence}%")
-                        
-                        # Detected Issues List
-                        with st.expander("Detailed Issues Found"):
-                            for issue in report.get('detected_issues', []):
-                                st.write(f"- {issue}")
-                                
+                        response_payload = json.loads(response_json_str)
+
+                        if not isinstance(response_payload, dict):
+                            st.error("Unexpected response format from AI model.")
+                            st.json(response_payload)
+                        elif "error" in response_payload:
+                            st.error(response_payload["error"])
+                            if response_payload.get("details"):
+                                st.caption(response_payload["details"])
+                        elif isinstance(response_payload.get("recommendations"), list):
+                            _render_recommendations(response_payload["recommendations"])
+                        else:
+                            st.error("AI response is missing a recommendations list.")
+                            st.json(response_payload)
+
                     except json.JSONDecodeError:
-                        # Fallback if LLM didn't return valid JSON
-                        st.markdown("### 📝 AI Evaluation Report")
-                        st.markdown(f"""
-                        <div style="
-                            background-color: #f8fafc; 
-                            padding: 25px; 
-                            border-radius: 12px; 
-                            border-left: 5px solid #4338ca;
-                            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-                            font-family: 'Helvetica', sans-serif;
-                            line-height: 1.6;
-                            color: #374151;
-                        ">
-                            {response_json_str}
-                        </div>
-                        """, unsafe_allow_html=True)
+                        st.error("AI response was not valid JSON.")
+                        st.code(response_json_str)
             else:
                 st.error("Data file not found. Please check data/campaign_data.csv")
+        
         except Exception as e:
             st.error(f"An error occurred: {e}")
             

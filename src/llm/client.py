@@ -1,25 +1,19 @@
 import os
+import dotenv
+import openai
 
-from dotenv import load_dotenv
-
-try:
-    from openai import OpenAI
-except ImportError:  # pragma: no cover
-    OpenAI = None
-
-_client = None
-
+_CLIENT = None
 
 def get_client():
     """Return a cached OpenAI client (lazy init)."""
-    global _client
-    if _client is not None:
-        return _client
+    global _CLIENT
+    if _CLIENT is not None:
+        return _CLIENT
 
     # Load environment variables once at first use.
-    load_dotenv()
+    dotenv.load_dotenv()
 
-    if OpenAI is None:
+    if openai.OpenAI is None:
         raise RuntimeError(
             "Missing dependency: 'openai'. Install with "
             "`pip install -r requirements.txt`."
@@ -31,9 +25,8 @@ def get_client():
             "Missing OPENAI_API_KEY. Set it in your environment or .env file."
         )
 
-    _client = OpenAI(api_key=api_key)
-    return _client
-
+    _CLIENT = openai.OpenAI(api_key=api_key)
+    return _CLIENT
 
 def chat_completion(client, system_text, user_text):
     """Small wrapper for chat.completions.create."""
@@ -45,5 +38,3 @@ def chat_completion(client, system_text, user_text):
         ],
         temperature=0.2,
     )
-# ANALYSIS: "gpt-4o-mini",
-# RECOMMENDATION: "gpt-4o"

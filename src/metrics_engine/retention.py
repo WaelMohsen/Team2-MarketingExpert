@@ -1,6 +1,5 @@
 from .registry import register_target
 
-
 @register_target("Customer Retention")
 def calculate(df, metrics):
 

@@ -1,16 +1,14 @@
-import os
 import json
-from datetime import datetime
-
-from .client import chat_completion, get_client
-from .prompts import (
-    analysis_system_prompt,
-    build_analysis_user_prompt,
-    build_context_block,
-    build_recommendation_user_prompt,
-    recommendation_system_prompt,
+import os
+import datetime
+from src.schemas.Recommendation_schema import (
+    RecommendationValidationError,
+    validate_recommendation_response,
 )
-from src.schemas import validate_recommendation_response
+from .client import chat_completion, get_client
+from .prompts import (analysis_system_prompt, build_analysis_user_prompt,
+                      build_context_block, build_recommendation_user_prompt,
+                      recommendation_system_prompt)
 
 CATEGORIES = [
     "Customer Acquisition",
@@ -44,7 +42,7 @@ def _target_prompt_path_for_category(category: str) -> str:
 
 def save_output(output: dict):
     os.makedirs(OUTPUT_LOG_DIR, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = os.path.join(OUTPUT_LOG_DIR, f"pipeline_output_{timestamp}.json")
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=4, ensure_ascii=False)
@@ -80,11 +78,24 @@ def generate_response(df, category: str, metrics: dict) -> str:
         validated_recommendations = validate_recommendation_response(final_json)
         print("Final Recommendations validated:\n", validated_recommendations)  # Debug print
 
+        recommendations_payload = [r.model_dump() for r in validated_recommendations]
         outpu_log={"context_block": context_block,
                    "INSIGHTS": json.loads(analysis_json_str),
-                   "RECOMMENDATIONS": [r.model_dump() for r in validated_recommendations]
+                   "RECOMMENDATIONS": recommendations_payload
                    }
         save_output(outpu_log)  # Save the full response for debugging
-        return final_json
+
+        return json.dumps(
+            {"recommendations": recommendations_payload},
+            ensure_ascii=False,
+        )
+    except RecommendationValidationError as exc:
+        return json.dumps(
+            {"error": "Recommendation validation failed", "details": str(exc)},
+            ensure_ascii=False,
+        )
     except Exception as exc:
-        return f"Error generating response: {exc}"
+        return json.dumps(
+            {"error": f"Error generating response: {exc}"},
+            ensure_ascii=False,
+        )
