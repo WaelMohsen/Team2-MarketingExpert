@@ -1,12 +1,21 @@
-import os
-import json
-from datetime import datetime
+from __future__ import annotations
 
-from src.llm.client import chat_completion, get_client
-from ..schemas.analysis_output_schema import AnalysisOutput
-from ..schemas.analysis_output_schema import validate_analysis_output
-from ..schemas.recommendation_output_schema import RecommendationOutput
-from ..schemas.recommendation_output_schema import validate_recommendation_output
+import json
+import logging
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Callable
+
+import pandas as pd
+
+from ..config import AppSettings
+from ..metrics import MetricsBundle
+from ..reporting import MarketingReport
+from ..schemas.analysis_output_schema import AnalysisOutput, validate_analysis_output
+from ..schemas.recommendation_output_schema import (
+    RecommendationOutput,
+    validate_recommendation_output,
+)
 from .prompts import (
     analysis_system_prompt,
     build_analysis_user_prompt,
@@ -14,6 +23,7 @@ from .prompts import (
     build_recommendation_user_prompt,
     recommendation_system_prompt,
 )
+from src.llm.client import chat_completion, get_client
 
 CATEGORIES = [
     "Customer Acquisition",
@@ -29,87 +39,155 @@ _CATEGORY_PROMPT_FILES = {
     "Customer Retention": "customer_retention.md",
 }
 
-OUTPUT_LOG_DIR = "output_log"
+logger = logging.getLogger(__name__)
 
 
-def _repo_root_dir() -> str:
-    # pipeline.py lives at src/llm/pipeline.py
-    this_file = os.path.abspath(__file__)
-    return os.path.dirname(os.path.dirname(os.path.dirname(this_file)))
+class PromptRepository:
+    """Resolves prompt file locations without leaking filesystem concerns."""
+
+    def __init__(self, settings: AppSettings | None = None) -> None:
+        self._settings = settings or AppSettings.default()
+
+    def category_prompt_path(self, category: str) -> Path:
+        prompt_file = _CATEGORY_PROMPT_FILES.get(category, "response_generation.md")
+        return self._settings.paths.prompt_dir / prompt_file
+
+    def analysis_system_prompt_path(self) -> Path:
+        return self._settings.paths.prompt_dir / "system_analysis_prompt.md"
+
+    def recommendation_system_prompt_path(self) -> Path:
+        return self._settings.paths.prompt_dir / "recommendation_system_prompt.md"
 
 
-def _target_prompt_path_for_category(category: str) -> str:
-    prompt_file = _CATEGORY_PROMPT_FILES.get(
-        category,
-        "response_generation.md",
-    )
-    return os.path.join(_repo_root_dir(), "prompts", prompt_file)
+class OutputLogWriter:
+    """Persists pipeline outputs for debugging and traceability."""
 
-def save_output(output: dict):
-    os.makedirs(OUTPUT_LOG_DIR, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = os.path.join(OUTPUT_LOG_DIR, f"pipeline_output_{timestamp}.json")
-    with open(filename, "w", encoding="utf-8") as f:
-        json.dump(output, f, indent=4, ensure_ascii=False)
-    print(f"Output saved to {filename}")
+    def __init__(self, settings: AppSettings | None = None) -> None:
+        self._settings = settings or AppSettings.default()
+
+    def save(self, output: dict[str, Any]) -> Path:
+        output_directory = self._settings.paths.output_log_dir
+        output_directory.mkdir(parents=True, exist_ok=True)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_path = output_directory / f"pipeline_output_{timestamp}.json"
+
+        with output_path.open("w", encoding="utf-8") as output_file:
+            json.dump(output, output_file, indent=4, ensure_ascii=False)
+
+        logger.info("Saved pipeline output to %s", output_path)
+        return output_path
 
 
-def generate_response(df, category: str, metrics: dict) -> str:
-    """Two-step flow: analysis JSON -> recommendation JSON (final schema)."""
-    try:
-        client = get_client()
+class LLMReportService:
+    """Generates structured analysis and recommendation reports."""
 
-        target_prompt_path = _target_prompt_path_for_category(category)
-        context_block = build_context_block(category, df, metrics)
+    def __init__(
+        self,
+        settings: AppSettings | None = None,
+        client_factory: Callable[[], Any] = get_client,
+        output_writer: OutputLogWriter | None = None,
+    ) -> None:
+        self._settings = settings or AppSettings.default()
+        self._client_factory = client_factory
+        self._prompts = PromptRepository(self._settings)
+        self._output_writer = output_writer or OutputLogWriter(self._settings)
 
-        sys_analysis_prompt_path = os.path.join(_repo_root_dir(), "prompts", "system_analysis_prompt.md")
-        analysis_sys = analysis_system_prompt(category, target_prompt_path, sys_analysis_prompt_path)
-        print("Analysis System Prompt:\n", analysis_sys)  # Debug print
-        analysis_user = build_analysis_user_prompt(context_block)
-        print("Analysis User Prompt:\n", analysis_user)  # Debug print
-        analysis_resp = chat_completion(
-            client,
-            analysis_sys,
-            analysis_user,
-            response_format=AnalysisOutput,
+    def generate_report(
+        self,
+        dataframe: pd.DataFrame,
+        category: str,
+        metrics: MetricsBundle | dict[str, Any],
+    ) -> MarketingReport:
+        """Run the two-step LLM workflow and return a structured report."""
+
+        client = self._client_factory()
+        metrics_payload = metrics.to_dict() if isinstance(metrics, MetricsBundle) else dict(metrics)
+        context_block = build_context_block(category, dataframe, metrics_payload)
+
+        analysis_model = self._generate_analysis(client, category, context_block)
+        recommendation_model = self._generate_recommendations(
+            client=client,
+            category=category,
+            context_block=context_block,
+            analysis_model=analysis_model,
         )
-        # SDK parses the response into a Pydantic instance automatically.
-        analysis_model = analysis_resp.choices[0].message.parsed
 
-        # Run our custom validators (confidence normalization, empty-field checks).
-        analysis_json_str = json.dumps(analysis_model.dict(), ensure_ascii=False)
-        analysis_model = validate_analysis_output(analysis_json_str)
-        analysis_json_str = json.dumps(analysis_model.dict(), ensure_ascii=False)
-
-        rec_prompt_path = os.path.join(_repo_root_dir(), "prompts", "recommendation_system_prompt.md")
-        rec_sys = recommendation_system_prompt(category, target_prompt_path, rec_prompt_path)
-        print("Recommendation System Prompt:\n", rec_sys)  # Debug print
-        rec_user = build_recommendation_user_prompt(
-            context_block,
-            analysis_input=analysis_json_str,
+        report = MarketingReport(
+            category=category,
+            analysis=analysis_model,
+            recommendations=tuple(recommendation_model.recommendations),
         )
-        print("Recommendation User Prompt:\n", rec_user)  # Debug print
-        rec_resp = chat_completion(
-            client,
-            rec_sys,
-            rec_user,
-            response_format=RecommendationOutput,
-        )
-        rec_model = rec_resp.choices[0].message.parsed
-        print("Final Recommendation parsed:", rec_model)  # Debug print
 
-        # Run our custom validators (count check, empty-field checks).
-        rec_json_str = json.dumps(rec_model.dict(), ensure_ascii=False)
-        rec_model = validate_recommendation_output(rec_json_str)
-
-        # Combine both steps into a single response for the UI.
-        combined = {
-            "analysis": analysis_model.dict(),
-            "recommendations": [r.dict() for r in rec_model.recommendations],
+        output_payload = {
+            "category": category,
+            "metrics": metrics_payload,
+            **report.to_response_dict(),
         }
+        self._output_writer.save(output_payload)
+        return report
 
-        combined_json = json.dumps(combined, ensure_ascii=False)
-        save_output(combined)  # Save the full response for debugging
-        return combined_json
-    except Exception as exc:
+    def _generate_analysis(self, client: Any, category: str, context_block: str) -> AnalysisOutput:
+        analysis_system_text = analysis_system_prompt(
+            category,
+            str(self._prompts.category_prompt_path(category)),
+            str(self._prompts.analysis_system_prompt_path()),
+        )
+        analysis_user_text = build_analysis_user_prompt(context_block)
+        analysis_response = chat_completion(
+            client,
+            analysis_system_text,
+            analysis_user_text,
+            response_format=AnalysisOutput,
+            model=self._settings.llm.analysis_model,
+            temperature=self._settings.llm.analysis_temperature,
+        )
+        parsed_analysis = analysis_response.choices[0].message.parsed
+        analysis_json = json.dumps(parsed_analysis.model_dump(), ensure_ascii=False)
+        return validate_analysis_output(analysis_json)
+
+    def _generate_recommendations(
+        self,
+        *,
+        client: Any,
+        category: str,
+        context_block: str,
+        analysis_model: AnalysisOutput,
+    ) -> RecommendationOutput:
+        analysis_json = json.dumps(analysis_model.model_dump(), ensure_ascii=False)
+        recommendation_system_text = recommendation_system_prompt(
+            category,
+            str(self._prompts.category_prompt_path(category)),
+            str(self._prompts.recommendation_system_prompt_path()),
+        )
+        recommendation_user_text = build_recommendation_user_prompt(
+            context_block,
+            analysis_input=analysis_json,
+        )
+        recommendation_response = chat_completion(
+            client,
+            recommendation_system_text,
+            recommendation_user_text,
+            response_format=RecommendationOutput,
+            model=self._settings.llm.recommendation_model,
+            temperature=self._settings.llm.recommendation_temperature,
+        )
+        parsed_recommendations = recommendation_response.choices[0].message.parsed
+        recommendation_json = json.dumps(parsed_recommendations.model_dump(), ensure_ascii=False)
+        return validate_recommendation_output(recommendation_json)
+
+
+def save_output(output: dict[str, Any]) -> Path:
+    """Backward-compatible wrapper for saving pipeline output."""
+
+    return OutputLogWriter().save(output)
+
+
+def generate_response(dataframe: pd.DataFrame, category: str, metrics: dict[str, Any]) -> str:
+    """Backward-compatible wrapper returning the historical JSON response string."""
+
+    try:
+        report = LLMReportService().generate_report(dataframe, category, metrics)
+        return json.dumps(report.to_response_dict(), ensure_ascii=False)
+    except Exception as exc:  # pragma: no cover - exercised through UI flows.
+        logger.exception("Failed to generate marketing report for category %s", category)
         return f"Error generating response: {exc}"

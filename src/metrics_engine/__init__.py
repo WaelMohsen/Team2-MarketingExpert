@@ -1,7 +1,5 @@
-from .router import calculate_metrics_full ,calculate_metrics, load_data
+"""Backward-compatible exports for the legacy metrics_engine package."""
 
-# Import modules 
-from . import acquisition
-from . import satisfaction
-from . import revenue
-from . import retention
+from .router import calculate_metrics, calculate_metrics_full, load_data
+
+__all__ = ["calculate_metrics", "calculate_metrics_full", "load_data"]
