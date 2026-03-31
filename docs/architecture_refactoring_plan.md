@@ -52,12 +52,20 @@ src/
   pipelines/
     marketing_pipeline.py
     models.py
+  preprocessing/
+    models.py
+    service.py
+  presentation/
+    streamlit_dashboard.py
   reporting/
     models.py
   schemas/
     analysis_output_schema.py
     input_schema.py
     recommendation_output_schema.py
+  validation/
+    models.py
+    service.py
 ```
 
 ## Responsibility Split
@@ -65,17 +73,22 @@ src/
 - `config`: immutable application settings and filesystem paths
 - `core`: shared exceptions and cross-cutting primitives
 - `ingestion`: data loading and schema validation
+- `preprocessing`: lightweight normalization before validation and metric calculation
 - `metrics`: pure calculations plus a coordinating metrics service
 - `llm`: prompt construction, structured-output calls, and report persistence
 - `reporting`: report-level contracts used by pipelines and UI
 - `pipelines`: orchestration of ingestion, metrics, validation, analysis, and recommendations
+- `presentation`: Streamlit-specific rendering helpers and page composition
 - `evaluation`: reusable scoring framework for recommendation quality and parameter sensitivity
+- `validation`: explicit input/output validation services with failure scenarios and warnings
 
 ## Pipeline Interaction Model
 
 ### Data ingestion pipeline
 
 - Load CSV
+- Preprocess into a stable shape
+- Validate failure scenarios explicitly
 - Validate with `CampaignInput`
 - Produce canonical `DataFrame`
 
@@ -112,6 +125,8 @@ src/
 ### Evaluation pipeline
 
 - Score recommendation outputs with a repeatable rubric
+- Load benchmark fixtures from versioned JSON
+- Run automated candidate comparisons against benchmark cases
 - Track parameter settings such as temperature
 - Compare candidates consistently using weighted thresholds and hard-fail gates
 
@@ -133,3 +148,4 @@ src/
 ### Step 4
 
 - Add richer preprocessing and evaluation datasets without changing public pipeline contracts.
+- Continue moving UI rendering helpers into dedicated modules when presentation complexity grows.

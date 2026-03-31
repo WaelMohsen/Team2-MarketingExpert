@@ -17,6 +17,7 @@ class PathSettings:
 
     repo_root: Path
     data_file: Path
+    benchmark_file: Path
     prompt_dir: Path
     output_log_dir: Path
 
@@ -44,6 +45,12 @@ class AppSettings:
 
         repo_root = _repo_root()
         data_file = Path(os.getenv("MARKETING_DATA_FILE", repo_root / "data" / "all_campaigns_data.csv"))
+        benchmark_file = Path(
+            os.getenv(
+                "MARKETING_RECOMMENDATION_BENCHMARK_FILE",
+                repo_root / "data" / "benchmarks" / "recommendation_cases.json",
+            )
+        )
         prompt_dir = Path(os.getenv("MARKETING_PROMPT_DIR", repo_root / "prompts"))
         output_log_dir = Path(os.getenv("MARKETING_OUTPUT_LOG_DIR", repo_root / "output_log"))
 
@@ -58,6 +65,7 @@ class AppSettings:
             paths=PathSettings(
                 repo_root=repo_root,
                 data_file=data_file,
+                benchmark_file=benchmark_file,
                 prompt_dir=prompt_dir,
                 output_log_dir=output_log_dir,
             ),

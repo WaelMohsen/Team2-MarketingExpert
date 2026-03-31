@@ -1,0 +1,21 @@
+﻿sequenceDiagram
+    participant Dev as Developer or CI Job
+    participant Repo as RecommendationBenchmarkRepository
+    participant Runner as RecommendationBenchmarkRunner
+    participant Framework as RecommendationEvaluationFramework
+    participant Case as Benchmark Fixture JSON
+
+    Dev->>Repo: load_cases()
+    Repo->>Case: read recommendation_cases.json
+    Case-->>Repo: RecommendationBenchmarkCase[]
+    Repo-->>Dev: cases
+    Dev->>Runner: run_case(case, candidates)
+    Runner->>Framework: score_criterion(...) x N
+    Runner->>Framework: evaluate_candidate(...)
+    Framework-->>Runner: RecommendationEvaluationResult
+    alt multiple candidates
+        Runner->>Framework: compare_results(...)
+        Runner->>Framework: summarize_parameter_sensitivity(...)
+    end
+    Runner-->>Dev: RecommendationBenchmarkCaseResult
+    Dev-->>Dev: inspect scores, statuses, rationales, traces

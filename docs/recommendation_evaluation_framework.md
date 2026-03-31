@@ -11,6 +11,7 @@ It is designed for practical development use:
 - traceable enough for audits and debugging
 
 The implementation lives in `src/evaluation/recommendation_framework.py`.
+Benchmark fixture loading and automated runs now live in `src/evaluation/benchmarks.py`, with starter fixture cases in `data/benchmarks/recommendation_cases.json`.
 
 ## Evaluation Principles
 
@@ -247,6 +248,12 @@ Treat the result as failed when any of the following occur:
 - persist evaluation results
 - alert on hard-fail regressions
 - trend overall score and criterion-level score over time
+
+### Current repo implementation
+
+- rubric scoring: `src/evaluation/recommendation_framework.py`
+- benchmark runner: `src/evaluation/benchmarks.py`
+- starter fixtures: `data/benchmarks/recommendation_cases.json`
 
 ## Sources
 

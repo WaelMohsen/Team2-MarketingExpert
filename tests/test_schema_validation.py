@@ -89,7 +89,7 @@ def test_analysis_output_to_json_returns_valid_json_and_preserves_unicode():
         confidence_score=55.5,
     )
 
-    json_str = json.dumps(model.dict(), ensure_ascii=False)
+    json_str = json.dumps(model.model_dump(), ensure_ascii=False)
     parsed = json.loads(json_str)
 
     assert parsed["analysis"] == "Café analysis"

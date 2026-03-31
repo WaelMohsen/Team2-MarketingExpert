@@ -1,0 +1,42 @@
+﻿sequenceDiagram
+    actor User
+    participant UI as Streamlit UI
+    participant App as app.py
+    participant Pipe as MarketingPipeline
+    participant Data as CampaignDataService
+    participant Prep as CampaignPreprocessingService
+    participant Validate as CampaignValidationService
+    participant Metrics as CampaignMetricsService
+    participant LLM as LLMReportService
+    participant API as OpenAI API
+    participant Log as OutputLogWriter
+
+    User->>UI: Select category
+    UI->>App: Trigger run
+    App->>Pipe: run(category)
+    Pipe->>Pipe: create correlation ID
+    Pipe->>Data: load_raw_dataframe()
+    Data-->>Pipe: raw dataframe
+    Pipe->>Prep: preprocess()
+    Prep-->>Pipe: PreprocessingResult
+    Pipe->>Validate: validate_dataframe()
+    alt validation errors
+        Validate-->>Pipe: ValidationResult(errors)
+        Pipe-->>App: DataValidationError
+        App-->>UI: Show blocking error
+    else valid dataset
+        Validate-->>Pipe: ValidationResult(ok/warnings)
+        Pipe->>Data: validate_dataframe()
+        Data-->>Pipe: canonical dataframe
+        Pipe->>Metrics: calculate_full(dataset, category)
+        Metrics-->>Pipe: MetricsBundle
+        Pipe->>LLM: generate_report(dataset, category, metrics)
+        LLM->>API: analysis prompt
+        API-->>LLM: AnalysisOutput
+        LLM->>API: recommendation prompt
+        API-->>LLM: RecommendationOutput
+        LLM->>Log: persist output JSON
+        LLM-->>Pipe: MarketingReport
+        Pipe-->>App: MarketingPipelineResult
+        App-->>UI: Render metrics, analysis, recommendations, run ID
+    end

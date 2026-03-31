@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
+import logging
 import pandas as pd
 
 from ..core import DataValidationError
 from .calculators import calculate_base_metrics
 from .models import MetricsBundle, MetricsMap
 from .registry import MetricCalculatorRegistry
+
+logger = logging.getLogger(__name__)
 
 
 class CampaignMetricsService:
@@ -28,6 +31,7 @@ class CampaignMetricsService:
         if dataframe is None or dataframe.empty:
             raise DataValidationError("No data available for metric calculation.")
 
+        logger.info("Calculating metrics for category %s with %s rows", category, len(dataframe))
         base_metrics = calculate_base_metrics(dataframe)
         calculator = self._registry.get(category)
 
@@ -39,6 +43,7 @@ class CampaignMetricsService:
     def calculate_full(self, dataframe: pd.DataFrame, category: str) -> MetricsBundle:
         """Calculate overall metrics and per-channel metrics."""
 
+        logger.info("Calculating full metric bundle for category %s", category)
         overall = self.calculate(dataframe, category)
         per_channel: dict[str, MetricsMap] = {}
 
@@ -49,4 +54,5 @@ class CampaignMetricsService:
                     category,
                 )
 
+        logger.info("Calculated per-channel metrics for %s channels", len(per_channel))
         return MetricsBundle(overall=overall, per_channel=per_channel)

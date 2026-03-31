@@ -1,0 +1,24 @@
+[
+    {
+        "case_id": "acquisition-efficiency-001",
+        "category": "Customer Acquisition",
+        "description": "Recommendations should address acquisition efficiency and conversion friction.",
+        "expected_problem_terms": ["acquisition", "conversion", "cost", "spend"],
+        "expected_evidence_terms": ["conversion", "click", "cost", "customer"],
+        "preferred_primary_kpis": ["new customers", "conversion rate", "cost per acquisition"],
+        "required_action_terms": ["landing", "targeting", "creative", "budget"],
+        "forbidden_terms": ["retention", "churn"],
+        "min_recommendations": 5
+    },
+    {
+        "case_id": "retention-risk-001",
+        "category": "Customer Retention",
+        "description": "Recommendations should focus on churn reduction and retention improvement.",
+        "expected_problem_terms": ["retention", "churn", "repeat", "customer"],
+        "expected_evidence_terms": ["churn", "retention", "retained"],
+        "preferred_primary_kpis": ["retention rate", "churn rate"],
+        "required_action_terms": ["follow-up", "win-back", "onboarding", "segment"],
+        "forbidden_terms": ["viral", "awareness"],
+        "min_recommendations": 5
+    }
+]

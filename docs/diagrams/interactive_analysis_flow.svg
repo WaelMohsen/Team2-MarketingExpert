@@ -1,0 +1,105 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="980" height="1840" viewBox="0 0 980 1840" role="img" aria-labelledby="title desc">
+  <title id="title">Interactive Analysis Flow</title>
+  <desc id="desc">Static architecture flow for the interactive Streamlit analysis pipeline.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#355070" />
+    </marker>
+    <style>
+      text { font-family: 'Segoe UI', Arial, sans-serif; fill: #1f2937; }
+      .title { font-size: 28px; font-weight: 700; }
+      .subtitle { font-size: 15px; fill: #4b5563; }
+      .box { fill: #f8fafc; stroke: #355070; stroke-width: 2; rx: 16; }
+      .decision { fill: #fff7ed; stroke: #c2410c; stroke-width: 2; }
+      .error { fill: #fef2f2; stroke: #b91c1c; stroke-width: 2; rx: 16; }
+      .success { fill: #ecfeff; stroke: #0f766e; stroke-width: 2; rx: 16; }
+      .small { font-size: 14px; }
+      .label { font-size: 12px; font-weight: 700; fill: #6b7280; }
+      .arrow { stroke: #355070; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .branch { stroke: #b91c1c; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .soft { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <text x="490" y="54" text-anchor="middle" class="title">Interactive Analysis Flow</text>
+  <text x="490" y="82" text-anchor="middle" class="subtitle">Static companion to the Mermaid sequence diagram used in the README.</text>
+
+  <rect x="240" y="120" width="500" height="90" class="box" />
+  <text x="490" y="158" text-anchor="middle" class="small">User selects a category in the Streamlit dashboard</text>
+  <text x="490" y="182" text-anchor="middle" class="small">and triggers the analysis workflow</text>
+
+  <path d="M 490 210 L 490 250" class="arrow" />
+
+  <rect x="220" y="250" width="540" height="100" class="box" />
+  <text x="490" y="292" text-anchor="middle" class="small">app.py configures logging, builds shared services,</text>
+  <text x="490" y="316" text-anchor="middle" class="small">and calls MarketingPipeline.run(category)</text>
+
+  <path d="M 490 350 L 490 390" class="arrow" />
+
+  <rect x="220" y="390" width="540" height="100" class="box" />
+  <text x="490" y="432" text-anchor="middle" class="small">MarketingPipeline creates a correlation ID and begins</text>
+  <text x="490" y="456" text-anchor="middle" class="small">the end-to-end orchestration flow</text>
+
+  <path d="M 490 490 L 490 530" class="arrow" />
+
+  <rect x="220" y="530" width="540" height="100" class="box" />
+  <text x="490" y="572" text-anchor="middle" class="small">CampaignDataService loads the raw CSV dataset</text>
+  <text x="490" y="596" text-anchor="middle" class="small">from the configured data path</text>
+
+  <path d="M 490 630 L 490 670" class="arrow" />
+
+  <rect x="220" y="670" width="540" height="100" class="box" />
+  <text x="490" y="712" text-anchor="middle" class="small">CampaignPreprocessingService normalizes strings,</text>
+  <text x="490" y="736" text-anchor="middle" class="small">numerics, dates, and row ordering</text>
+
+  <path d="M 490 770 L 490 810" class="arrow" />
+
+  <polygon points="490,810 650,900 490,990 330,900" class="decision" />
+  <text x="490" y="892" text-anchor="middle" class="small">CampaignValidationService</text>
+  <text x="490" y="916" text-anchor="middle" class="small">Validation errors?</text>
+  <text x="610" y="882" text-anchor="middle" class="label">Yes</text>
+  <text x="490" y="1030" text-anchor="middle" class="label">No</text>
+
+  <path d="M 650 900 L 830 900 L 830 1010" class="branch" />
+  <rect x="690" y="1010" width="230" height="130" class="error" />
+  <text x="805" y="1060" text-anchor="middle" class="small">Raise DataValidationError</text>
+  <text x="805" y="1084" text-anchor="middle" class="small">and show a blocking</text>
+  <text x="805" y="1108" text-anchor="middle" class="small">message in the UI</text>
+
+  <path d="M 490 990 L 490 1050" class="arrow" />
+
+  <rect x="220" y="1050" width="540" height="100" class="box" />
+  <text x="490" y="1092" text-anchor="middle" class="small">Canonicalize rows with CampaignInput so downstream</text>
+  <text x="490" y="1116" text-anchor="middle" class="small">services receive a stable schema-backed dataframe</text>
+
+  <path d="M 490 1150 L 490 1190" class="arrow" />
+
+  <rect x="220" y="1190" width="540" height="100" class="box" />
+  <text x="490" y="1232" text-anchor="middle" class="small">CampaignMetricsService calculates overall metrics</text>
+  <text x="490" y="1256" text-anchor="middle" class="small">and per-channel metrics for the selected category</text>
+
+  <path d="M 490 1290 L 490 1330" class="arrow" />
+
+  <rect x="220" y="1330" width="540" height="110" class="box" />
+  <text x="490" y="1370" text-anchor="middle" class="small">LLMReportService builds prompt context, requests</text>
+  <text x="490" y="1394" text-anchor="middle" class="small">structured analysis, then requests recommendations</text>
+  <text x="490" y="1418" text-anchor="middle" class="small">from the OpenAI API</text>
+
+  <path d="M 490 1440 L 490 1480" class="arrow" />
+
+  <rect x="220" y="1480" width="540" height="100" class="box" />
+  <text x="490" y="1522" text-anchor="middle" class="small">ReportValidationService validates the analysis</text>
+  <text x="490" y="1546" text-anchor="middle" class="small">and recommendation contracts</text>
+
+  <path d="M 490 1580 L 490 1620" class="arrow" />
+
+  <rect x="220" y="1620" width="540" height="90" class="box" />
+  <text x="490" y="1658" text-anchor="middle" class="small">OutputLogWriter persists the structured pipeline result</text>
+  <text x="490" y="1682" text-anchor="middle" class="small">to output_log with the correlation ID</text>
+
+  <path d="M 490 1710 L 490 1750" class="soft" />
+
+  <rect x="200" y="1750" width="580" height="74" class="success" />
+  <text x="490" y="1782" text-anchor="middle" class="small">The UI renders metrics, warnings, analysis, recommendations, and the run ID</text>
+  <text x="490" y="1806" text-anchor="middle" class="small">for traceability</text>
+</svg>

@@ -13,6 +13,10 @@ class DataValidationError(MarketingExpertError):
     """Raised when input data does not satisfy expected contracts."""
 
 
+class ReportValidationError(MarketingExpertError):
+    """Raised when generated analysis or recommendations fail validation."""
+
+
 class CategoryNotSupportedError(MarketingExpertError):
     """Raised when a requested analysis category is not supported."""
 

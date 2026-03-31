@@ -6,6 +6,13 @@ from .exceptions import (
     DataValidationError,
     MarketingExpertError,
     PipelineExecutionError,
+    ReportValidationError,
+)
+from .observability import (
+    configure_logging,
+    correlation_context,
+    get_correlation_id,
+    new_correlation_id,
 )
 
 __all__ = [
@@ -14,4 +21,9 @@ __all__ = [
     "DataValidationError",
     "MarketingExpertError",
     "PipelineExecutionError",
+    "ReportValidationError",
+    "configure_logging",
+    "correlation_context",
+    "get_correlation_id",
+    "new_correlation_id",
 ]
