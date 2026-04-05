@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import logging
 from collections.abc import Sequence
 from typing import Any
 
@@ -12,9 +11,9 @@ import pandas as pd
 from ..schemas.analysis_output_schema import AnalysisOutput, validate_analysis_output
 from ..schemas.input_schema import CampaignInput
 from ..schemas.recommendation_output_schema import RecommendationOutput, validate_recommendation_output
-from .models import ValidationIssue, ValidationResult
+from ..logging.logger import logger
 
-logger = logging.getLogger(__name__)
+from .models import ValidationIssue, ValidationResult
 
 REQUIRED_COLUMNS: tuple[str, ...] = (
     "campaign_name",

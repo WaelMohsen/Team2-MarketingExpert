@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import logging
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
@@ -11,6 +10,8 @@ import pandas as pd
 
 from ..config import AppSettings
 from ..core import ReportValidationError
+from ..logging.logger import logger
+
 from ..core.observability import get_correlation_id
 from ..metrics import MetricsBundle
 from ..reporting import MarketingReport
@@ -39,8 +40,6 @@ _CATEGORY_PROMPT_FILES = {
     "Revenue Growth": "revenue_growth.md",
     "Customer Retention": "customer_retention.md",
 }
-
-logger = logging.getLogger(__name__)
 
 
 def _sha256_text(value: str) -> str:

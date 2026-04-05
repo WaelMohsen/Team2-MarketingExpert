@@ -8,6 +8,7 @@ import streamlit as st
 
 from ..core import MarketingExpertError
 from ..ingestion import CampaignDataService
+from ..logging.logger import logger
 from ..pipelines import MarketingPipelineResult
 
 PAGE_STYLE = """
@@ -78,6 +79,7 @@ def render_sidebar(data_service: CampaignDataService) -> None:
             try:
                 st.dataframe(data_service.load_dataframe())
             except MarketingExpertError as exc:
+                logger.error("Failed to load raw data for sidebar: {}", exc)
                 st.error(str(exc))
 
 

@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import json
-import logging
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
 from ..config import AppSettings
+from ..logging.logger import logger
+
 from ..core.observability import get_correlation_id
 from ..reporting import MarketingReport
 from .recommendation_framework import (
@@ -18,7 +19,6 @@ from .recommendation_framework import (
     RecommendationEvaluationResult,
 )
 
-logger = logging.getLogger(__name__)
 _WHITESPACE_RE = re.compile(r"\s+")
 
 

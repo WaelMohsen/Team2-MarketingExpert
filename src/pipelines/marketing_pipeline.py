@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import logging
 from pathlib import Path
 
 import pandas as pd
@@ -14,9 +13,9 @@ from ..llm.pipeline import LLMReportService
 from ..metrics import CampaignMetricsService
 from ..preprocessing import CampaignPreprocessingService, PreprocessingResult
 from ..validation import CampaignValidationService, ValidationResult
-from .models import MarketingPipelineResult
+from ..logging.logger import logger
 
-logger = logging.getLogger(__name__)
+from .models import MarketingPipelineResult
 
 
 class MarketingPipeline:

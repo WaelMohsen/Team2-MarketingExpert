@@ -2,6 +2,8 @@ import os
 
 from dotenv import load_dotenv
 
+from ..logging.logger import logger
+
 try:
     from openai import OpenAI
 except ImportError:  # pragma: no cover
@@ -20,6 +22,7 @@ def get_client():
     load_dotenv()
 
     if OpenAI is None:
+        logger.error("openai package is not installed — cannot initialise LLM client")
         raise RuntimeError(
             "Missing dependency: 'openai'. Install with "
             "`pip install -r requirements.txt`."
@@ -27,11 +30,13 @@ def get_client():
 
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
+        logger.error("OPENAI_API_KEY is not set — LLM calls will fail")
         raise RuntimeError(
             "Missing OPENAI_API_KEY. Set it in your environment or .env file."
         )
 
     _client = OpenAI(api_key=api_key)
+    logger.debug("OpenAI client initialised")
     return _client
 
 

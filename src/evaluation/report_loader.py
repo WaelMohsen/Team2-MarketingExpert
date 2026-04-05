@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+from ..logging.logger import logger
 from ..reporting import MarketingReport
 from ..schemas.analysis_output_schema import AnalysisOutput
 from ..schemas.recommendation_output_schema import RecommendationCard
@@ -16,6 +17,7 @@ def load_report_payload(report_file: str | Path) -> dict[str, Any]:
     """Load a saved report payload from disk."""
 
     report_path = Path(report_file)
+    logger.debug("Loading report payload from {}", report_path)
     with report_path.open("r", encoding="utf-8") as input_file:
         payload = json.load(input_file)
 
@@ -70,6 +72,7 @@ def build_candidate_from_report_file(
     """Create an evaluation candidate from a saved report JSON file."""
 
     report_path = Path(report_file)
+    logger.debug("Building evaluation candidate from {}", report_path)
     payload = load_report_payload(report_path)
     report = marketing_report_from_payload(payload)
 

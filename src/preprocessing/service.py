@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
-import logging
 
 import pandas as pd
 
-from .models import PreprocessingResult
+from ..logging.logger import logger
 
-logger = logging.getLogger(__name__)
+from .models import PreprocessingResult
 
 STRING_COLUMNS: tuple[str, ...] = ("campaign_name", "channel", "date")
 NUMERIC_COLUMNS: tuple[str, ...] = (

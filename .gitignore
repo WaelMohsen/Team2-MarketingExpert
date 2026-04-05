@@ -209,3 +209,9 @@ __marimo__/
 
 # output log dirc
 output_log/
+
+# Application logs
+logs/
+
+# Local change notes (not for version control)
+changes.md

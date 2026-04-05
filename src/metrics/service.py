@@ -2,15 +2,14 @@
 
 from __future__ import annotations
 
-import logging
 import pandas as pd
+
+from ..logging.logger import logger
 
 from ..core import DataValidationError
 from .calculators import calculate_base_metrics
 from .models import MetricsBundle, MetricsMap
 from .registry import MetricCalculatorRegistry
-
-logger = logging.getLogger(__name__)
 
 
 class CampaignMetricsService:

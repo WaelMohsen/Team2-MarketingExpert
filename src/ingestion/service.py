@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import logging
 from pathlib import Path
 
 import pandas as pd
@@ -11,9 +10,9 @@ from ..config import AppSettings
 from ..core import DataLoadError, DataValidationError
 from ..preprocessing import CampaignPreprocessingService, PreprocessingResult
 from ..schemas.input_schema import validate_campaign_data
-from ..validation import CampaignValidationService, ValidationResult
+from ..logging.logger import logger
 
-logger = logging.getLogger(__name__)
+from ..validation import CampaignValidationService, ValidationResult
 
 
 class CampaignDataService:
