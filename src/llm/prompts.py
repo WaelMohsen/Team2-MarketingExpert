@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+from src.logging import get_logger
+
+logger = get_logger()
+
 
 def load_target_prompt(file_path: str) -> str:
     """Load a category target prompt (markdown) and return it as a string."""
@@ -8,7 +12,7 @@ def load_target_prompt(file_path: str) -> str:
             return file.read()
     except Exception as exc:
         # Keep behavior simple: return empty prompt rather than crashing.
-        print(f"Error loading target prompt: {exc}")
+        logger.error("Failed to load target prompt from: {} | Error: {}", file_path, exc)
         return ""
 
 

@@ -2,7 +2,10 @@ import os
 import json
 from datetime import datetime
 
+from src.logging import get_logger
 from .client import run_insights,run_recommendations
+
+logger = get_logger()
 from .prompts import (
     analysis_system_prompt,
     build_analysis_user_prompt,
@@ -47,7 +50,7 @@ def save_output(output: dict):
     filename = os.path.join(OUTPUT_LOG_DIR, f"pipeline_output_{timestamp}.json")
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=4, ensure_ascii=False)
-    print(f"Output saved to {filename}")
+    logger.info("Pipeline output saved to: {}", filename)
 
 
 def generate_response(df, category: str, metrics: dict) -> str:
@@ -58,22 +61,22 @@ def generate_response(df, category: str, metrics: dict) -> str:
         context_block = build_context_block(category, df, metrics)
 
         analysis_sys = analysis_system_prompt(category, target_prompt_path)
-        print("Analysis System Prompt:\n", analysis_sys)  # Debug print
+        logger.debug("Analysis System Prompt (category={}): {}", category, analysis_sys)
         analysis_user = build_analysis_user_prompt(context_block)
-        print("Analysis User Prompt:\n", analysis_user)  # Debug print
+        logger.debug("Analysis User Prompt: {}", analysis_user)
         analysis_resp = run_insights(system=analysis_sys, user=analysis_user)
         
         rec_prompt_path = os.path.join(_repo_root_dir(), "prompts", "recommendation_system_prompt.md")
         rec_sys = recommendation_system_prompt(category, target_prompt_path, rec_prompt_path)
-        print("Recommendation System Prompt:\n", rec_sys)  # Debug print
+        logger.debug("Recommendation System Prompt (category={}): {}", category, rec_sys)
         rec_user = build_recommendation_user_prompt(
             context_block,
             analysis_input=analysis_resp,
         )
-        print("Recommendation User Prompt:\n", rec_user)  # Debug print
+        logger.debug("Recommendation User Prompt: {}", rec_user)
         rec_resp = run_recommendations(system=rec_sys, user=rec_user)
         final_json = rec_resp
-        print("Final Recommendation JSON:\n", final_json)  # Debug print
+        logger.debug("Final Recommendation JSON: {}", final_json)
         
         save_output(json.loads(final_json))  # Save the full response for debugging
         return final_json
