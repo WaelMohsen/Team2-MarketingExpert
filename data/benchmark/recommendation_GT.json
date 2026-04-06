@@ -1,0 +1,230 @@
+[
+  {
+    "campaign_id": "Spring Launch",
+    "ground_truth": {
+
+      "Customer Acquisition": [
+        {
+          "id": "GT-CA-01",
+          "title": "Fix underperforming paid acquisition channels",
+          "category": "Targeting",
+          "whats_happening": "Google Ads shows weaker conversion performance compared to other channels, indicating inefficient targeting.",
+          "what_you_should_do": [
+            {
+              "step": "Refine targeting and keyword strategy",
+              "where": "Google Ads",
+              "how": "Focus on high-intent queries and exclude low-performing audience segments"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Conversion Rate"},
+          "importance": "high"
+        },
+        {
+          "id": "GT-CA-02",
+          "title": "Reduce bounce rate to improve acquisition efficiency",
+          "category": "Landing_Page",
+          "whats_happening": "Bounce rate is above optimal levels, causing loss of potential customers.",
+          "what_you_should_do": [
+            {
+              "step": "Improve landing page relevance and clarity",
+              "where": "Website",
+              "how": "Align messaging with ads and simplify conversion steps"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Bounce Rate"},
+          "importance": "high"
+        },
+        {
+          "id": "GT-CA-03",
+          "title": "Scale high-performing acquisition channels",
+          "category": "Channel_Mix",
+          "whats_happening": "SMS and Email show strong efficiency compared to other channels.",
+          "what_you_should_do": [
+            {
+              "step": "Increase budget allocation to top-performing channels",
+              "where": "SMS and Email",
+              "how": "Gradually scale spend while monitoring performance stability"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "New Customers"},
+          "importance": "medium"
+        },
+        {
+          "id": "GT-CA-04",
+          "title": "Fix non-performing email engagement",
+          "category": "Creative",
+          "whats_happening": "Email engagement is extremely low, limiting acquisition potential.",
+          "what_you_should_do": [
+            {
+              "step": "Redesign email campaigns",
+              "where": "Email",
+              "how": "Use personalization, stronger subject lines, and clear call-to-action"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Engagement Rate"},
+          "importance": "high"
+        }
+      ],
+
+      "Revenue Growth": [
+        {
+          "id": "GT-RG-01",
+          "title": "Scale highest return channels",
+          "category": "Channel_Mix",
+          "whats_happening": "SMS delivers the highest return relative to spend.",
+          "what_you_should_do": [
+            {
+              "step": "Increase budget allocation to SMS",
+              "where": "SMS",
+              "how": "Shift budget from lower-performing channels and monitor marginal returns"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Revenue"},
+          "importance": "high"
+        },
+        {
+          "id": "GT-RG-02",
+          "title": "Eliminate inefficient spend",
+          "category": "Budget",
+          "whats_happening": "Some channels consume budget but underperform in revenue generation.",
+          "what_you_should_do": [
+            {
+              "step": "Reduce spend on low-return channels",
+              "where": "Cross-channel",
+              "how": "Continuously optimize budget allocation based on performance"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Return on Advertising Spend"},
+          "importance": "high"
+        },
+        {
+          "id": "GT-RG-03",
+          "title": "Improve conversion funnel efficiency",
+          "category": "Landing_Page",
+          "whats_happening": "Bounce rate indicates leakage in the conversion funnel.",
+          "what_you_should_do": [
+            {
+              "step": "Optimize landing page experience",
+              "where": "Website",
+              "how": "Reduce friction and improve clarity of value proposition"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Revenue"},
+          "importance": "high"
+        },
+        {
+          "id": "GT-RG-04",
+          "title": "Increase customer value through upselling",
+          "category": "Sales_Enablement",
+          "whats_happening": "Revenue growth is limited by low average value per customer.",
+          "what_you_should_do": [
+            {
+              "step": "Introduce upsell and bundle offers",
+              "where": "Website and Email",
+              "how": "Promote higher-value packages and complementary products"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Revenue"},
+          "importance": "medium"
+        }
+      ],
+
+      "Customer Retention": [
+        {
+          "id": "GT-CR-01",
+          "title": "Strengthen post-purchase engagement",
+          "category": "Retention",
+          "whats_happening": "Retention opportunities are underutilized after initial conversion.",
+          "what_you_should_do": [
+            {
+              "step": "Launch follow-up campaigns",
+              "where": "Email and SMS",
+              "how": "Send reminders, offers, and personalized messages after purchase"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Retention Rate"},
+          "importance": "high"
+        },
+        {
+          "id": "GT-CR-02",
+          "title": "Reduce churn risk through re-engagement",
+          "category": "Retention",
+          "whats_happening": "Some users disengage after initial interaction.",
+          "what_you_should_do": [
+            {
+              "step": "Implement re-engagement campaigns",
+              "where": "Email",
+              "how": "Target inactive users with incentives and reminders"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Churn Rate"},
+          "importance": "high"
+        },
+        {
+          "id": "GT-CR-03",
+          "title": "Leverage high-performing channels for retention",
+          "category": "Channel_Mix",
+          "whats_happening": "SMS shows strong engagement potential for repeated interaction.",
+          "what_you_should_do": [
+            {
+              "step": "Use SMS for retention campaigns",
+              "where": "SMS",
+              "how": "Send timely updates, offers, and reminders"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Retention Rate"},
+          "importance": "medium"
+        }
+      ],
+
+      "Customer Satisfaction": [
+        {
+          "id": "GT-CS-01",
+          "title": "Improve user experience on landing pages",
+          "category": "Landing_Page",
+          "whats_happening": "Higher bounce rate suggests dissatisfaction with initial experience.",
+          "what_you_should_do": [
+            {
+              "step": "Enhance usability and clarity",
+              "where": "Website",
+              "how": "Simplify navigation and ensure consistency with ad messaging"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Bounce Rate"},
+          "importance": "high"
+        },
+        {
+          "id": "GT-CS-02",
+          "title": "Improve email experience and relevance",
+          "category": "Creative",
+          "whats_happening": "Email campaigns show no engagement, indicating poor user experience.",
+          "what_you_should_do": [
+            {
+              "step": "Redesign email content",
+              "where": "Email",
+              "how": "Use personalized and relevant messaging tailored to user needs"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Engagement Rate"},
+          "importance": "high"
+        },
+        {
+          "id": "GT-CS-03",
+          "title": "Collect customer feedback to identify pain points",
+          "category": "Other",
+          "whats_happening": "Lack of direct customer feedback limits understanding of satisfaction drivers.",
+          "what_you_should_do": [
+            {
+              "step": "Run feedback surveys",
+              "where": "Email and Website",
+              "how": "Ask users about their experience and satisfaction"
+            }
+          ],
+          "expected_impact": {"primary_kpi": "Positive Sentiment"},
+          "importance": "medium"
+        }
+      ]
+
+    }
+  }
+]
