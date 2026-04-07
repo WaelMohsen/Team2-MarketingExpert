@@ -29,36 +29,7 @@ class PromptComplianceEvaluator:
         priority_map = {"High": 0, "Medium": 1, "Low": 2}
         priorities = [priority_map.get(r.get("priority"), 3) for r in recs]
         return 1.0 if priorities == sorted(priorities) else 0.0
-    """
-    # =========================================================
-    # 🔹 PROMPT RULE HEURISTICS
-    # =========================================================
-
-    def _kpi_mapping(self, recs: List[dict], kpis: List[str]) -> float:
-        scores = []
-        for r in recs:
-            kpi = r.get("expected_impact", {}).get("primary_kpi")
-            scores.append(1.0 if kpi in kpis else 0.0)
-        return mean(scores) if scores else 0.0
-
-    def _no_analysis_repetition(self, recs: List[dict], analysis: str) -> float:
-        score = 1.0
-        for r in recs:
-            if r.get("whats_happening", "") in analysis:
-                score -= 0.2
-        return max(score, 0.0)
-
-    def _action_orientation(self, recs: List[dict]) -> float:
-        verbs = ["increase", "reduce", "optimize", "shift", "improve"]
-        scores = []
-
-        for r in recs:
-            steps = r.get("what_you_should_do", [])
-            text = " ".join([s.get("step", "") for s in steps]).lower()
-            scores.append(1.0 if any(v in text for v in verbs) else 0.0)
-
-        return mean(scores) if scores else 0.0
-    """
+    
     # =========================================================
     # 🔹 LLM COMPLIANCE JUDGE
     # =========================================================
@@ -112,14 +83,7 @@ Return JSON.
         count_score = self._count_check(recommendations)
         fields_score = self._required_fields(recommendations)
         priority_score = self._priority_order(recommendations)
-        """
-        # ---------------------------
-        # Prompt heuristics
-        # ---------------------------
-        kpi_score = self._kpi_mapping(recommendations, kpis)
-        repetition_score = self._no_analysis_repetition(recommendations, str(analysis))
-        action_score = self._action_orientation(recommendations)
-        """
+        
         # ---------------------------
         # LLM judgment
         # ---------------------------
@@ -133,12 +97,7 @@ Return JSON.
             "count_valid": count_score,
             "required_fields": fields_score,
             "priority_order": priority_score,
-            """
-            # heuristics
-            "kpi_mapping": kpi_score,
-            "no_repetition": repetition_score,
-            "action_oriented": action_score,
-            """
+            
             # llm
             "no_hallucination": llm_scores.get("no_hallucination", 0),
             "clarity": llm_scores.get("clarity", 0),
@@ -159,18 +118,12 @@ Return JSON.
 
         if priority_score == 0:
             flags.append("priority_not_sorted")
-        """
-        if kpi_score < 0.6:
-            flags.append("weak_kpi_mapping")
-        """
+        
         if llm_scores.get("no_hallucination", 1) < 0.7:
             flags.append("possible_hallucination")
-        """
-        if action_score < 0.5:
-            flags.append("weak_actionability")
-        """
+        
         return {
-            "score": round(overall, 3),
+            "score": round(overall, 32),
             "dimensions": final_scores,
             "flags": flags
         }

@@ -180,14 +180,12 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                     st.markdown("<br>", unsafe_allow_html=True)
 
                     # Generate AI Response (now returns JSON string)
-                    response_json_str = llm_handler.generate_response(df, category, metrics)
+                    response_dict  = llm_handler.generate_response(df, category, metrics)
 
                     try:
-                        import json
-                        report = json.loads(response_json_str)
 
-                        analysis = report.get('analysis', {})
-                        recommendations = report.get('recommendations', [])
+                        analysis = response_dict.get('analysis', {})
+                        recommendations = response_dict.get('recommendations', [])
 
                         # ── Analysis Summary ──────────────────────────────
                         st.markdown("### 🔬 Analysis Summary")

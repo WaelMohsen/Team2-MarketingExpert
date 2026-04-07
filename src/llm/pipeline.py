@@ -109,7 +109,6 @@ def generate_response(df, category: str, metrics: dict) -> str:
             "recommendations": [r.dict() for r in rec_model.recommendations],
         }
 
-        combined_json = json.dumps(combined, ensure_ascii=False)
         save_output(combined)  # Save the full response for debugging
         return combined
     except Exception as exc:
