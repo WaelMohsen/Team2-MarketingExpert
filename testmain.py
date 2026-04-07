@@ -19,13 +19,13 @@ df = data_processor.load_data()
 metrics = data_processor.calculate_metrics_full(df, category)
 # Generate AI Response (now returns JSON string)
 response_dict_data = llm_handler.generate_response(df, category, metrics)
-
+response_dict_data.keys()
 
 
 #--------------------------------
 # 🔹 Init  RECONMMENDATION pipeline
 # ---------------------------
-client=llm_handler.get_client()
+
 pipeline = RecommendationPipeline(
     llm_callable=llm_handler.llm_callable,
     embedding_callable=llm_handler.embedding_callable
@@ -36,29 +36,15 @@ pipeline = RecommendationPipeline(
 campaign_id = "Spring Launch"
 target = CATEGORIES[0]
 
-analysis_output = {
-    "summary": "Low conversion in Google Ads"
-}
+analysis_output =response_dict_data.get("analysis" , {})
 
-recommendation_output = {
-    "recommendations": [
-        {
-            "id": "REC-01",
-            "title": "Improve targeting",
-            "category": "Targeting",
-            "priority": "High",
-            "whats_happening": "...",
-            "what_you_should_do": [{"step": "Adjust audience"}],
-            "expected_impact": {"primary_kpi": "Conversion Rate"}
-        }
-    ]
-}
+recommendation_output = response_dict_data.get("recommendations", [])
 
-kpis = ["Conversion Rate", "Revenue"]
+kpis = response_dict_data.get("kpis",[])
 
 
 # ---------------------------
-# 🔹 Run
+#  Run Evaluation Pipline 
 # ---------------------------
 result = pipeline.run(
     campaign_id=campaign_id,
