@@ -1,5 +1,6 @@
 from src.evaluation.recommendation.evaluator import RecommendationEvaluator
 import json
+import os 
 
 
 class RecommendationPipeline:
@@ -11,7 +12,7 @@ class RecommendationPipeline:
             embed=embedding_callable
         )
 
-        self.gt_path =r"C:\noor\6 LLM club\project\Team2-MarketingExpert\data\benchmark\recommendation_GT.json"
+        self.gt_path =os.path.join("data","benchmark","recommendation_GT.json")
     
     def  load_ground_truth(self, path, campaign_id, target):
 
