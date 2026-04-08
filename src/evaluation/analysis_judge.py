@@ -113,16 +113,16 @@ class CriterionScore:
 
 class CriterionScoreSchema(BaseModel):
     name: str
-    score: float = Field(..., ge=1.0, le=5.0)
+    score: int = Field(..., ge=1, le=5)
     rationale: str
 
 
 class JudgeVerdict(BaseModel):
-    overall_score: float = Field(..., ge=1.0, le=5.0)
+    overall_score: int = Field(..., ge=1, le=5)
     overall_status: EvaluationStatus
-    criteria_scores: list[CriterionScoreSchema]
+    criteria_scores: List[CriterionScoreSchema]
     summary: str
-    improvement_suggestions: list[str]
+    improvement_suggestions: List[str]
 
 
 # ─────────────────────────────────────────────
@@ -183,7 +183,7 @@ Return a JSON object with this exact structure:
 class AnalysisJudge:
     def __init__(
         self,
-        criteria: Sequence[CriterionDefinition] | None = None,
+        criteria: Optional[Sequence[CriterionDefinition]] = None,
         pass_threshold: float = 3.5,
     ) -> None:
         self._criteria = tuple(criteria or DEFAULT_CRITERIA)
@@ -196,13 +196,18 @@ class AnalysisJudge:
         context: str,
     ) -> JudgeVerdict:
         criteria_text = self._build_criteria_text()
+
+        formatted_issues = "\n- ".join(analysis.detected_issues) if analysis.detected_issues else "None"
+        formatted_signals = "\n- ".join(analysis.key_signals) if analysis.key_signals else "None"
+        formatted_risks = "\n- ".join(analysis.business_risks) if analysis.business_risks else "None"
+
         user_prompt = JUDGE_USER_PROMPT.format(
             context=context,
             analysis=analysis.analysis,
-            key_signals=analysis.key_signals,
-            detected_issues=analysis.detected_issues,
+            key_signals=formatted_signals,
+            detected_issues=formatted_issues,
             root_cause_hypothesis=analysis.root_cause_hypothesis,
-            business_risks=analysis.business_risks,
+            business_risks=formatted_risks,
             confidence_score=analysis.confidence_score,
             criteria_text=criteria_text,
         )
@@ -212,7 +217,6 @@ class AnalysisJudge:
             system_text=JUDGE_SYSTEM_PROMPT,
             user_text=user_prompt,
             response_format=JudgeVerdict,
-            temperature=0,  # book says temperature=0 for consistency
         )
 
         verdict = response.choices[0].message.parsed
