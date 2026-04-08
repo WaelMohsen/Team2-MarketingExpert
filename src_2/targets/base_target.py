@@ -2,5 +2,5 @@ from abc import ABC, abstractmethod
 
 class BaseTarget(ABC):
     @abstractmethod
-    def select(self, metrics):
+    def select_target(self, metrics):
         pass

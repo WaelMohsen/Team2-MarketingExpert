@@ -2,7 +2,7 @@ from targets.base_target import BaseTarget
 
 
 class SatisfactionTarget(BaseTarget):
-    def select(self, metrics):
+    def select_target(self, metrics):
         return {
             "engagement_rate": metrics.engagement_rate,
             "avg_bounce_rate": metrics.avg_bounce_rate,

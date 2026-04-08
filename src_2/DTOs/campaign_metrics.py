@@ -1,8 +1,8 @@
-class Campaign:
-    def __init__(self,campaign_name,date,channel,impressions,clicks,conversions,spend,revenue,new_customers,
-                 reach,likes,comments,shares,bounce_rate,frequency,retained_customers,churn_rate,
-                 purchases_per_year,product_profit_margin):
-        self.campaign_name = campaign_name
+class Campaign_Metrics:
+    def __init__(self,name: str,date: str,channel: str,impressions: int,clicks: int,conversions: int,spend: float,revenue: float,new_customers: int,
+                 reach: int,likes: int,comments: int,shares: int,bounce_rate: float,frequency: float,retained_customers: float,churn_rate: float,
+                 purchases_per_year: float,product_profit_margin: float):
+        self.name = name
         self.date = date
         self.channel = channel
         self.impressions = impressions

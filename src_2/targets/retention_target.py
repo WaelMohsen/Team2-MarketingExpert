@@ -2,7 +2,7 @@ from targets.base_target import BaseTarget
 
 
 class RetentionTarget(BaseTarget):
-    def select(self, metrics):
+    def select_target(self, metrics):
         return {
             "retained_customers": metrics.retained_customers,
             "churn_rate": metrics.churn_rate,

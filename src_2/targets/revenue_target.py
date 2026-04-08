@@ -1,7 +1,7 @@
 from targets.base_target import BaseTarget
 
 class RevenueTarget(BaseTarget):
-    def select(self, metrics):
+    def select_target(self, metrics):
         return {
             "roas": metrics.roas,
             "aov": metrics.aov,

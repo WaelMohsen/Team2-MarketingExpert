@@ -15,21 +15,9 @@ campaigns = reader.read_campaign()
 
 # calculate
 calculator = MetricsCalculator()
-metrics = calculator.calculate(campaigns)
-
-# select target
-target_map = {
-    "revenue": RevenueTarget(),
-    "acquisition": AcquisitionTarget(),
-    "retention": RetentionTarget(),
-    "satisfaction": SatisfactionTarget(),
-}
-
-target = "revenue"
-selected_metrics = target_map[target].select(metrics)
-
+metrics, selected_metrics = calculator.run(campaigns, "revenue")
 # run
 orchestrator = LLMOrchestrator("../prompts/","../output_log")
-result = orchestrator.run(target, metrics, selected_metrics)
+result = orchestrator.run("revenue", metrics, selected_metrics)
 
 print(result)

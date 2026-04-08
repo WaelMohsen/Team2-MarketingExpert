@@ -1,5 +1,5 @@
 import pandas as pd 
-from models.campaign import Campaign
+from DTOs.campaign_metrics import Campaign_Metrics
 
 class Campaign_Reader:
     def __init__(self,file_path):
@@ -7,8 +7,8 @@ class Campaign_Reader:
     def read_campaign(self):
         campaign_df = pd.read_csv(self.file_path)
         return [
-            Campaign(
-                campaign_name=row["campaign_name"],
+            Campaign_Metrics(
+                name=row["campaign_name"],
                 date=row["date"],
                 channel=row["channel"],
                 impressions=row["impressions"],
