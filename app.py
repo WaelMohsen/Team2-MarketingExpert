@@ -27,7 +27,7 @@ st.markdown("""
         background-color: #e5e7eb;
         border-color: #9ca3af;
         transform: translateY(-2px);
-        box_shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
     .main-header {
         font-size: 3rem;
