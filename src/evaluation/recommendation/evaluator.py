@@ -2,10 +2,9 @@ from src.evaluation.base_evaluator import BaseEvaluator
 from src.evaluation.logger import EvaluationLogger
 
 from .business_relevance_evaluator import BusinessRelevanceEvaluator
+from .config import FINAL_WEIGHTS
 from .GT_hybrid_evaluator import HybridEvaluator
 from .prompt_compliance_evaluator import PromptComplianceEvaluator
-from .config import FINAL_WEIGHTS
-
 
 
 class RecommendationEvaluator(BaseEvaluator):
@@ -19,20 +18,20 @@ class RecommendationEvaluator(BaseEvaluator):
 
         self.logger = EvaluationLogger("recommendation")
 
-    def compute_final( self,business, gt, compliance):
+    def compute_final(self, business, gt, compliance):
 
-
-        return round( business["score"] * FINAL_WEIGHTS["business_relevance"]
+        return round(
+            business["score"] * FINAL_WEIGHTS["business_relevance"]
             + (gt["score"] if gt else 0) * FINAL_WEIGHTS["ground_truth"]
             + compliance["score"] * FINAL_WEIGHTS["compliance"],
-            3
+            3,
         )
 
     def evaluate(self, data):
 
-        #output = data["output"]
-        #recs = output["recommendations"]
-        recs=data["output"]
+        # output = data["output"]
+        # recs = output["recommendations"]
+        recs = data["output"]
 
         analysis = data["analysis"]
         kpis = data["kpis"]
@@ -45,16 +44,14 @@ class RecommendationEvaluator(BaseEvaluator):
         gt_result = self.gt.evaluate(recs, gt_data) if gt_data else None
         # 4. Final aggregation
         final_score = self.compute_final(
-        compliance=compliance,
-        business=business,
-        gt=gt_result
+            compliance=compliance, business=business, gt=gt_result
         )
 
         result = {
             "final_score": final_score,
             "business": business,
             "compliance": compliance,
-            "ground_truth": gt_result
+            "ground_truth": gt_result,
         }
 
         result["log_file"] = self.logger.log(result)

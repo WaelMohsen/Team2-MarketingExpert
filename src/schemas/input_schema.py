@@ -1,12 +1,24 @@
 import math
-from pydantic import BaseModel
+import re
 from typing import Optional
+
+from pydantic import BaseModel, field_validator
 
 
 class CampaignInput(BaseModel):
 
     # --- Identity ---
     campaign_name: str
+
+    @field_validator("campaign_name")
+    @classmethod
+    def campaign_name_must_be_english(cls, v: str) -> str:
+        if not re.match(r"^[\x00-\x7F]+$", v):
+            raise ValueError(
+                "campaign_name must contain only English (ASCII) characters"
+            )
+        return v
+
     date: str
     channel: str
 
@@ -42,6 +54,9 @@ def validate_campaign_data(df):
     validated = []
     for record in records:
         # Replace nan with None so Pydantic accepts Optional fields
-        cleaned = {k: (None if isinstance(v, float) and math.isnan(v) else v) for k, v in record.items()}
+        cleaned = {
+            k: (None if isinstance(v, float) and math.isnan(v) else v)
+            for k, v in record.items()
+        }
         validated.append(CampaignInput(**cleaned))
     return validated

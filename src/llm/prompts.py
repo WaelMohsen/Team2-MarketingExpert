@@ -16,7 +16,7 @@ def _common_system_instructions(target: str, target_prompt_path: str) -> str:
     target_explanation = load_target_prompt(target_prompt_path)
 
     return f"""
-        Important Note : Take in mind to perform your role based on this marketing campaign target below 
+        Important Note : Take in mind to perform your role based on this marketing campaign target below
         TARGET: {target}
         TARGET EXPLANATION:
         {target_explanation}
@@ -31,14 +31,18 @@ def _common_system_instructions(target: str, target_prompt_path: str) -> str:
 """
 
 
-def analysis_system_prompt(target: str, target_prompt_path: str, analysis_prompt_path: str) -> str:
-    analysis_prompt=load_target_prompt(analysis_prompt_path)
+def analysis_system_prompt(
+    target: str, target_prompt_path: str, analysis_prompt_path: str
+) -> str:
+    analysis_prompt = load_target_prompt(analysis_prompt_path)
     return f"""{analysis_prompt}
-        {_common_system_instructions(target, target_prompt_path)}       
+        {_common_system_instructions(target, target_prompt_path)}
 """
 
 
-def recommendation_system_prompt(target: str, target_prompt_path: str, rec_prompt_path: str) -> str:
+def recommendation_system_prompt(
+    target: str, target_prompt_path: str, rec_prompt_path: str
+) -> str:
     rec_prompt = load_target_prompt(rec_prompt_path)
     return f"""{rec_prompt}
         {_common_system_instructions(target, target_prompt_path)}
@@ -51,9 +55,9 @@ def build_context_block(category: str, df, metrics: dict) -> str:
 
     No schemas, and no step instructions.
     """
-    campaign_raw_data=df.to_dict("records")
-    metrics_overall= metrics.get('overall')
-    metrics_per_channel=metrics.get('per_channel')
+    campaign_raw_data = df.to_dict("records")
+    metrics_overall = metrics.get("overall")
+    metrics_per_channel = metrics.get("per_channel")
 
     return f"""
         BUSINESS:

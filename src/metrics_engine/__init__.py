@@ -1,7 +1,3 @@
-from .router import calculate_metrics_full ,calculate_metrics, load_data
-
-# Import modules 
-from . import acquisition
-from . import satisfaction
-from . import revenue
-from . import retention
+# Import modules
+from . import acquisition, retention, revenue, satisfaction
+from .router import calculate_metrics, calculate_metrics_full, load_data
