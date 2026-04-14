@@ -196,7 +196,8 @@ if st.session_state.run_analysis and st.session_state.selected_category:
 
                     # Note: Using 'Total Conversions' as proxy for New Customers if 'Total New Customers' is missing/0 based on data.py logic
                     new_customers = metrics_overall.get(
-                        "Total New Customers", metrics.get("Total Conversions", 0)
+                        "Total New Customers",
+                        metrics_overall.get("Total Conversions", 0),
                     )
 
                     ui_cards = [

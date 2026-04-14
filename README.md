@@ -75,9 +75,15 @@ $ pytest tests/test_schemas/test_input_schema.py
 
 This project uses `pre-commit` to automatically check code quality, formatting, and run tests before committing.
 
-### Setup
+### Installation
 
-Pre-commit is already installed. To activate it, run:
+First, install pre-commit:
+
+```bash
+$ pip install pre-commit
+```
+
+Then, activate the pre-commit hook:
 
 ```bash
 $ pre-commit install

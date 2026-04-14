@@ -1,8 +1,9 @@
 import math
-import re
 from typing import Optional
 
 from pydantic import BaseModel, field_validator
+
+from .validators import assert_ascii
 
 
 class CampaignInput(BaseModel):
@@ -13,11 +14,7 @@ class CampaignInput(BaseModel):
     @field_validator("campaign_name")
     @classmethod
     def campaign_name_must_be_english(cls, v: str) -> str:
-        if not re.match(r"^[\x00-\x7F]+$", v):
-            raise ValueError(
-                "campaign_name must contain only English (ASCII) characters"
-            )
-        return v
+        return assert_ascii(v)
 
     date: str
     channel: str

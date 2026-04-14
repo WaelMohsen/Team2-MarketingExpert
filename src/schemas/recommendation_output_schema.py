@@ -1,15 +1,10 @@
 import json
 import math
-import re
 from typing import Any, Dict, List
 
 from pydantic import BaseModel, field_validator
 
-
-def _assert_ascii(v: str) -> str:
-    if not re.match(r"^[\x00-\x7F]+$", v):
-        raise ValueError("Field must contain only English (ASCII) characters")
-    return v
+from .validators import assert_ascii
 
 
 class RecommendationActionStep(BaseModel):
@@ -21,13 +16,13 @@ class RecommendationActionStep(BaseModel):
     @field_validator("step", "where", "how")
     @classmethod
     def string_fields_ascii(cls, v: str) -> str:
-        return _assert_ascii(v)
+        return assert_ascii(v)
 
     @field_validator("guardrails")
     @classmethod
     def list_fields_ascii(cls, v: List[str]) -> List[str]:
         for item in v:
-            _assert_ascii(item)
+            assert_ascii(item)
         return v
 
 
@@ -39,7 +34,7 @@ class ExpectedImpact(BaseModel):
     @field_validator("primary_kpi", "direction", "explanation")
     @classmethod
     def string_fields_ascii(cls, v: str) -> str:
-        return _assert_ascii(v)
+        return assert_ascii(v)
 
 
 class MeasurementPlan(BaseModel):
@@ -51,7 +46,7 @@ class MeasurementPlan(BaseModel):
     @field_validator("how_to_measure", "success_criteria", "check_timing", "notes")
     @classmethod
     def string_fields_ascii(cls, v: str) -> str:
-        return _assert_ascii(v)
+        return assert_ascii(v)
 
 
 class RecommendationCard(BaseModel):
@@ -85,13 +80,13 @@ class RecommendationCard(BaseModel):
     )
     @classmethod
     def string_fields_ascii(cls, v: str) -> str:
-        return _assert_ascii(v)
+        return assert_ascii(v)
 
     @field_validator("evidence", "dependency_or_risk")
     @classmethod
     def list_fields_ascii(cls, v: List[str]) -> List[str]:
         for item in v:
-            _assert_ascii(item)
+            assert_ascii(item)
         return v
 
 

@@ -18,7 +18,11 @@ def calculate(df, metrics):
         retention_rate = None
 
     metrics["Retained Customers"] = retained_customers
-    metrics["Churn Rate"] = round(churn_percent, 2) if churn_percent else None
-    metrics["Retention Rate"] = round(retention_rate, 2) if retention_rate else None
+    metrics["Churn Rate"] = (
+        round(churn_percent, 2) if churn_percent is not None else None
+    )
+    metrics["Retention Rate"] = (
+        round(retention_rate, 2) if retention_rate is not None else None
+    )
 
     return metrics

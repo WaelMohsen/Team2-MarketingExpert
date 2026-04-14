@@ -1,15 +1,10 @@
 import json
 import math
-import re
 from typing import Any, Dict, List
 
 from pydantic import BaseModel, field_validator
 
-
-def _assert_ascii(v: str) -> str:
-    if not re.match(r"^[\x00-\x7F]+$", v):
-        raise ValueError("Field must contain only English (ASCII) characters")
-    return v
+from .validators import assert_ascii
 
 
 class AnalysisOutput(BaseModel):
@@ -23,13 +18,13 @@ class AnalysisOutput(BaseModel):
     @field_validator("analysis", "root_cause_hypothesis")
     @classmethod
     def string_fields_must_be_english(cls, v: str) -> str:
-        return _assert_ascii(v)
+        return assert_ascii(v)
 
     @field_validator("key_signals", "detected_issues", "business_risks")
     @classmethod
     def list_items_must_be_english(cls, v: List[str]) -> List[str]:
         for item in v:
-            _assert_ascii(item)
+            assert_ascii(item)
         return v
 
 

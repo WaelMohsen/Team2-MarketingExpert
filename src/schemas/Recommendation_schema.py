@@ -1,15 +1,9 @@
 import json
-import re
 from typing import List, Optional
 
 from pydantic import BaseModel, field_validator
 
-
-def _assert_ascii(v: str) -> str:
-    if not re.match(r"^[\x00-\x7F]+$", v):
-        raise ValueError("Field must contain only English (ASCII) characters")
-    return v
-
+from .validators import assert_ascii
 
 # -----------------------------
 # Nested Models
@@ -25,13 +19,13 @@ class ActionStep(BaseModel):
     @field_validator("step", "where", "how")
     @classmethod
     def string_fields_ascii(cls, v: str) -> str:
-        return _assert_ascii(v)
+        return assert_ascii(v)
 
     @field_validator("guardrails")
     @classmethod
     def list_fields_ascii(cls, v: List[str]) -> List[str]:
         for item in v:
-            _assert_ascii(item)
+            assert_ascii(item)
         return v
 
 

@@ -149,9 +149,11 @@ class TestCampaignInputSchemaValidation:
 
     def test_campaign_non_english_name_raises_value_error(self):
         """High: Non-English characters in campaign_name raise ValueError."""
+        from pydantic_core import ValidationError
+
         record = _campaign_record({"campaign_name": "Q1 Café Campaign 中文"})
 
-        with pytest.raises(ValueError, match="campaign_name must contain only English"):
+        with pytest.raises(ValidationError, match="English"):
             CampaignInput(**record)
 
     def test_campaign_english_name_accepted(self):
