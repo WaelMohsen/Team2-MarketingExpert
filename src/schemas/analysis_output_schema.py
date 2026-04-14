@@ -2,7 +2,9 @@ import json
 import math
 from typing import Any, Dict, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
+
+from .validators import assert_ascii
 
 
 class AnalysisOutput(BaseModel):
@@ -12,6 +14,18 @@ class AnalysisOutput(BaseModel):
     root_cause_hypothesis: str
     business_risks: List[str]
     confidence_score: float
+
+    @field_validator("analysis", "root_cause_hypothesis")
+    @classmethod
+    def string_fields_must_be_english(cls, v: str) -> str:
+        return assert_ascii(v)
+
+    @field_validator("key_signals", "detected_issues", "business_risks")
+    @classmethod
+    def list_items_must_be_english(cls, v: List[str]) -> List[str]:
+        for item in v:
+            assert_ascii(item)
+        return v
 
 
 def _loads_json(payload: str) -> Dict[str, Any]:

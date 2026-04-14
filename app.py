@@ -1,8 +1,9 @@
-import streamlit as st
 import pandas as pd
+import streamlit as st
 from dotenv import load_dotenv
-import src.metrics_engine as data_processor
+
 import src.llm as llm_handler
+import src.metrics_engine as data_processor
 
 # Load environment variables
 load_dotenv()
@@ -10,7 +11,8 @@ load_dotenv()
 st.set_page_config(page_title="Marketing Expert Chatbot", page_icon="📈", layout="wide")
 
 # Custom CSS for styling
-st.markdown("""
+st.markdown(
+    """
 <style>
     .stButton > button {
         width: 100%;
@@ -42,10 +44,17 @@ st.markdown("""
         margin-bottom: 2rem;
     }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
-st.markdown('<h1 class="main-header">Marketing Expert Chatbot 🤖</h1>', unsafe_allow_html=True)
-st.markdown('<p class="sub-header">Select a category below to analyze your marketing performance</p>', unsafe_allow_html=True)
+st.markdown(
+    '<h1 class="main-header">Marketing Expert Chatbot 🤖</h1>', unsafe_allow_html=True
+)
+st.markdown(
+    '<p class="sub-header">Select a category below to analyze your marketing performance</p>',
+    unsafe_allow_html=True,
+)
 
 # Sidebar for debug/context
 with st.sidebar:
@@ -63,20 +72,24 @@ if "selected_category" not in st.session_state:
 if "run_analysis" not in st.session_state:
     st.session_state.run_analysis = False
 
+
 def handle_click_category(category_name):
     st.session_state.selected_category = category_name
     st.session_state.run_analysis = True
+
 
 # Recommended Categories
 st.subheader("💡 Choose a Category to Analyze")
 col1, col2 = st.columns(2)
 col3, col4 = st.columns(2)
 
+
 # Make buttons larger and more prominent by default
 def create_metric_card(col, label, key_suffix, category_name):
     with col:
         # Use custom styling for a card-like effect
-        st.markdown("""
+        st.markdown(
+            """
         <div style="
             background-color: #ffffff;
             border-radius: 12px;
@@ -91,42 +104,66 @@ def create_metric_card(col, label, key_suffix, category_name):
             flex-direction: column;
             border: 1px solid #e5e7eb;
         ">
-            <h3>""" + label.split(' ')[0] + " " + label.split(' ')[1] + """</h3>
-            <h1>""" + label.split(' ')[2] + """</h1>
+            <h3>"""
+            + label.split(" ")[0]
+            + " "
+            + label.split(" ")[1]
+            + """</h3>
+            <h1>"""
+            + label.split(" ")[2]
+            + """</h1>
         </div>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
         # Use a hidden button that covers the card or just the regular button below
         if st.button(label, key=f"btn_{key_suffix}", use_container_width=True):
             handle_click_category(category_name)
 
+
 # Simplified grid layout with spacing
 with col1:
     st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
-    if st.button("💰 Customer Acquisition\nAnalyze your acquisition sources and costs", use_container_width=True):
+    if st.button(
+        "💰 Customer Acquisition\nAnalyze your acquisition sources and costs",
+        use_container_width=True,
+    ):
         handle_click_category("Customer Acquisition")
 
 with col2:
     st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
-    if st.button("😊 Customer Satisfaction\nMonitor CSAT scores and feedback", use_container_width=True):
+    if st.button(
+        "😊 Customer Satisfaction\nMonitor CSAT scores and feedback",
+        use_container_width=True,
+    ):
         handle_click_category("Customer Satisfaction")
 
 with col3:
     st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
-    if st.button("📈 Revenue Growth\nTrack revenue trends and performance", use_container_width=True):
+    if st.button(
+        "📈 Revenue Growth\nTrack revenue trends and performance",
+        use_container_width=True,
+    ):
         handle_click_category("Revenue Growth")
 
 with col4:
     st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
-    if st.button("🔄 Customer Retention\nEvaluate churn and retention rates", use_container_width=True):
+    if st.button(
+        "🔄 Customer Retention\nEvaluate churn and retention rates",
+        use_container_width=True,
+    ):
         handle_click_category("Customer Retention")
 
-st.markdown("---") # Section divider
+st.markdown("---")  # Section divider
 
 # Main Logic
 if st.session_state.run_analysis and st.session_state.selected_category:
     category = st.session_state.selected_category
-    
-    st.markdown(f"<h2 style='text-align: center; color: #4338ca;'>Analysis: {category}</h2>", unsafe_allow_html=True)
+
+    st.markdown(
+        f"<h2 style='text-align: center; color: #4338ca;'>Analysis: {category}</h2>",
+        unsafe_allow_html=True,
+    )
 
     with st.spinner(f"Generating detailed report for {category}..."):
         try:
@@ -134,40 +171,55 @@ if st.session_state.run_analysis and st.session_state.selected_category:
             df = data_processor.load_data()
             if df is not None:
                 metrics = data_processor.calculate_metrics_full(df, category)
-                metrics_overall=metrics.get('overall')
+                metrics_overall = metrics.get("overall")
                 # 2. LLM Generation
                 if "error" in metrics:
                     st.error(metrics["error"])
                 else:
                     # Display Metrics nicely in a grid
                     st.markdown("### Key Metrics")
-                    
+
                     # Define strict UI cards with emojis
                     # Format numbers nicely
-                    revenue = metrics_overall.get('Total Revenue', 0)
-                    spend = metrics_overall.get('Total Spend', 0)
-                    formatted_revenue = f"${revenue:,.0f}" if isinstance(revenue, (int, float)) else str(revenue)
-                    formatted_spend = f"${spend:,.0f}" if isinstance(spend, (int, float)) else str(spend)
-                    
+                    revenue = metrics_overall.get("Total Revenue", 0)
+                    spend = metrics_overall.get("Total Spend", 0)
+                    formatted_revenue = (
+                        f"${revenue:,.0f}"
+                        if isinstance(revenue, (int, float))
+                        else str(revenue)
+                    )
+                    formatted_spend = (
+                        f"${spend:,.0f}"
+                        if isinstance(spend, (int, float))
+                        else str(spend)
+                    )
+
                     # Note: Using 'Total Conversions' as proxy for New Customers if 'Total New Customers' is missing/0 based on data.py logic
-                    new_customers = metrics_overall.get('Total New Customers', metrics.get('Total Conversions', 0))
-                    
+                    new_customers = metrics_overall.get(
+                        "Total New Customers",
+                        metrics_overall.get("Total Conversions", 0),
+                    )
+
                     ui_cards = [
-                        ("📢 Campaign Name", metrics_overall.get('Campaign Name', 'Unknown')),
+                        (
+                            "📢 Campaign Name",
+                            metrics_overall.get("Campaign Name", "Unknown"),
+                        ),
                         ("👥 Total New Customers", str(new_customers)),
                         ("💰 Total Revenue", formatted_revenue),
-                        ("💸 Total Spend", formatted_spend)
+                        ("💸 Total Spend", formatted_spend),
                     ]
-                    
+
                     cols = st.columns(4)
                     for idx, (label, value) in enumerate(ui_cards):
                         with cols[idx]:
-                            st.markdown(f"""
+                            st.markdown(
+                                f"""
                             <div style="
-                                background-color: white; 
-                                padding: 18px; 
-                                border-radius: 12px; 
-                                box-shadow: 0 2px 8px rgba(0,0,0,0.10); 
+                                background-color: white;
+                                padding: 18px;
+                                border-radius: 12px;
+                                box-shadow: 0 2px 8px rgba(0,0,0,0.10);
                                 border: 2px solid #6366f1;
                                 text-align: center;
                                 height: 100%;
@@ -175,57 +227,61 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                                 <span style="display:block; font-size:1.1em; font-weight:400; color:#4338ca; margin-bottom:6px; letter-spacing:0.03em;">{label}</span>
                                 <span style="display:block; font-size:2.1em; font-weight:400; color:#111827;">{value}</span>
                             </div>
-                            """, unsafe_allow_html=True)
-                    
+                            """,
+                                unsafe_allow_html=True,
+                            )
+
                     st.markdown("<br>", unsafe_allow_html=True)
 
                     # Generate AI Response (now returns JSON string)
-                    response_dict  = llm_handler.generate_response(df, category, metrics)
+                    response_dict = llm_handler.generate_response(df, category, metrics)
 
                     try:
 
-                        analysis = response_dict.get('analysis', {})
-                        recommendations = response_dict.get('recommendations', [])
+                        analysis = response_dict.get("analysis", {})
+                        recommendations = response_dict.get("recommendations", [])
 
                         # ── Analysis Summary ──────────────────────────────
                         st.markdown("### 🔬 Analysis Summary")
-                        st.markdown(analysis.get('analysis', ''))
+                        st.markdown(analysis.get("analysis", ""))
 
                         # Root-cause hypothesis
-                        root_cause = analysis.get('root_cause_hypothesis', '')
+                        root_cause = analysis.get("root_cause_hypothesis", "")
                         if root_cause:
                             st.info(f"**Root-cause hypothesis:** {root_cause}")
 
                         # Key signals
-                        signals = analysis.get('key_signals', [])
+                        signals = analysis.get("key_signals", [])
                         if signals:
                             with st.expander("📡 Key Signals"):
                                 for sig in signals:
                                     st.write(f"- {sig}")
 
                         # Detected issues
-                        issues = analysis.get('detected_issues', [])
+                        issues = analysis.get("detected_issues", [])
                         if issues:
                             with st.expander("🚨 Detected Issues"):
                                 for issue in issues:
                                     st.write(f"- {issue}")
 
                         # Business risks
-                        risks = analysis.get('business_risks', [])
+                        risks = analysis.get("business_risks", [])
                         if risks:
                             with st.expander("⚠️ Business Risks"):
                                 for risk in risks:
                                     st.write(f"- {risk}")
 
                         # Confidence score
-                        confidence = analysis.get('confidence_score', 0)
+                        confidence = analysis.get("confidence_score", 0)
                         if isinstance(confidence, str):
                             try:
-                                confidence = float(confidence.strip('%'))
+                                confidence = float(confidence.strip("%"))
                             except ValueError:
                                 confidence = 0
                         confidence = max(0, min(100, int(confidence)))
-                        st.progress(confidence / 100, text=f"Confidence Score: {confidence}%")
+                        st.progress(
+                            confidence / 100, text=f"Confidence Score: {confidence}%"
+                        )
 
                         # ── Recommendation Cards ─────────────────────────
                         st.markdown("---")
@@ -238,10 +294,11 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                         }
 
                         for idx, rec in enumerate(recommendations, 1):
-                            priority = rec.get('priority', 'medium').lower()
+                            priority = rec.get("priority", "medium").lower()
                             color = PRIORITY_COLORS.get(priority, "#6366f1")
 
-                            st.markdown(f"""
+                            st.markdown(
+                                f"""
                             <div style="
                                 background: #fff;
                                 border-left: 5px solid {color};
@@ -265,40 +322,49 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                                     <b>Effort:</b> {rec.get('effort','')} · <b>Impact in:</b> {rec.get('time_to_see_impact','')} · <b>Confidence:</b> {rec.get('confidence','')}
                                 </div>
                             </div>
-                            """, unsafe_allow_html=True)
+                            """,
+                                unsafe_allow_html=True,
+                            )
 
                             # What's happening
-                            st.markdown(f"**📋 What's happening:** {rec.get('whats_happening', '')}")
+                            st.markdown(
+                                f"**📋 What's happening:** {rec.get('whats_happening', '')}"
+                            )
 
                             # Evidence
-                            evidence = rec.get('evidence', [])
+                            evidence = rec.get("evidence", [])
                             if evidence:
                                 with st.expander("📊 Evidence"):
                                     for ev in evidence:
                                         st.write(f"- {ev}")
 
                             # Action steps
-                            actions = rec.get('what_you_should_do', [])
+                            actions = rec.get("what_you_should_do", [])
                             if actions:
                                 with st.expander("✅ Action Steps"):
                                     for step in actions:
                                         if isinstance(step, dict):
                                             st.markdown(f"**{step.get('step', '')}**")
-                                            st.write(f"  *Where:* {step.get('where', '')}")
+                                            st.write(
+                                                f"  *Where:* {step.get('where', '')}"
+                                            )
                                             st.write(f"  *How:* {step.get('how', '')}")
-                                            guardrails = step.get('guardrails', [])
+                                            guardrails = step.get("guardrails", [])
                                             if guardrails:
-                                                st.write("  *Guardrails:* " + ", ".join(guardrails))
+                                                st.write(
+                                                    "  *Guardrails:* "
+                                                    + ", ".join(guardrails)
+                                                )
                                         else:
                                             st.write(f"- {step}")
 
                             # Why this matters
-                            why = rec.get('why_this_matters', '')
+                            why = rec.get("why_this_matters", "")
                             if why:
                                 st.markdown(f"**📉 Why this matters:** {why}")
 
                             # Expected impact
-                            impact = rec.get('expected_impact', {})
+                            impact = rec.get("expected_impact", {})
                             if isinstance(impact, dict) and impact:
                                 st.markdown(
                                     f"**🔮 Expected impact:** {impact.get('primary_kpi','')} "
@@ -306,29 +372,38 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                                 )
 
                             # Risks / Dependencies
-                            dep_risks = rec.get('dependency_or_risk', [])
+                            dep_risks = rec.get("dependency_or_risk", [])
                             if dep_risks:
                                 with st.expander("⚠️ Risks & Dependencies"):
                                     for dr in dep_risks:
                                         st.write(f"- {dr}")
 
                             # Measurement plan
-                            mplan = rec.get('measurement_plan', {})
+                            mplan = rec.get("measurement_plan", {})
                             if isinstance(mplan, dict) and mplan:
                                 with st.expander("📏 Measurement Plan"):
-                                    st.write(f"**How to measure:** {mplan.get('how_to_measure', '')}")
-                                    st.write(f"**Success criteria:** {mplan.get('success_criteria', '')}")
-                                    st.write(f"**Check timing:** {mplan.get('check_timing', '')}")
-                                    notes = mplan.get('notes', '')
+                                    st.write(
+                                        f"**How to measure:** {mplan.get('how_to_measure', '')}"
+                                    )
+                                    st.write(
+                                        f"**Success criteria:** {mplan.get('success_criteria', '')}"
+                                    )
+                                    st.write(
+                                        f"**Check timing:** {mplan.get('check_timing', '')}"
+                                    )
+                                    notes = mplan.get("notes", "")
                                     if notes:
                                         st.write(f"**Notes:** {notes}")
 
-                            st.markdown(f"*Owner suggestion: {rec.get('owner_suggestion', '')}*")
+                            st.markdown(
+                                f"*Owner suggestion: {rec.get('owner_suggestion', '')}*"
+                            )
                             st.markdown("---")
 
                     except json.JSONDecodeError:
                         st.markdown("### 📝 AI Evaluation Report")
-                        st.markdown(f"""
+                        st.markdown(
+                            f"""
                         <div style="
                             background-color: #f8fafc;
                             padding: 25px;
@@ -341,11 +416,13 @@ if st.session_state.run_analysis and st.session_state.selected_category:
                         ">
                             {response_json_str}
                         </div>
-                        """, unsafe_allow_html=True)
+                        """,
+                            unsafe_allow_html=True,
+                        )
             else:
                 st.error("Data file not found. Please check data/campaign_data.csv")
         except Exception as e:
             st.error(f"An error occurred: {e}")
-            
+
     # Reset analysis flag
     st.session_state.run_analysis = False

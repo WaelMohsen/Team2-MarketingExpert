@@ -2,4 +2,4 @@ openai
 streamlit
 pandas
 python-dotenv
-pydantic
+pydantic>=2.0.0

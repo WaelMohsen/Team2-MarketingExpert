@@ -1,11 +1,14 @@
-from pydantic import BaseModel
-from typing import List , Optional
 import json
+from typing import List, Optional
 
+from pydantic import BaseModel, field_validator
+
+from .validators import assert_ascii
 
 # -----------------------------
 # Nested Models
 # -----------------------------
+
 
 class ActionStep(BaseModel):
     step: str
@@ -13,11 +16,28 @@ class ActionStep(BaseModel):
     how: str
     guardrails: List[str]
 
+    @field_validator("step", "where", "how")
+    @classmethod
+    def string_fields_ascii(cls, v: str) -> str:
+        return assert_ascii(v)
+
+    @field_validator("guardrails")
+    @classmethod
+    def list_fields_ascii(cls, v: List[str]) -> List[str]:
+        for item in v:
+            assert_ascii(item)
+        return v
+
 
 class ExpectedImpact(BaseModel):
     primary_kpi: str
     direction: str
     explanation: str
+
+    @field_validator("primary_kpi", "direction", "explanation")
+    @classmethod
+    def string_fields_ascii(cls, v: str) -> str:
+        return _assert_ascii(v)
 
 
 class MeasurementPlan(BaseModel):
@@ -26,10 +46,16 @@ class MeasurementPlan(BaseModel):
     check_timing: str
     notes: str
 
+    @field_validator("how_to_measure", "success_criteria", "check_timing", "notes")
+    @classmethod
+    def string_fields_ascii(cls, v: str) -> str:
+        return _assert_ascii(v)
+
 
 # -----------------------------
 # Recommendation Model
 # -----------------------------
+
 
 class Recommendation(BaseModel):
     id: str
@@ -55,13 +81,44 @@ class Recommendation(BaseModel):
 
     owner_suggestion: str
 
+    @field_validator(
+        "id",
+        "title",
+        "category",
+        "priority",
+        "effort",
+        "time_to_see_impact",
+        "confidence",
+        "whats_happening",
+        "owner_suggestion",
+    )
+    @classmethod
+    def string_fields_ascii(cls, v: str) -> str:
+        return _assert_ascii(v)
+
+    @field_validator("why_this_matters")
+    @classmethod
+    def optional_string_ascii(cls, v: Optional[str]) -> Optional[str]:
+        if v is not None:
+            _assert_ascii(v)
+        return v
+
+    @field_validator("evidence", "dependency_or_risk")
+    @classmethod
+    def list_fields_ascii(cls, v: List[str]) -> List[str]:
+        for item in v:
+            _assert_ascii(item)
+        return v
+
 
 # -----------------------------
 # Root Response Model
 # -----------------------------
 
+
 class RecommendationResponse(BaseModel):
     recommendations: List[Recommendation]
+
 
 def validate_recommendation_response(response_text: str):
 

@@ -5,14 +5,10 @@ from .registry import register_target
 def calculate(df, metrics):
 
     retained_customers = (
-        int(df["retained_customers"].sum())
-        if "retained_customers" in df else 0
+        int(df["retained_customers"].sum()) if "retained_customers" in df else 0
     )
 
-    churn_rate = (
-        float(df["churn_rate"].mean())
-        if "churn_rate" in df else None
-    )
+    churn_rate = float(df["churn_rate"].mean()) if "churn_rate" in df else None
 
     if churn_rate is not None:
         churn_percent = churn_rate * 100 if churn_rate <= 1 else churn_rate
@@ -22,7 +18,11 @@ def calculate(df, metrics):
         retention_rate = None
 
     metrics["Retained Customers"] = retained_customers
-    metrics["Churn Rate"] = round(churn_percent, 2) if churn_percent else None
-    metrics["Retention Rate"] = round(retention_rate, 2) if retention_rate else None
+    metrics["Churn Rate"] = (
+        round(churn_percent, 2) if churn_percent is not None else None
+    )
+    metrics["Retention Rate"] = (
+        round(retention_rate, 2) if retention_rate is not None else None
+    )
 
     return metrics

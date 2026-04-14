@@ -2,7 +2,9 @@ import json
 import math
 from typing import Any, Dict, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
+
+from .validators import assert_ascii
 
 
 class RecommendationActionStep(BaseModel):
@@ -11,11 +13,28 @@ class RecommendationActionStep(BaseModel):
     how: str
     guardrails: List[str]
 
+    @field_validator("step", "where", "how")
+    @classmethod
+    def string_fields_ascii(cls, v: str) -> str:
+        return assert_ascii(v)
+
+    @field_validator("guardrails")
+    @classmethod
+    def list_fields_ascii(cls, v: List[str]) -> List[str]:
+        for item in v:
+            assert_ascii(item)
+        return v
+
 
 class ExpectedImpact(BaseModel):
     primary_kpi: str
     direction: str
     explanation: str
+
+    @field_validator("primary_kpi", "direction", "explanation")
+    @classmethod
+    def string_fields_ascii(cls, v: str) -> str:
+        return assert_ascii(v)
 
 
 class MeasurementPlan(BaseModel):
@@ -23,6 +42,11 @@ class MeasurementPlan(BaseModel):
     success_criteria: str
     check_timing: str
     notes: str
+
+    @field_validator("how_to_measure", "success_criteria", "check_timing", "notes")
+    @classmethod
+    def string_fields_ascii(cls, v: str) -> str:
+        return assert_ascii(v)
 
 
 class RecommendationCard(BaseModel):
@@ -41,6 +65,29 @@ class RecommendationCard(BaseModel):
     dependency_or_risk: List[str]
     measurement_plan: MeasurementPlan
     owner_suggestion: str
+
+    @field_validator(
+        "id",
+        "title",
+        "category",
+        "priority",
+        "effort",
+        "time_to_see_impact",
+        "confidence",
+        "whats_happening",
+        "why_this_matters",
+        "owner_suggestion",
+    )
+    @classmethod
+    def string_fields_ascii(cls, v: str) -> str:
+        return assert_ascii(v)
+
+    @field_validator("evidence", "dependency_or_risk")
+    @classmethod
+    def list_fields_ascii(cls, v: List[str]) -> List[str]:
+        for item in v:
+            assert_ascii(item)
+        return v
 
 
 class RecommendationOutput(BaseModel):
@@ -84,8 +131,12 @@ def validate_recommendation_output(text: str) -> RecommendationOutput:
         if not rec.title.strip():
             raise ValueError("Each recommendation must have a non-empty 'title'")
         if not rec.evidence:
-            raise ValueError("Each recommendation must have a non-empty 'evidence' list")
+            raise ValueError(
+                "Each recommendation must have a non-empty 'evidence' list"
+            )
         if not rec.what_you_should_do:
-            raise ValueError("Each recommendation must have a non-empty 'what_you_should_do' list")
+            raise ValueError(
+                "Each recommendation must have a non-empty 'what_you_should_do' list"
+            )
 
     return model

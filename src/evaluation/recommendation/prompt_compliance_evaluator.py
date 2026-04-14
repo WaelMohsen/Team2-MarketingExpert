@@ -1,7 +1,7 @@
 # evaluation/recommendation/prompt_compliance_evaluator.py
 
-from typing import List, Dict
 from statistics import mean
+from typing import Dict, List
 
 
 class PromptComplianceEvaluator:
@@ -29,7 +29,7 @@ class PromptComplianceEvaluator:
         priority_map = {"High": 0, "Medium": 1, "Low": 2}
         priorities = [priority_map.get(r.get("priority"), 3) for r in recs]
         return 1.0 if priorities == sorted(priorities) else 0.0
-    
+
     # =========================================================
     # 🔹 LLM COMPLIANCE JUDGE
     # =========================================================
@@ -71,10 +71,7 @@ Return JSON.
     # =========================================================
 
     def evaluate(
-        self,
-        recommendations: List[dict],
-        analysis: dict,
-        kpis: List[str]
+        self, recommendations: List[dict], analysis: dict, kpis: List[str]
     ) -> Dict:
 
         # ---------------------------
@@ -83,7 +80,7 @@ Return JSON.
         count_score = self._count_check(recommendations)
         fields_score = self._required_fields(recommendations)
         priority_score = self._priority_order(recommendations)
-        
+
         # ---------------------------
         # LLM judgment
         # ---------------------------
@@ -97,7 +94,6 @@ Return JSON.
             "count_valid": count_score,
             "required_fields": fields_score,
             "priority_order": priority_score,
-            
             # llm
             "no_hallucination": llm_scores.get("no_hallucination", 0),
             "clarity": llm_scores.get("clarity", 0),
@@ -118,12 +114,8 @@ Return JSON.
 
         if priority_score == 0:
             flags.append("priority_not_sorted")
-        
+
         if llm_scores.get("no_hallucination", 1) < 0.7:
             flags.append("possible_hallucination")
-        
-        return {
-            "score": round(overall, 32),
-            "dimensions": final_scores,
-            "flags": flags
-        }
+
+        return {"score": round(overall, 32), "dimensions": final_scores, "flags": flags}

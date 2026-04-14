@@ -54,26 +54,22 @@ def chat_completion(client, system_text, user_text, response_format):
         response_format=response_format,
     )
 
+
 # ANALYSIS: "gpt-4o-mini",
 # RECOMMENDATION: "gpt-4o"
 
 
-
 def llm_callable(prompt: str) -> str:
-    client=get_client()
+    client = get_client()
     response = client.chat.completions.create(
         model="gpt-4o-mini",
-        messages=[
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
     )
     return response.choices[0].message.content
 
-def embedding_callable(text: str)-> list[float]:
-    client=get_client()
-    response = client.embeddings.create(
-        model="text-embedding-3-small",
-        input=text
-    )
+
+def embedding_callable(text: str) -> list[float]:
+    client = get_client()
+    response = client.embeddings.create(model="text-embedding-3-small", input=text)
     return response.data[0].embedding
