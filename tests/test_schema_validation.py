@@ -1,7 +1,7 @@
 import json
+
 import pytest
-from src.schemas.analysis_output_schema import validate_analysis_output
-from src.schemas.analysis_output_schema import AnalysisOutput
+from src.schemas.analysis_output_schema import AnalysisOutput, validate_analysis_output
 from src.schemas.recommendation_output_schema import validate_recommendation_output
 
 
@@ -105,26 +105,43 @@ def test_analysis_output_to_json_returns_valid_json_and_preserves_unicode():
 
 
 def test_recommendations_valid_5_cards_passes():
-    payload = {"recommendations": [_recommendation_card({"id": f"REC-0{i}"}) for i in range(1, 6)]}
+    payload = {
+        "recommendations": [
+            _recommendation_card({"id": f"REC-0{i}"}) for i in range(1, 6)
+        ]
+    }
     model = validate_recommendation_output(json.dumps(payload))
     assert len(model.recommendations) == 5
 
 
 def test_recommendations_wrong_count_raises_value_error():
-    payload = {"recommendations": [_recommendation_card({"id": f"REC-0{i}"}) for i in range(1, 5)]}
+    payload = {
+        "recommendations": [
+            _recommendation_card({"id": f"REC-0{i}"}) for i in range(1, 5)
+        ]
+    }
     with pytest.raises(ValueError):
         validate_recommendation_output(json.dumps(payload))
 
 
 def test_recommendations_empty_evidence_raises_value_error():
-    payload = {"recommendations": [_recommendation_card({"id": f"REC-0{i}", "evidence": []}) for i in range(1, 6)]}
+    payload = {
+        "recommendations": [
+            _recommendation_card({"id": f"REC-0{i}", "evidence": []})
+            for i in range(1, 6)
+        ]
+    }
     with pytest.raises(ValueError):
         validate_recommendation_output(json.dumps(payload))
 
 
 def test_recommendations_broken_json_python_dict_repr_is_rejected_in_strict_json_mode():
     # Python dict repr (single quotes) is not valid JSON and should fail.
-    payload = {"recommendations": [_recommendation_card({"id": f"REC-0{i}"}) for i in range(1, 6)]}
+    payload = {
+        "recommendations": [
+            _recommendation_card({"id": f"REC-0{i}"}) for i in range(1, 6)
+        ]
+    }
     broken = str(payload)
     with pytest.raises(json.JSONDecodeError):
         validate_recommendation_output(broken)

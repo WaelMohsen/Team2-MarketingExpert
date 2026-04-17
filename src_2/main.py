@@ -1,10 +1,6 @@
+from calculators.metrics_calculator import MetricsCalculator
 from dotenv import load_dotenv
 from readers.campaign_reader import Campaign_Reader
-from calculators.metrics_calculator import MetricsCalculator
-from targets.acquisition_target import AcquisitionTarget
-from targets.revenue_target import RevenueTarget
-from targets.retention_target import RetentionTarget
-from targets.satisfaction_target import SatisfactionTarget
 from services.llm_orchestrator import LLMOrchestrator
 
 load_dotenv()
@@ -17,7 +13,7 @@ campaigns = reader.read_campaign()
 calculator = MetricsCalculator()
 metrics, selected_metrics = calculator.run(campaigns, "revenue")
 # run
-orchestrator = LLMOrchestrator("../prompts/","../output_log")
+orchestrator = LLMOrchestrator("../prompts/", "../output_log")
 result = orchestrator.run("revenue", metrics, selected_metrics)
 
 print(result)

@@ -1,15 +1,16 @@
-import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src_2'))
+import sys
 
-from dotenv import load_dotenv
-from readers.campaign_reader import Campaign_Reader
-from calculators.metrics_calculator import MetricsCalculator
-from targets.acquisition_target import AcquisitionTarget
-from targets.revenue_target import RevenueTarget
-from targets.retention_target import RetentionTarget
-from targets.satisfaction_target import SatisfactionTarget
-from services.llm_orchestrator import LLMOrchestrator
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src_2"))
+
+from calculators.metrics_calculator import MetricsCalculator  # noqa: E402
+from dotenv import load_dotenv  # noqa: E402
+from readers.campaign_reader import Campaign_Reader  # noqa: E402
+from services.llm_orchestrator import LLMOrchestrator  # noqa: E402
+from targets.acquisition_target import AcquisitionTarget  # noqa: E402
+from targets.retention_target import RetentionTarget  # noqa: E402
+from targets.revenue_target import RevenueTarget  # noqa: E402
+from targets.satisfaction_target import SatisfactionTarget  # noqa: E402
 
 load_dotenv()
 

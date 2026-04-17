@@ -1,4 +1,3 @@
-
 class Base_Metrics:
     def __init__(
         self,
@@ -7,7 +6,7 @@ class Base_Metrics:
         total_impressions: int,
         total_clicks: int,
         total_conversions: int,
-        total_new_customers: int
+        total_new_customers: int,
     ):
         self.total_spend = total_spend
         self.total_revenue = total_revenue
@@ -15,4 +14,3 @@ class Base_Metrics:
         self.total_clicks = total_clicks
         self.total_conversions = total_conversions
         self.total_new_customers = total_new_customers
-        

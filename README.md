@@ -1,7 +1,7 @@
 # Team2-MarketingExpert
 
 This is Team 2 Implementation for the Marketing Engine (Making marketing simple for non-marketers. Auto-optimized recommendations in plain
-language.) 
+language.)
 
 ## Requirements
 
@@ -49,4 +49,3 @@ $ streamlit run app.py
 - Editable source: [docs/diagrams/marketing-expert-workflow.drawio](docs/diagrams/marketing-expert-workflow.drawio)
 
 ![Marketing Expert Workflow](docs/diagrams/marketing-expert-workflow.svg)
-

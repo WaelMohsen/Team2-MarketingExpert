@@ -1,13 +1,13 @@
 # services/llm_recommendation_service.py
 import json
 
-from services.llm_client import LLMClient
-from services.prompt_builder import PromptBuilder
-from services.base_llm_service import BaseLLMService
 from schemas.recommendation_output_schema import (
     RecommendationOutput,
     validate_recommendation_output,
 )
+from services.base_llm_service import BaseLLMService
+from services.llm_client import LLMClient
+from services.prompt_builder import PromptBuilder
 
 
 class LLMRecommendationService(BaseLLMService):
@@ -26,7 +26,9 @@ class LLMRecommendationService(BaseLLMService):
         {target_explanation}
         """
 
-    def build_user_prompt(self, target, base_context, selected_metrics, analysis_json=None):
+    def build_user_prompt(
+        self, target, base_context, selected_metrics, analysis_json=None
+    ):
         return f"""
         You are in Step 2 (Recommendations).
 

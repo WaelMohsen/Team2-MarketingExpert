@@ -84,8 +84,12 @@ def validate_recommendation_output(text: str) -> RecommendationOutput:
         if not rec.title.strip():
             raise ValueError("Each recommendation must have a non-empty 'title'")
         if not rec.evidence:
-            raise ValueError("Each recommendation must have a non-empty 'evidence' list")
+            raise ValueError(
+                "Each recommendation must have a non-empty 'evidence' list"
+            )
         if not rec.what_you_should_do:
-            raise ValueError("Each recommendation must have a non-empty 'what_you_should_do' list")
+            raise ValueError(
+                "Each recommendation must have a non-empty 'what_you_should_do' list"
+            )
 
     return model

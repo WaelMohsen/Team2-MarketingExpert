@@ -1,9 +1,11 @@
-import pandas as pd 
+import pandas as pd
 from DTOs.campaign_metrics import Campaign_Metrics
 
+
 class Campaign_Reader:
-    def __init__(self,file_path):
+    def __init__(self, file_path):
         self.file_path = file_path
+
     def read_campaign(self):
         campaign_df = pd.read_csv(self.file_path)
         return [
