@@ -31,7 +31,7 @@ class TestAnalysisOutputSchemaValidation:
 
         assert isinstance(result, AnalysisOutput)
         assert result.analysis == "Q1 performance strong across all channels"
-        assert result.confidence_score == 85.0  # Converted to percentage
+        assert result.confidence_score == pytest.approx(85.0)  # Converted to percentage
         assert len(result.key_signals) == 2
 
     def test_analysis_confidence_score_fraction_converted_to_percent(self):
@@ -47,7 +47,7 @@ class TestAnalysisOutputSchemaValidation:
 
         result = validate_analysis_output(payload)
 
-        assert result.confidence_score == 75.0
+        assert result.confidence_score == pytest.approx(75.0)
 
     def test_analysis_confidence_score_already_percent_preserved(self):
         """High: Confidence score 50-100 preserved as-is."""
@@ -62,7 +62,7 @@ class TestAnalysisOutputSchemaValidation:
 
         result = validate_analysis_output(payload)
 
-        assert result.confidence_score == 92.5
+        assert result.confidence_score == pytest.approx(92.5)
 
     def test_analysis_empty_analysis_text_raises_error(self):
         """Low: Empty analysis text raises ValueError."""
@@ -124,7 +124,7 @@ class TestAnalysisOutputSchemaValidation:
 
         result = validate_analysis_output(payload)
 
-        assert result.confidence_score == 0.0
+        assert result.confidence_score == pytest.approx(0.0)
 
     def test_analysis_confidence_score_above_100_clamped(self):
         """Medium: Confidence score > 100 clamped to 100."""
@@ -139,7 +139,7 @@ class TestAnalysisOutputSchemaValidation:
 
         result = validate_analysis_output(payload)
 
-        assert result.confidence_score == 100.0
+        assert result.confidence_score == pytest.approx(100.0)
 
     def test_analysis_invalid_json_raises_error(self):
         """Low: Invalid JSON raises error."""

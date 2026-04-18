@@ -168,7 +168,7 @@ class TestCampaignReaderParsing:
             "campaign_name,date,channel,impressions,clicks,conversions,spend,revenue,new_customers,"
             "reach,likes,comments,shares,bounce_rate,frequency,retained_customers,churn_rate,"
             "purchases_per_year,product_profit_margin\n"
-            "Q1 Summer Sale,2026-01-15,Facebook,10000,500,50,5000.0,10000.0,40,8000,200,50,25,0.25,1.5,30,0.1,2.5,0.3\n"
+            "Q1 Été Förderung 日本語キャンペーン,2026-01-15,Facebook,10000,500,50,5000.0,10000.0,40,8000,200,50,25,0.25,1.5,30,0.1,2.5,0.3\n"
         )
 
         with tempfile.NamedTemporaryFile(
@@ -182,7 +182,7 @@ class TestCampaignReaderParsing:
             campaigns = reader.read_campaign()
 
             assert len(campaigns) == 1
-            assert campaigns[0].name == "Q1 Summer Sale"
+            assert campaigns[0].name == "Q1 Été Förderung 日本語キャンペーン"
         finally:
             Path(temp_path).unlink()
 
