@@ -77,13 +77,13 @@ This project is an AI-powered marketing campaign analysis engine. It reads raw c
 CSV file
    │
    ▼
-Campaign_Reader          → list of Campaign objects (one per CSV row)
+Campaign_Reader                           → list of Campaign objects (one per CSV row)
    │
    ▼
-MetricsCalculator        → single Metrics object (aggregated KPIs)
+MetricsCalculator.run(campaigns, target)  → (Base_Metrics, <Target>_Metrics)
    │
    ▼
-Target.select(metrics)   → dict of KPIs relevant to the chosen target
+target.select_target()                    → dict of KPIs relevant to the chosen target
    │
    ▼
 LLMOrchestrator
