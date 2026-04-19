@@ -155,7 +155,7 @@ Aggregates all campaigns and computes every KPI.
 
 ```python
 calculator = MetricsCalculator()
-metrics = calculator.calculate(campaigns)  # → Metrics
+metrics = calculator.run(campaigns)  # → Metrics
 ```
 
 Key formulas:
