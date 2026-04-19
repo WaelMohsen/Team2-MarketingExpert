@@ -22,5 +22,7 @@ class PromptBuilder:
             return ""
 
     def load_target_prompt(self, target):
-        filename = TARGET_PROMPT_FILES.get(target, "")
+        filename = TARGET_PROMPT_FILES.get(target)
+        if not filename:
+            return ""
         return self.load(filename)
