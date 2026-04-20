@@ -9,6 +9,8 @@ from ..schemas.recommendation_output_schema import (
     RecommendationOutput,
     validate_recommendation_output,
 )
+from .insight_quality_checker import InsightQualityChecker
+
 from .prompts import (
     analysis_system_prompt,
     build_analysis_user_prompt,
@@ -119,6 +121,18 @@ def generate_response(df, category: str, metrics: dict) -> str:
             "analysis": analysis_model.dict(),
             "recommendations": [r.dict() for r in rec_model.recommendations],
         }
+
+        campaign_row = df.iloc[0].to_dict()
+        checker = InsightQualityChecker(combined["analysis"], campaign_row)
+        results = [
+            checker.check_factual_grounding(),
+            checker.check_benchmark_specificity(),
+            checker.check_issue_detection(),
+            checker.check_confidence_calibration(),
+        ]
+        for r in results:
+            status = "PASS" if r.passed else ("WARN" if r.partial else "FAIL")
+            print(f"[{status}] {r.name}: {r.detail}")
 
         save_output(combined)  # Save the full response for debugging
         return combined
