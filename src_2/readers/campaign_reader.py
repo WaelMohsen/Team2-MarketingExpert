@@ -6,6 +6,15 @@ class Campaign_Reader:
         self.file_path = file_path
     def read_campaign(self):
         campaign_df = pd.read_csv(self.file_path)
+        numeric_columns = [
+            "impressions", "clicks", "conversions", "spend", "revenue", "new_customers",
+            "reach", "likes", "comments", "shares",
+            "bounce_rate", "frequency",
+            "retained_customers", "churn_rate", "purchases_per_year", "product_profit_margin",
+        ]
+        campaign_df[numeric_columns] = (
+            campaign_df[numeric_columns].apply(pd.to_numeric, errors="coerce").fillna(0)
+        )
         return [
             Campaign_Metrics(
                 name=row["campaign_name"],

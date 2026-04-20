@@ -6,7 +6,7 @@ class LLMClient:
     def __init__(self):
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
-            raise RuntimeError("Missing OPENAI_API_KEY in .env file.")
+            raise RuntimeError("Missing OPENAI_API_KEY. Set it in your environment variables.")
         self._client = OpenAI(api_key=api_key)
 
     def chat_completion(self, system_text, user_text, response_format, model):

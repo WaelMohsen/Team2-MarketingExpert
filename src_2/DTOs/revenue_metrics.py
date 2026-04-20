@@ -6,4 +6,13 @@ class Revenue_Metrics:
         self.marketing_roi = marketing_roi
         self.revenue_per_click = revenue_per_click
         self.ltv_cac_ratio = ltv_cac_ratio
-    
+
+    def convert_to_dictionary(self):
+        return {
+            "roas": self.roas,
+            "aov": self.aov,
+            "annual_customer_value": self.annual_customer_value,
+            "marketing_roi": self.marketing_roi,
+            "revenue_per_click": self.revenue_per_click,
+            "ltv_cac_ratio": self.ltv_cac_ratio,
+        }

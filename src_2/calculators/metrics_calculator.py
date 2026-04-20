@@ -47,14 +47,14 @@ class MetricsCalculator:
         except Exception as e:
             raise RuntimeError(f"Failed to calculate base metrics: {e}") from e
 
-    def calculate_acquisition_metrics(self, campaigns) -> tuple[float, float, float]:
+    def calculate_acquisition_metrics(self, campaigns) -> tuple[float, float, float, int]:
         try:
             self.validate_campaigns(campaigns)
             total_spend, _, total_impressions, total_clicks, total_conversions, total_new_customers = self.calculate_base_metrics(campaigns)
             ctr = round((total_clicks / total_impressions) * 100, 2) if total_impressions else 0
             conversion_rate = round((total_conversions / total_clicks) * 100, 2) if total_clicks else 0
             cpa = round(total_spend / total_new_customers, 2) if total_new_customers else 0
-            return ctr, conversion_rate, cpa
+            return ctr, conversion_rate, cpa, total_new_customers
         except ValueError:
             raise
         except Exception as e:
@@ -64,7 +64,7 @@ class MetricsCalculator:
         try:
             self.validate_campaigns(campaigns)
             total_spend, total_revenue, _, total_clicks, total_conversions, _ = self.calculate_base_metrics(campaigns)
-            *_, cpa = self.calculate_acquisition_metrics(campaigns)
+            _, _, cpa, _ = self.calculate_acquisition_metrics(campaigns)
             roas = round(total_revenue / total_spend, 2) if total_spend else 0
             aov = round(total_revenue / total_conversions, 2) if total_conversions else 0
             purchases_per_year = sum(c.purchases_per_year for c in campaigns) / len(campaigns)
@@ -78,15 +78,15 @@ class MetricsCalculator:
         except Exception as e:
             raise RuntimeError(f"Failed to calculate revenue metrics: {e}") from e
 
-    def calculate_retention_metrics(self, campaigns) -> tuple[int, float, float, float]:
+    def calculate_retention_metrics(self, campaigns) -> tuple[int, float, float]:
         try:
             self.validate_campaigns(campaigns)
             retained_customers = sum(c.retained_customers for c in campaigns)
             churn_rate = sum(c.churn_rate for c in campaigns) / len(campaigns) if campaigns else 0
             churn_percent = churn_rate * 100 if churn_rate <= 1 else churn_rate
             retention_rate = round(100 - churn_percent, 2)
-            churn_rate = round(churn_percent, 2)
-            return retained_customers, churn_rate, churn_percent, retention_rate
+            churn_rate_percentage = round(churn_percent, 2)
+            return retained_customers, churn_rate_percentage, retention_rate
         except ValueError:
             raise
         except Exception as e:

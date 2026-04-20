@@ -24,16 +24,18 @@ class LLMAnalysisService(BaseLLMService):
         """
 
     def build_user_prompt(self, target, base_context, selected_metrics,analysis_json=None):
+        base_json = json.dumps(base_context.convert_to_dictionary(), ensure_ascii=False)
+        metrics_json = json.dumps(selected_metrics.convert_to_dictionary(), ensure_ascii=False)
         return f"""
         You are in Step 1 (Analysis Only).
 
         TARGET: {target}
 
         BASE CONTEXT:
-        {base_context}
+        {base_json}
 
         TARGET METRICS:
-        {selected_metrics}
+        {metrics_json}
 
         Return analysis JSON only.
         """

@@ -1,4 +1,3 @@
-
 class Base_Metrics:
     def __init__(
         self,
@@ -15,4 +14,13 @@ class Base_Metrics:
         self.total_clicks = total_clicks
         self.total_conversions = total_conversions
         self.total_new_customers = total_new_customers
-        
+
+    def convert_to_dictionary(self):
+        return {
+            "total_spend": self.total_spend,
+            "total_revenue": self.total_revenue,
+            "total_impressions": self.total_impressions,
+            "total_clicks": self.total_clicks,
+            "total_conversions": self.total_conversions,
+            "total_new_customers": self.total_new_customers,
+        }

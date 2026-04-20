@@ -27,20 +27,20 @@ class LLMRecommendationService(BaseLLMService):
         """
 
     def build_user_prompt(self, target, base_context, selected_metrics, analysis_json=None):
+        base_json = json.dumps(base_context.convert_to_dictionary(), ensure_ascii=False)
+        metrics_json = json.dumps(selected_metrics.convert_to_dictionary(), ensure_ascii=False)
+        analysis_block = f"\nSTEP 1 ANALYSIS:\n{analysis_json}\n" if analysis_json else ""
         return f"""
         You are in Step 2 (Recommendations).
 
         TARGET: {target}
 
         BASE CONTEXT:
-        {base_context}
+        {base_json}
 
         TARGET METRICS:
-        {selected_metrics}
-
-        STEP 1 ANALYSIS:
-        {analysis_json}
-
+        {metrics_json}
+        {analysis_block}
         Return recommendations JSON only.
         """
 
