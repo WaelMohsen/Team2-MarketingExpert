@@ -48,7 +48,7 @@ This project is an AI-powered marketing campaign analysis engine. It reads raw c
 │   ├── readers/
 │   │   └── campaign_reader.py       # Reads CSV and returns list of Campaign DTOs
 │   ├── calculators/
-│   │   └── metrics_calculator.py    # Calculates KPIs and returns target metric DTOs
+│   │   └── metrics_calculator.py    # Calculates KPIs and returns base + target metric DTOs
 │   ├── targets/
 │   │   ├── base_target.py           # Abstract base class for targets
 │   │   ├── acquisition_target.py    # Selects acquisition KPIs from metric DTOs
