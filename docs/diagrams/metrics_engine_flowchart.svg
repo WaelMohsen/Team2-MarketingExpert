@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 1340" font-family="Segoe UI, Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="920" height="1340" fill="#f8fafc"/>
+
+  <!-- ═══════════════════════════════════════════════
+       TITLE
+  ════════════════════════════════════════════════ -->
+  <text x="460" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#1e293b">Metrics Engine — calculate_metrics_full() Flowchart</text>
+
+  <!-- ═══════════════════════════════════════════════
+       ENTRY: calculate_metrics_full(df, target)
+  ════════════════════════════════════════════════ -->
+  <!-- rounded rect entry -->
+  <rect x="285" y="60" width="350" height="52" rx="26" fill="#4f46e5" stroke="#3730a3" stroke-width="2"/>
+  <text x="460" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">calculate_metrics_full(df, target)</text>
+  <text x="460" y="100" text-anchor="middle" font-size="11" fill="#c7d2fe">entry point  ·  router.py</text>
+
+  <!-- arrow down -->
+  <line x1="460" y1="112" x2="460" y2="140" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════
+       GUARD: df None / empty?
+  ════════════════════════════════════════════════ -->
+  <!-- diamond -->
+  <polygon points="460,140 570,175 460,210 350,175" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <text x="460" y="170" text-anchor="middle" font-size="12" font-weight="600" fill="#854d0e">df is None</text>
+  <text x="460" y="187" text-anchor="middle" font-size="12" font-weight="600" fill="#854d0e">or empty?</text>
+
+  <!-- YES → error -->
+  <line x1="570" y1="175" x2="680" y2="175" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="618" y="167" text-anchor="middle" font-size="11" fill="#16a34a" font-weight="600">YES</text>
+  <rect x="680" y="154" width="175" height="42" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="767" y="172" text-anchor="middle" font-size="11" font-weight="600" fill="#b91c1c">return</text>
+  <text x="767" y="187" text-anchor="middle" font-size="11" fill="#b91c1c">{"error": "No data"}</text>
+
+  <!-- NO → down -->
+  <line x1="460" y1="210" x2="460" y2="240" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="472" y="229" font-size="11" fill="#dc2626" font-weight="600">NO</text>
+
+  <!-- ═══════════════════════════════════════════════
+       STEP 1 — OVERALL  (calls calculate_metrics)
+  ════════════════════════════════════════════════ -->
+  <rect x="285" y="240" width="350" height="46" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="460" y="259" text-anchor="middle" font-size="12" font-weight="700" fill="#0c4a6e">STEP 1 — Overall Metrics</text>
+  <text x="460" y="277" text-anchor="middle" font-size="11" fill="#075985">overall = calculate_metrics(df, target)</text>
+
+  <!-- arrow down -->
+  <line x1="460" y1="286" x2="460" y2="314" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════
+       INSIDE calculate_metrics
+  ════════════════════════════════════════════════ -->
+  <!-- dashed group box -->
+  <rect x="60" y="314" width="800" height="260" rx="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="80" y="334" font-size="11" font-weight="700" fill="#475569">calculate_metrics(df, target)  ·  router.py</text>
+
+  <!-- A: calculate_base_metrics -->
+  <rect x="285" y="344" width="350" height="52" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="460" y="364" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a">calculate_base_metrics(df)</text>
+  <text x="460" y="381" text-anchor="middle" font-size="10.5" fill="#1d4ed8">base_metrics.py — always runs first</text>
+
+  <!-- base metrics output pills -->
+  <text x="460" y="407" text-anchor="middle" font-size="10" fill="#475569">→ Campaign Name · Total Spend · Total Revenue · Total Impressions</text>
+  <text x="460" y="420" text-anchor="middle" font-size="10" fill="#475569">   Total Clicks · Total Conversions · Total New Customers · CTR · CPA · ROAS</text>
+
+  <!-- arrow down inside box -->
+  <line x1="460" y1="425" x2="460" y2="448" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- B: KPI_REGISTRY lookup -->
+  <polygon points="460,448 570,473 460,498 350,473" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <text x="460" y="468" text-anchor="middle" font-size="11" font-weight="600" fill="#854d0e">KPI_REGISTRY</text>
+  <text x="460" y="484" text-anchor="middle" font-size="11" font-weight="600" fill="#854d0e">.get(target)?</text>
+
+  <!-- NO branch (no calculator) -->
+  <line x1="350" y1="473" x2="180" y2="473" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="268" y="465" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="600">NOT FOUND</text>
+  <rect x="85" y="453" width="95" height="40" rx="7" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="133" y="469" text-anchor="middle" font-size="10.5" fill="#475569">return</text>
+  <text x="133" y="483" text-anchor="middle" font-size="10.5" fill="#475569">base_metrics</text>
+
+  <!-- YES arrow down -->
+  <line x1="460" y1="498" x2="460" y2="520" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="472" y="513" font-size="11" fill="#16a34a" font-weight="600">FOUND</text>
+
+  <!-- C: calculator call -->
+  <rect x="310" y="520" width="300" height="38" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="460" y="535" text-anchor="middle" font-size="11.5" font-weight="700" fill="#14532d">calculator(df, base_metrics)</text>
+  <text x="460" y="550" text-anchor="middle" font-size="10.5" fill="#166534">appends category-specific KPIs → return</text>
+
+  <!-- ═══════════════════════════════════════════════
+       KPI REGISTRY  —  4 module cards
+  ════════════════════════════════════════════════ -->
+  <text x="460" y="600" text-anchor="middle" font-size="13" font-weight="700" fill="#374151">KPI_REGISTRY  —  @register_target decorator</text>
+
+  <!-- connector line from calculator down to registry label -->
+  <line x1="460" y1="558" x2="460" y2="590" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- 4 module cards -->
+  <!-- Acquisition -->
+  <rect x="62" y="615" width="175" height="120" rx="10" fill="#fff" stroke="#6366f1" stroke-width="2"/>
+  <rect x="62" y="615" width="175" height="30" rx="10" fill="#6366f1"/>
+  <rect x="62" y="630" width="175" height="15" rx="0" fill="#6366f1"/>
+  <text x="149" y="634" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Customer Acquisition</text>
+  <text x="149" y="648" text-anchor="middle" font-size="10" fill="#fff">acquisition.py</text>
+  <line x1="72" y1="655" x2="227" y2="655" stroke="#e0e7ff" stroke-width="1"/>
+  <text x="149" y="669" text-anchor="middle" font-size="10" fill="#3730a3">+ CTR</text>
+  <text x="149" y="683" text-anchor="middle" font-size="10" fill="#3730a3">+ Conversion Rate</text>
+  <text x="149" y="697" text-anchor="middle" font-size="9.5" fill="#6b7280">(from Impressions,</text>
+  <text x="149" y="710" text-anchor="middle" font-size="9.5" fill="#6b7280">Clicks, Conversions)</text>
+  <text x="149" y="727" text-anchor="middle" font-size="9" fill="#9ca3af">key inputs ↑</text>
+
+  <!-- Satisfaction -->
+  <rect x="257" y="615" width="175" height="120" rx="10" fill="#fff" stroke="#0ea5e9" stroke-width="2"/>
+  <rect x="257" y="615" width="175" height="30" rx="10" fill="#0ea5e9"/>
+  <rect x="257" y="630" width="175" height="15" rx="0" fill="#0ea5e9"/>
+  <text x="344" y="634" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Customer Satisfaction</text>
+  <text x="344" y="648" text-anchor="middle" font-size="10" fill="#fff">satisfaction.py</text>
+  <line x1="267" y1="655" x2="422" y2="655" stroke="#e0f2fe" stroke-width="1"/>
+  <text x="344" y="669" text-anchor="middle" font-size="10" fill="#0369a1">+ Engagement Rate</text>
+  <text x="344" y="683" text-anchor="middle" font-size="10" fill="#0369a1">+ Avg Bounce Rate</text>
+  <text x="344" y="697" text-anchor="middle" font-size="10" fill="#0369a1">+ Avg Frequency</text>
+  <text x="344" y="711" text-anchor="middle" font-size="9.5" fill="#6b7280">(reach, likes, comments,</text>
+  <text x="344" y="724" text-anchor="middle" font-size="9.5" fill="#6b7280">shares, bounce_rate)</text>
+
+  <!-- Revenue -->
+  <rect x="452" y="615" width="175" height="120" rx="10" fill="#fff" stroke="#16a34a" stroke-width="2"/>
+  <rect x="452" y="615" width="175" height="30" rx="10" fill="#16a34a"/>
+  <rect x="452" y="630" width="175" height="15" rx="0" fill="#16a34a"/>
+  <text x="539" y="634" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Revenue Growth</text>
+  <text x="539" y="648" text-anchor="middle" font-size="10" fill="#fff">revenue.py</text>
+  <line x1="462" y1="655" x2="617" y2="655" stroke="#dcfce7" stroke-width="1"/>
+  <text x="539" y="669" text-anchor="middle" font-size="10" fill="#14532d">+ AOV</text>
+  <text x="539" y="683" text-anchor="middle" font-size="10" fill="#14532d">+ Annual Customer Value</text>
+  <text x="539" y="697" text-anchor="middle" font-size="10" fill="#14532d">+ Marketing ROI</text>
+  <text x="539" y="711" text-anchor="middle" font-size="10" fill="#14532d">+ Revenue Per Click</text>
+  <text x="539" y="725" text-anchor="middle" font-size="10" fill="#14532d">+ LTV:CAC Ratio</text>
+
+  <!-- Retention -->
+  <rect x="647" y="615" width="175" height="120" rx="10" fill="#fff" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="647" y="615" width="175" height="30" rx="10" fill="#f59e0b"/>
+  <rect x="647" y="630" width="175" height="15" rx="0" fill="#f59e0b"/>
+  <text x="734" y="634" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Customer Retention</text>
+  <text x="734" y="648" text-anchor="middle" font-size="10" fill="#fff">retention.py</text>
+  <line x1="657" y1="655" x2="812" y2="655" stroke="#fef3c7" stroke-width="1"/>
+  <text x="734" y="669" text-anchor="middle" font-size="10" fill="#78350f">+ Retained Customers</text>
+  <text x="734" y="683" text-anchor="middle" font-size="10" fill="#78350f">+ Churn Rate</text>
+  <text x="734" y="697" text-anchor="middle" font-size="10" fill="#78350f">+ Retention Rate</text>
+  <text x="734" y="711" text-anchor="middle" font-size="9.5" fill="#6b7280">(retained_customers,</text>
+  <text x="734" y="724" text-anchor="middle" font-size="9.5" fill="#6b7280">churn_rate cols)</text>
+
+  <!-- connector: calculator box → registry cards (fan out) -->
+  <!-- vertical drop from calculate_metrics box to fan -->
+  <line x1="460" y1="590" x2="460" y2="610" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="149" y1="610" x2="734" y2="610" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="149" y1="610" x2="149" y2="615" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="344" y1="610" x2="344" y2="615" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="539" y1="610" x2="539" y2="615" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="734" y1="610" x2="734" y2="615" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════
+       STEP 2 — PER-CHANNEL LOOP
+  ════════════════════════════════════════════════ -->
+  <!-- overall result feeds down -->
+  <line x1="460" y1="286" x2="460" y2="756" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <!-- from base of registry cards down -->
+  <line x1="460" y1="735" x2="460" y2="756" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="215" y="756" width="490" height="46" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="460" y="776" text-anchor="middle" font-size="12" font-weight="700" fill="#14532d">STEP 2 — Per-Channel Loop</text>
+  <text x="460" y="793" text-anchor="middle" font-size="11" fill="#166534">for channel, channel_df in df.groupby("channel")</text>
+
+  <!-- arrow down -->
+  <line x1="460" y1="802" x2="460" y2="828" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- guard: "channel" col exists? -->
+  <polygon points="460,828 580,858 460,888 340,858" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <text x="460" y="853" text-anchor="middle" font-size="11" font-weight="600" fill="#854d0e">"channel" col</text>
+  <text x="460" y="869" text-anchor="middle" font-size="11" font-weight="600" fill="#854d0e">exists in df?</text>
+
+  <!-- NO →  skip per-channel -->
+  <line x1="340" y1="858" x2="200" y2="858" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="272" y="850" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="600">NO</text>
+  <rect x="80" y="838" width="120" height="40" rx="7" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="140" y="855" text-anchor="middle" font-size="10.5" fill="#b91c1c">per_channel = {}</text>
+  <text x="140" y="870" text-anchor="middle" font-size="10.5" fill="#b91c1c">skip loop</text>
+
+  <!-- YES → down -->
+  <line x1="460" y1="888" x2="460" y2="912" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="472" y="905" font-size="11" fill="#16a34a" font-weight="600">YES</text>
+
+  <!-- loop box -->
+  <rect x="215" y="912" width="490" height="52" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <text x="460" y="932" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0c4a6e">For each unique channel value:</text>
+  <text x="460" y="950" text-anchor="middle" font-size="11" fill="#075985">per_channel[channel] = calculate_metrics(channel_df, target)</text>
+  <!-- loop back arrow (right side) -->
+  <path d="M705,938 Q770,938 770,970 Q770,1002 705,1002 L705,964" fill="none" stroke="#0284c7" stroke-width="1.5" marker-end="url(#arr2)"/>
+  <text x="795" y="975" text-anchor="middle" font-size="10" fill="#0284c7" font-weight="600">next</text>
+  <text x="795" y="988" text-anchor="middle" font-size="10" fill="#0284c7" font-weight="600">channel</text>
+
+  <!-- arrow down -->
+  <line x1="460" y1="964" x2="460" y2="994" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════
+       OUTPUT
+  ════════════════════════════════════════════════ -->
+  <rect x="215" y="994" width="490" height="90" rx="10" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+  <text x="460" y="1016" text-anchor="middle" font-size="13" font-weight="700" fill="#581c87">Return Value</text>
+  <line x1="225" y1="1024" x2="695" y2="1024" stroke="#d8b4fe" stroke-width="1"/>
+  <text x="460" y="1040" text-anchor="middle" font-size="11" fill="#6b21a8">  {</text>
+  <text x="460" y="1056" text-anchor="middle" font-size="11" fill="#6b21a8">    "overall":     { base KPIs + category-specific KPIs },</text>
+  <text x="460" y="1072" text-anchor="middle" font-size="11" fill="#6b21a8">    "per_channel": { "Instagram": {...}, "Google Ads": {...}, ... }</text>
+  <text x="460" y="1082" text-anchor="middle" font-size="11" fill="#6b21a8">  }</text>
+
+  <!-- ═══════════════════════════════════════════════
+       LEGEND
+  ════════════════════════════════════════════════ -->
+  <rect x="62" y="1110" width="796" height="200" rx="10" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="460" y="1132" text-anchor="middle" font-size="13" font-weight="700" fill="#374151">Legend — Base KPIs (always computed) vs Category KPIs</text>
+  <line x1="72" y1="1140" x2="848" y2="1140" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- base metrics -->
+  <rect x="80" y="1150" width="360" height="145" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="260" y="1168" text-anchor="middle" font-size="11" font-weight="700" fill="#1e3a8a">Base Metrics — always added (base_metrics.py)</text>
+  <text x="260" y="1185" text-anchor="middle" font-size="10.5" fill="#1d4ed8">Campaign Name · Total Spend · Total Revenue</text>
+  <text x="260" y="1200" text-anchor="middle" font-size="10.5" fill="#1d4ed8">Total Impressions · Total Clicks · Total Conversions</text>
+  <text x="260" y="1215" text-anchor="middle" font-size="10.5" fill="#1d4ed8">Total New Customers · CTR · Conversion Rate</text>
+  <text x="260" y="1230" text-anchor="middle" font-size="10.5" fill="#1d4ed8">CPA (Cost per Acquisition) · ROAS</text>
+  <text x="260" y="1250" text-anchor="middle" font-size="9.5" fill="#64748b">computed on full df  (or channel slice in per-channel mode)</text>
+  <text x="260" y="1265" text-anchor="middle" font-size="9.5" fill="#64748b">runs regardless of selected category</text>
+  <text x="260" y="1282" text-anchor="middle" font-size="9.5" fill="#64748b">result passed as input to category calculator</text>
+
+  <!-- category KPIs summary -->
+  <rect x="460" y="1150" width="380" height="145" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="650" y="1168" text-anchor="middle" font-size="11" font-weight="700" fill="#14532d">Category-Specific KPIs — added on top</text>
+  <text x="650" y="1187" text-anchor="middle" font-size="10.5" fill="#166534">Acquisition:   CTR · Conversion Rate</text>
+  <text x="650" y="1203" text-anchor="middle" font-size="10.5" fill="#166534">Satisfaction:  Engagement Rate · Bounce Rate · Avg Frequency</text>
+  <text x="650" y="1219" text-anchor="middle" font-size="10.5" fill="#166534">Revenue:      AOV · Annual Customer Value ·</text>
+  <text x="650" y="1235" text-anchor="middle" font-size="10.5" fill="#166534">              Marketing ROI · Revenue/Click · LTV:CAC</text>
+  <text x="650" y="1251" text-anchor="middle" font-size="10.5" fill="#166534">Retention:    Retained Customers · Churn Rate ·</text>
+  <text x="650" y="1267" text-anchor="middle" font-size="10.5" fill="#166534">              Retention Rate</text>
+
+  <!-- ═══════════════════════════════════════════════
+       ARROW MARKERS
+  ════════════════════════════════════════════════ -->
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#64748b"/>
+    </marker>
+    <marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+</svg>
