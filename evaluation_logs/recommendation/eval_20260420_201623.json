@@ -1,0 +1,166 @@
+{
+    "category": "Customer Acquisition",
+    "final_score": 0.724,
+    "business": {
+        "score": 0.96,
+        "overall": {
+            "scores": {
+                "insight_quality": 1.0,
+                "actionability": 0.9,
+                "data_grounding": 1.0,
+                "kpi_alignment": 1.0,
+                "priority_accuracy": 1.0,
+                "decision_quality": 1.0,
+                "feasibility": 0.8,
+                "readability": 0.9
+            },
+            "explanations": {
+                "insight_quality": "",
+                "actionability": "Most recommendations are clear and specific, but some could benefit from more detailed steps.",
+                "data_grounding": "",
+                "kpi_alignment": "",
+                "priority_accuracy": "",
+                "decision_quality": "",
+                "feasibility": "While most recommendations are feasible, some may require significant resources or time.",
+                "readability": "Overall, the recommendations are clear, but some marketing jargon may be challenging for non-marketers."
+            }
+        },
+        "per_recommendation": [
+            {
+                "id": "REC-01",
+                "scores": {
+                    "insight_quality": 1.0,
+                    "actionability": 0.9,
+                    "data_grounding": 1.0,
+                    "kpi_alignment": 1.0,
+                    "decision_quality": 1.0,
+                    "feasibility": 0.8
+                },
+                "issues": []
+            },
+            {
+                "id": "REC-02",
+                "scores": {
+                    "insight_quality": 1.0,
+                    "actionability": 0.9,
+                    "data_grounding": 1.0,
+                    "kpi_alignment": 1.0,
+                    "decision_quality": 1.0,
+                    "feasibility": 0.8
+                },
+                "issues": []
+            },
+            {
+                "id": "REC-03",
+                "scores": {
+                    "insight_quality": 1.0,
+                    "actionability": 0.8,
+                    "data_grounding": 1.0,
+                    "kpi_alignment": 1.0,
+                    "decision_quality": 1.0,
+                    "feasibility": 0.7
+                },
+                "issues": [
+                    "Requires significant design and development resources."
+                ]
+            },
+            {
+                "id": "REC-04",
+                "scores": {
+                    "insight_quality": 1.0,
+                    "actionability": 0.8,
+                    "data_grounding": 1.0,
+                    "kpi_alignment": 1.0,
+                    "decision_quality": 1.0,
+                    "feasibility": 0.7
+                },
+                "issues": [
+                    "Balancing incentives with profit margins may be challenging."
+                ]
+            },
+            {
+                "id": "REC-05",
+                "scores": {
+                    "insight_quality": 1.0,
+                    "actionability": 0.8,
+                    "data_grounding": 1.0,
+                    "kpi_alignment": 1.0,
+                    "decision_quality": 1.0,
+                    "feasibility": 0.7
+                },
+                "issues": [
+                    "Requires ongoing analysis and adjustment, which may be resource-intensive."
+                ]
+            },
+            {
+                "id": "REC-06",
+                "scores": {
+                    "insight_quality": 1.0,
+                    "actionability": 0.8,
+                    "data_grounding": 1.0,
+                    "kpi_alignment": 1.0,
+                    "decision_quality": 1.0,
+                    "feasibility": 0.7
+                },
+                "issues": [
+                    "Requires creative resources and planning for content development."
+                ]
+            }
+        ],
+        "flags": [],
+        "weak_recommendations": []
+    },
+    "compliance": {
+        "score": 0.6,
+        "dimensions": {
+            "count_valid": 1.0,
+            "required_fields": 1.0,
+            "priority_order": 1.0,
+            "no_hallucination": 0,
+            "clarity": 0
+        },
+        "flags": []
+    },
+    "ground_truth": {
+        "score": 0.641,
+        "avg_similarity": 0.64,
+        "coverage": 0.767,
+        "llm_calls": 3,
+        "matches": [
+            {
+                "rec_id": "REC-01",
+                "matched_gt_id": "GT-CA-03",
+                "similarity": 0.825
+            },
+            {
+                "rec_id": "REC-02",
+                "matched_gt_id": "GT-CA-01",
+                "similarity": 0.83
+            },
+            {
+                "rec_id": "REC-03",
+                "matched_gt_id": "GT-CA-02",
+                "similarity": 0.766
+            },
+            {
+                "rec_id": "REC-04",
+                "matched_gt_id": "GT-CA-02",
+                "similarity": 0.596
+            },
+            {
+                "rec_id": "REC-05",
+                "matched_gt_id": "GT-CA-01",
+                "similarity": 0.691
+            },
+            {
+                "rec_id": "REC-06",
+                "matched_gt_id": "GT-CA-04",
+                "similarity": 0.647
+            }
+        ],
+        "missed_ground_truth": [],
+        "flags": [],
+        "total_recommendations": 6,
+        "total_ground_truth": 4
+    }
+}

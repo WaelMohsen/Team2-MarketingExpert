@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 from dotenv import load_dotenv
 
@@ -38,10 +39,12 @@ def get_client():
 def chat_completion(client, system_text, user_text, response_format):
     """Wrapper around the OpenAI structured-outputs beta endpoint.
 
-    `response_format` should be a **Pydantic model class** (e.g. AnalysisOutput).
-    The SDK automatically generates the JSON schema with additionalProperties: false,
-    sends it with strict: true, and parses the response into a Pydantic instance
-    accessible via `response.choices[0].message.parsed`.
+    `response_format` should be a **Pydantic model class**
+    (e.g. AnalysisOutput).
+    The SDK generates the JSON schema with
+    additionalProperties: false, sends it with strict: true,
+    and parses the response into a Pydantic instance available at
+    `response.choices[0].message.parsed`.
     """
 
     return client.beta.chat.completions.parse(
@@ -69,7 +72,7 @@ def llm_callable(prompt: str) -> str:
     return response.choices[0].message.content
 
 
-def embedding_callable(text: str) -> list[float]:
+def embedding_callable(text: str) -> List[float]:
     client = get_client()
     response = client.embeddings.create(model="text-embedding-3-small", input=text)
     return response.data[0].embedding

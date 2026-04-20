@@ -1,0 +1,24 @@
+{
+    "category": "Customer Acquisition",
+    "score": 0.692,
+    "dimensions": {
+        "clarity": 0.8,
+        "data_grounding": 0.7,
+        "logic_coherence": 0.6,
+        "business_focus": 0.8,
+        "confidence_calibration": 0.9,
+        "no_recommendation": 0.4
+    },
+    "explanations": {
+        "clarity": "The analysis uses mostly plain language but includes some technical terms like 'customer acquisition cost' without sufficient explanation, which could confuse some readers.",
+        "data_grounding": "The analysis references specific data points such as conversion rates and costs, but it could benefit from more detailed context regarding industry benchmarks and comparisons.",
+        "logic_coherence": "The analysis logically concludes that the campaign is performing well, but it lacks a deeper exploration of potential underlying factors that could impact performance.",
+        "business_focus": "The analysis effectively discusses financial metrics like conversion rates and costs, highlighting their implications for campaign efficiency and customer acquisition.",
+        "confidence_calibration": "The confidence score of 95% is well-calibrated given the strong performance metrics presented, indicating a solid basis for the conclusions drawn.",
+        "no_recommendation": "The analysis implies a positive assessment of the campaign's performance, which could be interpreted as a recommendation for continued investment, thus not fully adhering to the diagnostic-only requirement."
+    },
+    "flags": [
+        "low_no_recommendation",
+        "analysis_contains_recommendations"
+    ]
+}
