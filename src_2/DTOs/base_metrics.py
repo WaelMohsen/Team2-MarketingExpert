@@ -6,7 +6,7 @@ class Base_Metrics:
         total_impressions: int,
         total_clicks: int,
         total_conversions: int,
-        total_new_customers: int
+        total_new_customers: int,
     ):
         self.total_spend = total_spend
         self.total_revenue = total_revenue

@@ -11,5 +11,7 @@ class BaseLLMService(ABC):
         pass
 
     @abstractmethod
-    def build_user_prompt(self, target, base_context, selected_metrics,analysis_json=None):
+    def build_user_prompt(
+        self, target, base_context, selected_metrics, analysis_json=None
+    ):
         pass

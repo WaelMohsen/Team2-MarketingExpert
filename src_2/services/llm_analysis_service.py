@@ -1,10 +1,10 @@
 # services/llm_analysis_service.py
 import json
 
+from schemas.analysis_output_schema import AnalysisOutput, validate_analysis_output
+from services.base_llm_service import BaseLLMService
 from services.llm_client import LLMClient
 from services.prompt_builder import PromptBuilder
-from services.base_llm_service import BaseLLMService
-from schemas.analysis_output_schema import AnalysisOutput, validate_analysis_output
 
 
 class LLMAnalysisService(BaseLLMService):
@@ -40,7 +40,7 @@ class LLMAnalysisService(BaseLLMService):
         Return analysis JSON only.
         """
 
-    def run(self, target, base_context, selected_metrics,analysis_json=None):
+    def run(self, target, base_context, selected_metrics, analysis_json=None):
 
         response = self.client.chat_completion(
             self.build_system_prompt(target),

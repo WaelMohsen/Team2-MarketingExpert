@@ -42,19 +42,19 @@ This project is an AI-powered marketing campaign analysis engine. It reads raw c
 │   └── revenue_growth.md            # Target-specific rules: revenue
 ├── output_log/                      # Auto-saved JSON outputs from each run
 ├── src_2/
-│   ├── models/
-│   │   ├── campaign.py              # Campaign data class (raw row from CSV)
-│   │   └── metrics.py               # Metrics data class (calculated KPIs)
+│   ├── DTOs/
+│   │   ├── campaign.py              # Campaign DTO (raw row from CSV)
+│   │   └── metrics.py               # Metrics DTO (calculated KPIs)
 │   ├── readers/
-│   │   └── campaign_reader.py       # Reads CSV and returns list of Campaign objects
+│   │   └── campaign_reader.py       # Reads CSV and returns list of Campaign DTOs
 │   ├── calculators/
-│   │   └── metrics_calculator.py    # Calculates all KPIs from list of Campaigns
+│   │   └── metrics_calculator.py    # Calculates KPIs and returns base + target metric DTOs
 │   ├── targets/
 │   │   ├── base_target.py           # Abstract base class for targets
-│   │   ├── acquisition_target.py    # Selects acquisition KPIs from Metrics
-│   │   ├── revenue_target.py        # Selects revenue KPIs from Metrics
-│   │   ├── retention_target.py      # Selects retention KPIs from Metrics
-│   │   └── satisfaction_target.py   # Selects satisfaction KPIs from Metrics
+│   │   ├── acquisition_target.py    # Selects acquisition KPIs from metric DTOs
+│   │   ├── revenue_target.py        # Selects revenue KPIs from metric DTOs
+│   │   ├── retention_target.py      # Selects retention KPIs from metric DTOs
+│   │   └── satisfaction_target.py   # Selects satisfaction KPIs from metric DTOs
 │   ├── schemas/
 │   │   ├── analysis_output_schema.py       # Pydantic model + validator for analysis output
 │   │   └── recommendation_output_schema.py # Pydantic model + validator for recommendations
@@ -65,8 +65,11 @@ This project is an AI-powered marketing campaign analysis engine. It reads raw c
 │       ├── llm_analysis_service.py  # Step 1: sends data to LLM for analysis
 │       ├── llm_recommendation_service.py  # Step 2: sends analysis to LLM for recommendations
 │       └── llm_orchestrator.py      # Runs Step 1 → Step 2, saves output
-└── tests/
-    └── test_schema_validation.py    # Unit tests for schema validators
+└── tests_2/
+    ├── test_metrics_calculator.py   # Unit tests for KPI calculations
+    ├── test_targets.py              # Unit tests for target selectors
+    ├── test_services.py             # Unit tests for LLM and prompt services
+    └── test_campaign_reader.py      # Unit tests for CSV reader
 ```
 
 ---
@@ -77,13 +80,13 @@ This project is an AI-powered marketing campaign analysis engine. It reads raw c
 CSV file
    │
    ▼
-Campaign_Reader          → list of Campaign objects (one per CSV row)
+Campaign_Reader                           → list of Campaign objects (one per CSV row)
    │
    ▼
-MetricsCalculator        → single Metrics object (aggregated KPIs)
+MetricsCalculator.run(campaigns, target)  → (Base_Metrics, <Target>_Metrics)
    │
    ▼
-Target.select(metrics)   → dict of KPIs relevant to the chosen target
+target.select_target()                    → dict of KPIs relevant to the chosen target
    │
    ▼
 LLMOrchestrator
@@ -155,7 +158,7 @@ Aggregates all campaigns and computes every KPI.
 
 ```python
 calculator = MetricsCalculator()
-metrics = calculator.calculate(campaigns)  # → Metrics
+metrics = calculator.run(campaigns)  # → Metrics
 ```
 
 Key formulas:

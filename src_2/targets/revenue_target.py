@@ -1,5 +1,6 @@
 from targets.base_target import BaseTarget
 
+
 class RevenueTarget(BaseTarget):
     def select_target(self, metrics):
         return {

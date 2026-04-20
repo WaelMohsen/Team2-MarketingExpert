@@ -1,5 +1,5 @@
-from readers.campaign_reader import Campaign_Reader
 from calculators.metrics_calculator import MetricsCalculator
+from readers.campaign_reader import Campaign_Reader
 from services.llm_orchestrator import LLMOrchestrator
 
 # read
@@ -9,7 +9,7 @@ campaigns = reader.read_campaign()
 calculator = MetricsCalculator()
 metrics, selected_metrics = calculator.run(campaigns, "revenue")
 # run
-orchestrator = LLMOrchestrator("../prompts/","../output_log")
+orchestrator = LLMOrchestrator("../prompts/", "../output_log")
 result = orchestrator.run("revenue", metrics, selected_metrics)
 
 print(result)
