@@ -34,5 +34,5 @@ OUTPUT RULES:
         "detected_issues": ["Issue 1", "Issue 2"],
         "root_cause_hypothesis": "Most likely root cause",
         "business_risks": ["Risk 1", "Risk 2"],
-        "confidence_score": 0
+        "confidence_score": 75
     }}
