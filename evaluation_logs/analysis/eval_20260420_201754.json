@@ -1,0 +1,29 @@
+{
+    "category": "Customer Satisfaction",
+    "score": 0.425,
+    "dimensions": {
+        "clarity": 0.5,
+        "data_grounding": 0.5,
+        "logic_coherence": 0.5,
+        "business_focus": 0.5,
+        "confidence_calibration": 0.5,
+        "no_recommendation": 0.0
+    },
+    "explanations": {
+        "clarity": "The analysis uses some business language but includes jargon like 'click-through rate' and 'return on advertising spend' without clear definitions, which may confuse some readers.",
+        "data_grounding": "While the analysis references some key metrics, it lacks specific data points from the campaign context to support its claims, making it less concrete.",
+        "logic_coherence": "The analysis identifies issues and root causes but does not clearly connect the data points to the conclusions drawn, leading to a lack of strong logical flow.",
+        "business_focus": "The analysis mentions customer acquisition costs and potential risks, but it does not sufficiently quantify the financial impact or growth implications of the identified issues.",
+        "confidence_calibration": "The confidence score of 85.0 seems high given the lack of strong evidence and clarity in the analysis, suggesting a mismatch between confidence and the strength of the evidence presented.",
+        "no_recommendation": "The analysis includes recommendation language, such as 'indicates potential issues,' which suggests a prescriptive approach rather than purely diagnostic."
+    },
+    "flags": [
+        "low_clarity",
+        "low_data_grounding",
+        "low_logic_coherence",
+        "low_business_focus",
+        "low_confidence_calibration",
+        "low_no_recommendation",
+        "analysis_contains_recommendations"
+    ]
+}

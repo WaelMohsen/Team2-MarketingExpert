@@ -1,0 +1,183 @@
+{
+    "category": "Customer Satisfaction",
+    "final_score": 0.67,
+    "business": {
+        "score": 0.825,
+        "overall": {
+            "scores": {
+                "insight_quality": 0.8,
+                "actionability": 0.8,
+                "data_grounding": 0.9,
+                "kpi_alignment": 0.9,
+                "priority_accuracy": 0.8,
+                "decision_quality": 0.8,
+                "feasibility": 0.8,
+                "readability": 0.8
+            },
+            "explanations": {
+                "insight_quality": "The recommendations provide clear insights into the issues identified, but some could benefit from deeper analysis.",
+                "actionability": "Most recommendations are actionable with clear steps, but a few could be more specific.",
+                "data_grounding": "Recommendations are well-supported by data, with metrics clearly referenced.",
+                "kpi_alignment": "Each recommendation aligns well with relevant KPIs, ensuring focus on measurable outcomes.",
+                "priority_accuracy": "High-impact recommendations are prioritized appropriately, though some lower priority items could be reconsidered.",
+                "decision_quality": "The recommendations reflect sound business decisions based on the analysis provided.",
+                "feasibility": "All recommendations appear feasible within the given timeframes and resources.",
+                "readability": "The recommendations are generally clear and understandable for non-marketers."
+            }
+        },
+        "per_recommendation": [
+            {
+                "id": "REC-01",
+                "scores": {
+                    "insight_quality": 0.9,
+                    "actionability": 0.8,
+                    "data_grounding": 0.9,
+                    "kpi_alignment": 1.0,
+                    "decision_quality": 0.9,
+                    "feasibility": 0.8
+                },
+                "issues": []
+            },
+            {
+                "id": "REC-02",
+                "scores": {
+                    "insight_quality": 0.9,
+                    "actionability": 0.8,
+                    "data_grounding": 0.9,
+                    "kpi_alignment": 1.0,
+                    "decision_quality": 0.9,
+                    "feasibility": 0.8
+                },
+                "issues": []
+            },
+            {
+                "id": "REC-03",
+                "scores": {
+                    "insight_quality": 0.8,
+                    "actionability": 0.8,
+                    "data_grounding": 0.8,
+                    "kpi_alignment": 0.9,
+                    "decision_quality": 0.8,
+                    "feasibility": 0.8
+                },
+                "issues": []
+            },
+            {
+                "id": "REC-04",
+                "scores": {
+                    "insight_quality": 0.7,
+                    "actionability": 0.7,
+                    "data_grounding": 0.7,
+                    "kpi_alignment": 0.7,
+                    "decision_quality": 0.7,
+                    "feasibility": 0.7
+                },
+                "issues": [
+                    "Lacks specific steps for implementation and clear metrics for success."
+                ]
+            },
+            {
+                "id": "REC-05",
+                "scores": {
+                    "insight_quality": 0.8,
+                    "actionability": 0.8,
+                    "data_grounding": 0.8,
+                    "kpi_alignment": 0.8,
+                    "decision_quality": 0.8,
+                    "feasibility": 0.8
+                },
+                "issues": []
+            },
+            {
+                "id": "REC-06",
+                "scores": {
+                    "insight_quality": 0.7,
+                    "actionability": 0.7,
+                    "data_grounding": 0.7,
+                    "kpi_alignment": 0.7,
+                    "decision_quality": 0.7,
+                    "feasibility": 0.7
+                },
+                "issues": [
+                    "Could provide more specific actions and clearer metrics for measuring success."
+                ]
+            },
+            {
+                "id": "REC-07",
+                "scores": {
+                    "insight_quality": 0.7,
+                    "actionability": 0.7,
+                    "data_grounding": 0.7,
+                    "kpi_alignment": 0.7,
+                    "decision_quality": 0.7,
+                    "feasibility": 0.7
+                },
+                "issues": [
+                    "Needs clearer steps for budget analysis and reallocation process."
+                ]
+            }
+        ],
+        "flags": [],
+        "weak_recommendations": []
+    },
+    "compliance": {
+        "score": 0.6,
+        "dimensions": {
+            "count_valid": 1.0,
+            "required_fields": 1.0,
+            "priority_order": 1.0,
+            "no_hallucination": 0,
+            "clarity": 0
+        },
+        "flags": []
+    },
+    "ground_truth": {
+        "score": 0.606,
+        "avg_similarity": 0.562,
+        "coverage": 0.797,
+        "llm_calls": 5,
+        "matches": [
+            {
+                "rec_id": "REC-01",
+                "matched_gt_id": "GT-CS-02",
+                "similarity": 0.718
+            },
+            {
+                "rec_id": "REC-02",
+                "matched_gt_id": "GT-CS-01",
+                "similarity": 0.828
+            },
+            {
+                "rec_id": "REC-03",
+                "matched_gt_id": "GT-CS-02",
+                "similarity": 0.591
+            },
+            {
+                "rec_id": "REC-04",
+                "matched_gt_id": "GT-CS-03",
+                "similarity": 0.847
+            },
+            {
+                "rec_id": "REC-05",
+                "matched_gt_id": "GT-CS-02",
+                "similarity": 0.601
+            },
+            {
+                "rec_id": "REC-06",
+                "matched_gt_id": "GT-CS-02",
+                "similarity": 0.557
+            },
+            {
+                "rec_id": "REC-07",
+                "matched_gt_id": "GT-CS-02",
+                "similarity": 0.505
+            }
+        ],
+        "missed_ground_truth": [],
+        "flags": [
+            "low_similarity_to_expert"
+        ],
+        "total_recommendations": 7,
+        "total_ground_truth": 3
+    }
+}

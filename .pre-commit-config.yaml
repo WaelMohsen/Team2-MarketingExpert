@@ -17,12 +17,14 @@ repos:
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace
+        exclude: ^(output_log/|evaluation_logs/)
       - id: end-of-file-fixer
+        exclude: ^(output_log/|evaluation_logs/)
       - id: check-yaml
       - id: check-added-large-files
         args: ["--maxkb=1000"]
       - id: check-json
-        exclude: ^output_log/
+        exclude: ^(output_log/|evaluation_logs/)
       - id: check-merge-conflict
       - id: check-ast
 

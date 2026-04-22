@@ -28,14 +28,12 @@ class RecommendationEvaluator(BaseEvaluator):
         )
 
     def evaluate(self, data):
-
-        # output = data["output"]
-        # recs = output["recommendations"]
         recs = data["output"]
 
         analysis = data["analysis"]
         kpis = data["kpis"]
         gt_data = data.get("ground_truth")
+        category = data.get("category")
         # 1. Business relevance
         business = self.business.evaluate(recs, analysis, kpis)
         # 2. Rules check
@@ -48,6 +46,7 @@ class RecommendationEvaluator(BaseEvaluator):
         )
 
         result = {
+            "category": category,
             "final_score": final_score,
             "business": business,
             "compliance": compliance,

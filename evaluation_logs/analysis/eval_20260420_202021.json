@@ -1,0 +1,29 @@
+{
+    "category": "Customer Retention",
+    "score": 0.44,
+    "dimensions": {
+        "clarity": 0.5,
+        "data_grounding": 0.5,
+        "logic_coherence": 0.5,
+        "business_focus": 0.5,
+        "confidence_calibration": 0.0,
+        "no_recommendation": 0.5
+    },
+    "explanations": {
+        "clarity": "The analysis uses some business language but includes terms like 'churn rate' and 'retention rate' that may not be clear to all audiences, which detracts from overall clarity.",
+        "data_grounding": "The analysis references some concrete data points, such as churn rates and retained customers, but lacks specific numerical details for all channels, which would strengthen the grounding.",
+        "logic_coherence": "The analysis identifies issues and suggests a root cause, but the connection between the data and the conclusions drawn is not fully developed, leading to a lack of depth in the reasoning.",
+        "business_focus": "While the analysis touches on financial implications, such as revenue loss and customer retention, it does not fully explore the broader impact on growth and profitability, which is necessary for a comprehensive business focus.",
+        "confidence_calibration": "The confidence score is stated as 0.0, which does not align with the analysis provided. The analysis presents some valid observations, so the confidence should reflect that strength.",
+        "no_recommendation": "The analysis is primarily diagnostic, but it hints at potential actions by discussing issues without explicitly recommending changes, which slightly undermines the no recommendation aspect."
+    },
+    "flags": [
+        "low_clarity",
+        "low_data_grounding",
+        "low_logic_coherence",
+        "low_business_focus",
+        "low_confidence_calibration",
+        "low_no_recommendation",
+        "analysis_contains_recommendations"
+    ]
+}

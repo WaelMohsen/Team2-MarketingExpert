@@ -1,29 +1,10 @@
-import json
-import os
-
-from src.evaluation.recommendation.evaluator import RecommendationEvaluator
+from src.evaluation.evaluation_pipeline import EvaluationPipeline
 
 
 class RecommendationPipeline:
 
     def __init__(self, llm_callable, embedding_callable):
-
-        self.evaluator = RecommendationEvaluator(
-            llm=llm_callable, embed=embedding_callable
-        )
-
-        self.gt_path = os.path.join("data", "benchmark", "recommendation_GT.json")
-
-    def load_ground_truth(self, path, campaign_id, target):
-
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-        for campaign in data:
-            if campaign["campaign_id"] == campaign_id:
-                return campaign["ground_truth"].get(target, [])
-
-        return []
+        self._pipeline = EvaluationPipeline(llm_callable, embedding_callable)
 
     def run(
         self,
@@ -32,26 +13,14 @@ class RecommendationPipeline:
         analysis_output: dict,
         recommendation_output: list,
         kpis: list,
+        category: str = None,
     ):
 
-        # ---------------------------
-        # 🔹 Load Ground Truth
-        # ---------------------------
-        gt_data = self.load_ground_truth(self.gt_path, campaign_id, target)
-
-        # ---------------------------
-        # 🔹 Build Evaluation Input
-        # ---------------------------
-        eval_input = {
-            "output": recommendation_output,
-            "analysis": analysis_output,
-            "kpis": kpis,
-            "ground_truth": gt_data,
-        }
-
-        # ---------------------------
-        # 🔹 Run Evaluation
-        # ---------------------------
-        result = self.evaluator.evaluate(eval_input)
-
-        return result
+        return self._pipeline.run_recommendation(
+            campaign_id=campaign_id,
+            target=target,
+            analysis_output=analysis_output,
+            recommendation_output=recommendation_output,
+            kpis=kpis,
+            category=category or target,
+        )
