@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Marketing Desk</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#EFEBE2; color:#0E100C;
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size:14px; -webkit-font-smoothing:antialiased; text-rendering: optimizeLegibility;
+    font-feature-settings:'ss01','cv11';
+  }
+  button { font-family:inherit; }
+  details > summary { list-style: none; cursor:pointer; }
+  details > summary::-webkit-details-marker { display:none; }
+  .mono { font-family:'JetBrains Mono', ui-monospace, monospace; font-feature-settings:'zero'; }
+  ::selection { background:#183E2E; color:#F1EEE3; }
+  /* Refined scrollbar */
+  ::-webkit-scrollbar { width:10px; height:10px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:#DFDBCE; border-radius:99px; border:2px solid #EFEBE2; }
+  ::-webkit-scrollbar-thumb:hover { background:#BDB8A8; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="components/primitives.jsx"></script>
+<script type="text/babel" src="components/shell.jsx"></script>
+<script type="text/babel" src="components/analysis.jsx"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useMemo } = React;
+
+const CATEGORIES = [
+  { id:'Customer Acquisition', code:'CA-01', title:'Customer Acquisition', blurb:'Analyze acquisition sources, CAC efficiency, and channel yield.',
+    kpiCount:11, recCount:7, tint:'#E6EEE9', ink:'#1F4A37',
+    icon: <><path d="M10 3a3.5 3.5 0 110 7 3.5 3.5 0 010-7zM4 17c0-3 2.7-5 6-5s6 2 6 5" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round"/></> },
+  { id:'Customer Satisfaction', code:'CS-02', title:'Customer Satisfaction', blurb:'Monitor CSAT, engagement, and feedback signals across channels.',
+    kpiCount:9, recCount:5, tint:'#F4E8D8', ink:'#A1580C',
+    icon: <><circle cx="10" cy="10" r="6.5" stroke="currentColor" strokeWidth="1.6" fill="none"/><path d="M7 11.5c.8.9 1.9 1.4 3 1.4s2.2-.5 3-1.4M8 8h.01M12 8h.01" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></> },
+  { id:'Revenue Growth', code:'RG-03', title:'Revenue Growth', blurb:'Track revenue trends, LTV, and margin-quality performance.',
+    kpiCount:10, recCount:6, tint:'#DFECE2', ink:'#2E6B3F',
+    icon: <><path d="M3 14l4-4 3 3 7-7M13 6h4v4" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/></> },
+  { id:'Customer Retention', code:'CR-04', title:'Customer Retention', blurb:'Evaluate churn, cohort retention, and lifetime engagement.',
+    tint:'#F1DEDC', ink:'#8A2B24',
+    kpiCount:8, recCount:4,
+    icon: <><path d="M4 10a6 6 0 1110 4M4 10V6m0 4h4" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/></> }
+];
+
+const CAMPAIGNS = ['Summer Sale 2026','Winter Holiday Push','Back-to-School','Brand Awareness Q1'];
+
+function TopBar({ category, onRun, running }) {
+  return (
+    <div style={{
+      position:'sticky', top:0, zIndex:5, background:'rgba(239,235,226,0.82)',
+      backdropFilter:'blur(14px) saturate(1.4)', WebkitBackdropFilter:'blur(14px) saturate(1.4)',
+      borderBottom:`1px solid ${mkTokens.line}`,
+      padding:'14px 32px', display:'flex', alignItems:'center', gap:14
+    }}>
+      <div style={{ display:'flex', alignItems:'center', gap:8, fontSize:13, color:mkTokens.ink3 }}>
+        <span>Workspace</span>
+        <svg width="8" height="12" viewBox="0 0 8 12" style={{ opacity:0.5 }}><path d="M2 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round"/></svg>
+        <span style={{ color:mkTokens.ink, fontWeight:600 }}>Analyze</span>
+        {category && <><svg width="8" height="12" viewBox="0 0 8 12" style={{ opacity:0.5 }}><path d="M2 2l4 4-4 4" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round"/></svg><span>{category}</span></>}
+      </div>
+      <div style={{ flex:1 }}/>
+      <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+        <div style={{ fontSize:12, color:mkTokens.ink3, display:'flex', alignItems:'center', gap:6 }}>
+          <span style={{ width:6, height:6, borderRadius:99, background:'#2E6B3F' }}/>
+          Data synced 2m ago
+        </div>
+        <MkIconBtn title="Search"><svg width="14" height="14" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.5" fill="none"/><path d="M11 11l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg></MkIconBtn>
+        <MkIconBtn title="Export"><svg width="14" height="14" viewBox="0 0 16 16"><path d="M8 2v8m0 0l-3-3m3 3l3-3M3 13h10" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg></MkIconBtn>
+        <button onClick={onRun} disabled={running || !category} style={{
+          display:'inline-flex', alignItems:'center', gap:8, padding:'9px 16px',
+          background: running || !category ? '#2A2D26' : `linear-gradient(180deg, #1A1D16 0%, ${mkTokens.ink} 100%)`,
+          color:mkTokens.inkInv, border:'none', borderRadius:9, fontSize:13, fontWeight:600,
+          cursor: running || !category ? 'not-allowed' : 'pointer',
+          opacity: !category ? 0.55 : 1, letterSpacing:'-0.005em',
+          boxShadow: !category ? 'none' : '0 1px 0 rgba(255,255,255,0.08) inset, 0 1px 2px rgba(0,0,0,0.1), 0 4px 12px -2px rgba(24,62,46,0.25)'
+        }}>
+          {running ? (
+            <><svg width="12" height="12" viewBox="0 0 12 12" style={{ animation:'spin 0.9s linear infinite' }}><circle cx="6" cy="6" r="4.5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeDasharray="6 20"/></svg>Running pipeline</>
+          ) : (<><svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 2v8l7-4-7-4z" fill="currentColor"/></svg>Run analysis</>)}
+        </button>
+      </div>
+      <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+    </div>
+  );
+}
+
+function Home({ category, setCategory, onRun, running }) {
+  const sparkData = [42,48,45,52,58,55,62,68,65,72,78,82,79,88,92,95,91,98,104,110];
+  return (
+    <div style={{ padding:'40px 48px', maxWidth: 1280, margin:'0 auto' }} data-screen-label="01 Home">
+      {/* Hero */}
+      <div style={{
+        marginBottom:40, padding:'36px 40px 32px', borderRadius:20,
+        background:`linear-gradient(135deg, ${mkTokens.surface} 0%, #F6F2E6 100%)`,
+        border:`1px solid ${mkTokens.line}`, boxShadow: mkTokens.shadowMd,
+        position:'relative', overflow:'hidden'
+      }}>
+        {/* decorative accent blob */}
+        <div style={{ position:'absolute', top:-80, right:-80, width:280, height:280, borderRadius:'50%', background:mkTokens.accent, opacity:0.06, filter:'blur(40px)' }}/>
+        <div style={{ position:'absolute', top:40, right:60, width:140, height:140, borderRadius:'50%', background:mkTokens.accent, opacity:0.04 }}/>
+
+        <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', gap:40, position:'relative', flexWrap:'wrap' }}>
+          <div style={{ maxWidth: 680, minWidth: 280, flex:'1 1 420px' }}>
+            <div style={{ fontSize:11, fontWeight:600, letterSpacing:'0.14em', textTransform:'uppercase', color:mkTokens.ink3, marginBottom:18, display:'inline-flex', alignItems:'center', gap:10 }}>
+              <span style={{ display:'inline-flex', width:22, height:22, borderRadius:6, background:mkTokens.accent, color:mkTokens.inkInv, alignItems:'center', justifyContent:'center' }}>
+                <svg width="11" height="11" viewBox="0 0 12 12"><path d="M2 8l3-3 2 2 3-4" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </span>
+              Marketing Intelligence · Team 2
+            </div>
+            <h1 style={{ margin:'0 0 18px', fontFamily:'"Instrument Serif", Georgia, serif', fontWeight:400, fontSize:60, color:mkTokens.ink, letterSpacing:'-0.03em', lineHeight:0.98 }}>
+              Marketing made <em style={{ fontStyle:'italic', color:mkTokens.accent }}>simple</em><br/>for non-marketers.
+            </h1>
+            <p style={{ margin:0, fontSize:16, color:mkTokens.ink2, lineHeight:1.6, maxWidth: 580 }}>
+              Pick a category. The pipeline runs analysis on your campaign data and returns auto-optimized recommendations in plain language — with evidence, action steps, and a measurement plan.
+            </p>
+          </div>
+          <div style={{ width:320, flexShrink:0, minWidth:0 }}>
+            <div style={{ fontSize:10.5, fontWeight:600, letterSpacing:'0.14em', textTransform:'uppercase', color:mkTokens.ink3, marginBottom:8 }}>Revenue · last 20 days</div>
+            <div style={{ fontFamily:'"Instrument Serif", Georgia, serif', fontSize:36, color:mkTokens.ink, letterSpacing:'-0.02em', lineHeight:1, marginBottom:12, fontVariantNumeric:'tabular-nums' }}>
+              $110k <span style={{ fontSize:14, color:mkTokens.ok, fontFamily:'Inter', fontWeight:600, marginLeft:6 }}>+18.4%</span>
+            </div>
+            <MkSparkChart data={sparkData} height={80}/>
+          </div>
+        </div>
+
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap:0, marginTop:28, paddingTop:24, borderTop:`1px solid ${mkTokens.line}`, fontSize:13, color:mkTokens.ink2, position:'relative' }}>
+          {[
+            {v:'104', l:'days tracked'},
+            {v:'6', l:'channels'},
+            {v:'$48.2k', l:'total spend'},
+            {v:'6.33×', l:'blended ROAS'},
+            {v:'1,478', l:'new customers'}
+          ].map((s,i,arr)=>(
+            <div key={s.l} style={{ display:'flex', flexDirection:'column', gap:4, borderRight: i<arr.length-1 ? `1px solid ${mkTokens.line}` : 'none', paddingRight:16, paddingLeft: i===0 ? 0 : 16, minWidth:0 }}>
+              <div style={{ fontFamily:'"Instrument Serif", Georgia, serif', fontSize:30, color:mkTokens.ink, fontVariantNumeric:'tabular-nums', letterSpacing:'-0.02em', lineHeight:1 }}>{s.v}</div>
+              <div style={{ fontSize:11, color:mkTokens.ink3, whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <MkSection title="Choose a category" kicker="Step 01">
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(240px, 1fr))', gap:16 }}>
+          {CATEGORIES.map(c => (
+            <MkCategoryCard key={c.id} cat={c} selected={category===c.id} onClick={()=>setCategory(c.id)}/>
+          ))}
+        </div>
+      </MkSection>
+
+      <MkSection title="Recent pipeline runs" kicker="History">
+        <div style={{ background:mkTokens.surface, border:`1px solid ${mkTokens.line}`, borderRadius:14, overflow:'hidden', boxShadow: mkTokens.shadowSm }}>
+          {[
+            { t:'Customer Acquisition', when:'2m ago', status:'ok', dur:'11.2s', conf:82 },
+            { t:'Revenue Growth', when:'1h ago', status:'ok', dur:'9.8s', conf:74 },
+            { t:'Customer Retention', when:'Yesterday, 18:42', status:'ok', dur:'12.4s', conf:68 },
+            { t:'Customer Satisfaction', when:'Mar 28', status:'partial', dur:'14.1s', conf:41 }
+          ].map((r,i)=>(
+            <div key={i} style={{ display:'flex', alignItems:'center', padding:'14px 18px', borderBottom: i<3 ? `1px solid ${mkTokens.line2}` : 'none', gap:16 }}>
+              <div style={{ width:6, height:6, borderRadius:99, background: r.status==='ok' ? '#2E6B3F' : '#A1580C' }}/>
+              <div style={{ flex:1, fontSize:14, fontWeight:600, color:mkTokens.ink }}>{r.t}</div>
+              <div style={{ fontSize:12, color:mkTokens.ink3 }} className="mono">{r.dur}</div>
+              <div style={{ width:120, display:'flex', alignItems:'center', gap:8, fontSize:12, color:mkTokens.ink3 }}>
+                <div style={{ flex:1, height:4, background:mkTokens.line2, borderRadius:99, overflow:'hidden' }}>
+                  <div style={{ width:r.conf+'%', height:'100%', background:mkTokens.accent }}/>
+                </div>
+                {r.conf}%
+              </div>
+              <div style={{ fontSize:12, color:mkTokens.ink3, width:110, textAlign:'right' }}>{r.when}</div>
+            </div>
+          ))}
+        </div>
+      </MkSection>
+    </div>
+  );
+}
+
+function AnalysisView({ data, category, onBack }) {
+  const [openRecs, setOpenRecs] = useState({0:true});
+  const o = data.overall || {};
+  const a = data.analysis || {};
+  const hasOverall = data.overall && Object.keys(data.overall).length > 0;
+  const kpis = data.kpis || [];
+  const recs = data.recommendations || [];
+  const conf = typeof a.confidence_score === 'number' && a.confidence_score > 0
+    ? Math.round(a.confidence_score) : 82;
+
+  return (
+    <div style={{ padding:'32px 48px 80px', maxWidth: 1280, margin:'0 auto' }} data-screen-label={`02 Analysis · ${category}`}>
+      <button onClick={onBack} style={{
+        display:'inline-flex', alignItems:'center', gap:6, background:'transparent', border:'none',
+        color:mkTokens.ink3, fontSize:13, cursor:'pointer', padding:0, marginBottom:18
+      }}>
+        <svg width="12" height="12" viewBox="0 0 12 12"><path d="M9 6H3m0 0l3-3m-3 3l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>
+        Back to categories
+      </button>
+
+      <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', gap:24, marginBottom:32 }}>
+        <div>
+          <div style={{ fontSize:11, fontWeight:600, letterSpacing:'0.12em', textTransform:'uppercase', color:mkTokens.ink3, marginBottom:10 }}>Analysis{o['Campaign Name'] ? ` · ${o['Campaign Name']}` : ''}</div>
+          <h1 style={{ margin:0, fontFamily:'"Instrument Serif", Georgia, serif', fontWeight:400, fontSize:44, color:mkTokens.ink, letterSpacing:'-0.02em', lineHeight:1.05 }}>
+            {category || 'Analysis'}
+          </h1>
+        </div>
+        <div style={{ display:'flex', gap:10 }}>
+          <MkPill tone="accent">v2 schema</MkPill>
+          <MkPill>GPT-4o</MkPill>
+          <MkPill>{recs.length} recs</MkPill>
+        </div>
+      </div>
+
+      {/* Key KPIs — only show when we have overall metrics */}
+      {hasOverall && (
+      <div style={{ display:'grid', gridTemplateColumns:'1.4fr 1fr 1fr 1fr', gap:14, marginBottom:28 }}>
+        <MkStat big label="Campaign" value={o['Campaign Name'] || '-'} sub={`${kpis.length} KPIs tracked`}/>
+        <MkStat big label="Total Revenue" value={fmtMoney(o['Total Revenue'])} sub={o.ROAS ? `ROAS ${Number(o.ROAS).toFixed(2)}×` : ''} accent={mkTokens.accent}/>
+        <MkStat big label="Total Spend" value={fmtMoney(o['Total Spend'])} sub={o.CPA ? `CPA ${fmtMoney(o.CPA)}` : ''}/>
+        <MkStat big label="New Customers" value={fmtNum(o['Total New Customers'])} sub={o['Conversion Rate'] != null ? `CVR ${typeof o['Conversion Rate'] === 'number' ? fmtPct(o['Conversion Rate']) : o['Conversion Rate']}` : ''}/>
+      </div>
+      )}
+
+      {/* Analysis row */}
+      <div style={{ display:'grid', gridTemplateColumns:'1.35fr 1fr', gap:20, marginBottom:28 }}>
+        <div style={{ padding:'28px 32px', background:mkTokens.surface, border:`1px solid ${mkTokens.line}`, borderRadius:16, boxShadow: mkTokens.shadowSm, position:'relative', overflow:'hidden' }}>
+          <div style={{ position:'absolute', top:0, left:0, right:0, height:3, background:`linear-gradient(90deg, ${mkTokens.accent} 0%, transparent 100%)` }}/>
+          <div style={{ fontSize:10.5, fontWeight:600, letterSpacing:'0.12em', textTransform:'uppercase', color:mkTokens.ink3, marginBottom:14, display:'inline-flex', alignItems:'center', gap:8 }}>
+            <span style={{ width:14, height:1, background:mkTokens.ink3 }}/>
+            Analysis summary
+          </div>
+          <p style={{ margin:'0 0 22px', fontSize:19, lineHeight:1.55, color:mkTokens.ink, fontFamily:'"Instrument Serif", Georgia, serif', letterSpacing:'-0.01em' }}>
+            {a.analysis}
+          </p>
+          <div style={{ padding:'16px 20px', background:`linear-gradient(180deg, ${mkTokens.accentSoft} 0%, #D8E4DB 100%)`, border:`1px solid #BACBBE`, borderRadius:12, marginBottom:20, display:'flex', gap:14, alignItems:'flex-start' }}>
+            <div style={{ width:26, height:26, borderRadius:7, background:mkTokens.accent, color:mkTokens.inkInv, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+              <svg width="13" height="13" viewBox="0 0 20 20"><path d="M10 2v3M10 15v3M2 10h3M15 10h3M4.5 4.5l2 2M13.5 13.5l2 2M4.5 15.5l2-2M13.5 6.5l2-2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
+            </div>
+            <div>
+              <div style={{ fontSize:10.5, fontWeight:600, letterSpacing:'0.12em', textTransform:'uppercase', color:mkTokens.accent, marginBottom:4 }}>Root-cause hypothesis</div>
+              <div style={{ fontSize:14, color:mkTokens.ink, lineHeight:1.6 }}>{a.root_cause_hypothesis}</div>
+            </div>
+          </div>
+          <MkConfidenceBar value={conf}/>
+        </div>
+        <div style={{ display:'flex', flexDirection:'column', gap:14 }}>
+          <MkSignalList title="Key signals" items={a.key_signals} tone="ok" dense/>
+          <MkSignalList title="Detected issues" items={a.detected_issues} tone="warn" dense/>
+          <MkSignalList title="Business risks" items={a.business_risks} tone="danger" dense/>
+        </div>
+      </div>
+
+      {/* Channel performance — only when byChannel data exists */}
+      {data.byChannel && data.byChannel.length > 0 && (
+      <MkSection title="Channel performance" kicker="By channel">
+        <MkChannelTable rows={data.byChannel}/>
+      </MkSection>
+      )}
+
+      {/* Recommendations */}
+      {recs.length > 0 && (
+      <MkSection title="Recommendations" kicker={`${recs.length} actions`}
+        right={
+          <div style={{ display:'flex', gap:6 }}>
+            <MkPill tone="high">{recs.filter(r=>(r.priority||'').toLowerCase()==='high').length} high</MkPill>
+            <MkPill tone="medium">{recs.filter(r=>(r.priority||'').toLowerCase()==='medium').length} medium</MkPill>
+            <MkPill tone="low">{recs.filter(r=>(r.priority||'').toLowerCase()==='low').length} low</MkPill>
+          </div>
+        }>
+        <div style={{ display:'flex', flexDirection:'column', gap:12 }}>
+          {recs.map((rec, i)=>(
+            <MkRecommendationCard key={rec.id || i} rec={rec} idx={i}
+              open={!!openRecs[i]}
+              onToggle={()=>setOpenRecs(s=>({...s, [i]: !s[i]}))}/>
+          ))}
+        </div>
+      </MkSection>
+      )}
+
+      <div style={{
+        marginTop:40, padding:'24px 28px', border:`1px solid ${mkTokens.line}`, borderRadius:14,
+        background:`linear-gradient(135deg, ${mkTokens.surface} 0%, #F6F2E6 100%)`,
+        display:'flex', alignItems:'center', gap:20,
+        boxShadow: mkTokens.shadowSm
+      }}>
+        <svg width="28" height="28" viewBox="0 0 24 24" style={{ color:mkTokens.accent, flexShrink:0 }}>
+          <path d="M12 3l9 5-9 5-9-5 9-5zm-9 11l9 5 9-5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        <div style={{ flex:1 }}>
+          <div style={{ fontSize:14, fontWeight:600, color:mkTokens.ink, marginBottom:2 }}>Export this analysis</div>
+          <div style={{ fontSize:13, color:mkTokens.ink2 }}>Download as JSON (pipeline schema), PDF brief, or share a read-only link with stakeholders.</div>
+        </div>
+        <div style={{ display:'flex', gap:8 }}>
+          <button onClick={()=>{
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `analysis_${category.replace(/\s+/g,'_')}_${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+          }} style={{ padding:'9px 15px', background:mkTokens.surface, border:`1px solid ${mkTokens.line}`, borderRadius:9, fontSize:13, fontWeight:500, color:mkTokens.ink, cursor:'pointer', boxShadow: mkTokens.shadowSm }}>Export JSON</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DataView() {
+  const [rows, setRows] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/campaigns').then(r=>r.json()).then(data => {
+      setRows(data);
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, []);
+
+  const colDefs = [
+    { k:'campaign_name', label:'Campaign', align:'left' },
+    { k:'channel', label:'Channel', align:'left' },
+    { k:'date', label:'Date', align:'left' },
+    { k:'spend', label:'Spend', align:'right', fmt:fmtMoney },
+    { k:'revenue', label:'Revenue', align:'right', fmt:fmtMoney },
+    { k:'impressions', label:'Impressions', align:'right', fmt:fmtNum },
+    { k:'clicks', label:'Clicks', align:'right', fmt:fmtNum },
+    { k:'conversions', label:'Conv.', align:'right', fmt:fmtNum },
+  ];
+
+  return (
+    <div style={{ padding:'32px 48px', maxWidth: 1280, margin:'0 auto' }} data-screen-label="03 Data">
+      <div style={{ marginBottom:24 }}>
+        <div style={{ fontSize:11, fontWeight:600, letterSpacing:'0.12em', textTransform:'uppercase', color:mkTokens.ink3, marginBottom:10 }}>Campaign data · all_campaigns_data.csv</div>
+        <h1 style={{ margin:0, fontFamily:'"Instrument Serif", Georgia, serif', fontWeight:400, fontSize:40, color:mkTokens.ink, letterSpacing:'-0.02em' }}>Raw data browser</h1>
+        <p style={{ fontSize:14, color:mkTokens.ink2, maxWidth:620 }}>Live data from the Python pipeline, validated through <code className="mono" style={{ background:mkTokens.line2, padding:'1px 5px', borderRadius:4 }}>CampaignInput</code> before computing metrics.</p>
+      </div>
+      {loading ? (
+        <div style={{ textAlign:'center', padding:40, color:mkTokens.ink3 }}>Loading data...</div>
+      ) : !rows || rows.length === 0 ? (
+        <div style={{ textAlign:'center', padding:40, color:mkTokens.ink3 }}>No campaign data found.</div>
+      ) : (
+        <div style={{ background:mkTokens.surface, border:`1px solid ${mkTokens.line}`, borderRadius:12, overflow:'auto' }}>
+          <div style={{ display:'flex', padding:'12px 18px', background:'#FBFAF5', borderBottom:`1px solid ${mkTokens.line}`, fontSize:11, fontWeight:600, letterSpacing:'0.08em', textTransform:'uppercase', color:mkTokens.ink3, minWidth:800 }} className="mono">
+            {colDefs.map(c=><div key={c.k} style={{ flex:1, textAlign:c.align }}>{c.label}</div>)}
+          </div>
+          {rows.map((r,i)=>(
+            <div key={i} className="mono" style={{ display:'flex', padding:'10px 18px', fontSize:12, color:mkTokens.ink, borderBottom: i<rows.length-1 ? `1px solid ${mkTokens.line2}` : 'none', minWidth:800 }}>
+              {colDefs.map(c=>{
+                const v = r[c.k];
+                return <div key={c.k} style={{ flex:1, textAlign:c.align, color: c.align==='left' ? mkTokens.ink : mkTokens.ink2 }}>
+                  {c.fmt && typeof v === 'number' ? c.fmt(v) : (v != null ? String(v) : '-')}
+                </div>;
+              })}
+            </div>
+          ))}
+        </div>
+      )}
+      <div style={{ marginTop:14, fontSize:12, color:mkTokens.ink3 }}>{rows ? rows.length : 0} records loaded</div>
+    </div>
+  );
+}
+
+function ChatView({ analysisContext, onLoadContext }) {
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [sending, setSending] = useState(false);
+  const [historyList, setHistoryList] = useState(null);
+  const [loadingHistory, setLoadingHistory] = useState(false);
+  const bottomRef = React.useRef(null);
+
+  useEffect(() => {
+    if (bottomRef.current) bottomRef.current.scrollIntoView({ behavior:'smooth' });
+  }, [messages]);
+
+  const loadHistoryList = async () => {
+    if (historyList) return;
+    setLoadingHistory(true);
+    try {
+      const res = await fetch('/api/history');
+      const data = await res.json();
+      setHistoryList(data);
+    } finally {
+      setLoadingHistory(false);
+    }
+  };
+
+  const pickAnalysis = async (run) => {
+    try {
+      const res = await fetch(`/api/history/${run.filename}`);
+      const data = await res.json();
+      onLoadContext({ analysis: data.analysis, recommendations: data.recommendations, category: run.category });
+      setMessages([]);
+      setHistoryList(null);
+    } catch(e) {}
+  };
+
+  const send = async () => {
+    const text = input.trim();
+    if (!text || sending) return;
+    setInput('');
+    setMessages(prev => [...prev, { role:'user', content:text }]);
+    setSending(true);
+    try {
+      const res = await fetch('/api/chat', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          message: text,
+          analysis: analysisContext?.analysis || null,
+          recommendations: analysisContext?.recommendations || null,
+          category: analysisContext?.category || null,
+        })
+      });
+      const data = await res.json();
+      setMessages(prev => [...prev, { role:'assistant', content: data.reply }]);
+    } catch(e) {
+      setMessages(prev => [...prev, { role:'assistant', content:'Error: could not reach the server.' }]);
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const hasContext = analysisContext && analysisContext.analysis;
+
+  return (
+    <div style={{ padding:'32px 48px', maxWidth:900, margin:'0 auto', display:'flex', flexDirection:'column', height:'calc(100vh - 60px)' }} data-screen-label="04 Chat">
+      <div style={{ marginBottom:20 }}>
+        <div style={{ fontSize:11, fontWeight:600, letterSpacing:'0.12em', textTransform:'uppercase', color:mkTokens.ink3, marginBottom:10 }}>Marketing Expert</div>
+        <h1 style={{ margin:0, fontFamily:'"Instrument Serif", Georgia, serif', fontWeight:400, fontSize:40, color:mkTokens.ink, letterSpacing:'-0.02em' }}>Ask the expert</h1>
+        <p style={{ fontSize:14, color:mkTokens.ink2, marginTop:8 }}>
+          {hasContext
+            ? `Context loaded: ${analysisContext.category} analysis. Ask follow-up questions about the findings.`
+            : 'Select a past analysis below to load it as context, or run a new analysis first.'}
+        </p>
+      </div>
+
+      {/* Context selector */}
+      <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:16 }}>
+        {hasContext ? (
+          <div style={{ flex:1, padding:'12px 16px', background:mkTokens.accentSoft, border:`1px solid #BACBBE`, borderRadius:10, fontSize:12, color:mkTokens.accent, display:'flex', alignItems:'center', gap:10 }}>
+            <svg width="14" height="14" viewBox="0 0 20 20"><path d="M3 10l4 4 10-10" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <span style={{ flex:1 }}><b>{analysisContext.category}</b> analysis loaded &middot; {analysisContext.recommendations?.length || 0} recommendations</span>
+            <button onClick={loadHistoryList} style={{ background:'transparent', border:`1px solid #BACBBE`, borderRadius:7, padding:'4px 10px', fontSize:11, color:mkTokens.accent, cursor:'pointer', fontWeight:600 }}>Change</button>
+          </div>
+        ) : (
+          <button onClick={loadHistoryList} style={{
+            flex:1, padding:'14px 18px', background:mkTokens.surface, border:`1px dashed ${mkTokens.line}`,
+            borderRadius:10, fontSize:13, color:mkTokens.ink2, cursor:'pointer', textAlign:'left',
+            display:'flex', alignItems:'center', gap:10,
+          }}>
+            <svg width="16" height="16" viewBox="0 0 20 20" style={{ opacity:0.5 }}><path d="M4 4h12v9H9l-3 3v-3H4z" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinejoin="round"/></svg>
+            {loadingHistory ? 'Loading...' : 'Select a past analysis to chat about'}
+          </button>
+        )}
+      </div>
+
+      {/* History picker dropdown */}
+      {historyList && (
+        <div style={{ marginBottom:16, background:mkTokens.surface, border:`1px solid ${mkTokens.line}`, borderRadius:12, overflow:'hidden', maxHeight:240, overflowY:'auto', boxShadow:mkTokens.shadowMd }}>
+          <div style={{ padding:'10px 16px', fontSize:10.5, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:mkTokens.ink3, borderBottom:`1px solid ${mkTokens.line}`, background:'#FBFAF5', display:'flex', justifyContent:'space-between' }}>
+            <span>Select an analysis</span>
+            <button onClick={()=>setHistoryList(null)} style={{ background:'transparent', border:'none', fontSize:12, color:mkTokens.ink3, cursor:'pointer' }}>Close</button>
+          </div>
+          {historyList.length === 0 && <div style={{ padding:20, textAlign:'center', fontSize:13, color:mkTokens.ink3 }}>No past analyses found</div>}
+          {historyList.map(run => (
+            <button key={run.filename} onClick={()=>pickAnalysis(run)} style={{
+              display:'flex', width:'100%', alignItems:'center', padding:'12px 16px', gap:12,
+              background:'transparent', border:'none', borderBottom:`1px solid ${mkTokens.line2}`,
+              textAlign:'left', cursor:'pointer', fontSize:13,
+            }}>
+              <div style={{ width:6, height:6, borderRadius:99, background: run.confidence > 50 ? '#2E6B3F' : '#A1580C' }}/>
+              <div style={{ flex:1, fontWeight:600, color:mkTokens.ink }}>{run.category}</div>
+              <div className="mono" style={{ fontSize:11, color:mkTokens.ink3 }}>{run.recCount} recs</div>
+              <div style={{ fontSize:11, color:mkTokens.ink3 }}>{Math.round(run.confidence)}% conf</div>
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div style={{ flex:1, overflowY:'auto', display:'flex', flexDirection:'column', gap:14, paddingBottom:16 }}>
+        {messages.length === 0 && (
+          <div style={{ flex:1, display:'flex', alignItems:'center', justifyContent:'center' }}>
+            <div style={{ textAlign:'center', color:mkTokens.ink3 }}>
+              <svg width="40" height="40" viewBox="0 0 20 20" style={{ opacity:0.4, marginBottom:12 }}><path d="M4 4h12v9H9l-3 3v-3H4z" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinejoin="round"/></svg>
+              <div style={{ fontSize:15, fontWeight:500 }}>No messages yet</div>
+              <div style={{ fontSize:13, marginTop:4 }}>Ask anything about your campaign analysis</div>
+            </div>
+          </div>
+        )}
+        {messages.map((msg, i) => (
+          <div key={i} style={{
+            alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
+            maxWidth:'75%',
+            padding:'14px 18px',
+            borderRadius: msg.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
+            background: msg.role === 'user'
+              ? `linear-gradient(180deg, ${mkTokens.ink}, #1A1D16)`
+              : mkTokens.surface,
+            color: msg.role === 'user' ? mkTokens.inkInv : mkTokens.ink,
+            border: msg.role === 'user' ? 'none' : `1px solid ${mkTokens.line}`,
+            fontSize:14, lineHeight:1.65, whiteSpace:'pre-wrap',
+            boxShadow: mkTokens.shadowSm,
+          }}>
+            {msg.content}
+          </div>
+        ))}
+        {sending && (
+          <div style={{ alignSelf:'flex-start', padding:'14px 18px', background:mkTokens.surface, border:`1px solid ${mkTokens.line}`, borderRadius:'16px 16px 16px 4px', fontSize:13, color:mkTokens.ink3, display:'flex', alignItems:'center', gap:8 }}>
+            <svg width="14" height="14" viewBox="0 0 14 14" style={{ animation:'spin 0.9s linear infinite' }}><circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeDasharray="6 20"/></svg>
+            Thinking...
+          </div>
+        )}
+        <div ref={bottomRef}/>
+      </div>
+
+      <div style={{ display:'flex', gap:10, paddingTop:14, borderTop:`1px solid ${mkTokens.line}` }}>
+        <input
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
+          placeholder={hasContext ? "Ask about the analysis..." : "Run an analysis first to load context..."}
+          disabled={!hasContext}
+          style={{
+            flex:1, padding:'12px 16px', fontSize:14, border:`1px solid ${mkTokens.line}`,
+            borderRadius:11, background:mkTokens.surface, color:mkTokens.ink, outline:'none',
+            fontFamily:'inherit',
+          }}
+        />
+        <button onClick={send} disabled={sending || !hasContext || !input.trim()} style={{
+          padding:'12px 20px', border:'none', borderRadius:11, fontSize:13, fontWeight:600,
+          background: (!hasContext || !input.trim()) ? '#2A2D26' : `linear-gradient(180deg, #1A1D16, ${mkTokens.ink})`,
+          color:mkTokens.inkInv, cursor: (!hasContext || !input.trim()) ? 'not-allowed' : 'pointer',
+          opacity: (!hasContext || !input.trim()) ? 0.5 : 1,
+          boxShadow:'0 1px 2px rgba(0,0,0,0.1), 0 4px 12px -2px rgba(24,62,46,0.25)',
+        }}>Send</button>
+      </div>
+    </div>
+  );
+}
+
+function HistoryView({ onLoadResult }) {
+  const [runs, setRuns] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [loadingFile, setLoadingFile] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/history').then(r=>r.json()).then(data => {
+      setRuns(data);
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, []);
+
+  const openRun = async (run) => {
+    setLoadingFile(run.filename);
+    try {
+      const res = await fetch(`/api/history/${run.filename}`);
+      const data = await res.json();
+      onLoadResult(data, run.category);
+    } finally {
+      setLoadingFile(null);
+    }
+  };
+
+  const fmtTs = (ts) => {
+    if (!ts || ts.length < 13) return ts;
+    return ts.slice(0,4)+'-'+ts.slice(4,6)+'-'+ts.slice(6,8)+' '+ts.slice(9,11)+':'+ts.slice(11,13);
+  };
+
+  return (
+    <div style={{ padding:'32px 48px', maxWidth: 1280, margin:'0 auto' }} data-screen-label="05 History">
+      <div style={{ marginBottom:24 }}>
+        <div style={{ fontSize:11, fontWeight:600, letterSpacing:'0.12em', textTransform:'uppercase', color:mkTokens.ink3, marginBottom:10 }}>output_log/</div>
+        <h1 style={{ margin:0, fontFamily:'"Instrument Serif", Georgia, serif', fontWeight:400, fontSize:40, color:mkTokens.ink, letterSpacing:'-0.02em' }}>Pipeline history</h1>
+      </div>
+      {loading ? (
+        <div style={{ textAlign:'center', padding:40, color:mkTokens.ink3 }}>Loading history...</div>
+      ) : !runs || runs.length === 0 ? (
+        <div style={{ textAlign:'center', padding:40, color:mkTokens.ink3 }}>No pipeline runs found in output_log/</div>
+      ) : (
+        <div style={{ background:mkTokens.surface, border:`1px solid ${mkTokens.line}`, borderRadius:12, overflow:'hidden' }}>
+          {runs.map((r,i)=>(
+            <button key={r.filename} onClick={()=>openRun(r)} disabled={!!loadingFile} style={{
+              display:'flex', width:'100%', alignItems:'center', padding:'16px 20px', gap:18,
+              borderBottom: i<runs.length-1 ? `1px solid ${mkTokens.line2}` : 'none',
+              background: loadingFile===r.filename ? '#F6F2E6' : 'transparent',
+              border:'none', textAlign:'left', cursor: loadingFile ? 'wait' : 'pointer',
+            }}>
+              <div style={{ width:8, height:8, borderRadius:99, background: r.confidence > 50 ? '#2E6B3F' : '#A1580C' }}/>
+              <div style={{ flex:1 }}>
+                <div style={{ fontSize:14, fontWeight:600, color:mkTokens.ink }}>{r.category || 'Unknown'}</div>
+                <div className="mono" style={{ fontSize:11, color:mkTokens.ink3 }}>{r.filename}</div>
+              </div>
+              <div className="mono" style={{ fontSize:12, color:mkTokens.ink3, width:60 }}>{r.recCount} recs</div>
+              <div style={{ width:120, display:'flex', alignItems:'center', gap:8, fontSize:12, color:mkTokens.ink3 }}>
+                <div style={{ flex:1, height:4, background:mkTokens.line2, borderRadius:99 }}>
+                  <div style={{ width: Math.round(r.confidence)+'%', height:'100%', background:mkTokens.accent, borderRadius:99 }}/>
+                </div>
+                {Math.round(r.confidence)}%
+              </div>
+              <div className="mono" style={{ fontSize:12, color:mkTokens.ink3, width:140, textAlign:'right' }}>{fmtTs(r.timestamp)}</div>
+              <svg width="14" height="14" viewBox="0 0 14 14" style={{ color:mkTokens.ink3 }}><path d="M5 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function App() {
+  const [view, setView] = useState(() => localStorage.getItem('mk_view') || 'home');
+  const [category, setCategory] = useState(() => localStorage.getItem('mk_cat') || '');
+  const [campaign, setCampaign] = useState(CAMPAIGNS[0]);
+  const [running, setRunning] = useState(false);
+  const [result, setResult] = useState(null);
+  const [chatContext, setChatContext] = useState(null);
+
+  useEffect(() => { localStorage.setItem('mk_view', view); }, [view]);
+  useEffect(() => { localStorage.setItem('mk_cat', category); }, [category]);
+
+  const runAnalysis = async (catOverride) => {
+    const c = (typeof catOverride === 'string' && catOverride) ? catOverride : category;
+    if (!c) return;
+    if (typeof catOverride === 'string' && catOverride) setCategory(catOverride);
+    setRunning(true);
+    setResult(null);
+    try {
+      const res = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ category: c, campaign })
+      });
+      const data = await res.json();
+      setResult(data);
+      setChatContext({ analysis: data.analysis, recommendations: data.recommendations, category: c });
+      setView('analysis');
+    } finally {
+      setRunning(false);
+    }
+  };
+
+  let main;
+  if (view === 'analysis' && result) {
+    main = <AnalysisView data={result} category={category} onBack={()=>{ setView('home'); setResult(null); }}/>;
+  } else if (view === 'data') {
+    main = <DataView/>;
+  } else if (view === 'chat') {
+    main = <ChatView
+      analysisContext={chatContext}
+      onLoadContext={(ctx) => setChatContext(ctx)}
+    />;
+  } else if (view === 'history') {
+    main = <HistoryView onLoadResult={(data, cat) => { setResult(data); setCategory(cat || ''); setView('analysis'); }}/>;
+  } else if (view === 'settings') {
+    main = (
+      <div style={{ padding:'32px 48px', maxWidth: 800, margin:'0 auto' }} data-screen-label="06 Settings">
+        <h1 style={{ fontFamily:'"Instrument Serif", Georgia, serif', fontWeight:400, fontSize:40, margin:'0 0 24px' }}>Settings</h1>
+        <div style={{ background:mkTokens.surface, border:`1px solid ${mkTokens.line}`, borderRadius:12, padding:'22px 24px' }}>
+          <div style={{ fontSize:11, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:mkTokens.ink3, marginBottom:14 }}>Pipeline configuration</div>
+          {[
+            {l:'Model', v:'gpt-4o'},
+            {l:'Schema version', v:'v2'},
+            {l:'Data file', v:'data/campaign_data.csv'},
+            {l:'Output directory', v:'output_log/'}
+          ].map(r=>(
+            <div key={r.l} style={{ display:'flex', padding:'12px 0', borderBottom:`1px solid ${mkTokens.line2}` }}>
+              <div style={{ flex:1, fontSize:13, color:mkTokens.ink2 }}>{r.l}</div>
+              <div className="mono" style={{ fontSize:13, color:mkTokens.ink }}>{r.v}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  } else {
+    main = <Home category={category} setCategory={setCategory} onRun={runAnalysis} running={running}/>;
+  }
+
+  return (
+    <div style={{ display:'flex', minHeight:'100vh' }}>
+      <MkSidebar view={view==='analysis'?'home':view} setView={v=>{if(v!=='chat')setResult(null);setView(v);}} campaign={campaign} setCampaign={setCampaign} campaigns={CAMPAIGNS}/>
+      <main style={{ flex:1, minWidth:0 }}>
+        <TopBar category={category} onRun={runAnalysis} running={running}/>
+        {running && (
+          <div style={{ padding:'48px', maxWidth:1280, margin:'0 auto' }}>
+            <div style={{ background:mkTokens.surface, border:`1px solid ${mkTokens.line}`, borderRadius:16, padding:'48px 56px', textAlign:'center', boxShadow: mkTokens.shadowMd, position:'relative', overflow:'hidden' }}>
+              <div style={{ position:'absolute', inset:0, background:`radial-gradient(ellipse at top, ${mkTokens.accentSoft} 0%, transparent 60%)`, opacity:0.5, pointerEvents:'none' }}/>
+              <div style={{ position:'relative' }}>
+                <div style={{ display:'inline-flex', width:48, height:48, borderRadius:12, background:mkTokens.accent, color:mkTokens.inkInv, alignItems:'center', justifyContent:'center', marginBottom:18, boxShadow: mkTokens.shadowMd }}>
+                  <svg width="22" height="22" viewBox="0 0 22 22" style={{ animation:'spin 1.2s linear infinite' }}><circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.8" fill="none" strokeDasharray="10 36"/></svg>
+                </div>
+                <div style={{ fontSize:11, fontWeight:600, letterSpacing:'0.14em', textTransform:'uppercase', color:mkTokens.ink3, marginBottom:10 }}>Pipeline running</div>
+                <h2 style={{ margin:'0 0 10px', fontFamily:'"Instrument Serif", Georgia, serif', fontWeight:400, fontSize:38, letterSpacing:'-0.02em' }}>Generating recommendations…</h2>
+                <p style={{ color:mkTokens.ink3, margin:'0 0 32px', fontSize:14 }}>Analysis prompt → OpenAI → validated against AnalysisOutput → recommendation step → saved to output_log/</p>
+                <div style={{ display:'flex', gap:10, justifyContent:'center', flexWrap:'wrap' }}>
+                  {['Loading CSV','Validating schema','Computing metrics','Analysis call','Recommendation call','Saving output'].map((s,i)=>(
+                    <div key={s} style={{
+                      padding:'7px 14px', borderRadius:99, fontSize:12, fontWeight:500,
+                      background: i<3 ? mkTokens.accentSoft : mkTokens.surfaceRaised,
+                      color: i<3 ? mkTokens.accent : mkTokens.ink3,
+                      border:`1px solid ${i<3 ? '#BACBBE' : mkTokens.line}`,
+                      boxShadow: mkTokens.shadowSm,
+                      display:'inline-flex', alignItems:'center', gap:6
+                    }}>{i<3 && <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5l2 2 4-4" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>}{s}</div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {!running && main}
+      </main>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
