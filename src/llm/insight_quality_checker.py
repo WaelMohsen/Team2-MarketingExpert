@@ -132,7 +132,7 @@ class InsightQualityChecker:
    
     def check_issue_detection(self) -> CriterionResult:
         flag_freq   = self._frequency   > 2.5
-        flag_bounce = self._bounce_rate > 0.35
+        flag_bounce = self._bounce_rate > 35
  
         if not (flag_freq or flag_bounce):
             return CriterionResult(
