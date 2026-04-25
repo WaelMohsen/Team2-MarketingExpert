@@ -14,14 +14,31 @@ class CriterionResult:
 class InsightQualityChecker:
     """Learn by implementing each check."""
 
+    @staticmethod
+    def _coerce_float(value, default: float = 0.0) -> float:
+        if value is None:
+            return default
+        try:
+            number = float(value)
+        except (TypeError, ValueError):
+            return default
+        if number != number:
+            return default
+        return number
+    @classmethod
+    def _normalize_bounce_rate(cls, value) -> float:
+        rate = cls._coerce_float(value, 0.0)
+        if 0.0 <= rate <= 1.0:
+            return rate * 100.0
+        return rate
     def __init__(self, analysis: dict, campaign_row: dict):
         self.analysis = analysis
         self.row = campaign_row
         
         # Pre-compute some values you'll need
-        self._frequency = float(self.row.get("frequency", 0))
-        self._bounce_rate = float(self.row.get("bounce_rate", 0))
-        self._confidence = self.analysis.get("confidence_score", 0)
+        self._frequency = self._coerce_float(self.row.get("frequency", 0), 0.0)
+        self._bounce_rate = self._normalize_bounce_rate(self.row.get("bounce_rate", 0))
+        self._confidence = self._coerce_float(self.analysis.get("confidence_score", 0), 0.0)
         self._detected_issues = self.analysis.get("detected_issues") or []
 
     # ========================================================================
