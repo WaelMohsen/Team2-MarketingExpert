@@ -11,14 +11,25 @@ class EvaluationPipeline:
 
     Supports recommendation evaluation, analysis evaluation,
     or both in one call.
+
+    ``analysis_evaluator`` is lazy by default: it is only instantiated on
+    first call to ``run_analysis``/``run_all``, so recommendation-only paths
+    do not require OpenAI credentials.  Pass an explicit instance (or mock)
+    to override.
     """
 
-    def __init__(self, llm_callable, embedding_callable):
+    def __init__(self, llm_callable, embedding_callable, analysis_evaluator=None):
         self.recommendation_evaluator = RecommendationEvaluator(
             llm=llm_callable, embed=embedding_callable
         )
-        self.analysis_evaluator = AnalysisQualityEvaluator()
+        self._analysis_evaluator = analysis_evaluator
         self.gt_path = os.path.join("data", "benchmark", "recommendation_GT.json")
+
+    @property
+    def analysis_evaluator(self):
+        if self._analysis_evaluator is None:
+            self._analysis_evaluator = AnalysisQualityEvaluator()
+        return self._analysis_evaluator
 
     def load_ground_truth(self, path, campaign_id, target):
         with open(path, "r", encoding="utf-8") as f:
@@ -52,6 +63,8 @@ class EvaluationPipeline:
             "kpis": kpis,
             "ground_truth": gt_data,
             "category": category,
+            "campaign_id": campaign_id,
+            "target": target,
         }
 
         return self.recommendation_evaluator.evaluate(eval_input)
@@ -61,15 +74,24 @@ class EvaluationPipeline:
         analysis_output,
         campaign_context: str = "",
         category=None,
+        campaign_id=None,
+        target=None,
     ):
         if isinstance(analysis_output, AnalysisOutput):
             analysis_model = analysis_output
         else:
             analysis_model = AnalysisOutput(**analysis_output)
 
-        return self.analysis_evaluator.evaluate(
+        result = self.analysis_evaluator.evaluate(
             analysis_model, campaign_context, category=category
         )
+
+        if campaign_id is not None:
+            result["campaign_id"] = campaign_id
+        if target is not None:
+            result["target"] = target
+
+        return result
 
     def run_all(
         self,
@@ -93,6 +115,8 @@ class EvaluationPipeline:
             analysis_output=analysis_output,
             campaign_context=campaign_context,
             category=category,
+            campaign_id=campaign_id,
+            target=target,
         )
 
         return {

@@ -34,6 +34,8 @@ class RecommendationEvaluator(BaseEvaluator):
         kpis = data["kpis"]
         gt_data = data.get("ground_truth")
         category = data.get("category")
+        campaign_id = data.get("campaign_id")
+        target = data.get("target")
         # 1. Business relevance
         business = self.business.evaluate(recs, analysis, kpis)
         # 2. Rules check
@@ -47,6 +49,8 @@ class RecommendationEvaluator(BaseEvaluator):
 
         result = {
             "category": category,
+            "campaign_id": campaign_id,
+            "target": target,
             "final_score": final_score,
             "business": business,
             "compliance": compliance,

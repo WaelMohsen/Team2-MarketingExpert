@@ -1,6 +1,6 @@
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 class EvaluationLogger:
@@ -11,7 +11,7 @@ class EvaluationLogger:
     def log(self, payload: dict):
         os.makedirs(self.base_dir, exist_ok=True)
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
         path = f"{self.base_dir}/eval_{timestamp}.json"
 
         with open(path, "w", encoding="utf-8") as f:
