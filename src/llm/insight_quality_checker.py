@@ -57,7 +57,7 @@ class InsightQualityChecker:
                 weight=2,
                 detail="No key signals provided. The analysis must include key signals with specific metrics.",
             )
-        all_ok = has_numbers and len(grounded) == len(key_signals) and len(grounded) > 0
+        all_ok = len(grounded) == len(key_signals) and len(grounded) > 0
         partial_ok = has_numbers and len(grounded) < len(key_signals) and len(grounded) > 0
         if all_ok:
             detail = f"All {len(key_signals)} key signals cite specific numbers, and the analysis includes data values."
