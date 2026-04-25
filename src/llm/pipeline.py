@@ -107,7 +107,30 @@ def generate_response(df, category: str, metrics: dict) -> dict: # Changed retur
             "status": "SUCCESS"
         })
 
-        campaign_row = df.iloc.to_dict()
+        # FIX: Instead of taking the first row, we build a "virtual" row representing the whole campaign
+        overall_metrics = dict(metrics.get("overall", {}))
+        campaign_row = {}
+
+        # Safely extract frequency (check metrics dict first, then fallback to DataFrame mean)
+        if "Average Frequency" in overall_metrics:
+            campaign_row["frequency"] = overall_metrics["Average Frequency"]
+        elif "frequency" in df.columns:
+            campaign_row["frequency"] = df["frequency"].mean()
+        else:
+            campaign_row["frequency"] = 0
+
+        # Safely extract bounce rate
+        if "Average Bounce Rate" in overall_metrics:
+            campaign_row["bounce_rate"] = overall_metrics["Average Bounce Rate"]
+        elif "bounce_rate" in df.columns:
+            campaign_row["bounce_rate"] = df["bounce_rate"].mean()
+        else:
+            campaign_row["bounce_rate"] = 0
+
+        # Pass any other overall metrics into the row for context
+        campaign_row.update(overall_metrics)
+
+        # Now the checker compares AI insights against the ACTUAL averages
         checker = InsightQualityChecker(response_data["analysis"], campaign_row)
         
         results = [
