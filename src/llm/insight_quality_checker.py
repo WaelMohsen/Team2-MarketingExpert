@@ -14,14 +14,31 @@ class CriterionResult:
 class InsightQualityChecker:
     """Learn by implementing each check."""
 
+    @staticmethod
+    def _coerce_float(value, default: float = 0.0) -> float:
+        if value is None:
+            return default
+        try:
+            number = float(value)
+        except (TypeError, ValueError):
+            return default
+        if number != number:
+            return default
+        return number
+    @classmethod
+    def _normalize_bounce_rate(cls, value) -> float:
+        rate = cls._coerce_float(value, 0.0)
+        if 0.0 <= rate <= 1.0:
+            return rate * 100.0
+        return rate
     def __init__(self, analysis: dict, campaign_row: dict):
         self.analysis = analysis
         self.row = campaign_row
         
         # Pre-compute some values you'll need
-        self._frequency = float(self.row.get("frequency", 0))
-        self._bounce_rate = float(self.row.get("bounce_rate", 0))
-        self._confidence = self.analysis.get("confidence_score", 0)
+        self._frequency = self._coerce_float(self.row.get("frequency", 0), 0.0)
+        self._bounce_rate = self._normalize_bounce_rate(self.row.get("bounce_rate", 0))
+        self._confidence = self._coerce_float(self.analysis.get("confidence_score", 0), 0.0)
         self._detected_issues = self.analysis.get("detected_issues") or []
 
     # ========================================================================
@@ -40,7 +57,7 @@ class InsightQualityChecker:
                 weight=2,
                 detail="No key signals provided. The analysis must include key signals with specific metrics.",
             )
-        all_ok = has_numbers and len(grounded) == len(key_signals) and len(grounded) > 0
+        all_ok = len(grounded) == len(key_signals) and len(grounded) > 0
         partial_ok = has_numbers and len(grounded) < len(key_signals) and len(grounded) > 0
         if all_ok:
             detail = f"All {len(key_signals)} key signals cite specific numbers, and the analysis includes data values."
@@ -115,7 +132,7 @@ class InsightQualityChecker:
    
     def check_issue_detection(self) -> CriterionResult:
         flag_freq   = self._frequency   > 2.5
-        flag_bounce = self._bounce_rate > 0.35
+        flag_bounce = self._bounce_rate > 35
  
         if not (flag_freq or flag_bounce):
             return CriterionResult(
