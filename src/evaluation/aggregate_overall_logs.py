@@ -1,7 +1,7 @@
 import csv
+import hashlib
 import json
 import os
-import uuid
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
@@ -81,7 +81,8 @@ def _extract_timestamp_from_filename(path: str) -> Optional[datetime]:
 
     raw = basename.replace("eval_", "").replace(JSON_EXT, "")
     try:
-        return datetime.strptime(raw, "%Y%m%d_%H%M%S")
+        naive = datetime.strptime(raw, "%Y%m%d_%H%M%S")
+        return naive.replace(tzinfo=timezone.utc)
     except ValueError:
         return None
 
@@ -89,7 +90,12 @@ def _extract_timestamp_from_filename(path: str) -> Optional[datetime]:
 def _to_iso_utc(dt: Optional[datetime]) -> str:
     if dt is None:
         return ""
-    return dt.isoformat() + "Z"
+    return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _stable_id(path: str) -> str:
+    """Deterministic row id derived from the source log file path."""
+    return hashlib.md5(path.encode("utf-8")).hexdigest()
 
 
 def _run_id_from_timestamp(dt: Optional[datetime]) -> str:
@@ -116,7 +122,7 @@ def _analysis_row(payload: Dict, path: str, ingested_at: str) -> Dict:
     dimensions = payload.get("dimensions", {}) or {}
 
     return {
-        "id": str(uuid.uuid4()),
+        "id": _stable_id(path),
         "run_id": _run_id_from_timestamp(ts),
         "ts_utc": _to_iso_utc(ts),
         "category": payload.get("category", ""),
@@ -159,7 +165,7 @@ def _recommendation_row(payload: Dict, path: str, ingested_at: str) -> Dict:
     weak = business.get("weak_recommendations", []) or []
 
     return {
-        "id": str(uuid.uuid4()),
+        "id": _stable_id(path),
         "run_id": _run_id_from_timestamp(ts),
         "ts_utc": _to_iso_utc(ts),
         "category": payload.get("category", ""),
@@ -218,8 +224,9 @@ def _write_csv(path: str, columns: List[str], rows: List[Dict]) -> None:
             writer.writerow(row)
 
 
-def aggregate_logs() -> Dict[str, str]:
-    ingested_at = datetime.now(timezone.utc).isoformat()
+def aggregate_logs(ingested_at: Optional[str] = None) -> Dict[str, str]:
+    if ingested_at is None:
+        ingested_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     analysis_rows = []
     for path in _list_json_files(ANALYSIS_DIR):
