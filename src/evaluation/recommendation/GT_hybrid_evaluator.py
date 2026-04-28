@@ -138,7 +138,8 @@ Return ONLY a number.
             matches.append({
                 "rec_id": rec.get("id"),
                 "matched_gt_id": gt.get("id"),
-                "similarity": round(sim_score, 3)
+                "similarity": round(sim_score, 3),
+                "llm_score": round(llm_score , 3)
             })
 
             matched_gt_indices.add(best_idx)
@@ -185,6 +186,9 @@ Return ONLY a number.
 
         if avg_similarity < 0.6:
             flags.append("low_similarity_to_expert")
+
+        if len(missed_gt)>=2:
+            flags.append(f"missing_key_GT_Recommendations : {len(missed_gt)}")
 
         # ---------------------------
         # Final output
