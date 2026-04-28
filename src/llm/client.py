@@ -35,7 +35,7 @@ def get_client():
     return _client
 
 
-def chat_completion(client, system_text, user_text, response_format):
+def chat_completion(client, system_text, user_text, response_format , model , temp):
     """Wrapper around the OpenAI structured-outputs beta endpoint.
 
     `response_format` should be a **Pydantic model class** (e.g. AnalysisOutput).
@@ -45,12 +45,12 @@ def chat_completion(client, system_text, user_text, response_format):
     """
 
     return client.beta.chat.completions.parse(
-        model="gpt-4o-mini",
+        model=model,
         messages=[
             {"role": "system", "content": system_text},
             {"role": "user", "content": user_text},
         ],
-        temperature=0.2,
+        temperature=temp,
         response_format=response_format,
     )
 
@@ -59,12 +59,12 @@ def chat_completion(client, system_text, user_text, response_format):
 # RECOMMENDATION: "gpt-4o"
 
 
-def llm_callable(prompt: str) -> str:
+def llm_callable(prompt: str, model : str , temp : float) -> str:
     client = get_client()
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model=model,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0,
+        temperature=temp,
     )
     return response.choices[0].message.content
 

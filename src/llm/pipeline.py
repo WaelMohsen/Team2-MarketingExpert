@@ -57,7 +57,7 @@ def save_output(output: dict):
     print(f"Output saved to {filename}")
 
 
-def generate_response(df, category: str, metrics: dict) -> str:
+def generate_response(df, category: str, metrics: dict , Analysis_model: str , Analysis_temp: float , Rec_model: str , Rec_temp :float ) -> str:
     """Two-step flow: analysis JSON -> recommendation JSON (final schema)."""
     try:
         client = get_client()
@@ -79,6 +79,8 @@ def generate_response(df, category: str, metrics: dict) -> str:
             analysis_sys,
             analysis_user,
             response_format=AnalysisOutput,
+            model=Analysis_model, 
+            temp= Analysis_temp ,
         )
         # SDK parses the response into a Pydantic instance automatically.
         analysis_model = analysis_resp.choices[0].message.parsed
@@ -105,6 +107,8 @@ def generate_response(df, category: str, metrics: dict) -> str:
             rec_sys,
             rec_user,
             response_format=RecommendationOutput,
+            model=Rec_model,
+            temp= Rec_temp
         )
         rec_model = rec_resp.choices[0].message.parsed
         print("Final Recommendation parsed:", rec_model)  # Debug print

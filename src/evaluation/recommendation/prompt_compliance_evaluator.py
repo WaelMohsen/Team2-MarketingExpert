@@ -34,7 +34,7 @@ class PromptComplianceEvaluator:
     # 🔹 LLM COMPLIANCE JUDGE
     # =========================================================
 
-    def _llm_compliance(self, recs: List[dict], analysis: dict, kpis) -> Dict:
+    def _llm_compliance(self, recs: List[dict], analysis: dict, kpis, model :str, temp :float) -> Dict:
 
         prompt = f"""
 Evaluate if these recommendations follow the system rules:
@@ -69,7 +69,7 @@ Return JSON:
 
 """
         try:
-            return eval(self.llm(prompt))
+            return eval(self.llm(prompt, model , temp))
         except:
             return {}
 
@@ -78,7 +78,7 @@ Return JSON:
     # =========================================================
 
     def evaluate(
-        self, recommendations: List[dict], analysis: dict, kpis: List[str]
+        self, recommendations: List[dict], analysis: dict, kpis: List[str], model: str , temp :float
     ) -> Dict:
 
         # ---------------------------
@@ -91,7 +91,7 @@ Return JSON:
         # ---------------------------
         # LLM judgment
         # ---------------------------
-        llm_scores = self._llm_compliance(recommendations, analysis, kpis)
+        llm_scores = self._llm_compliance(recommendations, analysis, kpis, model , temp)
 
         # ---------------------------
         # Combine

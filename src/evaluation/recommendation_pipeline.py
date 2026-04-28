@@ -35,6 +35,8 @@ class RecommendationPipeline:
         analysis_output: dict,
         recommendation_output: list,
         kpis: list,
+        model :str ,
+        temp : float
     ):
 
         # ---------------------------
@@ -55,6 +57,6 @@ class RecommendationPipeline:
         # ---------------------------
         # 🔹 Run Evaluation
         # ---------------------------
-        result = self.evaluator.evaluate(eval_input)
+        result = self.evaluator.evaluate(eval_input, model , temp )
 
         return result

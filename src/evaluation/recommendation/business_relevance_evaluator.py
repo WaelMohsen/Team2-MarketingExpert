@@ -119,7 +119,7 @@ RETURN STRICT JSON:
     # 🔹 Evaluate
     # ---------------------------
 
-    def evaluate(self, recs: List[dict], analysis: dict, kpis):
+    def evaluate(self, recs: List[dict], analysis: dict, kpis, model , temp):
 
         if not recs:
             return {"score": 0, "error": "no_recommendations"}
@@ -127,7 +127,7 @@ RETURN STRICT JSON:
         prompt = self._build_prompt(recs, analysis, kpis)
 
         try:
-            response = self.llm(prompt)
+            response = self.llm(prompt , model , temp)
             result = eval(response) if isinstance(response, str) else response
         except Exception:
             return {"score": 0, "error": "llm_failed"}

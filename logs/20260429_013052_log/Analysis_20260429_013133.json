@@ -1,0 +1,42 @@
+{
+    "overall_score": 3,
+    "overall_status": "borderline",
+    "criteria_scores": [
+        {
+            "name": "analysis",
+            "score": 3,
+            "rationale": "The analysis is clear and uses business language, but it occasionally relies on marketing-specific terms without sufficient explanation for a non-marketing audience."
+        },
+        {
+            "name": "key_signals",
+            "score": 4,
+            "rationale": "The key signals are specific and directly tied to the campaign data, providing actionable insights."
+        },
+        {
+            "name": "detected_issues",
+            "score": 3,
+            "rationale": "The detected issues are relevant but not deeply explored, and their business impact is not fully elaborated."
+        },
+        {
+            "name": "root_cause_hypothesis",
+            "score": 3,
+            "rationale": "The root cause hypothesis is logical but lacks depth in connecting the issues to broader business implications."
+        },
+        {
+            "name": "business_risks",
+            "score": 3,
+            "rationale": "The business risks are mentioned but are somewhat generic and could be more detailed in terms of financial or growth impact."
+        },
+        {
+            "name": "confidence_score",
+            "score": 4,
+            "rationale": "The confidence score is realistic and aligns with the evidence provided, though the justification for the score could be more explicit."
+        }
+    ],
+    "summary": "The analysis is acceptable but lacks depth and clarity in some areas, particularly in explaining business risks and root causes.",
+    "improvement_suggestions": [
+        "Provide more detailed explanations of business risks and their financial implications.",
+        "Avoid using marketing-specific terms without explanation.",
+        "Expand on the root cause hypothesis to connect it more clearly to the detected issues and business outcomes."
+    ]
+}

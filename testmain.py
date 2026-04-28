@@ -15,8 +15,21 @@ CATEGORIES = [
     "Revenue Growth",
     "Customer Retention",
 ]
-category = CATEGORIES[0]
 
+#----------------------------------
+# Config_inputs
+#------------------------------------
+config_inputs = {
+    "category": CATEGORIES[0] , # to change choose one from the above list 
+    "analysis_model": "gpt-4o-mini",
+    "analysis_temp" :0.0 ,
+    "recommendation_model" : "gpt-4o-2024-11-20", # "gpt-4o"
+    "recommendation_temp"  : 0.2 , 
+    "llm_judge_model" : "gpt-4o-mini" , #  "gpt-4o-mini"
+    "llm_judge_temp" : 0.0
+
+}
+#---------------------------------------
 # Timestamp to create log dir for this run 
 starttimestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 #--------------------------------
@@ -41,6 +54,22 @@ pipeline = RecommendationPipeline(
 interpreter = DecisionInterpreter()
 
 #--------------------------------
+#  Inputs
+#-----------------------------
+
+category = config_inputs["category"]
+Analysis_model= config_inputs["analysis_model"]
+Analysis_temp = config_inputs["analysis_temp"]
+Rec_model = config_inputs["recommendation_model"]
+Rec_temp = config_inputs["recommendation_temp"]
+
+llm_judge_model= config_inputs["llm_judge_model"]
+llm_judge_temp = config_inputs["llm_judge_temp"]
+
+#log 
+logger.log (config_inputs , "config")
+
+#-----------------------------------------------
 # Marketing truth engin
 #--------------------------------
 # 1. Data Retrieval
@@ -48,7 +77,7 @@ df = data_processor.load_data()
 # 2. Calculate metrics
 metrics = data_processor.calculate_metrics_full(df, category)
 # Generate AI Response (now returns JSON string)
-response_dict_data = llm_handler.generate_response(df, category, metrics)
+response_dict_data = llm_handler.generate_response(df, category, metrics,  Analysis_model , Analysis_temp, Rec_model, Rec_temp )
 response_dict_data.keys()
 # Log
 logger.log(response_dict_data , "pipeline")
@@ -78,7 +107,9 @@ KPIs: {kpis}
 # ---------------------------
 analysis_result = AnalysisJudger.evaluate(
     analysis=analysis_obj,
-    context=context)
+    context=context,
+    model= llm_judge_model, 
+    temp= llm_judge_temp)
 # Log
 logger.log(analysis_result.model_dump(), "Analysis")
 
@@ -90,7 +121,9 @@ recommendation_result = pipeline.run(
     target=target,
     analysis_output=analysis_output,
     recommendation_output=recommendation_output,
-    kpis=kpis
+    kpis=kpis,
+    model= llm_judge_model,
+    temp= llm_judge_temp
 )
 
 # ---------------------------

@@ -27,7 +27,7 @@ class RecommendationEvaluator(BaseEvaluator):
             3,
         )
 
-    def evaluate(self, data):
+    def evaluate(self, data, model , temp):
 
         # output = data["output"]
         # recs = output["recommendations"]
@@ -37,11 +37,11 @@ class RecommendationEvaluator(BaseEvaluator):
         kpis = data["kpis"]
         gt_data = data.get("ground_truth")
         # 1. Business relevance
-        business = self.business.evaluate(recs, analysis, kpis)
+        business = self.business.evaluate(recs, analysis, kpis, model , temp)
         # 2. Rules check
-        compliance = self.compliance.evaluate(recs, analysis, kpis)
+        compliance = self.compliance.evaluate(recs, analysis, kpis , model ,temp)
         # 3. Ground truth (hybrid)
-        gt_result = self.gt.evaluate(recs, gt_data) if gt_data else None
+        gt_result = self.gt.evaluate(recs, gt_data, model ,temp) if gt_data else None
         # 4. Final aggregation
         final_score = self.compute_final(
             compliance=compliance, business=business, gt=gt_result
