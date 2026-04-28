@@ -6,10 +6,10 @@ FINAL_WEIGHTS = {
 BUSINESS_WEIGHTS = {
     "insight_quality": 0.15,
     "actionability": 0.15,
-    "data_grounding": 0.15,
-    "priority_accuracy": 0.15,
-    "decision_quality": 0.15,
-    "kpi_alignment": 0.10,
+    "data_grounding": 0.10,
+    "priority_accuracy": 0.10,
+    "decision_quality": 0.20,
+    "kpi_alignment": 0.15,
     "feasibility": 0.10,
     "readability": 0.05,
 }
