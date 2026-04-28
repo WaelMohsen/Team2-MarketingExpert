@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Sequence
+from typing import Any, List, Optional, Sequence
 
 from pydantic import BaseModel, Field
 
