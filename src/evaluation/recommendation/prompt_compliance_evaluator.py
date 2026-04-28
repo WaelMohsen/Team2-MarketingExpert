@@ -59,7 +59,14 @@ Score 0 to 1:
 - clarity
 - non_repetition
 
-Return JSON.
+Return JSON:
+{{
+    "no_hallucination": float,
+    "clarity": float,
+    "non_repetition": float
+
+ }}
+
 """
         try:
             return eval(self.llm(prompt))
@@ -101,6 +108,7 @@ Return JSON.
             # llm
             "no_hallucination": llm_scores.get("no_hallucination", 0),
             "clarity": llm_scores.get("clarity", 0),
+            "non_repetition":llm_scores.get("non_repetition" , 0 )
         }
 
         overall = mean(final_scores.values())
@@ -119,8 +127,11 @@ Return JSON.
         if priority_score == 0:
             flags.append("priority_not_sorted")
         
-        if llm_scores.get("no_hallucination", 1) < 0.7:
-            flags.append("possible_hallucination")
+        if final_scores.get("no_hallucination", 0) < 0.7:
+            flags.append("hallucination_detected")
+
+        if final_scores.get("non_repetition", 0) < 0.7:
+            flags.append("repetition_detected")
         
         return {
             "score": round(overall, 32),
