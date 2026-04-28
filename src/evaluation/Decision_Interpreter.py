@@ -25,7 +25,7 @@ class DecisionInterpreter:
         # ---------------------------
         # 1. Decision
         # ---------------------------
-        decision = self._build_decision(final_score, gt)
+        decision = self._build_decision(final_score, gt,business, compliance)
 
         # ---------------------------
         # 2. Summary
@@ -53,12 +53,74 @@ class DecisionInterpreter:
             "ground_truth_insights": gt_insights,
             "diagnostics": evaluation_output  # keep original
         }
+    def _compute_confidence(self, final_score, business, compliance, gt):
 
+        signals = []
+
+        # =========================================================
+        # 1. Agreement Between Evaluators
+        # =========================================================
+        business_score = business.get("score", 0)
+        compliance_score = compliance.get("score", 0)
+        gt_score = gt.get("score", 0) if gt else 0
+
+        scores = [business_score, compliance_score, gt_score]
+
+        # variance-based agreement
+        mean_score = sum(scores) / len(scores)
+        variance = sum((s - mean_score) ** 2 for s in scores) / len(scores)
+
+        agreement = 1 - min(variance, 1)  # normalize
+        signals.append(agreement)
+
+        # =========================================================
+        # 2. Recommendation Consistency
+        # =========================================================
+        recs = business.get("per_recommendation", [])
+        if recs:
+            rec_avgs = [
+                sum(r["scores"].values()) / len(r["scores"])
+                for r in recs
+            ]
+            rec_mean = sum(rec_avgs) / len(rec_avgs)
+            rec_variance = sum((r - rec_mean) ** 2 for r in rec_avgs) / len(rec_avgs)
+
+            consistency = 1 - min(rec_variance, 1)
+            signals.append(consistency)
+
+        # =========================================================
+        # 3. Ground Truth Reliability
+        # =========================================================
+        if gt:
+            coverage = gt.get("coverage", 0)
+            avg_similarity = gt.get("avg_similarity", 0)
+
+            gt_reliability = (coverage + avg_similarity) / 2
+            signals.append(gt_reliability)
+
+        # =========================================================
+        # 4. Evaluation Noise (LLM usage)
+        # =========================================================
+        if gt:
+            llm_calls = gt.get("llm_calls", 0)
+            total_recs = gt.get("total_recommendations", 1)
+
+            noise_ratio = llm_calls / total_recs if total_recs else 1
+            noise_penalty = 1 - min(noise_ratio, 1)
+
+            signals.append(noise_penalty)
+
+        # =========================================================
+        # Final Confidence
+        # =========================================================
+        confidence = sum(signals) / len(signals)
+
+        return round(confidence, 3) , signals
     # =========================================================
     # 🔹 Decision Logic
     # =========================================================
 
-    def _build_decision(self, final_score: float, gt: Dict) -> Dict:
+    def _build_decision(self, final_score: float, gt: Dict,business, compliance) -> Dict:
 
         gt_score = gt.get("score", 0) if gt else 0
 
@@ -69,14 +131,17 @@ class DecisionInterpreter:
         else:
             status = "REJECT"
 
-        confidence = round((final_score + gt_score) / 2, 3)
+        confidence , signals = self._compute_confidence(
+            final_score, business, compliance, gt
+        )
 
         reason = self._decision_reason(final_score, gt_score)
 
         return {
             "status": status,
             "confidence": confidence,
-            "reason": reason
+            "reason": reason,
+            "signals" : signals
         }
 
     def _decision_reason(self, final_score, gt_score):
