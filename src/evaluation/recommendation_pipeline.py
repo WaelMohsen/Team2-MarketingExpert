@@ -1,6 +1,7 @@
-from src.evaluation.recommendation.evaluator import RecommendationEvaluator
 import json
-import os 
+import os
+
+from src.evaluation.recommendation.evaluator import RecommendationEvaluator
 
 
 class RecommendationPipeline:
@@ -26,23 +27,20 @@ class RecommendationPipeline:
                 return campaign["ground_truth"].get(target, [])
 
         return []
+
     def run(
         self,
         campaign_id: str,
         target: str,
         analysis_output: dict,
-        recommendation_output:list,
-        kpis: list
+        recommendation_output: list,
+        kpis: list,
     ):
 
         # ---------------------------
         # 🔹 Load Ground Truth
         # ---------------------------
-        gt_data = self.load_ground_truth(
-            self.gt_path,
-            campaign_id,
-            target
-        )
+        gt_data = self.load_ground_truth(self.gt_path, campaign_id, target)
 
         # ---------------------------
         # 🔹 Build Evaluation Input
@@ -51,7 +49,7 @@ class RecommendationPipeline:
             "output": recommendation_output,
             "analysis": analysis_output,
             "kpis": kpis,
-            "ground_truth": gt_data
+            "ground_truth": gt_data,
         }
 
         # ---------------------------

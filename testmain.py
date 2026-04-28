@@ -15,7 +15,7 @@ CATEGORIES = [
     "Revenue Growth",
     "Customer Retention",
 ]
-category=CATEGORIES[0]
+category = CATEGORIES[0]
 
 # Timestamp to create log dir for this run 
 starttimestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -60,11 +60,11 @@ logger.log(response_dict_data , "pipeline")
 campaign_id = "Spring Launch"
 target = CATEGORIES[0]
 
-analysis_output =response_dict_data.get("analysis" , {})
+analysis_output = response_dict_data.get("analysis", {})
 
 recommendation_output = response_dict_data.get("recommendations", [])
 
-kpis = response_dict_data.get("kpis",[])
+kpis = response_dict_data.get("kpis", [])
 
 analysis_obj = AnalysisOutput(**analysis_output)
 

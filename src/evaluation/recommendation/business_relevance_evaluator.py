@@ -1,4 +1,5 @@
 from typing import List
+
 from .config import BUSINESS_WEIGHTS
 
 
@@ -136,11 +137,9 @@ RETURN STRICT JSON:
         # ---------------------------
 
         overall_scores = result.get("overall", {}).get("scores", {})
-
-
+        
         final_score = sum(
-            overall_scores.get(k, 0) * BUSINESS_WEIGHTS[k]
-            for k in BUSINESS_WEIGHTS
+            overall_scores.get(k, 0) * BUSINESS_WEIGHTS[k] for k in BUSINESS_WEIGHTS
         )
 
         # ---------------------------
@@ -169,5 +168,6 @@ RETURN STRICT JSON:
             "overall": result.get("overall"),
             "per_recommendation": result.get("per_recommendation"),
             "flags": flags,
-            "weak_recommendations": weak_recs
+            "weak_recommendations": weak_recs,
         }
+    

@@ -1,0 +1,41 @@
+{
+    "overall_score": 3,
+    "overall_status": "borderline",
+    "criteria_scores": [
+        {
+            "name": "analysis",
+            "score": 4,
+            "rationale": "The analysis is mostly clear and avoids technical jargon, making it accessible to a business audience. It effectively discusses campaign performance and highlights key metrics."
+        },
+        {
+            "name": "key_signals",
+            "score": 3,
+            "rationale": "While some key signals are mentioned, they are somewhat generic and could be more specific to the campaign's unique data points to enhance clarity."
+        },
+        {
+            "name": "detected_issues",
+            "score": 4,
+            "rationale": "The detected issues are concrete and highlight the missing customer acquisition cost data, which is crucial for understanding campaign efficiency."
+        },
+        {
+            "name": "root_cause_hypothesis",
+            "score": 3,
+            "rationale": "The root cause hypothesis is logical but lacks depth in explaining how the identified issues directly lead to the proposed bottlenecks."
+        },
+        {
+            "name": "business_risks",
+            "score": 4,
+            "rationale": "The business risks are specific and clearly articulate potential financial implications, making them relevant for decision-making."
+        },
+        {
+            "name": "confidence_score",
+            "score": 2,
+            "rationale": "The confidence score of 0.0 is unrealistic given the analysis provided. A more appropriate score would reflect the strengths and weaknesses identified."
+        }
+    ],
+    "summary": "The analysis provides a solid overview but lacks some specificity and depth in certain areas.",
+    "improvement_suggestions": [
+        "Include specific customer acquisition cost data to enhance the analysis.",
+        "Provide more detailed insights into how detected issues lead to the proposed root causes."
+    ]
+}

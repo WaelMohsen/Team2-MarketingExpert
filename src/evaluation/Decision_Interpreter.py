@@ -131,7 +131,7 @@ class DecisionInterpreter:
         else:
             status = "REJECT"
 
-        confidence , signals = self._compute_confidence(
+        confidence  = self._compute_confidence(
             final_score, business, compliance, gt
         )
 

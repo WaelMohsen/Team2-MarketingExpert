@@ -1,0 +1,363 @@
+{
+    "metrics": {
+        "overall": {
+            "Campaign Name": "Spring Launch",
+            "Total Spend": 1630.0,
+            "Total Revenue": 12950.0,
+            "Total Impressions": 100000,
+            "Total Clicks": 4650,
+            "Total Conversions": 570,
+            "Total New Customers": 483,
+            "Conversion Rate": 12.26,
+            "CTR": 4.65,
+            "CPA": 3.37,
+            "ROAS": 7.94
+        },
+        "per_channel": {
+            "Email": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 100.0,
+                "Total Revenue": 1500.0,
+                "Total Impressions": 10000,
+                "Total Clicks": 600,
+                "Total Conversions": 80,
+                "Total New Customers": 68,
+                "Conversion Rate": 13.33,
+                "CTR": 6.0,
+                "CPA": 1.47,
+                "ROAS": 15.0
+            },
+            "Facebook": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 220.0,
+                "Total Revenue": 1100.0,
+                "Total Impressions": 13000,
+                "Total Clicks": 520,
+                "Total Conversions": 60,
+                "Total New Customers": 50,
+                "Conversion Rate": 11.54,
+                "CTR": 4.0,
+                "CPA": 4.4,
+                "ROAS": 5.0
+            },
+            "Google Ads": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 320.0,
+                "Total Revenue": 2400.0,
+                "Total Impressions": 18000,
+                "Total Clicks": 850,
+                "Total Conversions": 95,
+                "Total New Customers": 82,
+                "Conversion Rate": 11.18,
+                "CTR": 4.72,
+                "CPA": 3.9,
+                "ROAS": 7.5
+            },
+            "Instagram": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 450.0,
+                "Total Revenue": 3200.0,
+                "Total Impressions": 25000,
+                "Total Clicks": 1100,
+                "Total Conversions": 130,
+                "Total New Customers": 110,
+                "Conversion Rate": 11.82,
+                "CTR": 4.4,
+                "CPA": 4.09,
+                "ROAS": 7.11
+            },
+            "SMS": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 40.0,
+                "Total Revenue": 750.0,
+                "Total Impressions": 4000,
+                "Total Clicks": 280,
+                "Total Conversions": 55,
+                "Total New Customers": 48,
+                "Conversion Rate": 19.64,
+                "CTR": 7.0,
+                "CPA": 0.83,
+                "ROAS": 18.75
+            },
+            "TikTok": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 500.0,
+                "Total Revenue": 4000.0,
+                "Total Impressions": 30000,
+                "Total Clicks": 1300,
+                "Total Conversions": 150,
+                "Total New Customers": 125,
+                "Conversion Rate": 11.54,
+                "CTR": 4.33,
+                "CPA": 4.0,
+                "ROAS": 8.0
+            }
+        }
+    },
+    "kpis": [
+        "Campaign Name",
+        "Total Spend",
+        "Total Revenue",
+        "Total Impressions",
+        "Total Clicks",
+        "Total Conversions",
+        "Total New Customers",
+        "Conversion Rate",
+        "CTR",
+        "CPA",
+        "ROAS"
+    ],
+    "analysis": {
+        "analysis": "The overall campaign data indicates a very high conversion rate of 12.26%, significantly exceeding the industry benchmark of 1.4% to 2.5%. This suggests that the landing pages and conversion processes are functioning effectively. However, the customer acquisition cost is not explicitly provided, but can be inferred from the total spend and new customers. The total spend is $1630.00, and the total new customers acquired are 483, leading to an average customer acquisition cost of approximately $3.37. This is relatively low, indicating that the traffic costs are manageable. The cost per click across channels varies, with some channels like Email showing a very low cost per acquisition of $1.47 and a high return on advertising spend of 15.0. In contrast, channels like Facebook and Google Ads have higher costs per acquisition and lower returns. Therefore, while the conversion efficiency is strong, the cost per click in certain channels may be inflating overall customer acquisition costs. This indicates that the primary bottleneck is likely related to the traffic costs from certain channels rather than the conversion process itself.",
+        "key_signals": [
+            "Overall conversion rate is 12.26%, well above the benchmark.",
+            "Average customer acquisition cost is approximately $3.37."
+        ],
+        "detected_issues": [
+            "High customer acquisition costs in some channels.",
+            "Variability in cost per click across different channels."
+        ],
+        "root_cause_hypothesis": "The primary root cause is likely the traffic costs from certain channels, particularly Facebook and Google Ads, which may be inflating the overall customer acquisition costs despite high conversion rates.",
+        "business_risks": [
+            "Potential for increased customer acquisition costs if traffic costs remain high.",
+            "Risk of underperforming channels affecting overall campaign profitability."
+        ],
+        "confidence_score": 85.0
+    },
+    "recommendations": [
+        {
+            "id": "REC-01",
+            "title": "Optimize Ad Creatives for Facebook and Google Ads",
+            "category": "Creative",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "High",
+            "whats_happening": "High costs per click on Facebook and Google Ads are inflating customer acquisition costs.",
+            "evidence": [
+                "Facebook has a cost per acquisition of $4.4 and Google Ads has $3.9, which are higher than the average of $3.37."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Refresh ad creatives to improve engagement and click-through rates.",
+                    "where": "Facebook and Google Ads",
+                    "how": "Test new images, headlines, and calls to action to attract more clicks at a lower cost.",
+                    "guardrails": [
+                        "Ensure that new creatives align with brand messaging and target audience preferences."
+                    ]
+                }
+            ],
+            "why_this_matters": "Lowering costs per click will reduce overall customer acquisition costs, improving profitability.",
+            "expected_impact": {
+                "primary_kpi": "Customer Acquisition Cost",
+                "direction": "Decrease",
+                "explanation": "Improving ad creatives should lead to lower costs per click, thus reducing customer acquisition costs."
+            },
+            "dependency_or_risk": [
+                "Requires creative team resources and timely execution."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Compare customer acquisition costs before and after the creative refresh.",
+                "success_criteria": "Achieve a customer acquisition cost below $3.37.",
+                "check_timing": "Review results 2-4 weeks after implementing new creatives.",
+                "notes": "Consider seasonality and external factors that may influence performance."
+            },
+            "owner_suggestion": "Creative team"
+        },
+        {
+            "id": "REC-02",
+            "title": "Increase Budget for High-Performing Channels",
+            "category": "Budget",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "High",
+            "whats_happening": "Channels like Email and SMS show strong performance with low costs per acquisition.",
+            "evidence": [
+                "Email has a cost per acquisition of $1.47 and a return on advertising spend of 15.0, indicating high efficiency."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Reallocate budget to Email and SMS channels.",
+                    "where": "Cross-channel",
+                    "how": "Increase spending on Email and SMS to capitalize on their high return on investment.",
+                    "guardrails": [
+                        "Ensure that the overall budget does not exceed planned limits."
+                    ]
+                }
+            ],
+            "why_this_matters": "Investing in high-performing channels will maximize customer acquisition and revenue.",
+            "expected_impact": {
+                "primary_kpi": "New Customers",
+                "direction": "Increase",
+                "explanation": "More budget in efficient channels will lead to more new customers."
+            },
+            "dependency_or_risk": [
+                "Requires approval for budget reallocation."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Track new customer acquisition rates before and after budget changes.",
+                "success_criteria": "Increase new customers by at least 10% within the next campaign period.",
+                "check_timing": "Review results 2-4 weeks after budget adjustments.",
+                "notes": "Monitor performance closely to ensure funds are used effectively."
+            },
+            "owner_suggestion": "Finance team"
+        },
+        {
+            "id": "REC-03",
+            "title": "Conduct A/B Testing on Landing Pages",
+            "category": "Landing_Page",
+            "priority": "Medium",
+            "effort": "High",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "Medium",
+            "whats_happening": "While conversion rates are high, optimizing landing pages could further enhance performance.",
+            "evidence": [
+                "Overall conversion rate is 12.26%, indicating effective landing pages, but testing could reveal further improvements."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Create variations of landing pages to test different layouts and content.",
+                    "where": "Website",
+                    "how": "Use A/B testing tools to compare performance of different landing page designs.",
+                    "guardrails": [
+                        "Ensure that the tests are statistically significant and do not disrupt user experience."
+                    ]
+                }
+            ],
+            "why_this_matters": "Improving landing pages can lead to even higher conversion rates, maximizing customer acquisition.",
+            "expected_impact": {
+                "primary_kpi": "Conversion Rate",
+                "direction": "Improve",
+                "explanation": "Optimized landing pages can increase the conversion rate, leading to more customers."
+            },
+            "dependency_or_risk": [
+                "Requires web development resources and time for implementation."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Compare conversion rates of the original and new landing pages.",
+                "success_criteria": "Achieve a conversion rate increase of at least 5%.",
+                "check_timing": "Review results after 2-4 weeks of testing.",
+                "notes": "Consider external factors that may affect user behavior."
+            },
+            "owner_suggestion": "Web team"
+        },
+        {
+            "id": "REC-04",
+            "title": "Monitor and Adjust Bidding Strategies",
+            "category": "Bidding",
+            "priority": "Medium",
+            "effort": "Medium",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "Medium",
+            "whats_happening": "Bidding strategies may need adjustment to optimize costs across channels.",
+            "evidence": [
+                "High costs per click in certain channels suggest that current bidding strategies may not be effective."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Review and adjust bidding strategies for Facebook and Google Ads.",
+                    "where": "Facebook and Google Ads",
+                    "how": "Analyze performance data and adjust bids to optimize for lower costs per click.",
+                    "guardrails": [
+                        "Avoid drastic changes that could negatively impact visibility."
+                    ]
+                }
+            ],
+            "why_this_matters": "Optimizing bidding can lower costs and improve overall campaign efficiency.",
+            "expected_impact": {
+                "primary_kpi": "Cost Per Click",
+                "direction": "Decrease",
+                "explanation": "Better bidding strategies should lower costs per click, improving customer acquisition costs."
+            },
+            "dependency_or_risk": [
+                "Requires access to performance data and analytics tools."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Track cost per click before and after adjustments.",
+                "success_criteria": "Achieve a cost per click reduction of at least 10%.",
+                "check_timing": "Review results 1-2 weeks after adjustments.",
+                "notes": "Monitor for any changes in click volume or quality."
+            },
+            "owner_suggestion": "Media buyer"
+        },
+        {
+            "id": "REC-05",
+            "title": "Enhance Targeting for Underperforming Channels",
+            "category": "Targeting",
+            "priority": "Low",
+            "effort": "Medium",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "Medium",
+            "whats_happening": "Some channels are underperforming and may benefit from refined targeting.",
+            "evidence": [
+                "Facebook and Google Ads have higher costs per acquisition compared to Email and SMS."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Refine audience targeting for Facebook and Google Ads.",
+                    "where": "Facebook and Google Ads",
+                    "how": "Use audience insights to adjust targeting parameters and reach more relevant users.",
+                    "guardrails": [
+                        "Ensure that targeting changes do not exclude potential valuable customers."
+                    ]
+                }
+            ],
+            "why_this_matters": "Better targeting can improve engagement and reduce costs in underperforming channels.",
+            "expected_impact": {
+                "primary_kpi": "New Customers",
+                "direction": "Increase",
+                "explanation": "More relevant targeting should lead to higher conversion rates and more new customers."
+            },
+            "dependency_or_risk": [
+                "Requires access to audience data and insights."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Compare new customer acquisition rates before and after targeting adjustments.",
+                "success_criteria": "Increase new customers from Facebook and Google Ads by at least 15%.",
+                "check_timing": "Review results 2-4 weeks after adjustments.",
+                "notes": "Consider external factors that may influence performance."
+            },
+            "owner_suggestion": "Analytics team"
+        },
+        {
+            "id": "REC-06",
+            "title": "Implement Retargeting Campaigns",
+            "category": "Channel_Mix",
+            "priority": "Low",
+            "effort": "Medium",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "Medium",
+            "whats_happening": "Retargeting can help convert users who showed interest but did not convert.",
+            "evidence": [
+                "High bounce rates indicate potential interest that is not being captured."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Set up retargeting campaigns for users who clicked but did not convert.",
+                    "where": "Cross-channel",
+                    "how": "Use tracking pixels to identify and retarget these users with tailored ads.",
+                    "guardrails": [
+                        "Avoid overwhelming users with too many ads."
+                    ]
+                }
+            ],
+            "why_this_matters": "Retargeting can increase conversion rates by re-engaging interested users.",
+            "expected_impact": {
+                "primary_kpi": "Conversion Rate",
+                "direction": "Increase",
+                "explanation": "Re-engaging users who showed interest can lead to higher conversion rates."
+            },
+            "dependency_or_risk": [
+                "Requires proper tracking setup and creative resources."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Track conversion rates from retargeted users compared to non-retargeted users.",
+                "success_criteria": "Achieve a conversion rate increase of at least 5% from retargeted campaigns.",
+                "check_timing": "Review results 2-4 weeks after campaign launch.",
+                "notes": "Monitor for any changes in user engagement."
+            },
+            "owner_suggestion": "Media buyer"
+        }
+    ]
+}

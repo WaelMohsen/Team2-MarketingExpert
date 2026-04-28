@@ -1,5 +1,6 @@
+from typing import Dict, List
+
 import numpy as np
-from typing import List, Dict
 from sklearn.metrics.pairwise import cosine_similarity
 
 
@@ -48,7 +49,7 @@ class HybridEvaluator:
     # 🔹 LLM fallback comparison
     # =========================================================
 
-    def _llm_compare(self, rec:List[dict], gt: List[dict]) -> float:
+    def _llm_compare(self, rec: List[dict], gt: List[dict]) -> float:
         prompt = f"""
 Compare these two marketing recommendations:
 
@@ -74,20 +75,13 @@ Return ONLY a number.
     # 🔹 MAIN Evaluation
     # =========================================================
 
-    def evaluate(
-        self,
-        recommendations: List[dict],
-        ground_truth: List[dict]
-    ) -> Dict:
+    def evaluate(self, recommendations: List[dict], ground_truth: List[dict]) -> Dict:
 
         # ---------------------------
         # Input validation
         # ---------------------------
         if not recommendations or not ground_truth:
-            return {
-                "score": 0,
-                "error": "missing_data"
-            }
+            return {"score": 0, "error": "missing_data"}
 
         # ---------------------------
         # Prepare text
@@ -118,6 +112,9 @@ Return ONLY a number.
             sim_score = float(sim_matrix[i][best_idx])
             gt = ground_truth[best_idx]
 
+            # Initialize llm_score
+            llm_score = None
+
             # Decide scoring strategy
             if sim_score >= self.high_threshold:
                 final_score = sim_score
@@ -139,7 +136,7 @@ Return ONLY a number.
                 "rec_id": rec.get("id"),
                 "matched_gt_id": gt.get("id"),
                 "similarity": round(sim_score, 3),
-                "llm_score": round(llm_score , 3)
+                "llm_score": round(llm_score, 3) if llm_score is not None else None
             })
 
             matched_gt_indices.add(best_idx)
@@ -187,7 +184,7 @@ Return ONLY a number.
         if avg_similarity < 0.6:
             flags.append("low_similarity_to_expert")
 
-        if len(missed_gt)>=2:
+        if len(missed_gt) >= 2:
             flags.append(f"missing_key_GT_Recommendations : {len(missed_gt)}")
 
         # ---------------------------
@@ -198,7 +195,7 @@ Return ONLY a number.
             "avg_similarity": round(avg_similarity, 3),
             "coverage": round(coverage, 3),
             "llm_calls": total_llm_calls,
-
+            
             # Explainability
             "matches": matches,
             "missed_ground_truth": missed_gt,
@@ -206,5 +203,5 @@ Return ONLY a number.
             # Diagnostics
             "flags": flags,
             "total_recommendations": len(recommendations),
-            "total_ground_truth": len(ground_truth)
+            "total_ground_truth": len(ground_truth),
         }

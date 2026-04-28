@@ -1,0 +1,364 @@
+{
+    "metrics": {
+        "overall": {
+            "Campaign Name": "Spring Launch",
+            "Total Spend": 1630.0,
+            "Total Revenue": 12950.0,
+            "Total Impressions": 100000,
+            "Total Clicks": 4650,
+            "Total Conversions": 570,
+            "Total New Customers": 483,
+            "Conversion Rate": 12.26,
+            "CTR": 4.65,
+            "CPA": 3.37,
+            "ROAS": 7.94
+        },
+        "per_channel": {
+            "Email": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 100.0,
+                "Total Revenue": 1500.0,
+                "Total Impressions": 10000,
+                "Total Clicks": 600,
+                "Total Conversions": 80,
+                "Total New Customers": 68,
+                "Conversion Rate": 13.33,
+                "CTR": 6.0,
+                "CPA": 1.47,
+                "ROAS": 15.0
+            },
+            "Facebook": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 220.0,
+                "Total Revenue": 1100.0,
+                "Total Impressions": 13000,
+                "Total Clicks": 520,
+                "Total Conversions": 60,
+                "Total New Customers": 50,
+                "Conversion Rate": 11.54,
+                "CTR": 4.0,
+                "CPA": 4.4,
+                "ROAS": 5.0
+            },
+            "Google Ads": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 320.0,
+                "Total Revenue": 2400.0,
+                "Total Impressions": 18000,
+                "Total Clicks": 850,
+                "Total Conversions": 95,
+                "Total New Customers": 82,
+                "Conversion Rate": 11.18,
+                "CTR": 4.72,
+                "CPA": 3.9,
+                "ROAS": 7.5
+            },
+            "Instagram": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 450.0,
+                "Total Revenue": 3200.0,
+                "Total Impressions": 25000,
+                "Total Clicks": 1100,
+                "Total Conversions": 130,
+                "Total New Customers": 110,
+                "Conversion Rate": 11.82,
+                "CTR": 4.4,
+                "CPA": 4.09,
+                "ROAS": 7.11
+            },
+            "SMS": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 40.0,
+                "Total Revenue": 750.0,
+                "Total Impressions": 4000,
+                "Total Clicks": 280,
+                "Total Conversions": 55,
+                "Total New Customers": 48,
+                "Conversion Rate": 19.64,
+                "CTR": 7.0,
+                "CPA": 0.83,
+                "ROAS": 18.75
+            },
+            "TikTok": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 500.0,
+                "Total Revenue": 4000.0,
+                "Total Impressions": 30000,
+                "Total Clicks": 1300,
+                "Total Conversions": 150,
+                "Total New Customers": 125,
+                "Conversion Rate": 11.54,
+                "CTR": 4.33,
+                "CPA": 4.0,
+                "ROAS": 8.0
+            }
+        }
+    },
+    "kpis": [
+        "Campaign Name",
+        "Total Spend",
+        "Total Revenue",
+        "Total Impressions",
+        "Total Clicks",
+        "Total Conversions",
+        "Total New Customers",
+        "Conversion Rate",
+        "CTR",
+        "CPA",
+        "ROAS"
+    ],
+    "analysis": {
+        "analysis": "The overall campaign shows a high conversion rate of 12.26%, significantly exceeding the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages and conversion processes are functioning effectively. However, the customer acquisition cost is not provided directly, but we can infer it from the total spend and new customers. The total spend is $1630.00, and there are 483 new customers, resulting in a customer acquisition cost of approximately $3.37. This is relatively low, suggesting that the cost to acquire each customer is efficient. Additionally, the return on advertising spend is 7.94, indicating that for every dollar spent, the campaign generates nearly eight dollars in revenue. Therefore, the campaign appears to be performing well overall, with strong conversion efficiency and a good return on investment.",
+        "key_signals": [
+            "Conversion Rate is 12.26%",
+            "Customer Acquisition Cost is approximately $3.37",
+            "Return on Advertising Spend is 7.94"
+        ],
+        "detected_issues": [],
+        "root_cause_hypothesis": "The campaign is performing well with no significant issues detected in the conversion process or customer acquisition costs.",
+        "business_risks": [],
+        "confidence_score": 0.0
+    },
+    "recommendations": [
+        {
+            "id": "REC-01",
+            "title": "Maintain and Scale Successful Channels",
+            "category": "Channel_Mix",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "High",
+            "whats_happening": "The campaign is performing well with a high conversion rate and low customer acquisition cost.",
+            "evidence": [
+                "Overall conversion rate is 12.26%, significantly above the benchmark.",
+                "Customer acquisition cost is approximately $3.37, indicating efficiency."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Increase budget allocation for high-performing channels",
+                    "where": "cross-channel",
+                    "how": "Focus on channels like SMS and Email that show the highest return on investment and conversion rates.",
+                    "guardrails": [
+                        "Ensure not to overspend in low-performing channels."
+                    ]
+                }
+            ],
+            "why_this_matters": "Scaling successful channels can lead to increased customer acquisition and revenue growth.",
+            "expected_impact": {
+                "primary_kpi": "Total New Customers",
+                "direction": "Increase",
+                "explanation": "Investing more in successful channels will likely attract more customers."
+            },
+            "dependency_or_risk": [
+                "Requires ongoing monitoring of channel performance to avoid diminishing returns."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Compare new customer acquisition before and after budget adjustments.",
+                "success_criteria": "Increase in new customers by at least 10% within the next campaign cycle.",
+                "check_timing": "Review results after 4 weeks of budget adjustments.",
+                "notes": "Monitor for any changes in customer acquisition cost."
+            },
+            "owner_suggestion": "Media buyer"
+        },
+        {
+            "id": "REC-02",
+            "title": "Optimize Underperforming Channels",
+            "category": "Channel_Mix",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "High",
+            "whats_happening": "Some channels are underperforming in terms of conversion rates and customer acquisition costs.",
+            "evidence": [
+                "Facebook has a conversion rate of 11.54%, which is lower than other channels like SMS.",
+                "Google Ads has a conversion rate of 11.18%, indicating potential for improvement."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Conduct A/B testing on ad creatives for Facebook and Google Ads",
+                    "where": "Facebook, Google Ads",
+                    "how": "Test different ad formats and messaging to see what resonates better with the audience.",
+                    "guardrails": [
+                        "Avoid making too many changes at once to accurately measure impact."
+                    ]
+                }
+            ],
+            "why_this_matters": "Improving these channels can enhance overall campaign performance and reduce customer acquisition costs.",
+            "expected_impact": {
+                "primary_kpi": "Conversion Rate",
+                "direction": "Improve",
+                "explanation": "Better ad creatives should lead to higher engagement and conversion rates."
+            },
+            "dependency_or_risk": [
+                "Requires creative resources and time for testing."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Monitor conversion rates and customer acquisition costs for Facebook and Google Ads before and after testing.",
+                "success_criteria": "Achieve at least a 15% improvement in conversion rates within 2 weeks.",
+                "check_timing": "Review results after 2 weeks of implementing changes.",
+                "notes": "Consider seasonality effects on performance."
+            },
+            "owner_suggestion": "Creative team"
+        },
+        {
+            "id": "REC-03",
+            "title": "Enhance Landing Page Experience",
+            "category": "Landing_Page",
+            "priority": "Medium",
+            "effort": "High",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "Medium",
+            "whats_happening": "While the overall conversion rate is high, there may still be room for improvement in the landing page experience.",
+            "evidence": [
+                "Bounce rates vary across channels, with Email at 36% and SMS at 19%, indicating potential issues with landing pages.",
+                "High bounce rates can suggest that users are not finding what they expect."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Review and optimize landing pages for all channels",
+                    "where": "cross-channel",
+                    "how": "Ensure that landing pages are aligned with ad messaging and provide a seamless user experience.",
+                    "guardrails": [
+                        "Do not change the entire layout at once; implement changes incrementally."
+                    ]
+                }
+            ],
+            "why_this_matters": "Improving landing page experience can further increase conversion rates and customer satisfaction.",
+            "expected_impact": {
+                "primary_kpi": "Conversion Rate",
+                "direction": "Improve",
+                "explanation": "A better landing page experience should lead to lower bounce rates and higher conversions."
+            },
+            "dependency_or_risk": [
+                "Requires collaboration with web development and design teams."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Analyze bounce rates and conversion rates before and after landing page optimizations.",
+                "success_criteria": "Achieve a reduction in bounce rates by at least 10% and an increase in conversions by 5%.",
+                "check_timing": "Review results after 4 weeks of changes.",
+                "notes": "Ensure to track user feedback for qualitative insights."
+            },
+            "owner_suggestion": "Web team"
+        },
+        {
+            "id": "REC-04",
+            "title": "Leverage Customer Retention Strategies",
+            "category": "Retention",
+            "priority": "Medium",
+            "effort": "Medium",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "Medium",
+            "whats_happening": "The campaign has a solid base of retained customers, but there is potential to enhance retention further.",
+            "evidence": [
+                "Churn rate is at 8%, indicating that some customers are leaving after their initial purchase.",
+                "Retained customers are a significant source of revenue."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Implement a customer loyalty program",
+                    "where": "cross-channel",
+                    "how": "Create incentives for repeat purchases, such as discounts or exclusive offers for returning customers.",
+                    "guardrails": [
+                        "Ensure the program is financially sustainable and does not erode profit margins."
+                    ]
+                }
+            ],
+            "why_this_matters": "Increasing customer retention can lead to higher lifetime value and more stable revenue streams.",
+            "expected_impact": {
+                "primary_kpi": "Retained Customers",
+                "direction": "Increase",
+                "explanation": "A loyalty program can encourage repeat purchases and reduce churn."
+            },
+            "dependency_or_risk": [
+                "Requires investment in program development and marketing."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Track the number of repeat purchases and changes in churn rate before and after program implementation.",
+                "success_criteria": "Increase repeat purchases by 15% within 2 months of launching the program.",
+                "check_timing": "Review results after 2 months.",
+                "notes": "Monitor customer feedback to refine the program."
+            },
+            "owner_suggestion": "Sales Enablement team"
+        },
+        {
+            "id": "REC-05",
+            "title": "Monitor and Adjust Bidding Strategies",
+            "category": "Bidding",
+            "priority": "Low",
+            "effort": "Medium",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "Medium",
+            "whats_happening": "Bidding strategies may need adjustments to optimize spending across channels.",
+            "evidence": [
+                "Customer acquisition cost is low, but there may be opportunities to lower costs further by adjusting bids based on performance.",
+                "High-performing channels may benefit from increased bids to capture more traffic."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Review bidding strategies for all channels",
+                    "where": "cross-channel",
+                    "how": "Adjust bids based on channel performance and customer acquisition costs to maximize efficiency.",
+                    "guardrails": [
+                        "Avoid drastic changes that could disrupt current performance."
+                    ]
+                }
+            ],
+            "why_this_matters": "Optimizing bids can lead to lower costs and improved return on investment.",
+            "expected_impact": {
+                "primary_kpi": "Customer Acquisition Cost",
+                "direction": "Decrease",
+                "explanation": "Better bidding strategies should lower costs while maintaining performance."
+            },
+            "dependency_or_risk": [
+                "Requires ongoing analysis of channel performance and market conditions."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Compare customer acquisition costs before and after bid adjustments across channels.",
+                "success_criteria": "Achieve a reduction in customer acquisition cost by at least 10%.",
+                "check_timing": "Review results after 2 weeks of adjustments.",
+                "notes": "Consider external factors that may influence performance."
+            },
+            "owner_suggestion": "Media buyer"
+        },
+        {
+            "id": "REC-06",
+            "title": "Increase Engagement on Social Media",
+            "category": "Creative",
+            "priority": "Low",
+            "effort": "Medium",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "Medium",
+            "whats_happening": "Social media engagement metrics indicate potential for improvement, particularly on platforms like Facebook.",
+            "evidence": [
+                "Facebook has lower engagement rates compared to other channels, with only 4.0% click-through rate.",
+                "Higher engagement can lead to better conversion rates."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Enhance social media content strategy",
+                    "where": "Facebook",
+                    "how": "Create more engaging content, such as videos or interactive posts, to boost user interaction and click-through rates.",
+                    "guardrails": [
+                        "Ensure content aligns with brand messaging and does not overwhelm followers."
+                    ]
+                }
+            ],
+            "why_this_matters": "Improving engagement can lead to more clicks and conversions from social media channels.",
+            "expected_impact": {
+                "primary_kpi": "Click-Through Rate",
+                "direction": "Improve",
+                "explanation": "More engaging content should increase user interaction and drive more traffic."
+            },
+            "dependency_or_risk": [
+                "Requires creative resources and time to develop new content."
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Monitor click-through rates and engagement metrics before and after content changes.",
+                "success_criteria": "Achieve at least a 10% increase in click-through rates within 2 weeks.",
+                "check_timing": "Review results after 2 weeks of implementing new content.",
+                "notes": "Consider audience feedback to refine content strategy."
+            },
+            "owner_suggestion": "Creative team"
+        }
+    ]
+}

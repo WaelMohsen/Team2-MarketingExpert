@@ -197,9 +197,17 @@ class AnalysisJudge:
     ) -> JudgeVerdict:
         criteria_text = self._build_criteria_text()
 
-        formatted_issues = "\n- ".join(analysis.detected_issues) if analysis.detected_issues else "None"
-        formatted_signals = "\n- ".join(analysis.key_signals) if analysis.key_signals else "None"
-        formatted_risks = "\n- ".join(analysis.business_risks) if analysis.business_risks else "None"
+        formatted_issues = (
+            "\n- ".join(analysis.detected_issues)
+            if analysis.detected_issues
+            else "None"
+        )
+        formatted_signals = (
+            "\n- ".join(analysis.key_signals) if analysis.key_signals else "None"
+        )
+        formatted_risks = (
+            "\n- ".join(analysis.business_risks) if analysis.business_risks else "None"
+        )
 
         user_prompt = JUDGE_USER_PROMPT.format(
             context=context,

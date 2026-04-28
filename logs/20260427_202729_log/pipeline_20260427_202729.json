@@ -1,0 +1,377 @@
+{
+    "metrics": {
+        "overall": {
+            "Campaign Name": "Spring Launch",
+            "Total Spend": 1630.0,
+            "Total Revenue": 12950.0,
+            "Total Impressions": 100000,
+            "Total Clicks": 4650,
+            "Total Conversions": 570,
+            "Total New Customers": 483,
+            "Conversion Rate": 12.26,
+            "CTR": 4.65,
+            "CPA": 3.37,
+            "ROAS": 7.94
+        },
+        "per_channel": {
+            "Email": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 100.0,
+                "Total Revenue": 1500.0,
+                "Total Impressions": 10000,
+                "Total Clicks": 600,
+                "Total Conversions": 80,
+                "Total New Customers": 68,
+                "Conversion Rate": 13.33,
+                "CTR": 6.0,
+                "CPA": 1.47,
+                "ROAS": 15.0
+            },
+            "Facebook": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 220.0,
+                "Total Revenue": 1100.0,
+                "Total Impressions": 13000,
+                "Total Clicks": 520,
+                "Total Conversions": 60,
+                "Total New Customers": 50,
+                "Conversion Rate": 11.54,
+                "CTR": 4.0,
+                "CPA": 4.4,
+                "ROAS": 5.0
+            },
+            "Google Ads": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 320.0,
+                "Total Revenue": 2400.0,
+                "Total Impressions": 18000,
+                "Total Clicks": 850,
+                "Total Conversions": 95,
+                "Total New Customers": 82,
+                "Conversion Rate": 11.18,
+                "CTR": 4.72,
+                "CPA": 3.9,
+                "ROAS": 7.5
+            },
+            "Instagram": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 450.0,
+                "Total Revenue": 3200.0,
+                "Total Impressions": 25000,
+                "Total Clicks": 1100,
+                "Total Conversions": 130,
+                "Total New Customers": 110,
+                "Conversion Rate": 11.82,
+                "CTR": 4.4,
+                "CPA": 4.09,
+                "ROAS": 7.11
+            },
+            "SMS": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 40.0,
+                "Total Revenue": 750.0,
+                "Total Impressions": 4000,
+                "Total Clicks": 280,
+                "Total Conversions": 55,
+                "Total New Customers": 48,
+                "Conversion Rate": 19.64,
+                "CTR": 7.0,
+                "CPA": 0.83,
+                "ROAS": 18.75
+            },
+            "TikTok": {
+                "Campaign Name": "Spring Launch",
+                "Total Spend": 500.0,
+                "Total Revenue": 4000.0,
+                "Total Impressions": 30000,
+                "Total Clicks": 1300,
+                "Total Conversions": 150,
+                "Total New Customers": 125,
+                "Conversion Rate": 11.54,
+                "CTR": 4.33,
+                "CPA": 4.0,
+                "ROAS": 8.0
+            }
+        }
+    },
+    "kpis": [
+        "Campaign Name",
+        "Total Spend",
+        "Total Revenue",
+        "Total Impressions",
+        "Total Clicks",
+        "Total Conversions",
+        "Total New Customers",
+        "Conversion Rate",
+        "CTR",
+        "CPA",
+        "ROAS"
+    ],
+    "analysis": {
+        "analysis": "The overall campaign shows a very high conversion rate of 12.26%, which significantly exceeds the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages and conversion processes are functioning effectively. However, the customer acquisition cost is not provided in the overall metrics, making it difficult to assess the cost efficiency directly. The cost per click is also not detailed, but the overall return on advertising spend is 7.94, suggesting that the campaign is generating substantial revenue relative to its costs. The individual channel analysis reveals that while some channels like SMS have a high conversion rate of 19.64% and a low cost per acquisition of 0.83, others like Facebook and Google Ads show lower conversion rates and higher costs per acquisition. This suggests variability in performance across channels, with some channels performing better than others in terms of converting clicks into customers.",
+        "key_signals": [
+            "Overall conversion rate is 12.26%, significantly above the benchmark",
+            "Return on advertising spend is 7.94, indicating good revenue generation"
+        ],
+        "detected_issues": [
+            "Variability in performance across different channels",
+            "Lack of detailed cost per click data"
+        ],
+        "root_cause_hypothesis": "The high conversion rate suggests that the landing pages are effective, but the variability in channel performance indicates potential issues with ad creatives or targeting in lower-performing channels.",
+        "business_risks": [
+            "Potential overspending on less effective channels",
+            "Inability to scale effectively due to inconsistent performance across channels"
+        ],
+        "confidence_score": 85.0
+    },
+    "recommendations": [
+        {
+            "id": "REC-01",
+            "title": "Optimize Ad Creatives for Low-Performing Channels",
+            "category": "Creative",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "High",
+            "whats_happening": "Some channels like Facebook and Google Ads are underperforming in conversion rates and have higher costs per acquisition.",
+            "evidence": [
+                "Facebook conversion rate: 11.54%, CPA: 4.4",
+                "Google Ads conversion rate: 11.18%, CPA: 3.9"
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Revise and test new ad creatives",
+                    "where": "Facebook and Google Ads",
+                    "how": "Develop new visuals and messaging that resonate better with the target audience.",
+                    "guardrails": [
+                        "Ensure new creatives align with brand guidelines",
+                        "Avoid drastic changes that could confuse existing customers"
+                    ]
+                }
+            ],
+            "why_this_matters": "Improving ad creatives can lower costs and increase the number of new customers acquired.",
+            "expected_impact": {
+                "primary_kpi": "Customer Acquisition Cost",
+                "direction": "Decrease",
+                "explanation": "Better ad creatives should lead to lower costs per acquisition."
+            },
+            "dependency_or_risk": [
+                "Requires collaboration with the creative team",
+                "Potential for initial increased costs during testing"
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Compare customer acquisition costs before and after implementing new creatives",
+                "success_criteria": "Achieve a customer acquisition cost below $3.00",
+                "check_timing": "Review results after 4 weeks of running new creatives",
+                "notes": "Monitor for any changes in overall campaign performance during the testing phase."
+            },
+            "owner_suggestion": "Creative team"
+        },
+        {
+            "id": "REC-02",
+            "title": "Increase Budget for High-Performing Channels",
+            "category": "Budget",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "High",
+            "whats_happening": "Channels like SMS and TikTok are performing well with high conversion rates and low costs per acquisition.",
+            "evidence": [
+                "SMS conversion rate: 19.64%, CPA: 0.83",
+                "TikTok conversion rate: 11.54%, CPA: 4.0"
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Reallocate budget to SMS and TikTok",
+                    "where": "Cross-channel",
+                    "how": "Increase the advertising spend for SMS and TikTok to capitalize on their high performance.",
+                    "guardrails": [
+                        "Ensure that the overall budget remains within limits",
+                        "Monitor performance closely to avoid diminishing returns"
+                    ]
+                }
+            ],
+            "why_this_matters": "Investing more in effective channels can lead to a higher number of new customers and better overall campaign performance.",
+            "expected_impact": {
+                "primary_kpi": "New Customers",
+                "direction": "Increase",
+                "explanation": "More budget in effective channels should drive more customer acquisitions."
+            },
+            "dependency_or_risk": [
+                "Requires approval for budget changes",
+                "Risk of oversaturation in high-performing channels"
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Track the number of new customers acquired from SMS and TikTok before and after budget increase",
+                "success_criteria": "Increase new customers from these channels by at least 20%",
+                "check_timing": "Review results after 2 weeks of increased spending",
+                "notes": "Be cautious of potential market saturation."
+            },
+            "owner_suggestion": "Media buyer"
+        },
+        {
+            "id": "REC-03",
+            "title": "Conduct A/B Testing on Landing Pages",
+            "category": "Landing_Page",
+            "priority": "Medium",
+            "effort": "High",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "Medium",
+            "whats_happening": "While the overall conversion rate is high, there may still be opportunities to improve landing page performance further.",
+            "evidence": [
+                "Overall conversion rate is 12.26%, but variability exists across channels."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Create variations of landing pages",
+                    "where": "Website",
+                    "how": "Test different layouts, headlines, and calls to action to see which performs best.",
+                    "guardrails": [
+                        "Keep the original landing page live during testing",
+                        "Avoid making too many changes at once"
+                    ]
+                }
+            ],
+            "why_this_matters": "Optimizing landing pages can further enhance conversion rates and reduce costs.",
+            "expected_impact": {
+                "primary_kpi": "Conversion Rate",
+                "direction": "Improve",
+                "explanation": "Better landing pages should lead to even higher conversion rates."
+            },
+            "dependency_or_risk": [
+                "Requires web development resources",
+                "Potential for temporary drops in performance during testing"
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Compare conversion rates of the original landing page with the variations",
+                "success_criteria": "Achieve a conversion rate increase of at least 5%",
+                "check_timing": "Review results after 4 weeks of testing",
+                "notes": "Consider seasonality effects on traffic."
+            },
+            "owner_suggestion": "Web team"
+        },
+        {
+            "id": "REC-04",
+            "title": "Analyze and Adjust Targeting for Underperforming Channels",
+            "category": "Targeting",
+            "priority": "Medium",
+            "effort": "Medium",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "Medium",
+            "whats_happening": "Channels like Facebook and Google Ads are not converting as well as expected, indicating potential targeting issues.",
+            "evidence": [
+                "Facebook CPA: 4.4, Google Ads CPA: 3.9"
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Review and refine audience targeting",
+                    "where": "Facebook and Google Ads",
+                    "how": "Analyze current audience segments and adjust targeting parameters to reach more relevant users.",
+                    "guardrails": [
+                        "Avoid overly broad targeting that could dilute effectiveness",
+                        "Ensure compliance with advertising policies"
+                    ]
+                }
+            ],
+            "why_this_matters": "Improving targeting can lead to better engagement and conversion rates, reducing costs.",
+            "expected_impact": {
+                "primary_kpi": "Customer Acquisition Cost",
+                "direction": "Decrease",
+                "explanation": "Better targeting should lead to lower costs per acquisition."
+            },
+            "dependency_or_risk": [
+                "Requires access to audience insights and analytics tools",
+                "Risk of misalignment with brand messaging"
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Track customer acquisition costs before and after adjustments",
+                "success_criteria": "Achieve a customer acquisition cost below $3.00",
+                "check_timing": "Review results after 2 weeks of adjustments",
+                "notes": "Monitor for any changes in overall campaign performance."
+            },
+            "owner_suggestion": "Analytics"
+        },
+        {
+            "id": "REC-05",
+            "title": "Implement Regular Performance Reviews",
+            "category": "Other",
+            "priority": "Medium",
+            "effort": "Low",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "High",
+            "whats_happening": "Current analysis shows variability in performance across channels, indicating a need for ongoing monitoring.",
+            "evidence": [
+                "Variability in performance across different channels"
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Set up a schedule for performance reviews",
+                    "where": "Cross-channel",
+                    "how": "Establish a bi-weekly review process to analyze campaign performance and make adjustments as needed.",
+                    "guardrails": [
+                        "Ensure all stakeholders are informed of performance metrics",
+                        "Avoid making hasty decisions without sufficient data"
+                    ]
+                }
+            ],
+            "why_this_matters": "Regular reviews will help identify issues early and optimize spending across channels.",
+            "expected_impact": {
+                "primary_kpi": "Overall Campaign Efficiency",
+                "direction": "Improve",
+                "explanation": "Ongoing monitoring will enhance decision-making and resource allocation."
+            },
+            "dependency_or_risk": [
+                "Requires commitment from all stakeholders",
+                "Potential for analysis paralysis if not managed well"
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Compare performance metrics over time to identify trends",
+                "success_criteria": "Identify and address at least one performance issue per review",
+                "check_timing": "Review results after each bi-weekly meeting",
+                "notes": "Ensure that all relevant data is available for analysis."
+            },
+            "owner_suggestion": "Analytics"
+        },
+        {
+            "id": "REC-06",
+            "title": "Gather Detailed Cost Per Click Data",
+            "category": "Tracking",
+            "priority": "Low",
+            "effort": "Medium",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "Medium",
+            "whats_happening": "Lack of detailed cost per click data limits the ability to assess cost efficiency directly.",
+            "evidence": [
+                "Cost per click data is not provided in overall metrics."
+            ],
+            "what_you_should_do": [
+                {
+                    "step": "Request detailed cost per click reports from advertising platforms",
+                    "where": "Cross-channel",
+                    "how": "Contact each advertising platform to obtain detailed cost per click data for all channels.",
+                    "guardrails": [
+                        "Ensure that data is requested in a timely manner",
+                        "Avoid relying solely on one source for data"
+                    ]
+                }
+            ],
+            "why_this_matters": "Understanding cost per click will help assess the efficiency of each channel and inform future budget decisions.",
+            "expected_impact": {
+                "primary_kpi": "Cost Per Click",
+                "direction": "Decrease",
+                "explanation": "Better data will allow for more informed decisions on budget allocation."
+            },
+            "dependency_or_risk": [
+                "Requires cooperation from advertising platforms",
+                "Potential delays in receiving data"
+            ],
+            "measurement_plan": {
+                "how_to_measure": "Compare cost per click data across channels once received",
+                "success_criteria": "Establish a baseline for cost per click across all channels",
+                "check_timing": "Review results after data is received",
+                "notes": "Consider potential discrepancies in data reporting."
+            },
+            "owner_suggestion": "Analytics"
+        }
+    ]
+}

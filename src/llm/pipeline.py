@@ -1,12 +1,14 @@
-import os
 import json
+import os
 from datetime import datetime
 
 from src.llm.client import chat_completion, get_client
-from ..schemas.analysis_output_schema import AnalysisOutput
-from ..schemas.analysis_output_schema import validate_analysis_output
-from ..schemas.recommendation_output_schema import RecommendationOutput
-from ..schemas.recommendation_output_schema import validate_recommendation_output
+
+from ..schemas.analysis_output_schema import AnalysisOutput, validate_analysis_output
+from ..schemas.recommendation_output_schema import (
+    RecommendationOutput,
+    validate_recommendation_output,
+)
 from .prompts import (
     analysis_system_prompt,
     build_analysis_user_prompt,
@@ -45,6 +47,7 @@ def _target_prompt_path_for_category(category: str) -> str:
     )
     return os.path.join(_repo_root_dir(), "prompts", prompt_file)
 
+
 def save_output(output: dict):
     os.makedirs(OUTPUT_LOG_DIR, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -62,8 +65,12 @@ def generate_response(df, category: str, metrics: dict) -> str:
         target_prompt_path = _target_prompt_path_for_category(category)
         context_block = build_context_block(category, df, metrics)
 
-        sys_analysis_prompt_path = os.path.join(_repo_root_dir(), "prompts", "system_analysis_prompt.md")
-        analysis_sys = analysis_system_prompt(category, target_prompt_path, sys_analysis_prompt_path)
+        sys_analysis_prompt_path = os.path.join(
+            _repo_root_dir(), "prompts", "system_analysis_prompt.md"
+        )
+        analysis_sys = analysis_system_prompt(
+            category, target_prompt_path, sys_analysis_prompt_path
+        )
         print("Analysis System Prompt:\n", analysis_sys)  # Debug print
         analysis_user = build_analysis_user_prompt(context_block)
         print("Analysis User Prompt:\n", analysis_user)  # Debug print
@@ -81,8 +88,12 @@ def generate_response(df, category: str, metrics: dict) -> str:
         analysis_model = validate_analysis_output(analysis_json_str)
         analysis_json_str = json.dumps(analysis_model.dict(), ensure_ascii=False)
 
-        rec_prompt_path = os.path.join(_repo_root_dir(), "prompts", "recommendation_system_prompt.md")
-        rec_sys = recommendation_system_prompt(category, target_prompt_path, rec_prompt_path)
+        rec_prompt_path = os.path.join(
+            _repo_root_dir(), "prompts", "recommendation_system_prompt.md"
+        )
+        rec_sys = recommendation_system_prompt(
+            category, target_prompt_path, rec_prompt_path
+        )
         print("Recommendation System Prompt:\n", rec_sys)  # Debug print
         rec_user = build_recommendation_user_prompt(
             context_block,
