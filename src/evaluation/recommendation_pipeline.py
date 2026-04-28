@@ -5,14 +5,16 @@ import os
 
 class RecommendationPipeline:
 
-    def __init__(self, llm_callable, embedding_callable):
+    def __init__(self, llm_callable, embedding_callable ,timestamp ):
 
         self.evaluator = RecommendationEvaluator(
             llm=llm_callable,
-            embed=embedding_callable
+            embed=embedding_callable,
+            timestamp= timestamp
         )
 
-        self.gt_path =os.path.join("data","benchmark","recommendation_GT.json")
+        self.gt_path =os.path.join("data","benchmark","analysis_recommendation_GT.json")
+        #recommendation_GT.json
     
     def  load_ground_truth(self, path, campaign_id, target):
 

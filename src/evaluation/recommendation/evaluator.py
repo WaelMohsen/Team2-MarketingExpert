@@ -10,14 +10,14 @@ from .config import FINAL_WEIGHTS
 
 class RecommendationEvaluator(BaseEvaluator):
 
-    def __init__(self, llm, embed):
+    def __init__(self, llm, embed, timestamp):
         super().__init__("recommendation")
 
         self.business = BusinessRelevanceEvaluator(llm)
         self.gt = HybridEvaluator(embed, llm)
         self.compliance = PromptComplianceEvaluator(llm)
 
-        self.logger = EvaluationLogger("recommendation")
+        self.logger = EvaluationLogger( timestamp)
 
     def compute_final( self,business, gt, compliance):
 
@@ -57,6 +57,6 @@ class RecommendationEvaluator(BaseEvaluator):
             "ground_truth": gt_result
         }
 
-        result["log_file"] = self.logger.log(result)
+        result["log_file"] = self.logger.log(result , "recommendation")
 
         return result
