@@ -115,7 +115,7 @@ class DecisionInterpreter:
         # =========================================================
         confidence = sum(signals) / len(signals)
 
-        return round(confidence, 3) , signals
+        return round(confidence, 3) 
     # =========================================================
     # 🔹 Decision Logic
     # =========================================================
@@ -140,8 +140,7 @@ class DecisionInterpreter:
         return {
             "status": status,
             "confidence": confidence,
-            "reason": reason,
-            "signals" : signals
+            "reason": reason
         }
 
     def _decision_reason(self, final_score, gt_score):
