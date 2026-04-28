@@ -104,6 +104,8 @@ def generate_response(df, category: str, metrics: dict) -> str:
 
         # Combine both steps into a single response for the UI.
         combined = {
+            "Target": category,
+            "metrics":metrics,
             "kpis": list(metrics.get('overall', {}).keys()),
             "analysis": analysis_model.dict(),
             "recommendations": [r.dict() for r in rec_model.recommendations],
