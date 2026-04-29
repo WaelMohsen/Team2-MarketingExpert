@@ -3,6 +3,8 @@
 from statistics import mean
 from typing import Dict, List
 
+from .parsing import parse_llm_mapping
+
 
 class PromptComplianceEvaluator:
 
@@ -71,8 +73,8 @@ Return JSON:
 
 """
         try:
-            return eval(self.llm(prompt, model, temp))
-        except:
+            return parse_llm_mapping(self.llm(prompt, model, temp))
+        except Exception:
             return {}
 
     # =========================================================
@@ -136,4 +138,4 @@ Return JSON:
         if final_scores.get("non_repetition", 0) < 0.7:
             flags.append("repetition_detected")
 
-        return {"score": round(overall, 32), "dimensions": final_scores, "flags": flags}
+        return {"score": round(overall, 3), "dimensions": final_scores, "flags": flags}

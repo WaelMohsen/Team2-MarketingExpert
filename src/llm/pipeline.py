@@ -94,9 +94,9 @@ def generate_response(
         analysis_model = analysis_resp.choices[0].message.parsed
 
         # Run our custom validators (confidence normalization, empty-field checks).
-        analysis_json_str = json.dumps(analysis_model.dict(), ensure_ascii=False)
+        analysis_json_str = json.dumps(analysis_model.model_dump(), ensure_ascii=False)
         analysis_model = validate_analysis_output(analysis_json_str)
-        analysis_json_str = json.dumps(analysis_model.dict(), ensure_ascii=False)
+        analysis_json_str = json.dumps(analysis_model.model_dump(), ensure_ascii=False)
 
         rec_prompt_path = os.path.join(
             _repo_root_dir(), "prompts", "recommendation_system_prompt.md"
@@ -122,7 +122,7 @@ def generate_response(
         print("Final Recommendation parsed:", rec_model)  # Debug print
 
         # Run our custom validators (count check, empty-field checks).
-        rec_json_str = json.dumps(rec_model.dict(), ensure_ascii=False)
+        rec_json_str = json.dumps(rec_model.model_dump(), ensure_ascii=False)
         rec_model = validate_recommendation_output(rec_json_str)
 
         # Combine both steps into a single response for the UI.
@@ -130,8 +130,11 @@ def generate_response(
             "Target": category,
             "metrics": metrics,
             "kpis": list(metrics.get("overall", {}).keys()),
-            "analysis": analysis_model.dict(),
-            "recommendations": [r.dict() for r in rec_model.recommendations],
+            "analysis": analysis_model.model_dump(),
+            "recommendations": [
+                recommendation.model_dump()
+                for recommendation in rec_model.recommendations
+            ],
         }
 
         save_output(combined)  # Save the full response for debugging

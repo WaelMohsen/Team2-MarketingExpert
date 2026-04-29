@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260429_212628",
+  "timestamp_utc": "2026-04-29T21:26:47Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 3,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and avoids technical jargon, making it accessible for a business audience. However, it could provide more context on how the metrics impact overall business goals."
+    },
+    {
+      "name": "key_signals",
+      "score": 3,
+      "rationale": "While the key signals are mentioned, they lack specific references to the raw data, making them feel somewhat generic rather than grounded in the actual campaign performance."
+    },
+    {
+      "name": "detected_issues",
+      "score": 1,
+      "rationale": "There are no detected issues mentioned, which is a significant oversight. Identifying potential problems is crucial for understanding risks and areas for improvement."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 3,
+      "rationale": "The root cause hypothesis is based on the analysis but lacks depth. It does not explore potential underlying factors that could affect future performance."
+    },
+    {
+      "name": "business_risks",
+      "score": 2,
+      "rationale": "The analysis states there are no business risks, which is unrealistic. Every campaign has potential risks that should be identified and addressed."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score of 95% is high and aligns with the positive metrics presented, but it could be tempered by acknowledging the lack of detected issues."
+    }
+  ],
+  "summary": "The analysis provides a generally positive view of the campaign but lacks critical insights into potential issues and risks.",
+  "improvement_suggestions": [
+    "Identify and discuss potential issues or risks associated with the campaign performance.",
+    "Provide more specific references to the raw data in the key signals section to strengthen the analysis."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260429_212647_customer_acquisition.json"
+}

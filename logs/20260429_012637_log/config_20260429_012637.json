@@ -1,9 +1,0 @@
-{
-    "category": "Customer Acquisition",
-    "analysis_model": "gpt-4o-mini",
-    "analysis_temp": 0.0,
-    "recommendation_model": "gpt-4o-2024-11-20",
-    "recommendation_temp": 0.2,
-    "llm_judge_model": "gpt-4o-mini",
-    "llm_judge_temp": 0.0
-}

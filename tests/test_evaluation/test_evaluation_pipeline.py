@@ -20,9 +20,6 @@ def _sample_analysis_output():
 
 
 def _make_pipeline(rec_result=None, analysis_result=None):
-    mock_llm = MagicMock()
-    mock_embed = MagicMock()
-
     mock_rec_evaluator = MagicMock()
     mock_rec_evaluator.evaluate.return_value = rec_result or {
         "category": "acquisition",
@@ -32,25 +29,33 @@ def _make_pipeline(rec_result=None, analysis_result=None):
     }
 
     mock_analysis_evaluator = MagicMock()
-    mock_analysis_evaluator.evaluate.return_value = analysis_result or {
-        "category": "acquisition",
-        "score": 0.75,
-        "flags": [],
+    mock_analysis_model = MagicMock()
+    mock_analysis_model.model_dump.return_value = analysis_result or {
+        "overall_score": 4,
+        "overall_status": "pass",
+        "criteria_scores": [],
+        "summary": "Good analysis.",
+        "improvement_suggestions": [],
     }
+    mock_analysis_evaluator.evaluate.return_value = mock_analysis_model
+    mock_ground_truth_loader = MagicMock()
+    mock_ground_truth_loader.load_ground_truth.return_value = []
 
     pipeline = EvaluationPipeline(
-        mock_llm, mock_embed, analysis_evaluator=mock_analysis_evaluator
+        recommendation_evaluator=mock_rec_evaluator,
+        ground_truth_loader=mock_ground_truth_loader,
+        analysis_evaluator=mock_analysis_evaluator,
     )
-    pipeline.recommendation_evaluator = mock_rec_evaluator
-    return pipeline, mock_rec_evaluator, mock_analysis_evaluator
+    return (
+        pipeline,
+        mock_rec_evaluator,
+        mock_analysis_evaluator,
+        mock_ground_truth_loader,
+    )
 
 
-@patch(
-    "src.evaluation.evaluation_pipeline.EvaluationPipeline.load_ground_truth",
-    return_value=[],
-)
-def test_run_recommendation_passes_campaign_metadata(mock_gt):
-    pipeline, mock_rec, _ = _make_pipeline()
+def test_run_recommendation_passes_campaign_metadata():
+    pipeline, mock_rec, _, mock_ground_truth_loader = _make_pipeline()
     analysis = _sample_analysis_output()
 
     pipeline.run_recommendation(
@@ -63,17 +68,16 @@ def test_run_recommendation_passes_campaign_metadata(mock_gt):
     )
 
     call_args = mock_rec.evaluate.call_args[0][0]
+    mock_ground_truth_loader.load_ground_truth.assert_called_once_with(
+        "Spring Launch", "customer_acquisition"
+    )
     assert call_args["campaign_id"] == "Spring Launch"
     assert call_args["target"] == "customer_acquisition"
     assert call_args["category"] == "acquisition"
 
 
-@patch(
-    "src.evaluation.evaluation_pipeline.EvaluationPipeline.load_ground_truth",
-    return_value=[],
-)
-def test_run_analysis_attaches_campaign_metadata(mock_gt):
-    pipeline, _, mock_analysis = _make_pipeline()
+def test_run_analysis_attaches_campaign_metadata():
+    pipeline, _, mock_analysis, _ = _make_pipeline()
     analysis = _sample_analysis_output()
 
     result = pipeline.run_analysis(
@@ -88,12 +92,8 @@ def test_run_analysis_attaches_campaign_metadata(mock_gt):
     assert result["target"] == "customer_acquisition"
 
 
-@patch(
-    "src.evaluation.evaluation_pipeline.EvaluationPipeline.load_ground_truth",
-    return_value=[],
-)
-def test_run_analysis_accepts_dict_input(mock_gt):
-    pipeline, _, mock_analysis = _make_pipeline()
+def test_run_analysis_accepts_dict_input():
+    pipeline, _, mock_analysis, _ = _make_pipeline()
     analysis_dict = {
         "analysis": "Revenue is dropping.",
         "key_signals": ["Revenue down"],
@@ -114,12 +114,8 @@ def test_run_analysis_accepts_dict_input(mock_gt):
     mock_analysis.evaluate.assert_called_once()
 
 
-@patch(
-    "src.evaluation.evaluation_pipeline.EvaluationPipeline.load_ground_truth",
-    return_value=[],
-)
-def test_run_all_merges_metadata_into_analysis_result(mock_gt):
-    pipeline, mock_rec, mock_analysis = _make_pipeline()
+def test_run_all_merges_metadata_into_analysis_result():
+    pipeline, mock_rec, mock_analysis, _ = _make_pipeline()
     analysis = _sample_analysis_output()
 
     result = pipeline.run_all(
@@ -138,34 +134,36 @@ def test_run_all_merges_metadata_into_analysis_result(mock_gt):
 
 
 def test_analysis_evaluator_not_instantiated_on_init():
-    """EvaluationPipeline.__init__ must not call AnalysisQualityEvaluator eagerly."""
-    mock_llm = MagicMock()
-    mock_embed = MagicMock()
+    """EvaluationPipeline.__init__ must not call analysis factory eagerly."""
+    mock_rec_evaluator = MagicMock()
+    mock_ground_truth_loader = MagicMock()
+    analysis_factory = MagicMock(return_value=MagicMock())
 
-    with patch(
-        "src.evaluation.evaluation_pipeline.AnalysisQualityEvaluator"
-    ) as mock_cls:
-        pipeline = EvaluationPipeline(mock_llm, mock_embed)
-        mock_cls.assert_not_called()
+    pipeline = EvaluationPipeline(
+        recommendation_evaluator=mock_rec_evaluator,
+        ground_truth_loader=mock_ground_truth_loader,
+        analysis_evaluator_factory=analysis_factory,
+    )
+    analysis_factory.assert_not_called()
 
-        # Accessing the property triggers lazy creation
-        _ = pipeline.analysis_evaluator
-        mock_cls.assert_called_once()
+    _ = pipeline.analysis_evaluator
+    analysis_factory.assert_called_once()
 
 
 def test_injected_analysis_evaluator_used_directly():
     """An injected analysis_evaluator is used as-is without instantiating a new one."""
-    mock_llm = MagicMock()
-    mock_embed = MagicMock()
+    mock_rec_evaluator = MagicMock()
+    mock_ground_truth_loader = MagicMock()
     custom_evaluator = MagicMock()
+    analysis_factory = MagicMock()
 
-    with patch(
-        "src.evaluation.evaluation_pipeline.AnalysisQualityEvaluator"
-    ) as mock_cls:
-        pipeline = EvaluationPipeline(
-            mock_llm, mock_embed, analysis_evaluator=custom_evaluator
-        )
-        _ = pipeline.analysis_evaluator
-        mock_cls.assert_not_called()
+    pipeline = EvaluationPipeline(
+        recommendation_evaluator=mock_rec_evaluator,
+        ground_truth_loader=mock_ground_truth_loader,
+        analysis_evaluator=custom_evaluator,
+        analysis_evaluator_factory=analysis_factory,
+    )
+    _ = pipeline.analysis_evaluator
+    analysis_factory.assert_not_called()
 
     assert pipeline.analysis_evaluator is custom_evaluator

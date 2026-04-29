@@ -1,6 +1,7 @@
 from typing import List
 
 from .config import BUSINESS_WEIGHTS
+from .parsing import parse_llm_mapping
 
 
 class BusinessRelevanceEvaluator:
@@ -128,7 +129,7 @@ RETURN STRICT JSON:
 
         try:
             response = self.llm(prompt, model, temp)
-            result = eval(response) if isinstance(response, str) else response
+            result = parse_llm_mapping(response)
         except Exception:
             return {"score": 0, "error": "llm_failed"}
 

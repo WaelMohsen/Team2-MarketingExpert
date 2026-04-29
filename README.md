@@ -44,6 +44,28 @@ To start the application, run:
 $ streamlit run app.py
 ```
 
+## Running Evaluation
+
+The evaluation runner is config-driven. Set the runtime options in [config/evaluation_run_config.json](config/evaluation_run_config.json):
+
+- `runtime.campaign_id`: campaign to evaluate
+- `runtime.category`: category to run, or `null` to run all categories
+- `runtime.context_rows`: number of campaign rows included in analysis judging context
+
+Then run:
+
+```bash
+$ python -m src.evaluation.run_evaluation
+```
+
+The generation step writes raw combined outputs to `output_log/`, and the evaluator writes structured JSON logs to `evaluation_logs/pipeline/`, `evaluation_logs/analysis/`, and `evaluation_logs/recommendation/`.
+
+To aggregate evaluation logs into CSV summaries, run:
+
+```bash
+$ python -m src.evaluation.aggregate_overall_logs
+```
+
 ## Running Unit Tests
 
 To run all unit tests:

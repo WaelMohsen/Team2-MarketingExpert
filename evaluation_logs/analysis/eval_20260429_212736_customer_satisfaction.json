@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260429_212628",
+  "timestamp_utc": "2026-04-29T21:27:36Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 4,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and avoids jargon, making it accessible for a business audience. However, it could benefit from more direct references to financial implications."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "The key signals are specific and based on the campaign data, providing valuable insights. However, they could be more explicitly tied to financial outcomes."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight significant problems that could impact costs and efficiency. They are not overly vague, but could be more detailed."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The root cause hypothesis logically connects to the detected issues and key signals, providing a reasonable explanation for the observed problems."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks identified are specific and relate to potential financial impacts, making them relevant for decision-making. However, they could be more detailed in terms of potential cost implications."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score of 85% is realistic and aligns well with the analysis provided, indicating a strong level of certainty in the findings."
+    }
+  ],
+  "summary": "The analysis provides a solid overview of the campaign's performance with actionable insights, but could be enhanced with more financial context.",
+  "improvement_suggestions": [
+    "Include more explicit financial implications in the analysis and key signals.",
+    "Provide additional details on the potential cost impacts of the detected issues."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260429_212736_customer_satisfaction.json"
+}

@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260429_212628",
+  "timestamp_utc": "2026-04-29T21:29:11Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 3,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 3,
+      "rationale": "The analysis is mostly clear but lacks depth in explaining the financial implications of the churn rates and retention strategies. It does not fully connect the performance metrics to potential revenue impacts."
+    },
+    {
+      "name": "key_signals",
+      "score": 3,
+      "rationale": "While some key signals are mentioned, they are not sufficiently specific or detailed in relation to the raw data. The analysis could benefit from more precise observations that directly tie back to the campaign's financial performance."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight specific channels with high churn rates, which is a clear concern for the business. However, the analysis could further elaborate on the implications of these issues."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 3,
+      "rationale": "The root cause hypothesis is logical but lacks sufficient evidence from the data to strongly support it. More detailed reasoning could enhance the credibility of the hypothesis."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks identified are relevant and highlight potential financial impacts due to high churn rates. However, they could be more explicitly tied to specific revenue figures or growth projections."
+    },
+    {
+      "name": "confidence_score",
+      "score": 2,
+      "rationale": "The confidence score of 0.0 is unrealistic given the analysis provided. A more reasonable score should reflect the evidence and insights presented, even if they are not fully robust."
+    }
+  ],
+  "summary": "The analysis provides a reasonable overview but lacks depth in financial implications and specific observations.",
+  "improvement_suggestions": [
+    "Enhance the analysis by clearly linking churn rates to potential revenue losses and customer lifetime value.",
+    "Provide more specific key signals that directly relate to the campaign's financial performance and customer engagement."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260429_212911_customer_retention.json"
+}

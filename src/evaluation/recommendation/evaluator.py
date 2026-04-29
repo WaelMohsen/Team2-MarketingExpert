@@ -1,22 +1,15 @@
-from src.evaluation.base_evaluator import BaseEvaluator
-from src.evaluation.logger import EvaluationLogger
-
 from .business_relevance_evaluator import BusinessRelevanceEvaluator
 from .config import FINAL_WEIGHTS
 from .GT_hybrid_evaluator import HybridEvaluator
 from .prompt_compliance_evaluator import PromptComplianceEvaluator
 
 
-class RecommendationEvaluator(BaseEvaluator):
+class RecommendationEvaluator:
 
     def __init__(self, llm, embed, timestamp):
-        super().__init__("recommendation")
-
         self.business = BusinessRelevanceEvaluator(llm)
         self.gt = HybridEvaluator(embed, llm)
         self.compliance = PromptComplianceEvaluator(llm)
-
-        self.logger = EvaluationLogger(timestamp)
 
     def compute_final(self, business, gt, compliance):
 
@@ -53,7 +46,5 @@ class RecommendationEvaluator(BaseEvaluator):
             "compliance": compliance,
             "ground_truth": gt_result,
         }
-
-        result["log_file"] = self.logger.log(result, "recommendation")
 
         return result

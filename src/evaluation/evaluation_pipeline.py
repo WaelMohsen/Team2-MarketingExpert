@@ -1,10 +1,13 @@
-import json
-import os
 from datetime import datetime
+from typing import Callable, Optional
 
-from src.evaluation.analysis_quality_evaluator import AnalysisQualityEvaluator
-from src.evaluation.recommendation.evaluator import RecommendationEvaluator
 from src.schemas.analysis_output_schema import AnalysisOutput
+
+from .protocols import (
+    AnalysisEvaluatorProtocol,
+    GroundTruthLoaderProtocol,
+    RecommendationEvaluatorProtocol,
+)
 
 
 class EvaluationPipeline:
@@ -20,31 +23,38 @@ class EvaluationPipeline:
     """
 
     def __init__(
-        self, llm_callable, embedding_callable, analysis_evaluator=None, timestamp=None
+        self,
+        recommendation_evaluator: RecommendationEvaluatorProtocol,
+        ground_truth_loader: GroundTruthLoaderProtocol,
+        analysis_evaluator: Optional[AnalysisEvaluatorProtocol] = None,
+        analysis_evaluator_factory: Optional[
+            Callable[[], AnalysisEvaluatorProtocol]
+        ] = None,
+        timestamp=None,
+        analysis_model=None,
+        analysis_temp=None,
+        recommendation_model=None,
+        recommendation_temp=None,
     ):
         if timestamp is None:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.recommendation_evaluator = RecommendationEvaluator(
-            llm=llm_callable, embed=embedding_callable, timestamp=timestamp
-        )
+        self.recommendation_evaluator = recommendation_evaluator
+        self.ground_truth_loader = ground_truth_loader
         self._analysis_evaluator = analysis_evaluator
-        self.gt_path = os.path.join("data", "benchmark", "recommendation_GT.json")
+        self._analysis_evaluator_factory = analysis_evaluator_factory
+        self.timestamp = timestamp
+        self.analysis_model = analysis_model
+        self.analysis_temp = analysis_temp
+        self.recommendation_model = recommendation_model
+        self.recommendation_temp = recommendation_temp
 
     @property
     def analysis_evaluator(self):
         if self._analysis_evaluator is None:
-            self._analysis_evaluator = AnalysisQualityEvaluator()
+            if self._analysis_evaluator_factory is None:
+                raise RuntimeError("No analysis evaluator or factory was provided.")
+            self._analysis_evaluator = self._analysis_evaluator_factory()
         return self._analysis_evaluator
-
-    def load_ground_truth(self, path, campaign_id, target):
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-        for campaign in data:
-            if campaign["campaign_id"] == campaign_id:
-                return campaign["ground_truth"].get(target, [])
-
-        return []
 
     def run_recommendation(
         self,
@@ -60,7 +70,7 @@ class EvaluationPipeline:
         else:
             analysis_payload = analysis_output
 
-        gt_data = self.load_ground_truth(self.gt_path, campaign_id, target)
+        gt_data = self.ground_truth_loader.load_ground_truth(campaign_id, target)
 
         eval_input = {
             "output": recommendation_output,
@@ -72,7 +82,11 @@ class EvaluationPipeline:
             "target": target,
         }
 
-        return self.recommendation_evaluator.evaluate(eval_input)
+        return self.recommendation_evaluator.evaluate(
+            eval_input,
+            model=self.recommendation_model,
+            temp=self.recommendation_temp,
+        )
 
     def run_analysis(
         self,
@@ -88,13 +102,21 @@ class EvaluationPipeline:
             analysis_model = AnalysisOutput(**analysis_output)
 
         result = self.analysis_evaluator.evaluate(
-            analysis_model, campaign_context, category=category
+            analysis_model,
+            campaign_context,
+            model=self.analysis_model,
+            temp=self.analysis_temp,
         )
+
+        if hasattr(result, "model_dump"):
+            result = result.model_dump()
 
         if campaign_id is not None:
             result["campaign_id"] = campaign_id
         if target is not None:
             result["target"] = target
+        if category is not None:
+            result["category"] = category
 
         return result
 

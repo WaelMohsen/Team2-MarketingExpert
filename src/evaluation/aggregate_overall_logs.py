@@ -21,24 +21,33 @@ ANALYSIS_COLUMNS = [
     "ts_utc",
     "category",
     "campaign_id",
+    "campaign_name",
     "target",
-    "analysis_score",
-    "dim_clarity",
-    "dim_data_grounding",
-    "dim_logic_coherence",
-    "dim_business_focus",
-    "dim_confidence_calibration",
-    "dim_no_recommendation",
-    "flag_count",
-    "has_low_clarity",
-    "has_low_data_grounding",
-    "has_low_logic_coherence",
-    "has_low_business_focus",
-    "has_low_confidence_calibration",
-    "has_low_no_recommendation",
-    "has_analysis_contains_recommendations",
-    "has_llm_failed",
+    "judge_model",
+    "judge_temp",
+    "analysis_generation_model",
+    "analysis_generation_temp",
+    "recommendation_generation_model",
+    "recommendation_generation_temp",
+    "overall_score",
+    "overall_status",
+    "crit_analysis_score",
+    "crit_key_signals_score",
+    "crit_detected_issues_score",
+    "crit_root_cause_hypothesis_score",
+    "crit_business_risks_score",
+    "crit_confidence_score_score",
+    "crit_analysis_rationale",
+    "crit_key_signals_rationale",
+    "crit_detected_issues_rationale",
+    "crit_root_cause_hypothesis_rationale",
+    "crit_business_risks_rationale",
+    "crit_confidence_score_rationale",
+    "summary",
+    "improvement_suggestions_count",
+    "improvement_suggestions",
     "raw_log_path",
+    "pipeline_log_path",
     "ingested_at_utc",
 ]
 
@@ -49,10 +58,31 @@ RECOMMENDATION_COLUMNS = [
     "ts_utc",
     "category",
     "campaign_id",
+    "campaign_name",
     "target",
+    "judge_model",
+    "judge_temp",
+    "analysis_generation_model",
+    "analysis_generation_temp",
+    "recommendation_generation_model",
+    "recommendation_generation_temp",
     "final_score",
     "business_score",
+    "business_insight_quality",
+    "business_actionability",
+    "business_data_grounding",
+    "business_kpi_alignment",
+    "business_priority_accuracy",
+    "business_decision_quality",
+    "business_feasibility",
+    "business_readability",
     "compliance_score",
+    "compliance_count_valid",
+    "compliance_required_fields",
+    "compliance_priority_order",
+    "compliance_no_hallucination",
+    "compliance_clarity",
+    "compliance_non_repetition",
     "ground_truth_score",
     "gt_avg_similarity",
     "gt_coverage",
@@ -70,6 +100,7 @@ RECOMMENDATION_COLUMNS = [
     "has_priority_not_sorted",
     "has_possible_hallucination",
     "raw_log_path",
+    "pipeline_log_path",
     "ingested_at_utc",
 ]
 
@@ -80,6 +111,9 @@ def _extract_timestamp_from_filename(path: str) -> Optional[datetime]:
         return None
 
     raw = basename.replace("eval_", "").replace(JSON_EXT, "")
+    parts = raw.split("_")
+    if len(parts) >= 3:
+        raw = f"{parts[0]}_{parts[1]}"
     try:
         naive = datetime.strptime(raw, "%Y%m%d_%H%M%S")
         return naive.replace(tzinfo=timezone.utc)
@@ -104,6 +138,16 @@ def _run_id_from_timestamp(dt: Optional[datetime]) -> str:
     return dt.strftime("run_%Y%m%d_%H%M%S")
 
 
+def _timestamp_from_payload(payload: Dict) -> Optional[datetime]:
+    raw = payload.get("timestamp_utc", "")
+    if not raw:
+        return None
+    try:
+        return datetime.strptime(raw, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return None
+
+
 def _safe_read_json(path: str) -> Optional[Dict]:
     try:
         with open(path, "r", encoding="utf-8") as f:
@@ -117,47 +161,83 @@ def _bool_int(condition: bool) -> int:
 
 
 def _analysis_row(payload: Dict, path: str, ingested_at: str) -> Dict:
-    ts = _extract_timestamp_from_filename(path)
-    flags = payload.get("flags", []) or []
-    dimensions = payload.get("dimensions", {}) or {}
+    ts = _timestamp_from_payload(payload) or _extract_timestamp_from_filename(path)
+    criteria_by_name = {
+        criterion.get("name", ""): criterion
+        for criterion in payload.get("criteria_scores", [])
+    }
+    suggestions = payload.get("improvement_suggestions", []) or []
 
     return {
         "id": _stable_id(path),
-        "run_id": _run_id_from_timestamp(ts),
+        "run_id": payload.get("run_id") or _run_id_from_timestamp(ts),
         "ts_utc": _to_iso_utc(ts),
         "category": payload.get("category", ""),
         "campaign_id": payload.get("campaign_id", ""),
+        "campaign_name": payload.get("campaign_name", ""),
         "target": payload.get("target", ""),
-        "analysis_score": payload.get("score", ""),
-        "dim_clarity": dimensions.get("clarity", ""),
-        "dim_data_grounding": dimensions.get("data_grounding", ""),
-        "dim_logic_coherence": dimensions.get("logic_coherence", ""),
-        "dim_business_focus": dimensions.get("business_focus", ""),
-        "dim_confidence_calibration": dimensions.get("confidence_calibration", ""),
-        "dim_no_recommendation": dimensions.get("no_recommendation", ""),
-        "flag_count": len(flags),
-        "has_low_clarity": _bool_int("low_clarity" in flags),
-        "has_low_data_grounding": _bool_int("low_data_grounding" in flags),
-        "has_low_logic_coherence": _bool_int("low_logic_coherence" in flags),
-        "has_low_business_focus": _bool_int("low_business_focus" in flags),
-        "has_low_confidence_calibration": _bool_int(
-            "low_confidence_calibration" in flags
+        "judge_model": payload.get("judge_model", ""),
+        "judge_temp": payload.get("judge_temp", ""),
+        "analysis_generation_model": payload.get("analysis_generation_model", ""),
+        "analysis_generation_temp": payload.get("analysis_generation_temp", ""),
+        "recommendation_generation_model": payload.get(
+            "recommendation_generation_model", ""
         ),
-        "has_low_no_recommendation": _bool_int("low_no_recommendation" in flags),
-        "has_analysis_contains_recommendations": _bool_int(
-            "analysis_contains_recommendations" in flags
+        "recommendation_generation_temp": payload.get(
+            "recommendation_generation_temp", ""
         ),
-        "has_llm_failed": _bool_int("llm_failed" in flags),
+        "overall_score": payload.get("overall_score", ""),
+        "overall_status": payload.get("overall_status", ""),
+        "crit_analysis_score": criteria_by_name.get("analysis", {}).get("score", ""),
+        "crit_key_signals_score": criteria_by_name.get("key_signals", {}).get(
+            "score", ""
+        ),
+        "crit_detected_issues_score": criteria_by_name.get("detected_issues", {}).get(
+            "score", ""
+        ),
+        "crit_root_cause_hypothesis_score": criteria_by_name.get(
+            "root_cause_hypothesis", {}
+        ).get("score", ""),
+        "crit_business_risks_score": criteria_by_name.get("business_risks", {}).get(
+            "score", ""
+        ),
+        "crit_confidence_score_score": criteria_by_name.get("confidence_score", {}).get(
+            "score", ""
+        ),
+        "crit_analysis_rationale": criteria_by_name.get("analysis", {}).get(
+            "rationale", ""
+        ),
+        "crit_key_signals_rationale": criteria_by_name.get("key_signals", {}).get(
+            "rationale", ""
+        ),
+        "crit_detected_issues_rationale": criteria_by_name.get(
+            "detected_issues", {}
+        ).get("rationale", ""),
+        "crit_root_cause_hypothesis_rationale": criteria_by_name.get(
+            "root_cause_hypothesis", {}
+        ).get("rationale", ""),
+        "crit_business_risks_rationale": criteria_by_name.get("business_risks", {}).get(
+            "rationale", ""
+        ),
+        "crit_confidence_score_rationale": criteria_by_name.get(
+            "confidence_score", {}
+        ).get("rationale", ""),
+        "summary": payload.get("summary", ""),
+        "improvement_suggestions_count": len(suggestions),
+        "improvement_suggestions": json.dumps(suggestions, ensure_ascii=False),
         "raw_log_path": path,
+        "pipeline_log_path": payload.get("pipeline_log_path", ""),
         "ingested_at_utc": ingested_at,
     }
 
 
 def _recommendation_row(payload: Dict, path: str, ingested_at: str) -> Dict:
-    ts = _extract_timestamp_from_filename(path)
+    ts = _timestamp_from_payload(payload) or _extract_timestamp_from_filename(path)
     business = payload.get("business", {}) or {}
     compliance = payload.get("compliance", {}) or {}
     ground_truth = payload.get("ground_truth", {}) or {}
+    business_scores = business.get("overall", {}).get("scores", {}) or {}
+    compliance_dimensions = compliance.get("dimensions", {}) or {}
 
     business_flags = business.get("flags", []) or []
     compliance_flags = compliance.get("flags", []) or []
@@ -166,14 +246,41 @@ def _recommendation_row(payload: Dict, path: str, ingested_at: str) -> Dict:
 
     return {
         "id": _stable_id(path),
-        "run_id": _run_id_from_timestamp(ts),
+        "run_id": payload.get("run_id") or _run_id_from_timestamp(ts),
         "ts_utc": _to_iso_utc(ts),
         "category": payload.get("category", ""),
         "campaign_id": payload.get("campaign_id", ""),
+        "campaign_name": payload.get("campaign_name", ""),
         "target": payload.get("target", ""),
+        "judge_model": payload.get("judge_model", ""),
+        "judge_temp": payload.get("judge_temp", ""),
+        "analysis_generation_model": payload.get("analysis_generation_model", ""),
+        "analysis_generation_temp": payload.get("analysis_generation_temp", ""),
+        "recommendation_generation_model": payload.get(
+            "recommendation_generation_model", ""
+        ),
+        "recommendation_generation_temp": payload.get(
+            "recommendation_generation_temp", ""
+        ),
         "final_score": payload.get("final_score", ""),
         "business_score": business.get("score", ""),
+        "business_insight_quality": business_scores.get("insight_quality", ""),
+        "business_actionability": business_scores.get("actionability", ""),
+        "business_data_grounding": business_scores.get("data_grounding", ""),
+        "business_kpi_alignment": business_scores.get("kpi_alignment", ""),
+        "business_priority_accuracy": business_scores.get("priority_accuracy", ""),
+        "business_decision_quality": business_scores.get("decision_quality", ""),
+        "business_feasibility": business_scores.get("feasibility", ""),
+        "business_readability": business_scores.get("readability", ""),
         "compliance_score": compliance.get("score", ""),
+        "compliance_count_valid": compliance_dimensions.get("count_valid", ""),
+        "compliance_required_fields": compliance_dimensions.get("required_fields", ""),
+        "compliance_priority_order": compliance_dimensions.get("priority_order", ""),
+        "compliance_no_hallucination": compliance_dimensions.get(
+            "no_hallucination", ""
+        ),
+        "compliance_clarity": compliance_dimensions.get("clarity", ""),
+        "compliance_non_repetition": compliance_dimensions.get("non_repetition", ""),
         "ground_truth_score": ground_truth.get("score", ""),
         "gt_avg_similarity": ground_truth.get("avg_similarity", ""),
         "gt_coverage": ground_truth.get("coverage", ""),
@@ -199,8 +306,10 @@ def _recommendation_row(payload: Dict, path: str, ingested_at: str) -> Dict:
         "has_priority_not_sorted": _bool_int("priority_not_sorted" in compliance_flags),
         "has_possible_hallucination": _bool_int(
             "possible_hallucination" in compliance_flags
+            or "hallucination_detected" in compliance_flags
         ),
         "raw_log_path": path,
+        "pipeline_log_path": payload.get("pipeline_log_path", ""),
         "ingested_at_utc": ingested_at,
     }
 
