@@ -1,6 +1,9 @@
 import os
+from typing import Optional, Tuple
 
 from dotenv import load_dotenv
+
+from src.evaluation.run_config import load_run_config
 
 try:
     from openai import OpenAI
@@ -55,11 +58,24 @@ def chat_completion(client, system_text, user_text, response_format, model, temp
     )
 
 
-# ANALYSIS: "gpt-4o-mini",
-# RECOMMENDATION: "gpt-4o"
+def _default_llm_settings() -> Tuple[str, float]:
+    config = load_run_config()
+    return (
+        config.generation.recommendation_model,
+        config.generation.recommendation_temp,
+    )
 
 
-def llm_callable(prompt: str, model: str, temp: float) -> str:
+def llm_callable(
+    prompt: str,
+    model: Optional[str] = None,
+    temp: Optional[float] = None,
+) -> str:
+    if model is None or temp is None:
+        default_model, default_temp = _default_llm_settings()
+        model = model or default_model
+        temp = default_temp if temp is None else temp
+
     client = get_client()
     response = client.chat.completions.create(
         model=model,

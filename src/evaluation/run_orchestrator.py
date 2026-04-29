@@ -58,8 +58,6 @@ def run_target(
         run_config.generation.recommendation_model,
         run_config.generation.recommendation_temp,
     )
-    if isinstance(generation_output, str):
-        raise ValueError(generation_output)
 
     analysis_output = generation_output.get("analysis", {})
     recommendation_output = generation_output.get("recommendations", [])

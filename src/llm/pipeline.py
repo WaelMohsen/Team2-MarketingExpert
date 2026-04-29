@@ -1,7 +1,9 @@
 import json
 import os
 from datetime import datetime
+from typing import Any, Dict, Optional, Tuple
 
+from src.evaluation.run_config import load_run_config
 from src.llm.client import chat_completion, get_client
 
 from ..schemas.analysis_output_schema import AnalysisOutput, validate_analysis_output
@@ -57,87 +59,122 @@ def save_output(output: dict):
     print(f"Output saved to {filename}")
 
 
+def _resolve_generation_settings(
+    analysis_model: Optional[str],
+    analysis_temp: Optional[float],
+    recommendation_model: Optional[str],
+    recommendation_temp: Optional[float],
+) -> Tuple[str, float, str, float]:
+    if None not in (
+        analysis_model,
+        analysis_temp,
+        recommendation_model,
+        recommendation_temp,
+    ):
+        return (
+            analysis_model,
+            analysis_temp,
+            recommendation_model,
+            recommendation_temp,
+        )
+
+    generation = load_run_config().generation
+    return (
+        analysis_model or generation.analysis_model,
+        generation.analysis_temp if analysis_temp is None else analysis_temp,
+        recommendation_model or generation.recommendation_model,
+        (
+            generation.recommendation_temp
+            if recommendation_temp is None
+            else recommendation_temp
+        ),
+    )
+
+
 def generate_response(
     df,
     category: str,
     metrics: dict,
-    Analysis_model: str,
-    Analysis_temp: float,
-    Rec_model: str,
-    Rec_temp: float,
-) -> str:
+    Analysis_model: Optional[str] = None,
+    Analysis_temp: Optional[float] = None,
+    Rec_model: Optional[str] = None,
+    Rec_temp: Optional[float] = None,
+) -> Dict[str, Any]:
     """Two-step flow: analysis JSON -> recommendation JSON (final schema)."""
-    try:
-        client = get_client()
+    (
+        analysis_model_name,
+        analysis_temperature,
+        recommendation_model_name,
+        recommendation_temperature,
+    ) = _resolve_generation_settings(
+        Analysis_model,
+        Analysis_temp,
+        Rec_model,
+        Rec_temp,
+    )
 
-        target_prompt_path = _target_prompt_path_for_category(category)
-        context_block = build_context_block(category, df, metrics)
+    client = get_client()
 
-        sys_analysis_prompt_path = os.path.join(
-            _repo_root_dir(), "prompts", "system_analysis_prompt.md"
-        )
-        analysis_sys = analysis_system_prompt(
-            category, target_prompt_path, sys_analysis_prompt_path
-        )
-        print("Analysis System Prompt:\n", analysis_sys)  # Debug print
-        analysis_user = build_analysis_user_prompt(context_block)
-        print("Analysis User Prompt:\n", analysis_user)  # Debug print
-        analysis_resp = chat_completion(
-            client,
-            analysis_sys,
-            analysis_user,
-            response_format=AnalysisOutput,
-            model=Analysis_model,
-            temp=Analysis_temp,
-        )
-        # SDK parses the response into a Pydantic instance automatically.
-        analysis_model = analysis_resp.choices[0].message.parsed
+    target_prompt_path = _target_prompt_path_for_category(category)
+    context_block = build_context_block(category, df, metrics)
 
-        # Run our custom validators (confidence normalization, empty-field checks).
-        analysis_json_str = json.dumps(analysis_model.model_dump(), ensure_ascii=False)
-        analysis_model = validate_analysis_output(analysis_json_str)
-        analysis_json_str = json.dumps(analysis_model.model_dump(), ensure_ascii=False)
+    sys_analysis_prompt_path = os.path.join(
+        _repo_root_dir(), "prompts", "system_analysis_prompt.md"
+    )
+    analysis_sys = analysis_system_prompt(
+        category, target_prompt_path, sys_analysis_prompt_path
+    )
+    analysis_user = build_analysis_user_prompt(context_block)
+    analysis_resp = chat_completion(
+        client,
+        analysis_sys,
+        analysis_user,
+        response_format=AnalysisOutput,
+        model=analysis_model_name,
+        temp=analysis_temperature,
+    )
+    # SDK parses the response into a Pydantic instance automatically.
+    analysis_model = analysis_resp.choices[0].message.parsed
 
-        rec_prompt_path = os.path.join(
-            _repo_root_dir(), "prompts", "recommendation_system_prompt.md"
-        )
-        rec_sys = recommendation_system_prompt(
-            category, target_prompt_path, rec_prompt_path
-        )
-        print("Recommendation System Prompt:\n", rec_sys)  # Debug print
-        rec_user = build_recommendation_user_prompt(
-            context_block,
-            analysis_input=analysis_json_str,
-        )
-        print("Recommendation User Prompt:\n", rec_user)  # Debug print
-        rec_resp = chat_completion(
-            client,
-            rec_sys,
-            rec_user,
-            response_format=RecommendationOutput,
-            model=Rec_model,
-            temp=Rec_temp,
-        )
-        rec_model = rec_resp.choices[0].message.parsed
-        print("Final Recommendation parsed:", rec_model)  # Debug print
+    # Run our custom validators (confidence normalization, empty-field checks).
+    analysis_json_str = json.dumps(analysis_model.model_dump(), ensure_ascii=False)
+    analysis_model = validate_analysis_output(analysis_json_str)
+    analysis_json_str = json.dumps(analysis_model.model_dump(), ensure_ascii=False)
 
-        # Run our custom validators (count check, empty-field checks).
-        rec_json_str = json.dumps(rec_model.model_dump(), ensure_ascii=False)
-        rec_model = validate_recommendation_output(rec_json_str)
+    rec_prompt_path = os.path.join(
+        _repo_root_dir(), "prompts", "recommendation_system_prompt.md"
+    )
+    rec_sys = recommendation_system_prompt(
+        category, target_prompt_path, rec_prompt_path
+    )
+    rec_user = build_recommendation_user_prompt(
+        context_block,
+        analysis_input=analysis_json_str,
+    )
+    rec_resp = chat_completion(
+        client,
+        rec_sys,
+        rec_user,
+        response_format=RecommendationOutput,
+        model=recommendation_model_name,
+        temp=recommendation_temperature,
+    )
+    rec_model = rec_resp.choices[0].message.parsed
 
-        # Combine both steps into a single response for the UI.
-        combined = {
-            "Target": category,
-            "metrics": metrics,
-            "kpis": list(metrics.get("overall", {}).keys()),
-            "analysis": analysis_model.model_dump(),
-            "recommendations": [
-                recommendation.model_dump()
-                for recommendation in rec_model.recommendations
-            ],
-        }
+    # Run our custom validators (count check, empty-field checks).
+    rec_json_str = json.dumps(rec_model.model_dump(), ensure_ascii=False)
+    rec_model = validate_recommendation_output(rec_json_str)
 
-        save_output(combined)  # Save the full response for debugging
-        return combined
-    except Exception as exc:
-        return f"Error generating response: {exc}"
+    # Combine both steps into a single response for the UI.
+    combined = {
+        "Target": category,
+        "metrics": metrics,
+        "kpis": list(metrics.get("overall", {}).keys()),
+        "analysis": analysis_model.model_dump(),
+        "recommendations": [
+            recommendation.model_dump() for recommendation in rec_model.recommendations
+        ],
+    }
+
+    save_output(combined)  # Save the full response for debugging
+    return combined

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -45,7 +45,11 @@ def _build_by_channel(per_channel: dict) -> list:
 def analyze(req: AnalyzeReq):
     df = data_processor.load_data()
     metrics = data_processor.calculate_metrics_full(df, req.category)
-    response = llm_handler.generate_response(df, req.category, metrics)
+    try:
+        response = llm_handler.generate_response(df, req.category, metrics)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
     overall = metrics.get("overall", {})
     return {
         "kpis": list(overall.keys()),
@@ -131,7 +135,11 @@ User question: {req.message}
 
 Answer in plain business language. Be concise and actionable. Avoid marketing abbreviations."""
 
-    response = llm_handler.llm_callable(prompt)
+    try:
+        response = llm_handler.llm_callable(prompt)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
     return {"reply": response}
 
 
