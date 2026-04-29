@@ -8,9 +8,9 @@ from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
-from ..llm.client import chat_completion, get_client
-from ..schemas.analysis_output_schema import AnalysisOutput
-from .logger import EvaluationLogger
+from src.evaluation.services import EvaluationLogger
+from src.llm.client import chat_completion, get_client
+from src.schemas.analysis_output_schema import AnalysisOutput
 
 QUALITY_WEIGHTS: Dict[str, float] = {
     "clarity": 0.18,

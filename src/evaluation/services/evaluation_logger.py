@@ -4,7 +4,6 @@ from datetime import datetime
 
 
 class EvaluationLogger:
-
     def __init__(self, step_name: str):
         self.base_dir = os.path.join("evaluation_logs", step_name)
 

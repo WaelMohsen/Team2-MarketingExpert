@@ -49,6 +49,7 @@ def recommendation_system_prompt(
 
     """
 
+
 def _parse_numeric(value):
     """Strip % signs, handle None, return float."""
     if value is None:
@@ -61,6 +62,7 @@ def _parse_numeric(value):
     except ValueError:
         return 0.0
 
+
 # -------------------------------
 # Category-aware ranking config
 # -------------------------------
@@ -69,7 +71,7 @@ def _parse_numeric(value):
 _RANKING_CONFIG = {
     "Customer Acquisition": {
         "metric_key": "CPA",
-        "direction": "asc",          # lower is better
+        "direction": "asc",  # lower is better
         "label": "cost-per-customer",
         "format": "${:.2f}",
     },
@@ -109,20 +111,22 @@ def build_channel_ranking(metrics: dict, category: str) -> str:
         fallback_note = None
 
     metric_key = config["metric_key"]
-    reverse = (config["direction"] == "desc")
+    reverse = config["direction"] == "desc"
     label = config["label"]
     fmt = config["format"]
 
     rows = []
     for channel, m in per_channel.items():
         value = _parse_numeric(m.get(metric_key))
-        rows.append({
-            "channel": channel,
-            "ranking_value": value,
-            "spend": _parse_numeric(m.get("Total Spend")),
-            "roas": _parse_numeric(m.get("ROAS")),
-            "cac": _parse_numeric(m.get("CPA")),
-        })
+        rows.append(
+            {
+                "channel": channel,
+                "ranking_value": value,
+                "spend": _parse_numeric(m.get("Total Spend")),
+                "roas": _parse_numeric(m.get("ROAS")),
+                "cac": _parse_numeric(m.get("CPA")),
+            }
+        )
 
     # If the ranking metric returned all zeros (metric not tracked), warn the LLM
     if all(r["ranking_value"] == 0.0 for r in rows):
@@ -161,6 +165,7 @@ def build_channel_ranking(metrics: dict, category: str) -> str:
     )
     return "\n".join(lines)
 
+
 def build_context_block(category: str, df, metrics: dict) -> str:
     """Build shared business-first context.
 
@@ -169,7 +174,7 @@ def build_context_block(category: str, df, metrics: dict) -> str:
     campaign_raw_data = df.to_dict("records")
     metrics_overall = metrics.get("overall")
     # metrics_per_channel = metrics.get("per_channel")
-    ranking_block = build_channel_ranking(metrics,category)
+    ranking_block = build_channel_ranking(metrics, category)
 
     return f"""
         BUSINESS:
@@ -206,7 +211,6 @@ def build_analysis_user_prompt(context_block: str) -> str:
         CONTEXT:
         {context_block}
     """
-
 
 
 def build_recommendation_user_prompt(

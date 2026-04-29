@@ -78,7 +78,7 @@ $ pytest tests/test_schemas/test_input_schema.py
 Run from the project root:
 
 ```bash
-$ python -m src.evaluation.testmain
+$ python -m src.evaluation.run_evaluation
 ```
 
 This runs evaluation for all categories by default and writes JSON logs to:
@@ -89,13 +89,13 @@ This runs evaluation for all categories by default and writes JSON logs to:
 To run for a single category:
 
 ```bash
-$ python -m src.evaluation.testmain --category "Customer Acquisition"
+$ python -m src.evaluation.run_evaluation --category "Customer Acquisition"
 ```
 
 Optional parameters:
 
 ```bash
-$ python -m src.evaluation.testmain \
+$ python -m src.evaluation.run_evaluation \
 	--category "Customer Acquisition" \
 	--campaign-id "Spring Launch" \
 	--target "Customer Acquisition" \
@@ -107,7 +107,7 @@ $ python -m src.evaluation.testmain \
 After running evaluation, aggregate all JSON logs into two overall CSV files:
 
 ```bash
-$ python -m src.evaluation.aggregate_overall_logs
+$ python -m src.evaluation.run_aggregation_logs
 ```
 
 Generated files:

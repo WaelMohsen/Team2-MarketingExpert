@@ -1,10 +1,11 @@
-from src.evaluation.evaluation_pipeline import EvaluationPipeline
+from src.evaluation.orchestrator import EvaluationOrchestrator
 
 
 class RecommendationPipeline:
+    """Compatibility wrapper for recommendation-only evaluation calls."""
 
     def __init__(self, llm_callable, embedding_callable):
-        self._pipeline = EvaluationPipeline(llm_callable, embedding_callable)
+        self._orchestrator = EvaluationOrchestrator(llm_callable, embedding_callable)
 
     def run(
         self,
@@ -16,7 +17,7 @@ class RecommendationPipeline:
         category: str = None,
     ):
 
-        return self._pipeline.run_recommendation(
+        return self._orchestrator.run_recommendation(
             campaign_id=campaign_id,
             target=target,
             analysis_output=analysis_output,

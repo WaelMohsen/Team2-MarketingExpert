@@ -1,5 +1,5 @@
 from src.evaluation.base_evaluator import BaseEvaluator
-from src.evaluation.logger import EvaluationLogger
+from src.evaluation.services import EvaluationLogger
 
 from .business_relevance_evaluator import BusinessRelevanceEvaluator
 from .config import FINAL_WEIGHTS
@@ -34,6 +34,8 @@ class RecommendationEvaluator(BaseEvaluator):
         kpis = data["kpis"]
         gt_data = data.get("ground_truth")
         category = data.get("category")
+        campaign_id = data.get("campaign_id")
+        target = data.get("target")
         # 1. Business relevance
         business = self.business.evaluate(recs, analysis, kpis)
         # 2. Rules check
@@ -47,6 +49,8 @@ class RecommendationEvaluator(BaseEvaluator):
 
         result = {
             "category": category,
+            "campaign_id": campaign_id,
+            "target": target,
             "final_score": final_score,
             "business": business,
             "compliance": compliance,

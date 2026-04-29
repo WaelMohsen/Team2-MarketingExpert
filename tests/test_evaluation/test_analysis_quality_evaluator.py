@@ -2,7 +2,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from src.evaluation.analysis_quality_evaluator import AnalysisQualityEvaluator
+from src.evaluation.analysis.evaluator import AnalysisQualityEvaluator
 from src.schemas.analysis_output_schema import AnalysisOutput
 
 
@@ -47,7 +47,7 @@ def test_analysis_quality_evaluator_returns_weighted_score_and_no_flags(
     }
     explanations = dict.fromkeys(scores, "ok")
 
-    module_path = "src.evaluation.analysis_quality_evaluator.chat_completion"
+    module_path = "src.evaluation.analysis.evaluator.chat_completion"
     monkeypatch.setattr(module_path, lambda **kwargs: _verdict(scores, explanations))
 
     logger = _mock_logger()
@@ -76,7 +76,7 @@ def test_analysis_quality_evaluator_flags_recommendation_language(monkeypatch):
     }
     explanations = dict.fromkeys(scores, "ok")
 
-    module_path = "src.evaluation.analysis_quality_evaluator.chat_completion"
+    module_path = "src.evaluation.analysis.evaluator.chat_completion"
     monkeypatch.setattr(module_path, lambda **kwargs: _verdict(scores, explanations))
 
     logger = _mock_logger()
@@ -90,7 +90,7 @@ def test_analysis_quality_evaluator_flags_recommendation_language(monkeypatch):
 
 
 def test_analysis_quality_evaluator_llm_failure_fallback(monkeypatch):
-    module_path = "src.evaluation.analysis_quality_evaluator.chat_completion"
+    module_path = "src.evaluation.analysis.evaluator.chat_completion"
 
     def _raise(**kwargs):
         raise RuntimeError("model down")

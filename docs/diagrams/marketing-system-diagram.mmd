@@ -1,0 +1,87 @@
+flowchart TB
+
+    subgraph S0[Target Selection]
+        T0["Selected target/category"]
+        T1["Customer Acquisition"]
+        T2["Customer Satisfaction"]
+        T3["Revenue Growth"]
+        T4["Customer Retention"]
+
+        T1 --> T0
+        T2 --> T0
+        T3 --> T0
+        T4 --> T0
+    end
+
+    subgraph S1[Data Input and Metrics]
+        A["Campaign CSV input<br/>data/all_campaigns_data.csv"]
+        A1["Schema validation<br/>validate_campaign_data"]
+        A2["Example fields<br/>campaign_id | impressions | clicks | conversions | spend | channel"]
+        B["Target-specific metrics engine<br/>calculate_metrics_full(df, target)"]
+        B0["Selected target chooses KPI calculator<br/>Customer Acquisition | Customer Satisfaction | Revenue Growth | Customer Retention"]
+        B1["Output 1: Overall campaign metrics<br/>aggregated across all channels"]
+        B2["Output 2: Per-channel target metrics<br/>Instagram | Facebook | Google Ads | ..."]
+        B3["Examples of returned metrics<br/>CTR, CPA, ROAS, total spend, total revenue<br/>stored as overall + per_channel"]
+
+        A -->|raw rows| A1
+        A1 -->|canonical dataframe| A2
+        A2 -->|validated dataframe| B
+        B0 -->|target selects calculator| B
+        B -->|overall aggregate| B1
+        B -->|channel aggregates| B2
+        B1 -->|target metric payload| B3
+        B2 -->|target metric payload| B3
+    end
+
+    subgraph S2[LLM Generation Pipeline]
+        C["Category prompt selection<br/>Customer Acquisition | Customer Satisfaction | Revenue Growth | Customer Retention"]
+        D["Analysis step<br/>chat_completion(response_format=AnalysisOutput)"]
+        D1["Analysis validation<br/>validate_analysis_output"]
+        E["Recommendation step<br/>chat_completion(response_format=RecommendationOutput)"]
+        E1["Recommendation validation<br/>validate_recommendation_output"]
+        F["Combined response object<br/>kpis + analysis + recommendations"]
+
+        C -->|system and user prompts| D
+        D -->|parsed analysis model| D1
+        D1 -->|analysis json| E
+        E -->|parsed recommendation model| E1
+        E1 -->|recommendation list| F
+    end
+
+    subgraph S3[Evaluation Orchestration]
+        G["run_evaluation_for_category"]
+        G1["Build campaign_context<br/>df.head(context_rows).to_json(records)"]
+        H["EvaluationOrchestrator.run_all"]
+        H1["Analysis evaluator<br/>LLM quality verdict"]
+        H2["Recommendation evaluator<br/>business + compliance + hybrid"]
+        H3["Pydantic contracts<br/>EvaluationRequest and EvaluationResult"]
+
+        G -->|analysis/recommendations/kpis| G1
+        G1 -->|evaluation request payload| H
+        H -->|analysis_output| H1
+        H -->|recommendation_output + ground truth| H2
+        H1 -->|analysis result| H3
+        H2 -->|recommendation result| H3
+    end
+
+    subgraph S4[Logs and Reporting]
+        I["save_output<br/>output_log/pipeline_output_*.json"]
+        J["Evaluation log jsons<br/>evaluation_logs/analysis and evaluation_logs/recommendation"]
+        K["aggregate_logs CLI<br/>run_aggregation_logs.py"]
+        L["Overall CSV outputs<br/>overall_analysis_evaluation.csv<br/>overall_recommendation_evaluation.csv"]
+        M["Dashboard generator<br/>generate_dashboard.py"]
+        N["Excel output<br/>evaluation_dashboard.xlsx or custom --output"]
+
+        F -->|pipeline json output| I
+        H3 -->|evaluation json output| J
+        J -->|json files| K
+        K -->|aggregated csv rows| L
+        L -->|csv inputs| M
+        M -->|xlsx workbook| N
+    end
+
+    T0 -->|target determines KPI set| B0
+    T0 -->|category-specific prompt file| C
+
+    S1 -->|dataframe + metrics| S2
+    S2 -->|analysis and recommendations| S3

@@ -3,6 +3,8 @@
 from statistics import mean
 from typing import Dict, List
 
+from .response_parser import parse_llm_dict_response
+
 
 class PromptComplianceEvaluator:
 
@@ -17,7 +19,12 @@ class PromptComplianceEvaluator:
         return 1.0 if 5 <= len(recs) <= 8 else 0.0
 
     def _required_fields(self, recs: List[dict]) -> float:
-        required_fields = ["title", "priority", "what_you_should_do", "evidence"]
+        required_fields = [
+            "title",
+            "priority",
+            "what_you_should_do",
+            "evidence",
+        ]
 
         for r in recs:
             for f in required_fields:
@@ -62,8 +69,8 @@ Score 0 to 1:
 Return JSON.
 """
         try:
-            return eval(self.llm(prompt))
-        except:
+            return parse_llm_dict_response(self.llm(prompt))
+        except Exception:
             return {}
 
     # =========================================================
@@ -118,4 +125,8 @@ Return JSON.
         if llm_scores.get("no_hallucination", 1) < 0.7:
             flags.append("possible_hallucination")
 
-        return {"score": round(overall, 32), "dimensions": final_scores, "flags": flags}
+        return {
+            "score": round(overall, 3),
+            "dimensions": final_scores,
+            "flags": flags,
+        }

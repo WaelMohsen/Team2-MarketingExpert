@@ -1,26 +1,17 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Sequence
+from typing import Any, List, Optional, Sequence
 
 from pydantic import BaseModel, Field
 
-from ..llm.client import chat_completion, get_client
-from ..schemas.analysis_output_schema import AnalysisOutput
-
-# ─────────────────────────────────────────────
-# 1. STATUS ENUM
-# ─────────────────────────────────────────────
+from src.llm.client import chat_completion, get_client
+from src.schemas.analysis_output_schema import AnalysisOutput
 
 
 class EvaluationStatus(str, Enum):
     PASS = "pass"
     BORDERLINE = "borderline"
     FAIL = "fail"
-
-
-# ─────────────────────────────────────────────
-# 2. CRITERION DEFINITION (config/rubric)
-# ─────────────────────────────────────────────
 
 
 @dataclass(frozen=True)
@@ -85,11 +76,6 @@ DEFAULT_CRITERIA: tuple[CriterionDefinition, ...] = (
 )
 
 
-# ─────────────────────────────────────────────
-# 3. CRITERION SCORE (result per criterion)
-# ─────────────────────────────────────────────
-
-
 @dataclass(frozen=True)
 class CriterionScore:
     name: str
@@ -106,11 +92,6 @@ class CriterionScore:
         }
 
 
-# ─────────────────────────────────────────────
-# 4. JUDGE VERDICT (Pydantic — LLM output)
-# ─────────────────────────────────────────────
-
-
 class CriterionScoreSchema(BaseModel):
     name: str
     score: int = Field(..., ge=1, le=5)
@@ -124,10 +105,6 @@ class JudgeVerdict(BaseModel):
     summary: str
     improvement_suggestions: List[str]
 
-
-# ─────────────────────────────────────────────
-# 5. JUDGE PROMPT
-# ─────────────────────────────────────────────
 
 JUDGE_SYSTEM_PROMPT = """
 You are an expert evaluator of marketing campaign analysis outputs.
@@ -173,11 +150,6 @@ Return a JSON object with this exact structure:
   "improvement_suggestions": ["<suggestion1>", "<suggestion2>"]
 }}
 """
-
-
-# ─────────────────────────────────────────────
-# 6. ANALYSIS JUDGE CLASS
-# ─────────────────────────────────────────────
 
 
 class AnalysisJudge:

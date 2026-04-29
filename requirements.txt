@@ -7,3 +7,4 @@ numpy
 scikit-learn
 fastapi
 uvicorn
+openpyxl

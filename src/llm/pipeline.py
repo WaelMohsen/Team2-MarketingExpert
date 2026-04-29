@@ -10,7 +10,6 @@ from ..schemas.recommendation_output_schema import (
     validate_recommendation_output,
 )
 from .insight_quality_checker import InsightQualityChecker
-
 from .prompts import (
     analysis_system_prompt,
     build_analysis_user_prompt,

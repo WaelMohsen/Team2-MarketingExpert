@@ -1,6 +1,7 @@
 from typing import List
 
 from .config import BUSINESS_WEIGHTS
+from .response_parser import parse_llm_dict_response
 
 
 class BusinessRelevanceEvaluator:
@@ -128,7 +129,7 @@ RETURN STRICT JSON:
 
         try:
             response = self.llm(prompt)
-            result = eval(response) if isinstance(response, str) else response
+            result = parse_llm_dict_response(response)
         except Exception:
             return {"score": 0, "error": "llm_failed"}
 
@@ -139,7 +140,8 @@ RETURN STRICT JSON:
         overall_scores = result.get("overall", {}).get("scores", {})
 
         final_score = sum(
-            overall_scores.get(k, 0) * BUSINESS_WEIGHTS[k] for k in BUSINESS_WEIGHTS
+            overall_scores.get(key, 0) * BUSINESS_WEIGHTS[key]
+            for key in BUSINESS_WEIGHTS
         )
 
         # ---------------------------
