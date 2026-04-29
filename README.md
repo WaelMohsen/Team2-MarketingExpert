@@ -71,50 +71,6 @@ To run a specific test file:
 $ pytest tests/test_schemas/test_input_schema.py
 ```
 
-## Running Evaluation and Aggregation
-
-### Run unified evaluation (analysis + recommendation)
-
-Run from the project root:
-
-```bash
-$ python -m src.evaluation.testmain
-```
-
-This runs evaluation for all categories by default and writes JSON logs to:
-
-- `evaluation_logs/analysis/`
-- `evaluation_logs/recommendation/`
-
-To run for a single category:
-
-```bash
-$ python -m src.evaluation.testmain --category "Customer Acquisition"
-```
-
-Optional parameters:
-
-```bash
-$ python -m src.evaluation.testmain \
-	--category "Customer Acquisition" \
-	--campaign-id "Spring Launch" \
-	--target "Customer Acquisition" \
-	--context-rows 20
-```
-
-### Aggregate evaluation logs into dashboard CSVs
-
-After running evaluation, aggregate all JSON logs into two overall CSV files:
-
-```bash
-$ python -m src.evaluation.aggregate_overall_logs
-```
-
-Generated files:
-
-- `evaluation_logs/overall/overall_analysis.csv`
-- `evaluation_logs/overall/overall_recommendation.csv`
-
 ## Pre-commit Hooks
 
 This project uses `pre-commit` to automatically check code quality, formatting, and run tests before committing.

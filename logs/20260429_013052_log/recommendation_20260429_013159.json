@@ -1,0 +1,66 @@
+{
+    "final_score": 0.393,
+    "business": {
+        "score": 0,
+        "error": "llm_failed"
+    },
+    "compliance": {
+        "score": 0.5,
+        "dimensions": {
+            "count_valid": 1.0,
+            "required_fields": 1.0,
+            "priority_order": 1.0,
+            "no_hallucination": 0,
+            "clarity": 0,
+            "non_repetition": 0
+        },
+        "flags": [
+            "hallucination_detected",
+            "repetition_detected"
+        ]
+    },
+    "ground_truth": {
+        "score": 0.607,
+        "avg_similarity": 0.633,
+        "coverage": 0.692,
+        "llm_calls": 5,
+        "matches": [
+            {
+                "rec_id": "REC-01",
+                "matched_gt_id": "GT-CA-01",
+                "similarity": 0.699,
+                "llm_score": 0.6
+            },
+            {
+                "rec_id": "REC-02",
+                "matched_gt_id": "GT-CA-04",
+                "similarity": 0.633,
+                "llm_score": 0.6
+            },
+            {
+                "rec_id": "REC-03",
+                "matched_gt_id": "GT-CA-02",
+                "similarity": 0.732,
+                "llm_score": 0.7
+            },
+            {
+                "rec_id": "REC-04",
+                "matched_gt_id": "GT-CA-05",
+                "similarity": 0.703,
+                "llm_score": 0.6
+            },
+            {
+                "rec_id": "REC-05",
+                "matched_gt_id": "GT-CA-05",
+                "similarity": 0.661,
+                "llm_score": 0.4
+            }
+        ],
+        "missed_ground_truth": [
+            "GT-CA-03"
+        ],
+        "flags": [],
+        "total_recommendations": 5,
+        "total_ground_truth": 5
+    }
+}

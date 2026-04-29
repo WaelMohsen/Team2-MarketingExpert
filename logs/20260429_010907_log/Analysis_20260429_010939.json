@@ -1,0 +1,41 @@
+{
+    "overall_score": 4,
+    "overall_status": "pass",
+    "criteria_scores": [
+        {
+            "name": "analysis",
+            "score": 4,
+            "rationale": "The analysis is mostly clear and uses straightforward language, making it accessible for a business audience. However, it could benefit from a bit more detail on how the metrics directly impact financial outcomes."
+        },
+        {
+            "name": "key_signals",
+            "score": 4,
+            "rationale": "The key signals are specific and relevant, highlighting important metrics like conversion rate and return on advertising spend. However, including more context on how these metrics compare to previous campaigns would enhance the insights."
+        },
+        {
+            "name": "detected_issues",
+            "score": 2,
+            "rationale": "No concrete issues were identified, which is a significant oversight. Even if the campaign performed well, acknowledging potential areas for improvement is crucial for future growth."
+        },
+        {
+            "name": "root_cause_hypothesis",
+            "score": 4,
+            "rationale": "The hypothesis logically follows from the analysis and key signals, suggesting that traffic costs may be the bottleneck. However, it could be strengthened by providing more evidence or examples."
+        },
+        {
+            "name": "business_risks",
+            "score": 2,
+            "rationale": "The analysis states there are no business risks, which is unrealistic. Every campaign has potential risks that could impact revenue or growth, and these should be addressed."
+        },
+        {
+            "name": "confidence_score",
+            "score": 4,
+            "rationale": "The confidence score of 95% is appropriate given the strong performance metrics presented. However, it would be more convincing if it were backed by a discussion of the data sources or methods used."
+        }
+    ],
+    "summary": "The analysis provides a solid overview of campaign performance but lacks identification of issues and risks.",
+    "improvement_suggestions": [
+        "Identify and discuss potential issues or areas for improvement in future campaigns.",
+        "Include a section on business risks that could arise from the current campaign performance."
+    ]
+}

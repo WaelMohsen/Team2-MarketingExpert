@@ -1,0 +1,891 @@
+[
+  {
+    "campaign_id": "Spring Launch",
+    "ground_truth": {
+      "Customer Acquisition": [
+          {
+            "id": "GT-CA-01",
+            "title": "Fix Google Ads conversion inefficiency",
+            "category": "Targeting",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "2-3 weeks",
+            "confidence": "High",
+            "whats_happening": "Google Ads has the lowest conversion rate at 11.18% with a CPA of $3.90, indicating poor traffic quality despite reasonable CTR of 4.72%.",
+            "evidence": [
+              "Google Ads CVR (11.18%) is the lowest across all 6 channels",
+              "CTR at 4.72% is mid-range so visibility is not the problem \u2014 conversion is",
+              "CPA at $3.90 is 4.7x higher than SMS ($0.83)"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Audit search terms report and exclude low-intent queries",
+                "where": "Google Ads",
+                "how": "Review last 30 days of search terms, identify queries with clicks but zero conversions, add as negative keywords",
+                "guardrails": [
+                  "Do not exclude branded terms",
+                  "Preserve queries with fewer than 10 clicks \u2014 insufficient data"
+                ]
+              },
+              {
+                "step": "Test dedicated landing pages for Google Ads traffic",
+                "where": "Website",
+                "how": "Create landing page with messaging matched to high-intent search queries and A/B test against current generic page",
+                "guardrails": [
+                  "Run test for minimum 2 weeks",
+                  "Ensure conversion tracking is verified before launch"
+                ]
+              }
+            ],
+            "why_this_matters": "Google Ads consumes $320 (19.6% of total budget). Improving CVR from 11.18% to 13% would generate approximately 15 additional conversions at the same spend.",
+            "expected_impact": {
+              "primary_kpi": "Conversion Rate",
+              "direction": "Increase",
+              "explanation": "Better keyword targeting and landing page relevance should improve CVR from 11.18% toward 13%."
+            },
+            "dependency_or_risk": [
+              "Requires access to Google Ads search terms report",
+              "Landing page changes need design and development resources"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Compare Google Ads conversion rate and CPA week-over-week after changes",
+              "success_criteria": "Conversion rate improves to 13% or above within 3 weeks",
+              "check_timing": "Weekly for 3 weeks",
+              "notes": "If CVR does not improve, consider reducing Google Ads budget and reallocating"
+            },
+            "owner_suggestion": "Performance marketing team"
+          },
+          {
+            "id": "GT-CA-02",
+            "title": "Scale SMS \u2014 cheapest and highest converting acquisition channel",
+            "category": "Channel_Mix",
+            "priority": "High",
+            "effort": "Low",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "High",
+            "whats_happening": "SMS has the lowest CPA at $0.83 and the highest conversion rate at 19.64%, but receives only $40 spend (2.5% of total budget).",
+            "evidence": [
+              "SMS CPA ($0.83) is 5.3x cheaper than Facebook ($4.40)",
+              "SMS CVR (19.64%) is the highest across all channels",
+              "SMS spend ($40) is only 2.5% of total budget \u2014 severely underinvested"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Increase SMS campaign frequency and audience size",
+                "where": "SMS",
+                "how": "Expand subscriber lists through website opt-in and checkout capture, increase send frequency by 20-30%",
+                "guardrails": [
+                  "Monitor opt-out rates weekly \u2014 pause if unsubscribes exceed 2%",
+                  "Do not send more than 3 SMS per week"
+                ]
+              }
+            ],
+            "why_this_matters": "Shifting $100 from Facebook to SMS would theoretically acquire 120 additional customers at SMS efficiency versus 23 at Facebook rates.",
+            "expected_impact": {
+              "primary_kpi": "New Customers",
+              "direction": "Increase",
+              "explanation": "Higher SMS spend at current efficiency should acquire significantly more customers per dollar."
+            },
+            "dependency_or_risk": [
+              "SMS efficiency may degrade at higher volumes",
+              "Requires sufficient subscriber base to scale"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track SMS CPA and new customers weekly as spend increases",
+              "success_criteria": "SMS CPA stays below $1.50 at increased volume",
+              "check_timing": "Weekly for 4 weeks",
+              "notes": "If CPA rises above $1.50, stabilise at last efficient spend level"
+            },
+            "owner_suggestion": "CRM and lifecycle marketing team"
+          },
+          {
+            "id": "GT-CA-03",
+            "title": "Scale Email \u2014 second most efficient acquisition channel",
+            "category": "Channel_Mix",
+            "priority": "High",
+            "effort": "Low",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "High",
+            "whats_happening": "Email has a CPA of $1.47 and conversion rate of 13.33% on only $100 spend, making it the second most efficient acquisition channel after SMS.",
+            "evidence": [
+              "Email CPA ($1.47) is 2.7x cheaper than Google Ads ($3.90)",
+              "Email CVR (13.33%) is the second highest after SMS",
+              "Email spend ($100) is only 6.1% of total budget"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Increase email campaign volume and list growth",
+                "where": "Email",
+                "how": "Add email capture at every customer touchpoint, launch a welcome series for new subscribers, increase campaign sends by 25%",
+                "guardrails": [
+                  "Maintain list hygiene \u2014 remove hard bounces immediately",
+                  "Segment sends to avoid fatigue on engaged subscribers"
+                ]
+              }
+            ],
+            "why_this_matters": "Email is already the second cheapest channel for customer acquisition. Growing the list and send volume extends this advantage.",
+            "expected_impact": {
+              "primary_kpi": "New Customers",
+              "direction": "Increase",
+              "explanation": "Higher email volume at current efficiency should grow new customer count without proportional CPA increase."
+            },
+            "dependency_or_risk": [
+              "List growth takes time \u2014 not an overnight fix",
+              "Over-sending risks higher unsubscribe rate"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track Email CPA, list size, and new customers weekly",
+              "success_criteria": "Email CPA stays below $2.50 while new customers increase by 20%",
+              "check_timing": "Weekly for 4 weeks",
+              "notes": "Monitor unsubscribe rate as a leading indicator of fatigue"
+            },
+            "owner_suggestion": "Email marketing team"
+          },
+          {
+            "id": "GT-CA-04",
+            "title": "Investigate Facebook's weak acquisition performance",
+            "category": "Targeting",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "High",
+            "whats_happening": "Facebook has the highest CPA at $4.40, lowest CTR at 4.0%, and lowest ROAS at 5.0 \u2014 the weakest paid channel across all acquisition metrics.",
+            "evidence": [
+              "Facebook CPA ($4.40) is the highest across all channels",
+              "Facebook CTR (4.0%) is the lowest across all channels",
+              "Facebook ROAS (5.0) is the lowest across all channels",
+              "Instagram uses the same ad platform but outperforms on CTR (4.4%) and ROAS (7.11)"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Audit Facebook audience targeting and creative",
+                "where": "Facebook Ads Manager",
+                "how": "Check audience overlap with Instagram, review creative by format, test Advantage+ audiences",
+                "guardrails": [
+                  "Maintain minimum spend for retargeting",
+                  "Run audience tests for at least 7 days before evaluating"
+                ]
+              }
+            ],
+            "why_this_matters": "Facebook consumes $220 (13.5% of total budget) with the worst efficiency metrics. Improving or reallocating this spend has material impact.",
+            "expected_impact": {
+              "primary_kpi": "CPA",
+              "direction": "Decrease",
+              "explanation": "Better targeting should reduce CPA from $4.40 closer to Instagram's $4.09 as a first milestone."
+            },
+            "dependency_or_risk": [
+              "Changes to Facebook targeting may affect Instagram delivery via shared Meta platform",
+              "If Facebook cannot improve, budget should be reallocated"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Compare Facebook CPA and CTR weekly after targeting changes",
+              "success_criteria": "CPA drops below $4.00 and CTR improves above 4.5% within 4 weeks",
+              "check_timing": "Weekly for 4 weeks",
+              "notes": "If no improvement after 4 weeks, reduce Facebook to retargeting-only"
+            },
+            "owner_suggestion": "Performance marketing team"
+          },
+          {
+            "id": "GT-CA-05",
+            "title": "Reduce Email bounce rate to protect conversion efficiency",
+            "category": "Landing_Page",
+            "priority": "Medium",
+            "effort": "Medium",
+            "time_to_see_impact": "2-3 weeks",
+            "confidence": "Medium",
+            "whats_happening": "Email has the highest bounce rate at 0.36 despite the second-best conversion rate at 13.33%. Potential customers are lost before converting.",
+            "evidence": [
+              "Email bounce rate (0.36) is the highest across all channels",
+              "Email CVR (13.33%) is strong \u2014 those who stay convert well",
+              "SMS bounce rate (0.19) shows what well-aligned messaging achieves"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Optimise email landing pages for relevance and speed",
+                "where": "Website landing pages for Email campaigns",
+                "how": "Match landing page headline to email subject line, test page load time, simplify to fewer than 3 conversion steps",
+                "guardrails": [
+                  "Use UTM parameters to isolate Email traffic",
+                  "Do not change other channel landing pages during test"
+                ]
+              }
+            ],
+            "why_this_matters": "Reducing bounce rate from 0.36 to 0.25 could recover 10-15% more conversions from existing email volume at no additional spend.",
+            "expected_impact": {
+              "primary_kpi": "Bounce Rate",
+              "direction": "Decrease",
+              "explanation": "Better message-to-landing-page alignment should reduce bounce rate from 0.36 toward 0.27."
+            },
+            "dependency_or_risk": [
+              "Requires web development resources",
+              "Some bounce may be driven by list quality not landing page"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track Email-specific bounce rate and CVR weekly",
+              "success_criteria": "Bounce rate drops below 0.28 within 3 weeks",
+              "check_timing": "Weekly for 3 weeks",
+              "notes": "If no improvement, investigate email list quality and segmentation"
+            },
+            "owner_suggestion": "Email marketing and web development teams"
+          }
+        ],
+      "Customer Satisfaction":[
+          {
+            "id": "GT-CS-01",
+            "title": "Capitalise on TikTok's engagement dominance",
+            "category": "Creative",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "High",
+            "whats_happening": "TikTok has the highest engagement rate at 8.96%, significantly above Instagram (5.6%) and Facebook (5.36%), with the lowest bounce rate at 0.21.",
+            "evidence": [
+              "TikTok engagement rate (8.96%) leads all channels",
+              "TikTok bounce rate (0.21) is the lowest",
+              "TikTok shares (620) are 3x higher than Instagram (200)"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Increase TikTok content production and repurpose winners",
+                "where": "TikTok",
+                "how": "Identify top 3 posts by engagement, produce 2-3 variations each, adapt winning formats for Instagram Reels",
+                "guardrails": [
+                  "Maintain brand consistency across adaptations",
+                  "Do not force TikTok formats onto platforms where they don't fit"
+                ]
+              }
+            ],
+            "why_this_matters": "TikTok already generates the most engagement with the lowest bounce. Investing here has the highest return on satisfaction metrics.",
+            "expected_impact": {
+              "primary_kpi": "Engagement Rate",
+              "direction": "Increase",
+              "explanation": "More content in a resonant format should maintain or grow the 8.96% engagement rate while expanding reach."
+            },
+            "dependency_or_risk": [
+              "TikTok content requires specific production skills",
+              "Algorithm changes could affect organic reach"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track engagement rate, shares, and reach weekly on TikTok",
+              "success_criteria": "Engagement rate stays above 8% while reach grows by 15%",
+              "check_timing": "Weekly for 4 weeks",
+              "notes": "Monitor whether cross-posted content achieves similar engagement on Instagram"
+            },
+            "owner_suggestion": "Social media and content team"
+          },
+          {
+            "id": "GT-CS-02",
+            "title": "Address Facebook's low engagement relative to reach",
+            "category": "Creative",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "2-3 weeks",
+            "confidence": "Medium",
+            "whats_happening": "Facebook has 11,000 reach but the lowest social engagement rate at 5.36%, combined with a high bounce rate of 0.34.",
+            "evidence": [
+              "Facebook engagement rate (5.36%) is the lowest among social channels",
+              "Facebook bounce rate (0.34) is the second highest overall",
+              "Facebook reach (11,000) is less than half TikTok (26,000) despite similar spend levels"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Refresh Facebook creative and test engagement-focused formats",
+                "where": "Facebook",
+                "how": "Test video, carousel, and poll formats prioritising comments and shares over passive likes",
+                "guardrails": [
+                  "Run each creative test for minimum 7 days",
+                  "Isolate creative variable \u2014 do not change audience targeting simultaneously"
+                ]
+              }
+            ],
+            "why_this_matters": "Low engagement signals content irrelevance which Facebook's algorithm penalises with reduced organic reach \u2014 creating a downward spiral.",
+            "expected_impact": {
+              "primary_kpi": "Engagement Rate",
+              "direction": "Increase",
+              "explanation": "Fresh creative in engagement-optimised formats should lift engagement from 5.36% toward Instagram's 5.6%."
+            },
+            "dependency_or_risk": [
+              "Creative production requires design resources",
+              "Facebook organic reach has been declining industry-wide"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track Facebook engagement rate, comments, and shares per post",
+              "success_criteria": "Engagement rate improves to 5.6% or above within 3 weeks",
+              "check_timing": "Weekly for 3 weeks",
+              "notes": "If engagement doesn't improve with new creative, the issue may be audience quality"
+            },
+            "owner_suggestion": "Social media and content team"
+          },
+          {
+            "id": "GT-CS-03",
+            "title": "Reduce Email bounce rate \u2014 highest across all channels",
+            "category": "Landing_Page",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "2-3 weeks",
+            "confidence": "High",
+            "whats_happening": "Email has the highest bounce rate at 0.36 followed by Facebook at 0.34, indicating a disconnect between user expectations and landing page experience.",
+            "evidence": [
+              "Email bounce rate (0.36) is the highest across all channels",
+              "Facebook bounce rate (0.34) is the second highest",
+              "SMS bounce rate (0.19) demonstrates what aligned messaging achieves"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Align email content with landing page experience",
+                "where": "Email campaigns and landing pages",
+                "how": "Audit top 5 email campaigns by volume, compare messaging with landing page headline and first fold, fix mismatches",
+                "guardrails": [
+                  "Use UTM parameters to isolate Email traffic",
+                  "Test one variable at a time \u2014 email content or landing page, not both"
+                ]
+              }
+            ],
+            "why_this_matters": "Email is the second most efficient acquisition channel. Reducing bounce unlocks more conversions from existing volume at no cost.",
+            "expected_impact": {
+              "primary_kpi": "Bounce Rate",
+              "direction": "Decrease",
+              "explanation": "Better alignment should reduce bounce from 0.36 toward the channel average of 0.27."
+            },
+            "dependency_or_risk": [
+              "Landing page changes need web development resources",
+              "Some bounce driven by list quality not landing page"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track Email-specific bounce rate weekly",
+              "success_criteria": "Bounce rate drops below 0.28 within 3 weeks",
+              "check_timing": "Weekly for 3 weeks",
+              "notes": "Segment by email campaign to find which specific emails drive highest bounce"
+            },
+            "owner_suggestion": "Email marketing and web development teams"
+          },
+          {
+            "id": "GT-CS-04",
+            "title": "Monitor Instagram frequency to prevent ad fatigue",
+            "category": "Frequency",
+            "priority": "Medium",
+            "effort": "Low",
+            "time_to_see_impact": "Ongoing",
+            "confidence": "Medium",
+            "whats_happening": "Instagram frequency is 2.8, second highest after TikTok (3.5). While engagement is healthy at 5.6%, high frequency risks declining engagement.",
+            "evidence": [
+              "Instagram frequency (2.8) is elevated",
+              "TikTok frequency (3.5) is higher but engagement remains strong \u2014 TikTok audiences tolerate higher frequency",
+              "Instagram engagement (5.6%) is healthy but could decline with fatigue"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Set frequency caps and rotate creative regularly",
+                "where": "Instagram",
+                "how": "Cap frequency at 3.0 in campaign settings, rotate creative every 7-10 days, maintain at least 3 variants in rotation",
+                "guardrails": [
+                  "Do not set cap below 2.0 \u2014 insufficient exposure",
+                  "Track engagement by creative variant to identify fatigue early"
+                ]
+              }
+            ],
+            "why_this_matters": "Ad fatigue is a leading cause of declining engagement and rising CPM. Proactive management prevents this.",
+            "expected_impact": {
+              "primary_kpi": "Engagement Rate",
+              "direction": "Maintain",
+              "explanation": "Frequency caps and rotation should maintain the 5.6% engagement rate and prevent decline."
+            },
+            "dependency_or_risk": [
+              "Caps may reduce reach if audience is small",
+              "Rotation requires ongoing content production"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track Instagram engagement rate and frequency weekly",
+              "success_criteria": "Engagement stays at or above 5.5% with frequency below 3.0",
+              "check_timing": "Weekly ongoing",
+              "notes": "If engagement drops below 5% despite rotation, investigate audience saturation"
+            },
+            "owner_suggestion": "Social media team"
+          },
+          {
+            "id": "GT-CS-05",
+            "title": "Reduce Facebook bounce rate to improve user experience",
+            "category": "Landing_Page",
+            "priority": "Medium",
+            "effort": "Medium",
+            "time_to_see_impact": "2-3 weeks",
+            "confidence": "Medium",
+            "whats_happening": "Facebook bounce rate is 0.34, the second highest after Email (0.36), suggesting ads are setting expectations the landing page does not meet.",
+            "evidence": [
+              "Facebook bounce rate (0.34) is the second highest",
+              "Facebook engagement rate (5.36%) is already the lowest among social channels",
+              "High bounce compounds the engagement problem \u2014 users leave quickly"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Test landing page variants for Facebook traffic",
+                "where": "Website landing pages for Facebook campaigns",
+                "how": "Create landing pages that visually match the Facebook ad creative, use consistent messaging, and load within 3 seconds",
+                "guardrails": [
+                  "Isolate Facebook traffic using UTM parameters",
+                  "Run A/B test for minimum 2 weeks"
+                ]
+              }
+            ],
+            "why_this_matters": "Bounce rate and engagement are both weak for Facebook. Fixing bounce is a prerequisite for any engagement improvement to translate into conversions.",
+            "expected_impact": {
+              "primary_kpi": "Bounce Rate",
+              "direction": "Decrease",
+              "explanation": "Landing page alignment should reduce Facebook bounce from 0.34 toward 0.25."
+            },
+            "dependency_or_risk": [
+              "Requires web development resources",
+              "If ad creative is the problem, landing page fixes alone won't help"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track Facebook-specific bounce rate and time-on-page",
+              "success_criteria": "Bounce rate drops below 0.28 within 3 weeks",
+              "check_timing": "Weekly for 3 weeks",
+              "notes": "Coordinate with GT-CS-02 creative refresh \u2014 both should run in parallel"
+            },
+            "owner_suggestion": "Performance marketing and web development teams"
+          }
+        ]
+      ,
+      "Revenue Growth":  [
+          {
+            "id": "GT-RG-01",
+            "title": "Scale SMS \u2014 highest ROAS and Marketing ROI",
+            "category": "Channel_Mix",
+            "priority": "High",
+            "effort": "Low",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "High",
+            "whats_happening": "SMS delivers ROAS of 18.75 and Marketing ROI of 1775% on only $40 spend \u2014 the most efficient revenue channel by a wide margin.",
+            "evidence": [
+              "SMS ROAS (18.75) is 3.75x higher than Facebook (5.0)",
+              "SMS Marketing ROI (1775%) is the highest across all channels",
+              "SMS spend ($40) is only 2.5% of total budget"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Incrementally increase SMS budget",
+                "where": "SMS",
+                "how": "Increase spend by 25-50% per week, monitor ROAS at each increment to find efficiency ceiling",
+                "guardrails": [
+                  "Pause scaling if ROAS drops below 12.0",
+                  "Monitor opt-out rates to avoid list fatigue"
+                ]
+              }
+            ],
+            "why_this_matters": "Every additional dollar in SMS generates more revenue than any other channel at current efficiency rates.",
+            "expected_impact": {
+              "primary_kpi": "ROAS",
+              "direction": "Maintain",
+              "explanation": "Gradual scaling should maintain ROAS above 12.0 while increasing total SMS revenue."
+            },
+            "dependency_or_risk": [
+              "SMS audience size limits scaling potential",
+              "Regulatory compliance varies by region"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track SMS ROAS and total revenue weekly as spend increases",
+              "success_criteria": "ROAS stays above 12.0 at doubled spend level",
+              "check_timing": "Weekly for 4 weeks",
+              "notes": "If ROAS drops below 12.0, stabilise at last efficient spend level"
+            },
+            "owner_suggestion": "CRM and lifecycle marketing team"
+          },
+          {
+            "id": "GT-RG-02",
+            "title": "Reduce Facebook spend \u2014 lowest revenue efficiency",
+            "category": "Budget",
+            "priority": "High",
+            "effort": "Low",
+            "time_to_see_impact": "Immediate",
+            "confidence": "High",
+            "whats_happening": "Facebook has the lowest ROAS at 5.0, lowest AOV at $18.33, and lowest LTV:CAC at 14.58 \u2014 the weakest revenue channel.",
+            "evidence": [
+              "Facebook ROAS (5.0) is the lowest across all channels",
+              "Facebook AOV ($18.33) is the second lowest",
+              "Facebook LTV:CAC (14.58) is 4.5x lower than Email (65.05)"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Cut Facebook prospecting budget by 30% and redirect to SMS and TikTok",
+                "where": "Facebook and cross-channel budget",
+                "how": "Reduce daily Facebook prospecting spend, maintain retargeting, redirect savings to SMS and TikTok",
+                "guardrails": [
+                  "Maintain Facebook retargeting \u2014 typically higher ROAS than prospecting",
+                  "Monitor total revenue to ensure net positive impact"
+                ]
+              }
+            ],
+            "why_this_matters": "Facebook consumes $220 but generates only $1,100 revenue. Reallocating half to SMS could theoretically generate $2,062 additional revenue.",
+            "expected_impact": {
+              "primary_kpi": "ROAS",
+              "direction": "Increase",
+              "explanation": "Shifting spend from low-ROAS Facebook to high-ROAS channels improves blended campaign ROAS."
+            },
+            "dependency_or_risk": [
+              "Reducing Facebook may decrease brand awareness reach",
+              "Higher-value offers may have lower conversion rates"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track blended ROAS and total revenue weekly after reallocation",
+              "success_criteria": "Blended ROAS improves above 8.5 within 2 weeks",
+              "check_timing": "Weekly for 4 weeks",
+              "notes": "Compare total revenue before and after to confirm net positive"
+            },
+            "owner_suggestion": "Performance marketing team"
+          },
+          {
+            "id": "GT-RG-03",
+            "title": "Increase TikTok AOV through upselling",
+            "category": "Sales_Enablement",
+            "priority": "Medium",
+            "effort": "Medium",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "Medium",
+            "whats_happening": "TikTok has the highest AOV at $26.67 and highest revenue at $4,000 with LTV:CAC of 32.01. Pushing AOV higher amplifies returns on its large traffic volume.",
+            "evidence": [
+              "TikTok AOV ($26.67) is the highest across all channels",
+              "TikTok generates the most revenue ($4,000) and new customers (125)",
+              "TikTok LTV:CAC (32.01) is strong but could grow with higher AOV"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Introduce upsell and bundle offers for TikTok traffic",
+                "where": "TikTok landing pages",
+                "how": "Show product bundles, add-ons, and premium versions using price anchoring techniques",
+                "guardrails": [
+                  "Do not increase base prices \u2014 add value through bundles",
+                  "Monitor CVR to ensure upsell doesn't reduce conversion volume"
+                ]
+              }
+            ],
+            "why_this_matters": "A 10% AOV increase ($26.67 to $29.34) on 150 conversions adds $400 in revenue at zero additional acquisition cost.",
+            "expected_impact": {
+              "primary_kpi": "AOV",
+              "direction": "Increase",
+              "explanation": "Bundle offers should increase AOV from $26.67 toward $30+ without reducing conversion rate."
+            },
+            "dependency_or_risk": [
+              "Upsell may reduce conversion rate if poorly implemented",
+              "Product bundles need inventory and pricing coordination"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track TikTok AOV and conversion rate after introducing upsell",
+              "success_criteria": "AOV increases to $29+ while CVR stays above 10%",
+              "check_timing": "Weekly for 4 weeks",
+              "notes": "If CVR drops below 10%, simplify upsell presentation"
+            },
+            "owner_suggestion": "E-commerce and product team"
+          },
+          {
+            "id": "GT-RG-04",
+            "title": "Protect Email and SMS LTV:CAC advantage",
+            "category": "Retention",
+            "priority": "High",
+            "effort": "Low",
+            "time_to_see_impact": "Ongoing",
+            "confidence": "High",
+            "whats_happening": "Email LTV:CAC is 65.05 and SMS LTV:CAC is 64.10, both 4.5x higher than Facebook (14.58), driven by very low CPA ($1.47 and $0.83).",
+            "evidence": [
+              "Email LTV:CAC (65.05) is the highest across all channels",
+              "SMS LTV:CAC (64.10) is the second highest",
+              "Facebook LTV:CAC (14.58) is 4.5x lower",
+              "Email and SMS CPAs ($1.47 and $0.83) are the lowest"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Monitor acquisition quality weekly during scaling",
+                "where": "Email and SMS",
+                "how": "Track CPA, CVR, and 30-day retention weekly. Set alerts if Email CPA exceeds $2.50 or SMS CPA exceeds $1.50",
+                "guardrails": [
+                  "Do not sacrifice list quality for volume",
+                  "Maintain current segmentation standards"
+                ]
+              }
+            ],
+            "why_this_matters": "These channels represent the best long-term customer value. Degrading efficiency through aggressive scaling is more costly than the volume gained.",
+            "expected_impact": {
+              "primary_kpi": "LTV:CAC Ratio",
+              "direction": "Maintain",
+              "explanation": "Proactive monitoring preserves efficiency as spend increases."
+            },
+            "dependency_or_risk": [
+              "LTV:CAC depends on purchases_per_year staying stable",
+              "Audience saturation could degrade metrics"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Weekly CPA and LTV:CAC tracking for Email and SMS",
+              "success_criteria": "LTV:CAC stays above 50.0 for both channels",
+              "check_timing": "Weekly ongoing",
+              "notes": "Build a dedicated dashboard for these two channels"
+            },
+            "owner_suggestion": "CRM and analytics team"
+          },
+          {
+            "id": "GT-RG-05",
+            "title": "Scale Email revenue \u2014 second highest ROAS with headroom",
+            "category": "Channel_Mix",
+            "priority": "High",
+            "effort": "Low",
+            "time_to_see_impact": "1-2 weeks",
+            "confidence": "High",
+            "whats_happening": "Email has ROAS of 15.0 and Marketing ROI of 1400% on only $100 spend. Revenue Per Click is $2.50 with strong LTV:CAC of 65.05.",
+            "evidence": [
+              "Email ROAS (15.0) is the second highest after SMS (18.75)",
+              "Email Marketing ROI (1400%) demonstrates strong efficiency",
+              "Email spend ($100) is only 6.1% of total budget"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Increase email campaign volume targeting revenue-focused segments",
+                "where": "Email",
+                "how": "Segment list by past purchase value, send targeted product recommendations to high-value segments, increase promotional sends by 20%",
+                "guardrails": [
+                  "Maintain personalisation quality during scaling",
+                  "Monitor revenue-per-email-sent to detect diminishing returns"
+                ]
+              }
+            ],
+            "why_this_matters": "Email is the second most efficient revenue channel. Growing send volume to revenue-focused segments directly increases total revenue.",
+            "expected_impact": {
+              "primary_kpi": "Revenue",
+              "direction": "Increase",
+              "explanation": "Higher email volume targeted at high-value segments should grow revenue while maintaining ROAS above 10.0."
+            },
+            "dependency_or_risk": [
+              "Over-sending risks unsubscribes from high-value subscribers",
+              "Revenue per email may decline as volume increases"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track Email revenue, ROAS, and revenue-per-email weekly",
+              "success_criteria": "Email revenue grows 25% while ROAS stays above 10.0",
+              "check_timing": "Weekly for 4 weeks",
+              "notes": "Compare revenue-per-email at new volume vs baseline to measure efficiency"
+            },
+            "owner_suggestion": "Email marketing and CRM team"
+          }
+        ]
+        ,
+      "Customer Retention":[
+          {
+            "id": "GT-CR-01",
+            "title": "Intervene on Facebook churn \u2014 highest across all channels",
+            "category": "Retention",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "4-6 weeks",
+            "confidence": "High",
+            "whats_happening": "Facebook has the highest churn rate at 13% and lowest retention at 87%, with only 250 retained customers.",
+            "evidence": [
+              "Facebook churn (13%) is the highest across all channels",
+              "Facebook retention (87%) is the lowest",
+              "Facebook retained customers (250) is the lowest",
+              "Email retention (94%) shows what is achievable"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Launch targeted re-engagement for Facebook-acquired customers",
+                "where": "Email and SMS retargeting Facebook customers",
+                "how": "Segment by acquisition source using UTM data, create dedicated 7-day post-purchase sequence with personalised content",
+                "guardrails": [
+                  "Start with value content before discount offers",
+                  "Monitor unsubscribe rates from this segment"
+                ]
+              }
+            ],
+            "why_this_matters": "Reducing Facebook churn from 13% to 10% retains 7-8 additional customers per cycle, improving lifetime revenue.",
+            "expected_impact": {
+              "primary_kpi": "Churn Rate",
+              "direction": "Decrease",
+              "explanation": "Post-purchase engagement via Email and SMS should reduce Facebook customer churn from 13% toward 10%."
+            },
+            "dependency_or_risk": [
+              "Requires CRM segmentation by acquisition channel",
+              "Email capture rate from Facebook traffic must be sufficient"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track 30/60/90-day retention for Facebook-acquired customers",
+              "success_criteria": "Churn drops below 10% within 6 weeks",
+              "check_timing": "Bi-weekly for 6 weeks",
+              "notes": "Use a holdout group to measure true incremental impact"
+            },
+            "owner_suggestion": "Lifecycle marketing team"
+          },
+          {
+            "id": "GT-CR-02",
+            "title": "Leverage Email's retention strength for cross-sell",
+            "category": "Retention",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "4-8 weeks",
+            "confidence": "High",
+            "whats_happening": "Email has the highest retention at 94%, lowest churn at 6%, most retained customers at 410, and highest purchases per year at 5.1.",
+            "evidence": [
+              "Email retention rate (94%) is the highest",
+              "Email churn rate (6%) is the lowest",
+              "Email retained customers (410) is the most",
+              "Email purchases per year (5.1) is the highest"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Build automated cross-sell and loyalty sequences",
+                "where": "Email",
+                "how": "Create 4-stage post-purchase flow: confirmation (day 0), usage tips (day 3), cross-sell (day 14), loyalty reward (day 30)",
+                "guardrails": [
+                  "Respect frequency preferences",
+                  "No cross-sell in first 48 hours \u2014 focus on satisfaction"
+                ]
+              }
+            ],
+            "why_this_matters": "Email customers stay (94%) and buy often (5.1x/year). Cross-sell increases revenue per customer with minimal acquisition cost.",
+            "expected_impact": {
+              "primary_kpi": "Retention Rate",
+              "direction": "Maintain",
+              "explanation": "Loyalty sequences maintain 94% retention while increasing revenue per retained customer."
+            },
+            "dependency_or_risk": [
+              "Requires marketing automation with post-purchase triggers",
+              "Product catalogue must support complementary recommendations"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track retention rate, purchases per customer, and email-attributed revenue",
+              "success_criteria": "Retention stays above 93% and purchases per year increases above 5.5",
+              "check_timing": "Monthly for 3 months",
+              "notes": "A/B test against control group receiving standard communications"
+            },
+            "owner_suggestion": "Email marketing and CRM team"
+          },
+          {
+            "id": "GT-CR-03",
+            "title": "Investigate Google Ads churn \u2014 second worst",
+            "category": "Targeting",
+            "priority": "High",
+            "effort": "Low",
+            "time_to_see_impact": "2-4 weeks analysis, 6-8 weeks action",
+            "confidence": "Medium",
+            "whats_happening": "Google Ads has the second-highest churn at 11% with retention at 89%, compounding its weak conversion rate of 11.18%.",
+            "evidence": [
+              "Google Ads churn (11%) is the second highest",
+              "Google Ads CVR (11.18%) is the lowest \u2014 low-intent traffic",
+              "Combined weak conversion and high churn makes Google Ads least profitable on a lifetime basis"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Analyse customer lifetime behaviour by keyword group",
+                "where": "Google Ads and CRM",
+                "how": "Pull 30/60/90-day retention segmented by keyword group, identify which keywords produce customers who stay, shift budget toward them",
+                "guardrails": [
+                  "Minimum 30 conversions per group before conclusions",
+                  "Reduce spend on poor groups rather than eliminating entirely"
+                ]
+              }
+            ],
+            "why_this_matters": "If Google Ads customers churn faster, the channel's true ROI is significantly lower than ROAS alone suggests.",
+            "expected_impact": {
+              "primary_kpi": "Churn Rate",
+              "direction": "Decrease",
+              "explanation": "Shifting budget to high-retention keywords should reduce Google Ads churn from 11% toward 9%."
+            },
+            "dependency_or_risk": [
+              "Requires CRM data joined with Google Ads source",
+              "Keyword-level analysis needs sufficient data volume"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Compare retention by keyword group before and after reallocation",
+              "success_criteria": "Google Ads churn drops below 9% within 8 weeks",
+              "check_timing": "Monthly for 2 months",
+              "notes": "Insights may also apply to acquisition targeting in GT-CA-01"
+            },
+            "owner_suggestion": "Performance marketing and analytics team"
+          },
+          {
+            "id": "GT-CR-04",
+            "title": "Build SMS retention workflows",
+            "category": "Channel_Mix",
+            "priority": "Medium",
+            "effort": "Low",
+            "time_to_see_impact": "2-4 weeks",
+            "confidence": "High",
+            "whats_happening": "SMS has 91% retention, 9% churn, and the lowest CPA at $0.83. Customers acquired via SMS are cheap and tend to stay.",
+            "evidence": [
+              "SMS retention (91%) is third highest",
+              "SMS CPA ($0.83) is the lowest \u2014 cheap customers who retain well",
+              "SMS purchases per year (3.9) indicates regular repeat purchase"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Build SMS-based reorder and retention workflows",
+                "where": "SMS",
+                "how": "Calculate reorder interval from 3.9 purchases/year (every 94 days), send reminder 7 days before expected repurchase",
+                "guardrails": [
+                  "Limit to 2-3 messages per month",
+                  "Always include opt-out"
+                ]
+              }
+            ],
+            "why_this_matters": "Proactive reorder reminders can prevent lapsed purchases and maintain the 3.9 purchases-per-year rate.",
+            "expected_impact": {
+              "primary_kpi": "Retention Rate",
+              "direction": "Increase",
+              "explanation": "Timely reminders should increase SMS retention from 91% toward 93%."
+            },
+            "dependency_or_risk": [
+              "Requires purchase history data for individual intervals",
+              "SMS regulations vary by region"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track SMS retention rate and reorder rate before and after",
+              "success_criteria": "Retention improves to 93% and purchases per year stays at or above 3.9",
+              "check_timing": "Monthly for 3 months",
+              "notes": "Pilot with 20% of SMS subscribers before full rollout"
+            },
+            "owner_suggestion": "CRM and lifecycle marketing team"
+          },
+          {
+            "id": "GT-CR-05",
+            "title": "Route all paid-channel customers into owned-channel retention",
+            "category": "Retention",
+            "priority": "High",
+            "effort": "Medium",
+            "time_to_see_impact": "4-6 weeks",
+            "confidence": "High",
+            "whats_happening": "Paid channels (Facebook 13% churn, Google Ads 11%) lose customers at significantly higher rates than owned channels (Email 6%, SMS 9%). No cross-channel retention handoff exists.",
+            "evidence": [
+              "Facebook churn (13%) vs Email churn (6%) \u2014 2x difference",
+              "Google Ads churn (11%) vs SMS churn (9%)",
+              "Owned channels consistently retain better across all metrics"
+            ],
+            "what_you_should_do": [
+              {
+                "step": "Capture email and phone at every paid-channel conversion point",
+                "where": "All paid channel landing pages and checkout flows",
+                "how": "Add email and SMS opt-in at checkout for all paid traffic. Trigger automated welcome and retention sequences within 24 hours of first purchase.",
+                "guardrails": [
+                  "Ensure opt-in is compliant with local regulations",
+                  "Do not delay the checkout flow \u2014 capture should be seamless"
+                ]
+              }
+            ],
+            "why_this_matters": "Paid channels acquire customers but owned channels keep them. Bridging this gap reduces overall churn and maximises lifetime value of every acquisition dollar.",
+            "expected_impact": {
+              "primary_kpi": "Retention Rate",
+              "direction": "Increase",
+              "explanation": "Routing paid customers into Email/SMS retention flows should reduce overall churn toward owned-channel levels."
+            },
+            "dependency_or_risk": [
+              "Requires checkout flow modifications",
+              "Opt-in rates from paid traffic may be lower than organic"
+            ],
+            "measurement_plan": {
+              "how_to_measure": "Track opt-in rate from paid channels and 30-day retention of opted-in vs non-opted-in customers",
+              "success_criteria": "50%+ email capture rate from paid channels, opted-in customers show 5%+ better retention",
+              "check_timing": "Monthly for 3 months",
+              "notes": "This is the single most impactful structural change for long-term retention"
+            },
+            "owner_suggestion": "CRM, web development, and lifecycle marketing teams"
+          }
+        ]
+
+    }
+  }
+]

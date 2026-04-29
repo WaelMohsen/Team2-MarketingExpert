@@ -1,0 +1,41 @@
+{
+    "overall_score": 4,
+    "overall_status": "pass",
+    "criteria_scores": [
+        {
+            "name": "analysis",
+            "score": 4,
+            "rationale": "The analysis is mostly clear and uses straightforward language, making it accessible for a business lead. However, it could benefit from a bit more detail on the financial implications of the metrics discussed."
+        },
+        {
+            "name": "key_signals",
+            "score": 4,
+            "rationale": "The key signals are specific and based on the campaign data, highlighting important metrics like conversion rate and return on advertising spend. However, it could include more context on how these metrics relate to overall business goals."
+        },
+        {
+            "name": "detected_issues",
+            "score": 4,
+            "rationale": "The detected issues are concrete and highlight variability in channel performance, which has a clear business impact. More emphasis on the implications of these issues would strengthen the analysis."
+        },
+        {
+            "name": "root_cause_hypothesis",
+            "score": 4,
+            "rationale": "The root cause hypothesis logically connects the detected issues with the key signals, suggesting areas for improvement. It could be improved by providing examples of potential ad creative or targeting adjustments."
+        },
+        {
+            "name": "business_risks",
+            "score": 4,
+            "rationale": "The business risks identified are specific and relate to potential overspending and scaling issues, which are critical for decision-making. More quantifiable impacts would enhance the clarity of these risks."
+        },
+        {
+            "name": "confidence_score",
+            "score": 4,
+            "rationale": "The confidence score of 85.0 is reasonable given the strong conversion rate and return on advertising spend, but it could be better justified with more detailed evidence from the analysis."
+        }
+    ],
+    "summary": "The analysis provides a solid overview of the campaign's performance with actionable insights, though it could be enhanced with more detailed financial implications.",
+    "improvement_suggestions": [
+        "Include more detailed financial implications of the metrics discussed.",
+        "Provide examples of potential adjustments for underperforming channels."
+    ]
+}

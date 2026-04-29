@@ -1,0 +1,41 @@
+{
+    "overall_score": 3,
+    "overall_status": "borderline",
+    "criteria_scores": [
+        {
+            "name": "analysis",
+            "score": 4,
+            "rationale": "The analysis is mostly clear and avoids technical jargon, making it accessible for a business audience. However, it could benefit from a more structured presentation of data."
+        },
+        {
+            "name": "key_signals",
+            "score": 4,
+            "rationale": "Key signals are well identified and based on specific data points, providing valuable insights into campaign performance."
+        },
+        {
+            "name": "detected_issues",
+            "score": 2,
+            "rationale": "No concrete issues are identified, which limits the analysis's effectiveness. The absence of detected issues makes it difficult to understand potential areas for improvement."
+        },
+        {
+            "name": "root_cause_hypothesis",
+            "score": 3,
+            "rationale": "The hypothesis about landing page efficiency is logical but lacks depth and supporting evidence, making it less convincing."
+        },
+        {
+            "name": "business_risks",
+            "score": 3,
+            "rationale": "The identified risks are relevant but somewhat vague. More specific examples of how these risks could impact revenue or growth would enhance the analysis."
+        },
+        {
+            "name": "confidence_score",
+            "score": 1,
+            "rationale": "The confidence score of 0.0 is unrealistic and undermines the analysis, as it suggests a complete lack of confidence in the findings despite positive indicators."
+        }
+    ],
+    "summary": "The analysis provides useful insights but lacks depth in identifying issues and risks, leading to a borderline evaluation.",
+    "improvement_suggestions": [
+        "Identify and articulate specific issues that could impact campaign performance.",
+        "Provide a more realistic confidence score that reflects the strength of the evidence presented."
+    ]
+}

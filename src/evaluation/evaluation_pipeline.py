@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 
 from src.evaluation.analysis_quality_evaluator import AnalysisQualityEvaluator
 from src.evaluation.recommendation.evaluator import RecommendationEvaluator
@@ -18,9 +19,13 @@ class EvaluationPipeline:
     to override.
     """
 
-    def __init__(self, llm_callable, embedding_callable, analysis_evaluator=None):
+    def __init__(
+        self, llm_callable, embedding_callable, analysis_evaluator=None, timestamp=None
+    ):
+        if timestamp is None:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.recommendation_evaluator = RecommendationEvaluator(
-            llm=llm_callable, embed=embedding_callable
+            llm=llm_callable, embed=embedding_callable, timestamp=timestamp
         )
         self._analysis_evaluator = analysis_evaluator
         self.gt_path = os.path.join("data", "benchmark", "recommendation_GT.json")

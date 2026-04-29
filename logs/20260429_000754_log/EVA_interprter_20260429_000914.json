@@ -1,0 +1,238 @@
+{
+    "final_score": 0.783,
+    "decision": {
+        "status": "PARTIAL_ACCEPT",
+        "confidence": 0.723,
+        "reason": "Recommendations miss key expert-level strategies"
+    },
+    "summary": {
+        "strengths": [
+            "Strong kpi alignment",
+            "Strong readability",
+            "Fully compliant with prompt rules",
+            "Strong data grounding"
+        ],
+        "weaknesses": [
+            "Missing important expert strategies",
+            "Low alignment with expert ground truth"
+        ]
+    },
+    "recommendation_actions": {
+        "keep": [
+            "REC-01",
+            "REC-02",
+            "REC-03"
+        ],
+        "review": [
+            "REC-04",
+            "REC-05",
+            "REC-06",
+            "REC-07"
+        ],
+        "revise": []
+    },
+    "ground_truth_insights": {
+        "coverage": 0.688,
+        "avg_similarity": 0.612,
+        "missing": [
+            {
+                "id": "GT-CA-04",
+                "importance": "high",
+                "suggestion": "Add strategy aligned with this missing expert recommendation"
+            }
+        ]
+    },
+    "diagnostics": {
+        "final_score": 0.783,
+        "business": {
+            "score": 0.82,
+            "overall": {
+                "scores": {
+                    "insight_quality": 0.8,
+                    "actionability": 0.8,
+                    "data_grounding": 0.9,
+                    "kpi_alignment": 0.9,
+                    "priority_accuracy": 0.7,
+                    "decision_quality": 0.8,
+                    "feasibility": 0.8,
+                    "readability": 0.9
+                },
+                "explanations": {
+                    "insight_quality": "The recommendations provide clear insights into the issues identified, particularly regarding bounce rates and content relevance.",
+                    "actionability": "Steps are generally clear and specific, though some could benefit from more detail.",
+                    "data_grounding": "Most recommendations are well-supported by the provided data, particularly regarding bounce rates and engagement metrics.",
+                    "kpi_alignment": "Recommendations are closely linked to relevant KPIs, ensuring they target measurable outcomes.",
+                    "priority_accuracy": "While high-impact recommendations are prioritized, some medium and low priority recommendations could be more impactful.",
+                    "decision_quality": "The recommendations reflect sound business decisions based on the analysis provided.",
+                    "feasibility": "Most recommendations are realistic and implementable within the suggested timeframes.",
+                    "readability": "The recommendations are written in a clear and accessible manner for non-marketers."
+                }
+            },
+            "per_recommendation": [
+                {
+                    "id": "REC-01",
+                    "scores": {
+                        "insight_quality": 1.0,
+                        "actionability": 0.9,
+                        "data_grounding": 1.0,
+                        "kpi_alignment": 1.0,
+                        "decision_quality": 1.0,
+                        "feasibility": 0.9
+                    },
+                    "issues": []
+                },
+                {
+                    "id": "REC-02",
+                    "scores": {
+                        "insight_quality": 1.0,
+                        "actionability": 0.9,
+                        "data_grounding": 0.9,
+                        "kpi_alignment": 1.0,
+                        "decision_quality": 1.0,
+                        "feasibility": 0.8
+                    },
+                    "issues": []
+                },
+                {
+                    "id": "REC-03",
+                    "scores": {
+                        "insight_quality": 0.8,
+                        "actionability": 0.8,
+                        "data_grounding": 0.8,
+                        "kpi_alignment": 0.8,
+                        "decision_quality": 0.8,
+                        "feasibility": 0.8
+                    },
+                    "issues": []
+                },
+                {
+                    "id": "REC-04",
+                    "scores": {
+                        "insight_quality": 0.8,
+                        "actionability": 0.8,
+                        "data_grounding": 0.8,
+                        "kpi_alignment": 0.8,
+                        "decision_quality": 0.7,
+                        "feasibility": 0.7
+                    },
+                    "issues": [
+                        "Medium priority may not address the most pressing issues first."
+                    ]
+                },
+                {
+                    "id": "REC-05",
+                    "scores": {
+                        "insight_quality": 0.7,
+                        "actionability": 0.7,
+                        "data_grounding": 0.7,
+                        "kpi_alignment": 0.7,
+                        "decision_quality": 0.7,
+                        "feasibility": 0.6
+                    },
+                    "issues": [
+                        "High effort may limit implementation speed and effectiveness."
+                    ]
+                },
+                {
+                    "id": "REC-06",
+                    "scores": {
+                        "insight_quality": 0.7,
+                        "actionability": 0.7,
+                        "data_grounding": 0.7,
+                        "kpi_alignment": 0.7,
+                        "decision_quality": 0.6,
+                        "feasibility": 0.5
+                    },
+                    "issues": [
+                        "Low priority and high effort may not yield immediate results."
+                    ]
+                },
+                {
+                    "id": "REC-07",
+                    "scores": {
+                        "insight_quality": 0.7,
+                        "actionability": 0.7,
+                        "data_grounding": 0.7,
+                        "kpi_alignment": 0.7,
+                        "decision_quality": 0.6,
+                        "feasibility": 0.5
+                    },
+                    "issues": [
+                        "Low priority may not address the most critical performance issues."
+                    ]
+                }
+            ],
+            "flags": [],
+            "weak_recommendations": []
+        },
+        "compliance": {
+            "score": 1.0,
+            "dimensions": {
+                "count_valid": 1.0,
+                "required_fields": 1.0,
+                "priority_order": 1.0,
+                "no_hallucination": 1.0,
+                "clarity": 1.0,
+                "non_repetition": 1.0
+            },
+            "flags": []
+        },
+        "ground_truth": {
+            "score": 0.593,
+            "avg_similarity": 0.612,
+            "coverage": 0.688,
+            "llm_calls": 5,
+            "matches": [
+                {
+                    "rec_id": "REC-01",
+                    "matched_gt_id": "GT-CA-05",
+                    "similarity": 0.834,
+                    "llm_score": null
+                },
+                {
+                    "rec_id": "REC-02",
+                    "matched_gt_id": "GT-CA-01",
+                    "similarity": 0.627,
+                    "llm_score": 0.6
+                },
+                {
+                    "rec_id": "REC-03",
+                    "matched_gt_id": "GT-CA-01",
+                    "similarity": 0.619,
+                    "llm_score": 0.4
+                },
+                {
+                    "rec_id": "REC-04",
+                    "matched_gt_id": "GT-CA-05",
+                    "similarity": 0.776,
+                    "llm_score": null
+                },
+                {
+                    "rec_id": "REC-05",
+                    "matched_gt_id": "GT-CA-05",
+                    "similarity": 0.498,
+                    "llm_score": 0.4
+                },
+                {
+                    "rec_id": "REC-06",
+                    "matched_gt_id": "GT-CA-03",
+                    "similarity": 0.57,
+                    "llm_score": 0.5
+                },
+                {
+                    "rec_id": "REC-07",
+                    "matched_gt_id": "GT-CA-02",
+                    "similarity": 0.707,
+                    "llm_score": 0.6
+                }
+            ],
+            "missed_ground_truth": [
+                "GT-CA-04"
+            ],
+            "flags": [],
+            "total_recommendations": 7,
+            "total_ground_truth": 5
+        },
+        "log_file": "logs\\20260429_000754_log/recommendation_20260429_000914.json"
+    }
+}

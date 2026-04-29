@@ -34,7 +34,9 @@ class PromptComplianceEvaluator:
     # 🔹 LLM COMPLIANCE JUDGE
     # =========================================================
 
-    def _llm_compliance(self, recs: List[dict], analysis: dict, kpis) -> Dict:
+    def _llm_compliance(
+        self, recs: List[dict], analysis: dict, kpis, model: str, temp: float
+    ) -> Dict:
 
         prompt = f"""
 Evaluate if these recommendations follow the system rules:
@@ -59,10 +61,17 @@ Score 0 to 1:
 - clarity
 - non_repetition
 
-Return JSON.
+Return JSON:
+{{
+    "no_hallucination": float,
+    "clarity": float,
+    "non_repetition": float
+
+ }}
+
 """
         try:
-            return eval(self.llm(prompt))
+            return eval(self.llm(prompt, model, temp))
         except:
             return {}
 
@@ -71,7 +80,12 @@ Return JSON.
     # =========================================================
 
     def evaluate(
-        self, recommendations: List[dict], analysis: dict, kpis: List[str]
+        self,
+        recommendations: List[dict],
+        analysis: dict,
+        kpis: List[str],
+        model: str,
+        temp: float,
     ) -> Dict:
 
         # ---------------------------
@@ -84,7 +98,7 @@ Return JSON.
         # ---------------------------
         # LLM judgment
         # ---------------------------
-        llm_scores = self._llm_compliance(recommendations, analysis, kpis)
+        llm_scores = self._llm_compliance(recommendations, analysis, kpis, model, temp)
 
         # ---------------------------
         # Combine
@@ -97,6 +111,7 @@ Return JSON.
             # llm
             "no_hallucination": llm_scores.get("no_hallucination", 0),
             "clarity": llm_scores.get("clarity", 0),
+            "non_repetition": llm_scores.get("non_repetition", 0),
         }
 
         overall = mean(final_scores.values())
@@ -115,7 +130,10 @@ Return JSON.
         if priority_score == 0:
             flags.append("priority_not_sorted")
 
-        if llm_scores.get("no_hallucination", 1) < 0.7:
-            flags.append("possible_hallucination")
+        if final_scores.get("no_hallucination", 0) < 0.7:
+            flags.append("hallucination_detected")
+
+        if final_scores.get("non_repetition", 0) < 0.7:
+            flags.append("repetition_detected")
 
         return {"score": round(overall, 32), "dimensions": final_scores, "flags": flags}

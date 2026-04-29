@@ -1,0 +1,41 @@
+{
+    "overall_score": 3,
+    "overall_status": "borderline",
+    "criteria_scores": [
+        {
+            "name": "analysis",
+            "score": 3,
+            "rationale": "The analysis is mostly clear and uses plain language, but it does rely on some inferred calculations without explicitly stating all necessary data, such as the cost per click."
+        },
+        {
+            "name": "key_signals",
+            "score": 4,
+            "rationale": "The key signals are specific and grounded in the data, such as the conversion rate and customer acquisition cost, which are clearly linked to the campaign's performance."
+        },
+        {
+            "name": "detected_issues",
+            "score": 2,
+            "rationale": "The analysis claims there are no detected issues, which seems overly optimistic and lacks depth in identifying potential areas for improvement."
+        },
+        {
+            "name": "root_cause_hypothesis",
+            "score": 3,
+            "rationale": "The root cause hypothesis is logical but simplistic, as it does not explore deeper potential inefficiencies or areas for optimization beyond stating that the campaign is performing well."
+        },
+        {
+            "name": "business_risks",
+            "score": 2,
+            "rationale": "The analysis states there are no business risks, which is unrealistic. Every campaign has potential risks, and these should be identified and addressed."
+        },
+        {
+            "name": "confidence_score",
+            "score": 3,
+            "rationale": "The confidence score of 90% seems high given the lack of identified issues and risks, suggesting a potential overconfidence in the analysis."
+        }
+    ],
+    "summary": "The analysis is acceptable but lacks depth in identifying issues and risks, leading to a borderline evaluation.",
+    "improvement_suggestions": [
+        "Identify potential areas for improvement or optimization even if the campaign is performing well.",
+        "Discuss possible business risks to provide a more balanced view of the campaign's performance."
+    ]
+}
