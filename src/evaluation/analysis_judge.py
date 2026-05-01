@@ -1,11 +1,12 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, List, Optional, Sequence
+from typing import Any, Dict, List, Optional, Tuple
 
 from pydantic import BaseModel, Field
 
 from ..llm.client import chat_completion, get_client
 from ..schemas.analysis_output_schema import AnalysisOutput
+
 
 # ─────────────────────────────────────────────
 # 1. STATUS ENUM
@@ -19,7 +20,7 @@ class EvaluationStatus(str, Enum):
 
 
 # ─────────────────────────────────────────────
-# 2. CRITERION DEFINITION (config/rubric)
+# 2. CRITERION DEFINITION
 # ─────────────────────────────────────────────
 
 
@@ -28,86 +29,165 @@ class CriterionDefinition:
     name: str
     description: str
     weight: float
-    pass_threshold: float
-    borderline_threshold: float
-    hard_fail_threshold: float
+    pass_threshold: float = 4.0
+    borderline_threshold: float = 3.0
+    hard_fail_threshold: float = 2.0
 
 
-DEFAULT_CRITERIA: tuple[CriterionDefinition, ...] = (
+# ─────────────────────────────────────────────
+# 3. CRITERIA — ACQUISITION
+# ─────────────────────────────────────────────
+
+
+DEFAULT_CRITERIA_ACQUISITION: Tuple[CriterionDefinition, ...] = (
+
     CriterionDefinition(
-        name="analysis",
-        description="Overall analysis is written in plain business language and directly addresses the campaign performance without using abbreviations",
+        name="bottleneck_identification",
+        description="""
+        Analysis correctly identifies the bottleneck type:
+        - Pre-Click when CVR > 2.5% but acquisition cost is high
+        - Post-Click when CVR < 1.4%
+        - None when both are healthy
+        Must cite actual CVR and compare to 1.4% benchmark.
+        Must state what NOT to do based on bottleneck found.
+        """,
         weight=0.30,
-        pass_threshold=4.0,
-        borderline_threshold=3.0,
-        hard_fail_threshold=2.0,
     ),
+
     CriterionDefinition(
-        name="key_signals",
-        description="Key signals are specific observations grounded in the raw campaign data, not generic statements",
-        weight=0.10,
-        pass_threshold=4.0,
-        borderline_threshold=3.0,
-        hard_fail_threshold=2.0,
+        name="channel_diagnosis",
+        description="""
+        Analysis compares at least 2 channels by acquisition cost
+        and conversion rate. Must identify:
+        - Which channel has lowest acquisition cost and why
+        - Which channel is wasting budget relative to performance
+        - Whether budget allocation matches channel efficiency
+        Generic statements without channel names and numbers score 1-2.
+        """,
+        weight=0.25,
     ),
+
     CriterionDefinition(
-        name="detected_issues",
-        description="Detected issues are concrete problems with clear business impact, not vague or repetitive",
-        weight=0.10,
-        pass_threshold=4.0,
-        borderline_threshold=3.0,
-        hard_fail_threshold=2.0,
-    ),
-    CriterionDefinition(
-        name="root_cause_hypothesis",
-        description="Root cause hypothesis logically follows from the detected issues and key signals with clear reasoning",
+        name="metric_chain_reasoning",
+        description="""
+        Analysis connects the acquisition metric chain:
+        Impressions → Clicks → Conversions → Acquisition Cost → Revenue
+        Must show how weakness in one metric flows to business outcome.
+        Jumping to conclusions without the chain scores 1-2.
+        """,
         weight=0.20,
-        pass_threshold=4.0,
-        borderline_threshold=3.0,
-        hard_fail_threshold=2.0,
     ),
+
     CriterionDefinition(
-        name="business_risks",
-        description="Business risks are specific with money or growth impact, written for a non-marketing audience",
+        name="benchmark_usage",
+        description="""
+        Analysis uses correct industry benchmarks:
+        - Conversion rate: 1.4% minimum, 2.5% good
+        - Revenue return: 4x minimum spend
+        Must state whether campaign is above or below benchmark.
+        Scoring without any benchmark reference scores 1-2.
+        """,
         weight=0.15,
-        pass_threshold=4.0,
-        borderline_threshold=3.0,
-        hard_fail_threshold=2.0,
     ),
+
     CriterionDefinition(
-        name="confidence_score",
-        description="Confidence score is realistic and consistent with the strength of evidence provided in the analysis",
-        weight=0.15,
-        pass_threshold=4.0,
-        borderline_threshold=3.0,
-        hard_fail_threshold=2.0,
+        name="actionable_diagnosis",
+        description="""
+        Analysis concludes with a diagnosis that enables action:
+        - States the primary problem in one clear sentence
+        - States what should NOT be done
+        - Avoids vague conclusions like 'needs improvement'
+        A diagnosis that could apply to any campaign scores 1-2.
+        """,
+        weight=0.10,
     ),
 )
 
 
 # ─────────────────────────────────────────────
-# 3. CRITERION SCORE (result per criterion)
+# 4. CRITERIA — RETENTION
 # ─────────────────────────────────────────────
 
 
-@dataclass(frozen=True)
-class CriterionScore:
-    name: str
-    score: int
-    status: EvaluationStatus
-    rationale: str
+DEFAULT_CRITERIA_RETENTION: Tuple[CriterionDefinition, ...] = (
 
-    def to_dict(self) -> dict[str, Any]:
-        return {
-            "name": self.name,
-            "score": self.score,
-            "status": self.status.value,
-            "rationale": self.rationale,
-        }
+    CriterionDefinition(
+        name="churn_diagnosis",
+        description="""
+        Analysis correctly interprets churn rate across channels:
+        - Identifies which channel has highest churn with its number
+        - States financial impact in dollars (churning customers × AOV)
+        - Compares retained vs churned customer value
+        Generic statements like 'churn is a risk' score 1-2.
+        """,
+        weight=0.30,
+    ),
+
+    CriterionDefinition(
+        name="leaky_bucket_detection",
+        description="""
+        Analysis checks for leaky bucket pattern:
+        - High new customers but low retained = acquisition masking
+          retention failure
+        - Must state whether pattern is present or absent
+        - If present must quantify revenue lost through churn
+        Missing this check entirely scores 1-2.
+        """,
+        weight=0.25,
+    ),
+
+    CriterionDefinition(
+        name="retention_channel_comparison",
+        description="""
+        Analysis compares retention across channels:
+        - Which channel retains customers longest
+        - Whether high acquisition cost channels also have high churn
+        - Gap between owned channels (email, SMS) and paid channels
+        Must reference at least 2 channels with specific numbers.
+        """,
+        weight=0.20,
+    ),
+
+    CriterionDefinition(
+        name="ltv_cac_assessment",
+        description="""
+        Analysis evaluates long-term customer value vs acquisition cost:
+        - Must reference or compute annual value to acquisition cost ratio
+        - Healthy threshold is 3x or above
+        - Must identify which channels produce most valuable customers
+        Ignoring long-term value entirely scores 1-2.
+        """,
+        weight=0.15,
+    ),
+
+    CriterionDefinition(
+        name="risk_quantification",
+        description="""
+        Business risks stated with specific financial figures:
+        - Must include numeric estimate e.g.
+          '250 churning customers × $22 average order = $5,500 at risk'
+        - Not acceptable: 'revenue may decline'
+        - Time horizon must be stated
+        Any risk without a number scores 1-2.
+        """,
+        weight=0.10,
+    ),
+)
 
 
 # ─────────────────────────────────────────────
-# 4. JUDGE VERDICT (Pydantic — LLM output)
+# 5. CRITERIA REGISTRY
+# ─────────────────────────────────────────────
+
+
+CRITERIA_REGISTRY: Dict[str, Tuple[CriterionDefinition, ...]] = {
+    "Customer Acquisition": DEFAULT_CRITERIA_ACQUISITION,
+    "Customer Retention":   DEFAULT_CRITERIA_RETENTION,
+}
+
+
+# ─────────────────────────────────────────────
+# 6. PYDANTIC OUTPUT SCHEMA FOR LLM
 # ─────────────────────────────────────────────
 
 
@@ -118,104 +198,139 @@ class CriterionScoreSchema(BaseModel):
 
 
 class JudgeVerdict(BaseModel):
-    overall_score: int = Field(..., ge=1, le=5)
-    overall_status: EvaluationStatus
     criteria_scores: List[CriterionScoreSchema]
     summary: str
     improvement_suggestions: List[str]
 
 
 # ─────────────────────────────────────────────
-# 5. JUDGE PROMPT
+# 7. PROMPTS
 # ─────────────────────────────────────────────
+
 
 JUDGE_SYSTEM_PROMPT = """
 You are an expert evaluator of marketing campaign analysis outputs.
-Your job is to judge the quality of an analysis based on specific criteria.
 
 SCORING RULES:
-- Score each criterion from 1 to 5 (discrete integers only)
-- 1 = very poor, 2 = poor, 3 = acceptable, 4 = good, 5 = excellent
-- Be strict. A score of 4 or 5 must be earned.
-- Always explain your score in plain English in the rationale field.
+- Score each criterion from 1 to 5 (integers only)
+- 1=very poor  2=poor  3=acceptable  4=good  5=excellent
+- A score of 4 or 5 must be earned with specific evidence.
+- Reference actual numbers and channel names from the analysis.
 
 COMMUNICATION RULES:
 - Never use abbreviations like CTR, ROAS, CPA in your rationale.
-- Focus on money impact, growth impact, and risk in your reasoning.
+- Focus on money impact, growth impact, and risk.
 - Write for a business lead with no marketing background.
 """
 
 JUDGE_USER_PROMPT = """
-You are evaluating the following marketing analysis output.
-
-ORIGINAL CAMPAIGN CONTEXT:
+CAMPAIGN CONTEXT:
 {context}
 
-ANALYSIS OUTPUT TO JUDGE:
-- Analysis: {analysis}
-- Key Signals: {key_signals}
-- Detected Issues: {detected_issues}
-- Root Cause Hypothesis: {root_cause_hypothesis}
-- Business Risks: {business_risks}
-- Confidence Score: {confidence_score}
+ANALYSIS TO EVALUATE:
+- Analysis:              {analysis}
+- Key Signals:           {key_signals}
+- Detected Issues:       {detected_issues}
+- Root Cause:            {root_cause}
+- Business Risks:        {business_risks}
+- Confidence Score:      {confidence_score}
 
-CRITERIA TO EVALUATE:
+CRITERIA (score each 1-5):
 {criteria_text}
 
-Return a JSON object with this exact structure:
+Return JSON:
 {{
-  "overall_score": <float 1-5>,
-  "overall_status": <"pass" | "borderline" | "fail">,
   "criteria_scores": [
-    {{"name": "<criterion_name>", "score": <int 1-5>, "rationale": "<explanation>"}}
+    {{"name": "<name>", "score": <int>, "rationale": "<text>"}}
   ],
-  "summary": "<one sentence overall verdict>",
+  "summary": "<one sentence verdict>",
   "improvement_suggestions": ["<suggestion1>", "<suggestion2>"]
 }}
 """
 
 
 # ─────────────────────────────────────────────
-# 6. ANALYSIS JUDGE CLASS
+# 8. ANALYSIS JUDGE
 # ─────────────────────────────────────────────
 
 
 class AnalysisJudge:
-    def __init__(
-        self,
-        criteria: Optional[Sequence[CriterionDefinition]] = None,
-        pass_threshold: float = 3.5,
-    ) -> None:
-        self._criteria = tuple(criteria or DEFAULT_CRITERIA)
-        self._pass_threshold = pass_threshold
+
+    def __init__(self, target: str = "Customer Acquisition") -> None:
+        self._target = target
+        self._criteria = CRITERIA_REGISTRY.get(
+            target, DEFAULT_CRITERIA_ACQUISITION
+        )
         self._client = get_client()
 
-    def evaluate(
-        self, analysis: AnalysisOutput, context: str, model: str, temp: float
-    ) -> JudgeVerdict:
-        criteria_text = self._build_criteria_text()
+    def _weighted_score(self, verdict: JudgeVerdict) -> float:
+        """Deterministic weighted score — never trust LLM overall_score."""
+        weight_map = {c.name: c.weight for c in self._criteria}
+        return round(
+            sum(
+                (cs.score / 5.0) * weight_map.get(cs.name, 0)
+                for cs in verdict.criteria_scores
+            ),
+            3,
+        )
 
-        formatted_issues = (
-            "\n- ".join(analysis.detected_issues)
-            if analysis.detected_issues
-            else "None"
+    def _status(self, score: float) -> EvaluationStatus:
+        if score >= 0.80:
+            return EvaluationStatus.PASS
+        if score >= 0.60:
+            return EvaluationStatus.BORDERLINE
+        return EvaluationStatus.FAIL
+
+    def _format_analysis(self, analysis: AnalysisOutput) -> Dict[str, str]:
+        """Format nested fields into readable strings for the prompt."""
+        return {
+            "key_signals": "\n".join(
+                f"- {s.channel or 'Overall'}: {s.observation} "
+                f"(actual={s.actual_value}, benchmark={s.benchmark_value})"
+                for s in analysis.key_signals
+            ),
+            "detected_issues": "\n".join(
+                f"- [{i.severity}] {i.affected_channel}: {i.issue} "
+                f"| impact: {i.business_impact}"
+                for i in analysis.detected_issues
+            ),
+            "business_risks": "\n".join(
+                f"- [{r.likelihood}] {r.risk} "
+                f"| financial: {r.financial_impact} "
+                f"| horizon: {r.time_horizon}"
+                for r in analysis.business_risks
+            ),
+            "root_cause": (
+                f"{analysis.root_cause_hypothesis.hypothesis} "
+                f"(bottleneck: {analysis.root_cause_hypothesis.bottleneck_type})"
+            ),
+        }
+
+    def _criteria_text(self) -> str:
+        return "\n".join(
+            f"[{c.name}] weight={c.weight}\n{c.description}"
+            for c in self._criteria
         )
-        formatted_signals = (
-            "\n- ".join(analysis.key_signals) if analysis.key_signals else "None"
-        )
-        formatted_risks = (
-            "\n- ".join(analysis.business_risks) if analysis.business_risks else "None"
-        )
+
+    def evaluate(
+        self,
+        analysis: AnalysisOutput,
+        context: str,
+        model: str,
+        temp: float,
+    ) -> Dict[str, Any]:
+
+        formatted = self._format_analysis(analysis)
 
         user_prompt = JUDGE_USER_PROMPT.format(
             context=context,
             analysis=analysis.analysis,
-            key_signals=formatted_signals,
-            detected_issues=formatted_issues,
-            root_cause_hypothesis=analysis.root_cause_hypothesis,
-            business_risks=formatted_risks,
+            key_signals=formatted["key_signals"],
+            detected_issues=formatted["detected_issues"],
+            root_cause=formatted["root_cause"],
+            business_risks=formatted["business_risks"],
             confidence_score=analysis.confidence_score,
-            criteria_text=criteria_text,
+            criteria_text=self._criteria_text(),
         )
 
         response = chat_completion(
@@ -226,25 +341,16 @@ class AnalysisJudge:
             model=model,
             temp=temp,
         )
-
         verdict = response.choices[0].message.parsed
-        return verdict
 
-    def _build_criteria_text(self) -> str:
-        lines = []
-        for criterion in self._criteria:
-            lines.append(
-                f"- {criterion.name} (weight={criterion.weight}): {criterion.description}"
-            )
-        return "\n".join(lines)
+        # deterministic score and status — not from LLM
+        score = self._weighted_score(verdict)
+        status = self._status(score)
 
-    @staticmethod
-    def _status_for_score(
-        definition: CriterionDefinition,
-        score: float,
-    ) -> EvaluationStatus:
-        if score >= definition.pass_threshold:
-            return EvaluationStatus.PASS
-        if score >= definition.borderline_threshold:
-            return EvaluationStatus.BORDERLINE
-        return EvaluationStatus.FAIL
+        return {
+            "overall_score": score,
+            "overall_status": status.value,
+            "criteria_scores": [cs.dict() for cs in verdict.criteria_scores],
+            "summary": verdict.summary,
+            "improvement_suggestions": verdict.improvement_suggestions,
+        }
