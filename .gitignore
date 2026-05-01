@@ -209,3 +209,6 @@ __marimo__/
 
 # output log dirc
 output_log/
+
+# generated evaluation logs
+evaluation_logs/
