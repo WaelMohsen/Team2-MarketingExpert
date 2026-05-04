@@ -28,9 +28,18 @@ def run_from_config(config_path: str = DEFAULT_CONFIG_PATH) -> dict:
     )
 
 
+def _config_path_from_argv(argv: list[str]) -> str:
+    if len(argv) <= 1:
+        return DEFAULT_CONFIG_PATH
+    if len(argv) == 2:
+        return argv[1]
+
+    raise SystemExit("Usage: python -m src.evaluation.run_evaluation [config_path]")
+
+
 def main() -> None:
     try:
-        result = run_from_config()
+        result = run_from_config(_config_path_from_argv(sys.argv))
     except Exception as exc:
         print(f"Evaluation run failed: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc

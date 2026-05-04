@@ -58,6 +58,14 @@ Then run:
 $ python -m src.evaluation.run_evaluation
 ```
 
+That uses the default config at `config/evaluation_run_config.json`.
+
+To run a specific config file directly, pass the config path as the only argument:
+
+```bash
+$ python -m src.evaluation.run_evaluation config/evaluation_run_config.high-quality.temp0.json
+```
+
 The generation step writes raw combined outputs to `output_log/`, and the evaluator writes structured JSON logs to `evaluation_logs/pipeline/`, `evaluation_logs/analysis/`, and `evaluation_logs/recommendation/`.
 
 To aggregate evaluation logs into CSV summaries, run:
