@@ -1,0 +1,169 @@
+{
+  "run_id": "run_20260429_212628",
+  "timestamp_utc": "2026-04-29T21:28:33Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.667,
+  "business": {
+    "score": 0.82,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.8,
+        "actionability": 0.8,
+        "data_grounding": 0.9,
+        "kpi_alignment": 0.9,
+        "priority_accuracy": 0.7,
+        "decision_quality": 0.8,
+        "feasibility": 0.8,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Recommendations generally explain the cause or opportunity, but some could benefit from deeper analysis.",
+        "actionability": "Steps are mostly clear and specific, though some could be more detailed.",
+        "data_grounding": "Recommendations are well-supported by the provided data.",
+        "kpi_alignment": "Recommendations align well with campaign KPIs.",
+        "priority_accuracy": "High-impact recommendations are prioritized, but some medium-priority items could be reconsidered.",
+        "decision_quality": "Decisions are generally strong, though some could be more robust.",
+        "feasibility": "Recommendations are realistically implementable, but some may require more resources.",
+        "readability": "Recommendations are clear and simple for non-marketers."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.9,
+          "actionability": 0.8,
+          "data_grounding": 1.0,
+          "kpi_alignment": 1.0,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.9,
+          "actionability": 0.8,
+          "data_grounding": 1.0,
+          "kpi_alignment": 1.0,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation could benefit from more specific data support and clearer action steps."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation could be more specific in terms of action steps and expected outcomes."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 0.5,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 0,
+      "clarity": 0,
+      "non_repetition": 0
+    },
+    "flags": [
+      "hallucination_detected",
+      "repetition_detected"
+    ]
+  },
+  "ground_truth": {
+    "score": 0.678,
+    "avg_similarity": 0.68,
+    "coverage": 0.801,
+    "llm_calls": 2,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-RG-04",
+        "similarity": 0.796,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-RG-03",
+        "similarity": 0.797,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-RG-04",
+        "similarity": 0.673,
+        "llm_score": 0.4
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-RG-01",
+        "similarity": 0.838,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-RG-03",
+        "similarity": 0.666,
+        "llm_score": 0.2
+      }
+    ],
+    "missed_ground_truth": [
+      "GT-RG-02"
+    ],
+    "flags": [],
+    "total_recommendations": 5,
+    "total_ground_truth": 4
+  },
+  "log_file": "logs/20260429_212833_log/recommendation_20260429_232844.json",
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260429_212833_revenue_growth.json"
+}

@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260429_212628",
+  "timestamp_utc": "2026-04-29T21:28:33Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 4,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and avoids technical jargon, making it accessible for a business audience. However, it could benefit from a more straightforward explanation of some metrics."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "The key signals are specific and directly tied to the campaign data, providing valuable insights. However, they could be more detailed in explaining their implications."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight significant problems that could impact profitability. They are not vague, but further elaboration on their potential impact would enhance clarity."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The root cause hypothesis logically connects to the detected issues and key signals, providing a clear reasoning path. However, it could be more explicit in linking these issues to specific actions."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks are specific and highlight potential financial impacts, making them relevant for decision-making. More context on how these risks could evolve would strengthen the analysis."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score appears realistic and aligns with the evidence presented. However, a brief explanation of how this score was derived would add credibility."
+    }
+  ],
+  "summary": "The analysis provides a solid overview of the campaign's performance with actionable insights, but there is room for improvement in clarity and detail.",
+  "improvement_suggestions": [
+    "Enhance the clarity of metrics and their implications for a non-marketing audience.",
+    "Provide more detailed explanations of how detected issues could impact overall business performance."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260429_212833_revenue_growth.json"
+}

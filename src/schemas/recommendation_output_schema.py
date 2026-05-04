@@ -21,9 +21,7 @@ class RecommendationActionStep(BaseModel):
     @field_validator("guardrails")
     @classmethod
     def list_fields_ascii(cls, v: List[str]) -> List[str]:
-        for item in v:
-            assert_ascii(item)
-        return v
+        return [assert_ascii(item) for item in v]
 
 
 class ExpectedImpact(BaseModel):
@@ -85,9 +83,7 @@ class RecommendationCard(BaseModel):
     @field_validator("evidence", "dependency_or_risk")
     @classmethod
     def list_fields_ascii(cls, v: List[str]) -> List[str]:
-        for item in v:
-            assert_ascii(item)
-        return v
+        return [assert_ascii(item) for item in v]
 
 
 class RecommendationOutput(BaseModel):

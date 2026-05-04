@@ -36,3 +36,5 @@ OUTPUT RULES:
         "business_risks": ["Risk 1", "Risk 2"],
         "confidence_score": 75
     }}
+
+    `confidence_score` should reflect evidence strength on a 0-100 scale.

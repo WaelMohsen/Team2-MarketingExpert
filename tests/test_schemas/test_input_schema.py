@@ -222,7 +222,7 @@ class TestCampaignInputSchemaValidation:
         """High: Converting model to dict preserves all fields."""
         record = _campaign_record()
         campaign = CampaignInput(**record)
-        campaign_dict = campaign.dict()
+        campaign_dict = campaign.model_dump()
 
         assert "campaign_name" in campaign_dict
         assert "impressions" in campaign_dict

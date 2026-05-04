@@ -1,7 +1,9 @@
 import os
-from typing import List
+from typing import Optional, Tuple
 
 from dotenv import load_dotenv
+
+from src.evaluation.run_config import load_run_config
 
 try:
     from openai import OpenAI
@@ -36,43 +38,54 @@ def get_client():
     return _client
 
 
-def chat_completion(client, system_text, user_text, response_format):
+def chat_completion(client, system_text, user_text, response_format, model, temp):
     """Wrapper around the OpenAI structured-outputs beta endpoint.
 
-    `response_format` should be a **Pydantic model class**
-    (e.g. AnalysisOutput).
-    The SDK generates the JSON schema with
-    additionalProperties: false, sends it with strict: true,
-    and parses the response into a Pydantic instance available at
-    `response.choices[0].message.parsed`.
+    `response_format` should be a **Pydantic model class** (e.g. AnalysisOutput).
+    The SDK automatically generates the JSON schema with additionalProperties: false,
+    sends it with strict: true, and parses the response into a Pydantic instance
+    accessible via `response.choices[0].message.parsed`.
     """
 
     return client.beta.chat.completions.parse(
-        model="gpt-4o-mini",
+        model=model,
         messages=[
             {"role": "system", "content": system_text},
             {"role": "user", "content": user_text},
         ],
-        temperature=0.2,
+        temperature=temp,
         response_format=response_format,
     )
 
 
-# ANALYSIS: "gpt-4o-mini",
-# RECOMMENDATION: "gpt-4o"
+def _default_llm_settings() -> Tuple[str, float]:
+    config = load_run_config()
+    return (
+        config.generation.recommendation_model,
+        config.generation.recommendation_temp,
+    )
 
 
-def llm_callable(prompt: str) -> str:
+def llm_callable(
+    prompt: str,
+    model: Optional[str] = None,
+    temp: Optional[float] = None,
+) -> str:
+    if model is None or temp is None:
+        default_model, default_temp = _default_llm_settings()
+        model = model or default_model
+        temp = default_temp if temp is None else temp
+
     client = get_client()
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model=model,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0,
+        temperature=temp,
     )
     return response.choices[0].message.content
 
 
-def embedding_callable(text: str) -> List[float]:
+def embedding_callable(text: str) -> list[float]:
     client = get_client()
     response = client.embeddings.create(model="text-embedding-3-small", input=text)
     return response.data[0].embedding

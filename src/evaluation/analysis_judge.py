@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Sequence
+from typing import Any, List, Optional, Sequence
 
 from pydantic import BaseModel, Field
 
@@ -191,9 +191,7 @@ class AnalysisJudge:
         self._client = get_client()
 
     def evaluate(
-        self,
-        analysis: AnalysisOutput,
-        context: str,
+        self, analysis: AnalysisOutput, context: str, model: str, temp: float
     ) -> JudgeVerdict:
         criteria_text = self._build_criteria_text()
 
@@ -225,6 +223,8 @@ class AnalysisJudge:
             system_text=JUDGE_SYSTEM_PROMPT,
             user_text=user_prompt,
             response_format=JudgeVerdict,
+            model=model,
+            temp=temp,
         )
 
         verdict = response.choices[0].message.parsed

@@ -14,28 +14,76 @@ from src.evaluation.aggregate_overall_logs import (
 )
 
 ANALYSIS_PAYLOAD = {
+    "run_id": "run_20260420_120000",
+    "timestamp_utc": "2026-04-20T12:00:00Z",
     "category": "acquisition",
     "campaign_id": "Spring Launch",
+    "campaign_name": "Spring Launch",
     "target": "customer_acquisition",
-    "score": 0.75,
-    "dimensions": {
-        "clarity": 0.8,
-        "data_grounding": 0.7,
-        "logic_coherence": 0.8,
-        "business_focus": 0.55,
-        "confidence_calibration": 0.75,
-        "no_recommendation": 0.8,
-    },
-    "flags": ["low_business_focus"],
+    "judge_model": "gpt-4o-mini",
+    "judge_temp": 0.1,
+    "analysis_generation_model": "gpt-4o-mini",
+    "analysis_generation_temp": 0.2,
+    "recommendation_generation_model": "gpt-4o",
+    "recommendation_generation_temp": 0.3,
+    "overall_score": 4,
+    "overall_status": "borderline",
+    "criteria_scores": [
+        {"name": "analysis", "score": 4, "rationale": "Clear overall."},
+        {"name": "key_signals", "score": 3, "rationale": "Needs more depth."},
+        {"name": "detected_issues", "score": 3, "rationale": "Reasonable."},
+        {"name": "root_cause_hypothesis", "score": 4, "rationale": "Logical."},
+        {"name": "business_risks", "score": 3, "rationale": "Some impact."},
+        {"name": "confidence_score", "score": 2, "rationale": "Too low for evidence."},
+    ],
+    "summary": "Solid analysis with some missing depth.",
+    "improvement_suggestions": ["Add more cost detail."],
+    "pipeline_log_path": "evaluation_logs/pipeline/eval_20260420_120000_customer_acquisition.json",
 }
 
 RECOMMENDATION_PAYLOAD = {
+    "run_id": "run_20260420_130000",
+    "timestamp_utc": "2026-04-20T13:00:00Z",
     "category": "acquisition",
     "campaign_id": "Spring Launch",
+    "campaign_name": "Spring Launch",
     "target": "customer_acquisition",
+    "judge_model": "gpt-4o",
+    "judge_temp": 0.1,
+    "analysis_generation_model": "gpt-4o-mini",
+    "analysis_generation_temp": 0.2,
+    "recommendation_generation_model": "gpt-4o",
+    "recommendation_generation_temp": 0.3,
     "final_score": 0.82,
-    "business": {"score": 0.85, "flags": [], "weak_recommendations": []},
-    "compliance": {"score": 0.9, "flags": []},
+    "business": {
+        "score": 0.85,
+        "overall": {
+            "scores": {
+                "insight_quality": 0.8,
+                "actionability": 0.85,
+                "data_grounding": 0.75,
+                "kpi_alignment": 0.9,
+                "priority_accuracy": 0.8,
+                "decision_quality": 0.85,
+                "feasibility": 0.8,
+                "readability": 0.9,
+            }
+        },
+        "flags": [],
+        "weak_recommendations": [],
+    },
+    "compliance": {
+        "score": 0.9,
+        "dimensions": {
+            "count_valid": 1.0,
+            "required_fields": 1.0,
+            "priority_order": 1.0,
+            "no_hallucination": 0.9,
+            "clarity": 0.8,
+            "non_repetition": 0.9,
+        },
+        "flags": [],
+    },
     "ground_truth": {
         "score": 0.78,
         "avg_similarity": 0.75,
@@ -45,6 +93,7 @@ RECOMMENDATION_PAYLOAD = {
         "total_ground_truth": 4,
         "flags": ["low_similarity_to_expert"],
     },
+    "pipeline_log_path": "evaluation_logs/pipeline/eval_20260420_130000_customer_acquisition.json",
 }
 
 
@@ -94,12 +143,14 @@ def test_aggregate_logs_analysis_row_columns(tmp_path, monkeypatch):
     assert row["category"] == "acquisition"
     assert row["campaign_id"] == "Spring Launch"
     assert row["target"] == "customer_acquisition"
-    assert float(row["analysis_score"]) == pytest.approx(0.75)
+    assert float(row["overall_score"]) == pytest.approx(4)
     assert row["ts_utc"] == "2026-04-20T12:00:00Z"
     assert row["ingested_at_utc"] == "2026-04-25T00:00:00Z"
-    assert row["has_low_business_focus"] == "1"
-    assert row["has_low_clarity"] == "0"
-    assert row["flag_count"] == "1"
+    assert row["campaign_name"] == "Spring Launch"
+    assert row["judge_model"] == "gpt-4o-mini"
+    assert row["crit_analysis_score"] == "4"
+    assert row["crit_confidence_score_score"] == "2"
+    assert row["improvement_suggestions_count"] == "1"
 
 
 def test_aggregate_logs_recommendation_row_columns(tmp_path, monkeypatch):
@@ -126,9 +177,13 @@ def test_aggregate_logs_recommendation_row_columns(tmp_path, monkeypatch):
 
     assert row["category"] == "acquisition"
     assert row["campaign_id"] == "Spring Launch"
+    assert row["campaign_name"] == "Spring Launch"
     assert row["target"] == "customer_acquisition"
     assert float(row["final_score"]) == pytest.approx(0.82)
     assert row["ts_utc"] == "2026-04-20T13:00:00Z"
+    assert row["judge_model"] == "gpt-4o"
+    assert row["business_insight_quality"] == "0.8"
+    assert row["compliance_count_valid"] == "1.0"
     assert row["has_low_similarity_to_expert"] == "1"
     assert row["has_missing_key_expert_insights"] == "0"
 
@@ -170,7 +225,7 @@ def test_aggregate_logs_stable_id_across_runs(tmp_path, monkeypatch):
 
 def test_aggregate_logs_missing_optional_fields(tmp_path, monkeypatch):
     """Rows with missing keys should produce empty strings, not KeyError."""
-    minimal = {"score": 0.5, "flags": []}
+    minimal = {"overall_score": 3}
 
     analysis_dir = tmp_path / "analysis"
     _write_fixture(str(analysis_dir), "eval_20260420_150000.json", minimal)

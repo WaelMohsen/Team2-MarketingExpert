@@ -1,16 +1,19 @@
 import json
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+
 import src.llm as llm_handler
 import src.metrics_engine as data_processor
 
 app = FastAPI()
 
+
 class AnalyzeReq(BaseModel):
     category: str
+
 
 class ChatReq(BaseModel):
     message: str
@@ -18,27 +21,35 @@ class ChatReq(BaseModel):
     recommendations: list | None = None
     category: str | None = None
 
+
 def _build_by_channel(per_channel: dict) -> list:
     rows = []
     for name, m in per_channel.items():
-        rows.append({
-            "channel": name,
-            "spend": m.get("Total Spend", 0),
-            "revenue": m.get("Total Revenue", 0),
-            "conversions": m.get("Total Conversions", 0),
-            "ctr": float(str(m.get("CTR", 0)).replace("%", "")),
-            "cpa": m.get("CPA", 0),
-            "roas": m.get("ROAS", 0),
-            "bounce": m.get("Average Bounce Rate", 0) or 0,
-            "churn": m.get("Churn Rate", 0) or 0,
-        })
+        rows.append(
+            {
+                "channel": name,
+                "spend": m.get("Total Spend", 0),
+                "revenue": m.get("Total Revenue", 0),
+                "conversions": m.get("Total Conversions", 0),
+                "ctr": float(str(m.get("CTR", 0)).replace("%", "")),
+                "cpa": m.get("CPA", 0),
+                "roas": m.get("ROAS", 0),
+                "bounce": m.get("Average Bounce Rate", 0) or 0,
+                "churn": m.get("Churn Rate", 0) or 0,
+            }
+        )
     return rows
+
 
 @app.post("/api/analyze")
 def analyze(req: AnalyzeReq):
     df = data_processor.load_data()
     metrics = data_processor.calculate_metrics_full(df, req.category)
-    response = llm_handler.generate_response(df, req.category, metrics)
+    try:
+        response = llm_handler.generate_response(df, req.category, metrics)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
     overall = metrics.get("overall", {})
     return {
         "kpis": list(overall.keys()),
@@ -48,12 +59,14 @@ def analyze(req: AnalyzeReq):
         "recommendations": response.get("recommendations", []),
     }
 
+
 @app.get("/api/campaigns")
 def campaigns():
     df = data_processor.load_data()
     if df is None:
         return []
     return json.loads(df.to_json(orient="records"))
+
 
 @app.get("/api/history")
 def history():
@@ -78,16 +91,21 @@ def history():
                 cat = "Revenue Growth"
             elif "CTR" in kpis:
                 cat = "Customer Acquisition"
-            results.append({
-                "filename": f.name,
-                "timestamp": f.name.replace("pipeline_output_", "").replace(".json", ""),
-                "category": cat,
-                "confidence": analysis.get("confidence_score", 0),
-                "recCount": len(recs),
-            })
+            results.append(
+                {
+                    "filename": f.name,
+                    "timestamp": f.name.replace("pipeline_output_", "").replace(
+                        ".json", ""
+                    ),
+                    "category": cat,
+                    "confidence": analysis.get("confidence_score", 0),
+                    "recCount": len(recs),
+                }
+            )
         except Exception:
             continue
     return results
+
 
 @app.get("/api/history/{filename}")
 def history_detail(filename: str):
@@ -96,6 +114,7 @@ def history_detail(filename: str):
         return {"error": "not found"}
     data = json.loads(path.read_text(encoding="utf-8"))
     return data
+
 
 @app.post("/api/chat")
 def chat(req: ChatReq):
@@ -116,7 +135,12 @@ User question: {req.message}
 
 Answer in plain business language. Be concise and actionable. Avoid marketing abbreviations."""
 
-    response = llm_handler.llm_callable(prompt)
+    try:
+        response = llm_handler.llm_callable(prompt)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
     return {"reply": response}
+
 
 app.mount("/", StaticFiles(directory="web", html=True), name="web")

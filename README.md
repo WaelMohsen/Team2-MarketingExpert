@@ -44,6 +44,28 @@ To start the application, run:
 $ streamlit run app.py
 ```
 
+## Running Evaluation
+
+The evaluation runner is config-driven. Set the runtime options in [config/evaluation_run_config.json](config/evaluation_run_config.json):
+
+- `runtime.campaign_id`: campaign to evaluate
+- `runtime.category`: category to run, or `null` to run all categories
+- `runtime.context_rows`: number of campaign rows included in analysis judging context
+
+Then run:
+
+```bash
+$ python -m src.evaluation.run_evaluation
+```
+
+The generation step writes raw combined outputs to `output_log/`, and the evaluator writes structured JSON logs to `evaluation_logs/pipeline/`, `evaluation_logs/analysis/`, and `evaluation_logs/recommendation/`.
+
+To aggregate evaluation logs into CSV summaries, run:
+
+```bash
+$ python -m src.evaluation.aggregate_overall_logs
+```
+
 ## Running Unit Tests
 
 To run all unit tests:
@@ -70,50 +92,6 @@ To run a specific test file:
 ```bash
 $ pytest tests/test_schemas/test_input_schema.py
 ```
-
-## Running Evaluation and Aggregation
-
-### Run unified evaluation (analysis + recommendation)
-
-Run from the project root:
-
-```bash
-$ python -m src.evaluation.testmain
-```
-
-This runs evaluation for all categories by default and writes JSON logs to:
-
-- `evaluation_logs/analysis/`
-- `evaluation_logs/recommendation/`
-
-To run for a single category:
-
-```bash
-$ python -m src.evaluation.testmain --category "Customer Acquisition"
-```
-
-Optional parameters:
-
-```bash
-$ python -m src.evaluation.testmain \
-	--category "Customer Acquisition" \
-	--campaign-id "Spring Launch" \
-	--target "Customer Acquisition" \
-	--context-rows 20
-```
-
-### Aggregate evaluation logs into dashboard CSVs
-
-After running evaluation, aggregate all JSON logs into two overall CSV files:
-
-```bash
-$ python -m src.evaluation.aggregate_overall_logs
-```
-
-Generated files:
-
-- `evaluation_logs/overall/overall_analysis.csv`
-- `evaluation_logs/overall/overall_recommendation.csv`
 
 ## Pre-commit Hooks
 

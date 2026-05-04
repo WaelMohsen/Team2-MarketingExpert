@@ -49,7 +49,9 @@ class HybridEvaluator:
     # 🔹 LLM fallback comparison
     # =========================================================
 
-    def _llm_compare(self, rec: List[dict], gt: List[dict]) -> float:
+    def _llm_compare(
+        self, rec: List[dict], gt: List[dict], model: str, temp: float
+    ) -> float:
         prompt = f"""
 Compare these two marketing recommendations:
 
@@ -67,7 +69,7 @@ Score similarity from 0 to 1 based on:
 Return ONLY a number.
 """
         try:
-            return float(self.llm(prompt))
+            return float(self.llm(prompt, model, temp))
         except:
             return 0.0
 
@@ -75,7 +77,13 @@ Return ONLY a number.
     # 🔹 MAIN Evaluation
     # =========================================================
 
-    def evaluate(self, recommendations: List[dict], ground_truth: List[dict]) -> Dict:
+    def evaluate(
+        self,
+        recommendations: List[dict],
+        ground_truth: List[dict],
+        model: str,
+        temp: float,
+    ) -> Dict:
 
         # ---------------------------
         # Input validation
@@ -112,17 +120,20 @@ Return ONLY a number.
             sim_score = float(sim_matrix[i][best_idx])
             gt = ground_truth[best_idx]
 
+            # Initialize llm_score
+            llm_score = None
+
             # Decide scoring strategy
             if sim_score >= self.high_threshold:
                 final_score = sim_score
 
             elif self.low_threshold <= sim_score < self.high_threshold:
-                llm_score = self._llm_compare(rec, gt)
+                llm_score = self._llm_compare(rec, gt, model, temp)
                 total_llm_calls += 1
                 final_score = (sim_score + llm_score) / 2
 
             else:
-                llm_score = self._llm_compare(rec, gt)
+                llm_score = self._llm_compare(rec, gt, model, temp)
                 total_llm_calls += 1
                 final_score = llm_score
 
@@ -134,6 +145,7 @@ Return ONLY a number.
                     "rec_id": rec.get("id"),
                     "matched_gt_id": gt.get("id"),
                     "similarity": round(sim_score, 3),
+                    "llm_score": round(llm_score, 3) if llm_score is not None else None,
                 }
             )
 
@@ -181,6 +193,9 @@ Return ONLY a number.
 
         if avg_similarity < 0.6:
             flags.append("low_similarity_to_expert")
+
+        if len(missed_gt) >= 2:
+            flags.append(f"missing_key_GT_Recommendations : {len(missed_gt)}")
 
         # ---------------------------
         # Final output

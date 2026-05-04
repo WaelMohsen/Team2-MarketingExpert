@@ -139,7 +139,7 @@ class TestAnalysisSchemaValidation:
         """High: Converting model to dict preserves all fields."""
         payload = _analysis_payload()
         model = validate_analysis_output(json.dumps(payload))
-        model_dict = model.dict()
+        model_dict = model.model_dump()
 
         assert set(model_dict.keys()) == {
             "analysis",
