@@ -74,6 +74,14 @@ To aggregate evaluation logs into CSV summaries, run:
 $ python -m src.evaluation.aggregate_overall_logs
 ```
 
+To launch the evaluation dashboard, refresh the aggregate CSVs first and then run:
+
+```bash
+$ streamlit run dashboard.py
+```
+
+The dashboard supports both analysis and recommendation evaluation views, lets you filter by run, campaign, target, category, and model, shows run-level hover details for the models and temperatures used, and displays metric rationale for a selected evaluation row.
+
 ## Running Unit Tests
 
 To run all unit tests:
