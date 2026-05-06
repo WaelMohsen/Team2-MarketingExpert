@@ -1,5 +1,5 @@
 import os
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 from dotenv import load_dotenv
 
@@ -85,7 +85,7 @@ def llm_callable(
     return response.choices[0].message.content
 
 
-def embedding_callable(text: str) -> list[float]:
+def embedding_callable(text: str) -> List[float]:
     client = get_client()
     response = client.embeddings.create(model="text-embedding-3-small", input=text)
     return response.data[0].embedding

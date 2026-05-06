@@ -46,6 +46,14 @@ ANALYSIS_COLUMNS = [
     "summary",
     "improvement_suggestions_count",
     "improvement_suggestions",
+    "dim_quantitative_grounding",
+    "dim_benchmark_anchoring",
+    "dim_coverage",
+    "dim_no_recommendation",
+    "exp_quantitative_grounding",
+    "exp_benchmark_anchoring",
+    "exp_coverage",
+    "exp_no_recommendation",
     "raw_log_path",
     "pipeline_log_path",
     "ingested_at_utc",
@@ -167,6 +175,8 @@ def _analysis_row(payload: Dict, path: str, ingested_at: str) -> Dict:
         for criterion in payload.get("criteria_scores", [])
     }
     suggestions = payload.get("improvement_suggestions", []) or []
+    scores = payload.get("scores", {}) or {}
+    explanations = payload.get("explanations", {}) or {}
 
     return {
         "id": _stable_id(path),
@@ -225,6 +235,14 @@ def _analysis_row(payload: Dict, path: str, ingested_at: str) -> Dict:
         "summary": payload.get("summary", ""),
         "improvement_suggestions_count": len(suggestions),
         "improvement_suggestions": json.dumps(suggestions, ensure_ascii=False),
+        "dim_quantitative_grounding": scores.get("quantitative_grounding", ""),
+        "dim_benchmark_anchoring": scores.get("benchmark_anchoring", ""),
+        "dim_coverage": scores.get("coverage", ""),
+        "dim_no_recommendation": scores.get("no_recommendation", ""),
+        "exp_quantitative_grounding": explanations.get("quantitative_grounding", ""),
+        "exp_benchmark_anchoring": explanations.get("benchmark_anchoring", ""),
+        "exp_coverage": explanations.get("coverage", ""),
+        "exp_no_recommendation": explanations.get("no_recommendation", ""),
         "raw_log_path": path,
         "pipeline_log_path": payload.get("pipeline_log_path", ""),
         "ingested_at_utc": ingested_at,
