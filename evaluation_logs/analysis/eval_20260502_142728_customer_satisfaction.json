@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_142555",
+  "timestamp_utc": "2026-05-02T14:27:28Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.55,
+  "overall_status": "fail",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 3,
+      "rationale": "The analysis identifies the post-click stage as the bottleneck but fails to provide specific conversion rate numbers for the channels, which are necessary to compare against the 1.4% benchmark. It does not state what actions should be avoided based on this bottleneck."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 2,
+      "rationale": "The analysis mentions low engagement rates for Email, Google Ads, and SMS but does not provide specific acquisition costs or conversion rates for these channels. It lacks a clear comparison of which channel has the lowest acquisition cost and does not identify which channel is wasting budget relative to performance."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 3,
+      "rationale": "The analysis connects some metrics, noting the high bounce rate and its impact on conversions, but does not fully articulate how weaknesses in each metric flow to the overall business outcome. It lacks a comprehensive view of the entire metric chain."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 3,
+      "rationale": "The analysis references engagement rates and bounce rates but does not use the specific industry benchmarks for conversion rates or revenue return. It states the overall conversion rate but does not compare it to the minimum benchmark of 1.4%."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 3,
+      "rationale": "The analysis concludes with a diagnosis that the primary bottleneck is at the post-click stage but does not clearly state what actions should not be taken. The conclusion is somewhat vague and lacks specificity."
+    }
+  ],
+  "summary": "The analysis provides some insights but lacks the depth and specificity needed for a comprehensive evaluation.",
+  "improvement_suggestions": [
+    "Include specific conversion rates for each channel and compare them to the benchmark of 1.4%.",
+    "Provide a detailed comparison of acquisition costs and conversion rates across channels to identify budget wastage."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_142728_customer_satisfaction.json"
+}

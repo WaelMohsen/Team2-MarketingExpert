@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260501_201411",
+  "timestamp_utc": "2026-05-01T20:14:48Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.89,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 5,
+      "rationale": "The analysis correctly identifies the bottleneck as Pre-Click, citing a conversion rate of 12.26%, which is significantly above the benchmark of 1.4% to 2.5%. It also notes that the customer acquisition cost is low, indicating that the issue lies in the effectiveness of advertising creatives and targeting strategies, advising against continuing ineffective advertising practices."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares multiple channels, noting that Instagram has the lowest acquisition cost at $0.41 per new customer, while Facebook is wasting budget with a higher acquisition cost of $4.40 per new customer. It suggests that budget allocation should favor Instagram and TikTok, which are performing better relative to their costs."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis effectively connects the acquisition metric chain, showing how high impressions and clicks lead to a strong conversion rate, which in turn results in a low acquisition cost and substantial revenue. It highlights that weaknesses in advertising creatives could disrupt this chain, impacting overall revenue."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses correct industry benchmarks, clearly stating that the campaign's conversion rate of 12.26% is well above the minimum benchmark of 1.4% and the good benchmark of 2.5%. It also mentions that the return on advertising spend of 7.94 exceeds the minimum revenue return of 4 times the spend."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis that the primary problem is the need to optimize advertising creatives and targeting strategies. It advises against continuing ineffective advertising practices, providing a specific direction for improvement."
+    }
+  ],
+  "summary": "The analysis provides a comprehensive evaluation of the campaign's performance, identifying key areas for improvement and leveraging industry benchmarks effectively.",
+  "improvement_suggestions": [
+    "Enhance the effectiveness of advertising creatives and targeting strategies to improve click-through rates.",
+    "Reallocate budget towards channels with lower acquisition costs and higher conversion rates, such as Instagram and TikTok."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260501_201448_customer_acquisition.json"
+}

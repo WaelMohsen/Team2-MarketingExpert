@@ -1,0 +1,113 @@
+{
+  "analysis": "Lumora Skin's vitamin C serum acquisition program acquired 873 new customers across the quarter, with paid channels (Meta, TikTok, Google) delivering 753 customers at 86 percent of new acquisition and owned channels (email, SMS) delivering 120 at 14 percent. The leaky bucket pattern is present and quantified: 90-day cohort tracking shows paid channels churning at 55 to 75 percent versus owned channels retaining 71 to 76 percent, a gap of more than 40 percentage points sustained across volume and value. TikTok carries the highest churn rate at 75 percent, meaning 126 of its 168 new customers do not return for a second order; at the channel's $22 first-order average order value this represents $2,772 of immediate second-order revenue not realized and $13,230 of lifetime value forgone when measured against the $145 annual customer value SMS produces. Meta carries a 68 percent churn rate at the highest absolute volume, churning 279 of 410 new customers; that single channel accounts for $6,696 of the immediate second-order revenue gap. The annual customer value to acquisition cost ratio for paid channels lands at 1.41x on a weighted basis ($53.20 annual value against $37.80 acquisition cost), well below the 3x healthy threshold; owned channels run at 16.6x against the same threshold, with SMS reaching 29x and email at 11.5x. The structural gap between owned and paid is consistent: owned-channel customers arrive with prior brand context and self-select into the replenishment cycle that drives the $96 annual customer value benchmark, while paid customers behave as one-and-done buyers. Across the full quarter, 501 paid-channel customers churn within 90 days, each forgoing an average $24 second-order revenue, producing approximately $12,500 of revenue at risk in the immediate next-purchase window alone.",
+  "key_signals": [
+    {
+      "observation": "TikTok carries the highest 90-day churn rate of any channel; three out of four new customers do not return for a second purchase",
+      "metric_name": "90-day churn rate",
+      "actual_value": "75%",
+      "benchmark_value": "26% (owned-channel average within this campaign)",
+      "channel": "TikTok",
+      "is_positive": false
+    },
+    {
+      "observation": "Meta churns 68 percent of new customers within 90 days at the highest absolute volume of any channel",
+      "metric_name": "90-day churn rate",
+      "actual_value": "68%",
+      "benchmark_value": "26% (owned-channel average)",
+      "channel": "Meta",
+      "is_positive": false
+    },
+    {
+      "observation": "Paid-channel weighted annual customer value to acquisition cost ratio sits less than half the 3x healthy threshold",
+      "metric_name": "annual customer value to acquisition cost ratio",
+      "actual_value": "1.41x",
+      "benchmark_value": "3x",
+      "channel": "Meta + TikTok + Google blended",
+      "is_positive": false
+    },
+    {
+      "observation": "SMS retains 76 percent of new customers and produces an annual customer value 3.6 times that of the average paid customer",
+      "metric_name": "90-day repeat rate",
+      "actual_value": "76%",
+      "benchmark_value": "37% (paid-channel average)",
+      "channel": "SMS",
+      "is_positive": true
+    },
+    {
+      "observation": "Email annual customer value to acquisition cost ratio of 11.5x dramatically exceeds the 3x threshold while paid channels sit at less than half of it",
+      "metric_name": "annual customer value to acquisition cost ratio",
+      "actual_value": "11.5x",
+      "benchmark_value": "3x",
+      "channel": "Email",
+      "is_positive": true
+    }
+  ],
+  "detected_issues": [
+    {
+      "issue": "Highest-volume paid channel produces the highest absolute churn count; 279 of 410 Meta customers do not return for a second order within 90 days",
+      "affected_channel": "Meta",
+      "metric_impacted": "90-day repeat rate and annual customer value",
+      "business_impact": "279 churning customers at $24 average order value produces $6,696 of immediate second-order revenue not realized; lifetime value gap against the $145 SMS benchmark equals $97 per customer or $27,063 total lifetime value forgone from this cohort",
+      "severity": "High"
+    },
+    {
+      "issue": "TikTok cohort has the highest churn rate and lowest annual customer value of any channel, producing the worst unit economics",
+      "affected_channel": "TikTok",
+      "metric_impacted": "90-day churn rate and annual customer value to acquisition cost ratio",
+      "business_impact": "126 churning customers represent $2,772 of second-order revenue not realized; $40 annual customer value against $33 acquisition cost yields 1.21x ratio, the weakest in the campaign",
+      "severity": "High"
+    },
+    {
+      "issue": "Owned-channel volume is structurally constrained at 14 percent of new customer acquisition despite producing the highest retained value per customer",
+      "affected_channel": "Email and SMS",
+      "metric_impacted": "share of new customer acquisition versus share of lifetime value",
+      "business_impact": "Owned channels deliver 120 of 873 new customers (14 percent) but contribute approximately 35 percent of projected quarterly cohort lifetime value; the value-to-volume mismatch indicates owned-channel scale is the binding constraint on profitable growth",
+      "severity": "Medium"
+    },
+    {
+      "issue": "Google Ads sits in the middle band on retention but still falls below the 3x annual customer value to acquisition cost threshold",
+      "affected_channel": "Google Ads",
+      "metric_impacted": "annual customer value to acquisition cost ratio",
+      "business_impact": "$78 annual customer value against $42 acquisition cost yields 1.86x ratio; the gap to the 3x threshold equals $48 of additional retained value per customer or $8,400 across the 175-customer cohort",
+      "severity": "Medium"
+    }
+  ],
+  "root_cause_hypothesis": {
+    "hypothesis": "Paid channels acquire customers without the prior brand context that drives replenishment behavior in the skincare category; the post-purchase experience does not convert first-time paid buyers into the repeat cycle that owned-channel buyers self-select into at acquisition",
+    "bottleneck_type": "None",
+    "supporting_signals": [
+      "Owned-channel customers retain at 71 to 76 percent against paid-channel retention of 25 to 45 percent",
+      "Annual customer value gap of $97 between owned and paid customers despite identical product, pricing, and post-purchase fulfillment",
+      "TikTok and Meta, the lowest-intent paid channels, carry the highest churn rates",
+      "Google Ads, which captures higher purchase intent than social, retains better than social but still falls 14 percentage points below the worst owned channel"
+    ],
+    "confidence_rationale": "Five-channel cohort comparison shows a consistent owned-versus-paid retention gap of 30 to 50 percentage points; the pattern holds across both volume and value metrics, isolating the variable to channel-driven customer intent at acquisition rather than post-purchase fulfillment quality"
+  },
+  "business_risks": [
+    {
+      "risk": "Continued paid-channel acquisition at current churn rates produces below-threshold annual customer value to acquisition cost economics; the 1.41x paid blended ratio sits 53 percent below the 3x healthy threshold",
+      "financial_impact": "Quarterly paid spend of $28,474 produces $40,050 of annual customer value; the gap to the 3x threshold equals $45,372 per quarter, compounding to approximately $181,488 of value shortfall against benchmark over a year of sustained spend",
+      "likelihood": "High",
+      "time_horizon": "long-term"
+    },
+    {
+      "risk": "501 paid-channel customers churn within the first 90 days, each forgoing approximately $24 of second-order revenue",
+      "financial_impact": "$12,024 of immediate second-order revenue not realized over the 90-day window; lifetime value gap against owned-channel retention equals approximately $86 per customer or $43,086 in cohort lifetime value forgone",
+      "likelihood": "High",
+      "time_horizon": "immediate"
+    },
+    {
+      "risk": "Owned-channel volume cap creates an asymmetric scaling problem; SMS at 28 new customers per quarter and email at 92 cannot absorb the 753 paid-channel acquisition volume even if churn falls dramatically",
+      "financial_impact": "The lifetime value gap between current paid retention (37 percent blended) and owned-channel retention (74 percent blended) represents $33,825 of additional lifetime value per quarterly cohort that does not materialize at current paid-channel performance, calculated as 451 retained customers at $75 incremental annual value",
+      "likelihood": "Medium",
+      "time_horizon": "short-term"
+    }
+  ],
+  "confidence_score": 84,
+  "bottleneck_type": "None",
+  "cvr_vs_benchmark": "within",
+  "recommended_action_type": "Fix landing page",
+  "leaky_bucket_detected": true,
+  "highest_churn_channel": "TikTok",
+  "revenue_at_risk": 12500.0
+}

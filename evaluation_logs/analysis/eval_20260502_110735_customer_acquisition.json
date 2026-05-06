@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_110706",
+  "timestamp_utc": "2026-05-02T11:07:35Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.89,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 5,
+      "rationale": "The analysis correctly identifies the bottleneck as Pre-Click, noting that the conversion rate is 12.26%, which is significantly above the benchmark of 1.4% to 2.5%, while the customer acquisition costs are high, particularly in channels like Google Ads and TikTok. It clearly states that the high acquisition costs are the issue and advises against relying on these expensive traffic sources."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares multiple channels, specifically highlighting Google Ads and TikTok as having high acquisition costs of $3.90 and $4.00 respectively, while SMS has the lowest acquisition cost at $0.14. It identifies that Google Ads and TikTok are wasting budget relative to their performance, and suggests that budget allocation does not match channel efficiency."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis effectively connects the acquisition metric chain by showing how high impressions and clicks in channels like Google Ads and TikTok lead to high acquisition costs, which in turn impacts overall revenue. It illustrates that while conversions are high, the cost to acquire customers is unsustainable, affecting profitability."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses the correct industry benchmarks, stating that the conversion rate is 12.26%, which is well above the minimum benchmark of 1.4% and the good benchmark of 2.5%. It also implies that the revenue return is not meeting expectations given the high acquisition costs, thus providing a clear comparison to industry standards."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis stating that the primary problem is the high customer acquisition costs driven by expensive traffic sources. It advises against continuing to rely on these high-cost channels, which is a specific and actionable conclusion."
+    }
+  ],
+  "summary": "The analysis provides a comprehensive evaluation of the campaign's performance, identifying key issues and actionable insights.",
+  "improvement_suggestions": [
+    "Consider reallocating budget towards lower-cost channels like SMS and Email to improve overall acquisition efficiency.",
+    "Investigate and optimize the high-cost channels to reduce customer acquisition costs while maintaining conversion rates."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_110735_customer_acquisition.json"
+}

@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260501_204227",
+  "timestamp_utc": "2026-05-01T20:44:49Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.83,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 4,
+      "rationale": "The analysis correctly identifies the bottleneck as being at the post-click stage, with a conversion rate of 12.26%, which is above the 1.4% benchmark but indicates room for improvement. It suggests that the landing page may not be converting visitors efficiently, which is a specific and actionable insight."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares multiple channels effectively. For instance, the Email channel has the lowest acquisition cost at 1.47, while the TikTok channel, despite generating the highest revenue of $4000, has a higher acquisition cost of 3.33. This indicates that TikTok may be wasting budget relative to its performance, and the budget allocation should be reconsidered to favor more efficient channels."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis successfully connects the acquisition metric chain, showing how the high number of impressions (100,000 across channels) leads to clicks and conversions, ultimately impacting the acquisition cost of 3.37 and resulting in significant revenue generation of $11,950. This demonstrates a clear flow from one metric to the business outcome."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses correct industry benchmarks effectively, stating that the campaign's return on ad spend is 7.94, significantly above the minimum benchmark of 4.0. It also notes that the conversion rate of 12.26% is acceptable but could be improved, providing a clear comparison to the benchmarks."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis stating that the primary problem is the lower conversion rate, which could lead to stagnated revenue growth. It specifies that the focus should be on improving the landing page efficiency, avoiding vague conclusions."
+    }
+  ],
+  "summary": "The campaign analysis is strong, with clear insights and actionable recommendations, though there is room for improvement in conversion rates.",
+  "improvement_suggestions": [
+    "Enhance the landing page design and content to improve conversion rates.",
+    "Reallocate budget towards channels with lower acquisition costs and higher conversion rates."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260501_204449_revenue_growth.json"
+}

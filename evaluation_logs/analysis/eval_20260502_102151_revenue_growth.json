@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_101950",
+  "timestamp_utc": "2026-05-02T10:21:51Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.83,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 4,
+      "rationale": "The analysis correctly identifies the bottleneck as being at the post-click stage, with a conversion rate of 12.26%, which is above the 1.4% benchmark. It suggests that the issue lies in landing page effectiveness and user experience, indicating what should not be done is to ignore the post-click experience."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares multiple channels effectively. For instance, Instagram has the lowest acquisition cost at 0.41, while Facebook is wasting budget with a higher acquisition cost of 3.67 relative to its performance. The budget allocation does not match channel efficiency, as Instagram and TikTok are performing better in terms of revenue generation."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis connects the acquisition metric chain well, showing how the high number of impressions on Instagram (25,000) leads to 1,100 clicks and 130 conversions, resulting in a low acquisition cost and high revenue. This demonstrates how weaknesses in conversion rates can directly impact overall revenue."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses correct industry benchmarks effectively, noting that the campaign's return on ad spend is 7.94, significantly above the minimum benchmark of 4.0. It also references the conversion rate of 12.26%, which is well above the minimum benchmark of 1.4%."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis stating that the primary problem is the inconsistency in conversion rates across channels. It advises against neglecting the post-click experience, which is actionable and specific."
+    }
+  ],
+  "summary": "The campaign analysis is strong, providing clear insights and actionable recommendations for improvement.",
+  "improvement_suggestions": [
+    "Focus on enhancing landing page effectiveness to improve conversion rates.",
+    "Reallocate budget towards higher-performing channels like Instagram and TikTok."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_102151_revenue_growth.json"
+}

@@ -1,0 +1,423 @@
+{
+  "run_id": "run_20260501_203352",
+  "timestamp_utc": "2026-05-01T20:35:24Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Satisfaction",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "Engagement Rate": 6.68,
+        "Average Bounce Rate": 0.27,
+        "Average Frequency": 2.18
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.36,
+          "Average Frequency": 1.4
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "Engagement Rate": 5.36,
+          "Average Bounce Rate": 0.34,
+          "Average Frequency": 2.2
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.24,
+          "Average Frequency": 2.0
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "Engagement Rate": 5.6,
+          "Average Bounce Rate": 0.28,
+          "Average Frequency": 2.8
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "Engagement Rate": 0.0,
+          "Average Bounce Rate": 0.19,
+          "Average Frequency": 1.2
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "Engagement Rate": 8.96,
+          "Average Bounce Rate": 0.21,
+          "Average Frequency": 3.5
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "Engagement Rate",
+      "Average Bounce Rate",
+      "Average Frequency"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign performance shows a healthy conversion rate of 12.26%, indicating that the landing pages are effective in converting visitors into customers. However, the click-through rate of 4.65% is above the typical benchmark for social media, suggesting that the ads are engaging. The average bounce rate of 0.27 indicates that visitors are staying on the site, which is positive. However, the engagement rate of 6.68% is on the higher end of success, which may indicate that while the ads are relevant, there may be some inconsistencies in the messaging between the ads and the landing pages. This could lead to potential mismatches in customer expectations.",
+      "key_signals": [
+        {
+          "observation": "Conversion rate is 12.26%",
+          "metric_name": "Conversion Rate",
+          "actual_value": "12.26%",
+          "benchmark_value": "10%",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Click-through rate is 4.65%",
+          "metric_name": "Click-Through Rate",
+          "actual_value": "4.65%",
+          "benchmark_value": "3%",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Average bounce rate is 0.27",
+          "metric_name": "Bounce Rate",
+          "actual_value": "27%",
+          "benchmark_value": "55%",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Engagement rate is 6.68%",
+          "metric_name": "Engagement Rate",
+          "actual_value": "6.68%",
+          "benchmark_value": "3-6%",
+          "channel": null,
+          "is_positive": true
+        }
+      ],
+      "detected_issues": [
+        {
+          "issue": "High engagement but potential landing page mismatch",
+          "affected_channel": "Overall",
+          "metric_impacted": "Conversion Rate",
+          "business_impact": "Could lead to lower customer satisfaction if expectations are not met",
+          "severity": "Medium"
+        }
+      ],
+      "root_cause_hypothesis": {
+        "hypothesis": "The ads are attracting clicks due to high engagement, but the landing pages may not fully align with the ad messaging, leading to potential mismatches in customer expectations.",
+        "bottleneck_type": "Post-Click",
+        "supporting_signals": [
+          "High engagement rate of 6.68%",
+          "High click-through rate of 4.65%",
+          "Average bounce rate of 0.27"
+        ],
+        "confidence_rationale": "The combination of high engagement and click-through rates suggests that the ads are effective, but the bounce rate indicates that there may be issues with the landing page experience."
+      },
+      "business_risks": [
+        {
+          "risk": "Potential decrease in customer satisfaction",
+          "financial_impact": "Could lead to reduced repeat purchases and customer loyalty",
+          "likelihood": "Medium",
+          "time_horizon": "Short-term"
+        },
+        {
+          "risk": "Increased churn rate if expectations are not met",
+          "financial_impact": "Could impact overall revenue and profitability",
+          "likelihood": "Medium",
+          "time_horizon": "Medium-term"
+        }
+      ],
+      "confidence_score": 75.0,
+      "engagement_status": "high",
+      "highest_bounce_channel": "Email",
+      "ad_fatigue_risk": false
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Align Landing Page Messaging with Ads",
+        "category": "Landing_Page",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "There is a potential mismatch between the ad messaging and the landing page, leading to high engagement but possible customer dissatisfaction.",
+        "evidence": [
+          "High engagement rate of 6.68%",
+          "Click-through rate of 4.65%",
+          "Average bounce rate of 0.27"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Review and adjust landing page content to match ad messaging.",
+            "where": "Cross-channel",
+            "how": "Ensure that the key messages, offers, and visuals in the ads are reflected on the landing pages.",
+            "guardrails": [
+              "Maintain brand consistency",
+              "Avoid over-promising in ads"
+            ]
+          }
+        ],
+        "why_this_matters": "Aligning messaging ensures that customer expectations set by the ads are met, leading to higher satisfaction and conversion rates.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "Consistent messaging should lead to higher conversions as customer expectations are met."
+        },
+        "dependency_or_risk": [
+          "Requires coordination with the creative and web teams"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare conversion rates before and after changes.",
+          "success_criteria": "Increase in conversion rate by at least 1%",
+          "check_timing": "2 weeks post-implementation",
+          "notes": "Consider seasonal variations in traffic."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Enhance Email Campaign Engagement",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Email channel shows the highest bounce rate, indicating low engagement or relevance.",
+        "evidence": [
+          "Email bounce rate of 0.36"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Revise email content to improve relevance and engagement.",
+            "where": "Email",
+            "how": "Segment the audience more precisely and tailor content to each segment's interests.",
+            "guardrails": [
+              "Ensure compliance with privacy regulations",
+              "Avoid overly frequent emails"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving email engagement can lead to better customer satisfaction and retention.",
+        "expected_impact": {
+          "primary_kpi": "Bounce Rate",
+          "direction": "Decrease",
+          "explanation": "More relevant content should keep users engaged, reducing bounce rates."
+        },
+        "dependency_or_risk": [
+          "Requires updated customer data for segmentation"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor bounce rate and engagement metrics post-implementation.",
+          "success_criteria": "Bounce rate decreases to below 0.30",
+          "check_timing": "4 weeks post-implementation",
+          "notes": "Consider email open rates as an additional metric."
+        },
+        "owner_suggestion": "Email marketing team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Optimize Ad Frequency on TikTok",
+        "category": "Bidding",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "TikTok frequency is above the optimal range, which may lead to ad fatigue.",
+        "evidence": [
+          "TikTok frequency of 3.5"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Adjust ad frequency to fall within the optimal range of 2-4x.",
+            "where": "TikTok",
+            "how": "Use platform settings to limit the number of times an ad is shown to the same user.",
+            "guardrails": [
+              "Monitor for any decrease in reach"
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing ad fatigue can maintain or improve engagement rates and customer satisfaction.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Stabilize",
+          "explanation": "Optimal frequency should prevent ad fatigue, keeping engagement stable."
+        },
+        "dependency_or_risk": [
+          "Changes in platform algorithms"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track engagement rate and frequency metrics.",
+          "success_criteria": "Engagement rate remains stable or improves",
+          "check_timing": "1 week post-adjustment",
+          "notes": "Consider changes in TikTok's algorithm."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Increase Content Value on Facebook",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Facebook's engagement rate is lower compared to other platforms, indicating that content may not be resonating as well.",
+        "evidence": [
+          "Facebook engagement rate of 5.36"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Enhance content quality to better engage the audience.",
+            "where": "Facebook",
+            "how": "Incorporate more interactive and visually appealing content, such as videos and polls.",
+            "guardrails": [
+              "Ensure content aligns with brand messaging"
+            ]
+          }
+        ],
+        "why_this_matters": "Higher content value can increase engagement and customer satisfaction.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "Better content should attract more interactions, increasing engagement."
+        },
+        "dependency_or_risk": [
+          "Requires creative resources"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in engagement rate and user feedback.",
+          "success_criteria": "Engagement rate increases to above 6%",
+          "check_timing": "4 weeks post-implementation",
+          "notes": "Consider seasonal trends in content consumption."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Leverage High ROAS Channels",
+        "category": "Channel_Mix",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Channels like SMS and Email have high return on ad spend, indicating efficient use of budget.",
+        "evidence": [
+          "SMS ROAS of 18.75",
+          "Email ROAS of 15.0"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Allocate more budget to high-performing channels.",
+            "where": "SMS and Email",
+            "how": "Shift budget from lower-performing channels to maximize return.",
+            "guardrails": [
+              "Maintain a balanced channel mix to avoid over-reliance"
+            ]
+          }
+        ],
+        "why_this_matters": "Focusing on high-performing channels can maximize profitability and customer acquisition.",
+        "expected_impact": {
+          "primary_kpi": "Return on Ad Spend",
+          "direction": "Increase",
+          "explanation": "More budget in high ROAS channels should increase overall profitability."
+        },
+        "dependency_or_risk": [
+          "Potential diminishing returns if over-invested"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare ROAS before and after budget reallocation.",
+          "success_criteria": "Overall ROAS increases by at least 10%",
+          "check_timing": "4 weeks post-reallocation",
+          "notes": "Monitor for any negative impact on other channels."
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "run_id": "run_20260502_101950",
+  "timestamp_utc": "2026-05-02T10:20:12Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall conversion rate across all channels is 12.26%, which is significantly above the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages and conversion processes are functioning effectively. However, the customer acquisition cost is $3.37, which is relatively low, suggesting that the traffic costs are manageable. The return on advertising spend is 7.94, indicating that for every dollar spent, the revenue generated is substantial. Therefore, the campaign appears to be performing well in terms of conversion efficiency and cost-effectiveness.",
+      "key_signals": [
+        {
+          "observation": "Overall conversion rate is 12.26%",
+          "metric_name": "Conversion Rate",
+          "actual_value": "12.26%",
+          "benchmark_value": "1.4% - 2.5%",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Customer acquisition cost is $3.37",
+          "metric_name": "Customer Acquisition Cost",
+          "actual_value": "$3.37",
+          "benchmark_value": "N/A",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Return on advertising spend is 7.94",
+          "metric_name": "Return on Advertising Spend",
+          "actual_value": "7.94",
+          "benchmark_value": "N/A",
+          "channel": null,
+          "is_positive": true
+        }
+      ],
+      "detected_issues": [],
+      "root_cause_hypothesis": {
+        "hypothesis": "The campaign is effectively converting traffic into customers, indicating strong landing page performance.",
+        "bottleneck_type": "None",
+        "supporting_signals": [
+          "Conversion rate is significantly above benchmark",
+          "Customer acquisition cost is low",
+          "Return on advertising spend is high"
+        ],
+        "confidence_rationale": "The metrics indicate strong performance across the board, with no signs of bottlenecks."
+      },
+      "business_risks": [],
+      "confidence_score": 95.0,
+      "bottleneck_type": "None",
+      "cvr_vs_benchmark": "above",
+      "recommended_action_type": "None"
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Expand High-Performing Channels",
+        "category": "Channel_Mix",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "The overall conversion rate is well above the industry benchmark, indicating effective conversion processes.",
+        "evidence": [
+          "Overall conversion rate is 12.26%, above the 1.4% - 2.5% benchmark"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase budget allocation",
+            "where": "SMS and Email",
+            "how": "Allocate more budget to SMS and Email as they have the highest conversion rates and return on advertising spend.",
+            "guardrails": [
+              "Ensure budget increase does not exceed 20% of current spend to maintain balance"
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing budget in high-performing channels can lead to more conversions and revenue.",
+        "expected_impact": {
+          "primary_kpi": "Total Revenue",
+          "direction": "Increase",
+          "explanation": "Higher budget in effective channels should drive more conversions, increasing revenue."
+        },
+        "dependency_or_risk": [
+          "Budget reallocation must not negatively impact other channels"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare revenue and conversion rates pre and post budget increase.",
+          "success_criteria": "Revenue increase by 10% within a month.",
+          "check_timing": "Review after 4 weeks",
+          "notes": "Consider seasonality and external factors affecting performance."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Optimize Underperforming Channels",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Some channels have lower conversion rates and return on advertising spend compared to others.",
+        "evidence": [
+          "Facebook conversion rate is 11.54%, ROAS is 5.0",
+          "Google Ads conversion rate is 11.18%, ROAS is 7.5"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct A/B testing",
+            "where": "Facebook and Google Ads",
+            "how": "Test different ad creatives and audience segments to improve performance.",
+            "guardrails": [
+              "Ensure tests run for a minimum of two weeks to gather sufficient data"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving performance in underperforming channels can reduce costs and increase efficiency.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Better performing ads should lower the cost per acquisition."
+        },
+        "dependency_or_risk": [
+          "Requires creative resources for new ad designs"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in conversion rates and customer acquisition cost.",
+          "success_criteria": "Improvement in conversion rates by 5% and reduction in acquisition cost by 10%.",
+          "check_timing": "Review after 4 weeks",
+          "notes": "Account for potential external influences on ad performance."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Enhance Engagement on Instagram",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Instagram has a moderate conversion rate but high engagement potential.",
+        "evidence": [
+          "Instagram conversion rate is 11.82%, CTR is 4.4"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase interactive content",
+            "where": "Instagram",
+            "how": "Use polls, stories, and live sessions to boost engagement and click-through rates.",
+            "guardrails": [
+              "Maintain brand voice and message consistency"
+            ]
+          }
+        ],
+        "why_this_matters": "Higher engagement can lead to increased conversions and customer loyalty.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "Interactive content can drive more user actions, improving conversion rates."
+        },
+        "dependency_or_risk": [
+          "Requires social media management tools"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track engagement metrics and conversion rates before and after content changes.",
+          "success_criteria": "Increase in conversion rate by 5% within two weeks.",
+          "check_timing": "Review after 2 weeks",
+          "notes": "Consider platform algorithm changes affecting engagement."
+        },
+        "owner_suggestion": "Social media team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Leverage TikTok for Brand Awareness",
+        "category": "Channel_Mix",
+        "priority": "Low",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok has a high reach and engagement but moderate conversion rate.",
+        "evidence": [
+          "TikTok reach is 26000, conversion rate is 11.54%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Create brand-focused content",
+            "where": "TikTok",
+            "how": "Develop content that highlights brand values and stories to enhance brand awareness.",
+            "guardrails": [
+              "Ensure content aligns with brand guidelines"
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing brand awareness can lead to long-term customer acquisition and retention.",
+        "expected_impact": {
+          "primary_kpi": "Total Impressions",
+          "direction": "Increase",
+          "explanation": "Brand-focused content can attract more views and engagement, increasing impressions."
+        },
+        "dependency_or_risk": [
+          "Content must resonate with the target audience"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in impressions and engagement rates.",
+          "success_criteria": "Increase in impressions by 15% within a month.",
+          "check_timing": "Review after 4 weeks",
+          "notes": "Consider TikTok's algorithm changes impacting reach."
+        },
+        "owner_suggestion": "Content team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Maintain Current Strategy for Email",
+        "category": "Retention",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "Immediate",
+        "confidence": "High",
+        "whats_happening": "Email channel is performing exceptionally well with high conversion rates and return on advertising spend.",
+        "evidence": [
+          "Email conversion rate is 13.33%, ROAS is 15.0"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Continue current email campaigns",
+            "where": "Email",
+            "how": "Maintain the existing strategy and monitor for any changes in performance.",
+            "guardrails": [
+              "Regularly review performance metrics to ensure continued success"
+            ]
+          }
+        ],
+        "why_this_matters": "Maintaining a successful strategy ensures consistent performance and customer retention.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Stabilize",
+          "explanation": "Consistent strategy should maintain high conversion rates."
+        },
+        "dependency_or_risk": [
+          "Requires ongoing monitoring to catch any performance dips"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Regularly track conversion rates and return on advertising spend.",
+          "success_criteria": "Conversion rate remains above 13%.",
+          "check_timing": "Review weekly",
+          "notes": "Consider seasonal variations affecting email performance."
+        },
+        "owner_suggestion": "Email marketing team"
+      }
+    ]
+  }
+}

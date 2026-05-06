@@ -1,0 +1,188 @@
+{
+  "run_id": "run_20260501_203352",
+  "timestamp_utc": "2026-05-01T20:36:33Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.648,
+  "business": {
+    "score": 0.82,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.8,
+        "actionability": 0.8,
+        "data_grounding": 0.9,
+        "kpi_alignment": 0.9,
+        "priority_accuracy": 0.7,
+        "decision_quality": 0.8,
+        "feasibility": 0.8,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Recommendations generally explain the cause or opportunity well, but some could provide deeper insights.",
+        "actionability": "Steps are mostly clear and specific, though some could benefit from more detail.",
+        "data_grounding": "Recommendations are well-supported by the provided data.",
+        "kpi_alignment": "Recommendations align well with the campaign KPIs.",
+        "priority_accuracy": "High-impact recommendations are prioritized, but some medium-priority items could be reconsidered.",
+        "decision_quality": "Decisions are generally strong, though some could be more robust.",
+        "feasibility": "Recommendations are realistically implementable, though some may require more resources.",
+        "readability": "Recommendations are clear and simple for non-marketers."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Actionability could be more detailed regarding budget reallocation specifics."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Insight quality could be improved with more specific data on bounce rates."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Feasibility may be challenging due to creative resource requirements."
+        ]
+      },
+      {
+        "id": "REC-06",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Actionability could be more detailed regarding loyalty program specifics."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 0.5,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 0,
+      "clarity": 0,
+      "non_repetition": 0
+    },
+    "flags": [
+      "hallucination_detected",
+      "repetition_detected"
+    ]
+  },
+  "ground_truth": {
+    "score": 0.629,
+    "avg_similarity": 0.624,
+    "coverage": 0.76,
+    "llm_calls": 3,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-RG-03",
+        "similarity": 0.792,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-RG-04",
+        "similarity": 0.813,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-RG-01",
+        "similarity": 0.737,
+        "llm_score": 0.4
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-RG-03",
+        "similarity": 0.778,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-RG-02",
+        "similarity": 0.56,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-06",
+        "matched_gt_id": "GT-RG-04",
+        "similarity": 0.687,
+        "llm_score": 0.3
+      }
+    ],
+    "missed_ground_truth": [],
+    "flags": [],
+    "total_recommendations": 6,
+    "total_ground_truth": 4
+  },
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260501_203633_revenue_growth.json"
+}

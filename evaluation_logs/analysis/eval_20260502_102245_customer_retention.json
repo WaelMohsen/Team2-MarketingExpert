@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_101950",
+  "timestamp_utc": "2026-05-02T10:22:45Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.46,
+  "overall_status": "fail",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 2,
+      "rationale": "The analysis mentions a bottleneck but does not provide specific conversion rates for the channels. For example, the conversion rate for Instagram is 1.04% (130 conversions from 1100 clicks), which is below the 1.4% benchmark, indicating a Post-Click bottleneck. However, it fails to specify what actions should not be taken based on this finding."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 2,
+      "rationale": "The analysis does not compare acquisition costs or conversion rates across channels effectively. While it mentions Facebook's high churn rate, it does not provide specific acquisition costs or identify which channel is wasting budget relative to performance. For instance, TikTok has the highest revenue of $4000 with a spend of $500, indicating efficiency, but this is not clearly articulated."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 3,
+      "rationale": "The analysis connects some metrics but lacks a clear flow from impressions to revenue. It mentions churn rates and retention but does not explicitly link how low conversion rates lead to decreased revenue. For example, the low conversion rate on Facebook could lead to fewer repeat purchases, impacting overall revenue."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 2,
+      "rationale": "The analysis mentions conversion rates but does not provide specific benchmarks for comparison. It states that the overall conversion rate is below the 1.4% benchmark but does not quantify this for each channel, which is necessary for a proper evaluation."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 3,
+      "rationale": "The analysis identifies high churn rates as a problem but does not clearly state what actions should not be taken. It suggests that customer engagement varies by channel but lacks a definitive diagnosis that could lead to actionable insights."
+    }
+  ],
+  "summary": "The analysis provides some insights but lacks specific data and comparisons needed for a comprehensive evaluation.",
+  "improvement_suggestions": [
+    "Include specific conversion rates for each channel to identify bottlenecks clearly.",
+    "Compare acquisition costs and conversion rates across channels to determine budget efficiency."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_102245_customer_retention.json"
+}

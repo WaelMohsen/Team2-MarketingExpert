@@ -1,0 +1,448 @@
+{
+  "run_id": "run_20260502_142555",
+  "timestamp_utc": "2026-05-02T14:28:17Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Revenue Growth",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "AOV": 22.72,
+        "Annual Customer Value": 95.42,
+        "Marketing ROI": 694.48,
+        "Revenue Per Click": 2.78,
+        "LTV:CAC Ratio": 28.31
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "AOV": 18.75,
+          "Annual Customer Value": 95.62,
+          "Marketing ROI": 1400.0,
+          "Revenue Per Click": 2.5,
+          "LTV:CAC Ratio": 65.05
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "AOV": 18.33,
+          "Annual Customer Value": 64.17,
+          "Marketing ROI": 400.0,
+          "Revenue Per Click": 2.12,
+          "LTV:CAC Ratio": 14.58
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "AOV": 25.26,
+          "Annual Customer Value": 96.0,
+          "Marketing ROI": 650.0,
+          "Revenue Per Click": 2.82,
+          "LTV:CAC Ratio": 24.62
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "AOV": 24.62,
+          "Annual Customer Value": 103.38,
+          "Marketing ROI": 611.11,
+          "Revenue Per Click": 2.91,
+          "LTV:CAC Ratio": 25.28
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "AOV": 13.64,
+          "Annual Customer Value": 53.18,
+          "Marketing ROI": 1775.0,
+          "Revenue Per Click": 2.68,
+          "LTV:CAC Ratio": 64.07
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "AOV": 26.67,
+          "Annual Customer Value": 128.0,
+          "Marketing ROI": 700.0,
+          "Revenue Per Click": 3.08,
+          "LTV:CAC Ratio": 32.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "AOV",
+      "Annual Customer Value",
+      "Marketing ROI",
+      "Revenue Per Click",
+      "LTV:CAC Ratio"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign performance indicates a strong return on investment, with a return per dollar spent of 7.94, which is well above the healthy benchmark of 4.0. The marketing return on investment is also significantly positive at 694.48%, indicating that the campaign is generating substantial revenue relative to its costs. However, the customer acquisition cost is 3.37, which is acceptable given the annual customer value of 95.42. The conversion rate stands at 12.26%, which is reasonable but could be improved. The average order value is 22.72, suggesting that while customers are converting, they may not be spending as much as desired. The highest performing channels are SMS and Email, while Facebook and Instagram are underperforming in terms of return per dollar spent. This indicates that there may be inefficiencies in the ad creatives or targeting strategies for these channels.",
+      "key_signals": [
+        {
+          "observation": "Return per dollar spent is 7.94.",
+          "metric_name": "Return on Advertising Spend",
+          "actual_value": "7.94",
+          "benchmark_value": "4.0",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Marketing return on investment is 694.48%.",
+          "metric_name": "Marketing ROI",
+          "actual_value": "694.48%",
+          "benchmark_value": ">100%",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Customer acquisition cost is 3.37.",
+          "metric_name": "Cost per Acquisition",
+          "actual_value": "3.37",
+          "benchmark_value": "Lower is better",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Conversion rate is 12.26%.",
+          "metric_name": "Conversion Rate",
+          "actual_value": "12.26%",
+          "benchmark_value": "Higher is better",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Average order value is 22.72.",
+          "metric_name": "Average Order Value",
+          "actual_value": "22.72",
+          "benchmark_value": "Higher is better",
+          "channel": null,
+          "is_positive": false
+        }
+      ],
+      "detected_issues": [
+        {
+          "issue": "Underperformance in return per dollar spent for Facebook and Instagram.",
+          "affected_channel": "Facebook, Instagram",
+          "metric_impacted": "Return on Advertising Spend",
+          "business_impact": "Lower revenue generation from these channels despite significant budget allocation.",
+          "severity": "High"
+        },
+        {
+          "issue": "Average order value is low.",
+          "affected_channel": "Overall",
+          "metric_impacted": "Average Order Value",
+          "business_impact": "Potentially limiting overall revenue growth.",
+          "severity": "Medium"
+        }
+      ],
+      "root_cause_hypothesis": {
+        "hypothesis": "The primary bottleneck appears to be related to the ad creatives and targeting strategies for Facebook and Instagram, which are not converting effectively despite high impressions and clicks.",
+        "bottleneck_type": "Pre-Click",
+        "supporting_signals": [
+          "Return per dollar spent for Facebook is 5.00 and for Instagram is 7.11, both below the average.",
+          "High budget allocation to underperforming channels."
+        ],
+        "confidence_rationale": "The significant budget allocation to Facebook and Instagram, combined with their low return per dollar spent, suggests inefficiencies in these channels."
+      },
+      "business_risks": [
+        {
+          "risk": "Continued low performance in Facebook and Instagram could lead to wasted budget and reduced overall profitability.",
+          "financial_impact": "Potential loss of revenue from ineffective ad spend.",
+          "likelihood": "High",
+          "time_horizon": "Short-term"
+        },
+        {
+          "risk": "Low average order value may hinder long-term revenue growth.",
+          "financial_impact": "Limits the potential revenue from existing customers.",
+          "likelihood": "Medium",
+          "time_horizon": "Medium-term"
+        }
+      ],
+      "confidence_score": 85.0,
+      "roas_status": "healthy",
+      "highest_roas_channel": "SMS",
+      "ltv_cac_ratio": 28.31
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Reallocate Budget to High Performing Channels",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "SMS and Email channels are generating high returns per dollar spent but receive a small portion of the budget.",
+        "evidence": [
+          "SMS return-per-dollar: 18.75, Email return-per-dollar: 15.00, Budget allocation: 9%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase budget allocation for SMS and Email channels.",
+            "where": "cross-channel",
+            "how": "Reallocate budget from underperforming channels to SMS and Email.",
+            "guardrails": [
+              "Ensure budget reallocation does not exceed channel capacity."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing budget for high-performing channels can maximize revenue growth.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "By investing more in channels with high returns, overall revenue efficiency should improve."
+        },
+        "dependency_or_risk": [
+          "Ensure SMS and Email channels can handle increased budget without diminishing returns."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare return-per-dollar before and after budget reallocation.",
+          "success_criteria": "Improvement in overall return-per-dollar spent.",
+          "check_timing": "Weekly after reallocation",
+          "notes": "Monitor for diminishing returns due to budget saturation."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Optimize Facebook and Instagram Ad Creatives",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Facebook and Instagram are underperforming in terms of return per dollar spent despite high budget allocation.",
+        "evidence": [
+          "Facebook return-per-dollar: 5.00, Instagram return-per-dollar: 7.11"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Revise ad creatives for Facebook and Instagram.",
+            "where": "Facebook, Instagram",
+            "how": "Test new ad formats and messages to improve engagement and conversion.",
+            "guardrails": [
+              "Maintain brand consistency across new creatives."
+            ]
+          }
+        ],
+        "why_this_matters": "Improving ad effectiveness can boost conversions and revenue from these channels.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Better creatives can enhance engagement and conversion rates, leading to higher returns."
+        },
+        "dependency_or_risk": [
+          "Creative changes may take time to develop and test."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in conversion rates and return-per-dollar after creative updates.",
+          "success_criteria": "Increase in return-per-dollar and conversion rates.",
+          "check_timing": "Bi-weekly post-implementation",
+          "notes": "Consider seasonal trends that may affect performance."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Enhance Targeting Strategies for Facebook and Instagram",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Current targeting strategies may not be effectively reaching the right audience on Facebook and Instagram.",
+        "evidence": [
+          "High impressions and clicks but low return-per-dollar on Facebook and Instagram."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Refine audience targeting for Facebook and Instagram ads.",
+            "where": "Facebook, Instagram",
+            "how": "Use data-driven insights to adjust targeting parameters for better audience alignment.",
+            "guardrails": [
+              "Avoid overly narrow targeting that limits reach."
+            ]
+          }
+        ],
+        "why_this_matters": "Better targeting can increase the likelihood of conversions, improving channel efficiency.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "More precise targeting should lead to higher conversion rates and better returns."
+        },
+        "dependency_or_risk": [
+          "Requires access to detailed audience data and analytics."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in conversion rates and return-per-dollar after targeting adjustments.",
+          "success_criteria": "Improved conversion rates and return-per-dollar.",
+          "check_timing": "Monthly after changes",
+          "notes": "Ensure sufficient data is collected for accurate analysis."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Increase Average Order Value",
+        "category": "Sales_Enablement",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "The average order value is lower than desired, potentially limiting revenue growth.",
+        "evidence": [
+          "Average order value is $22.72."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Implement upselling and cross-selling strategies.",
+            "where": "cross-channel",
+            "how": "Introduce product bundles or discounts on additional purchases to increase order size.",
+            "guardrails": [
+              "Ensure promotions do not erode profit margins."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing the amount customers spend per order can significantly boost revenue.",
+        "expected_impact": {
+          "primary_kpi": "average_order_value",
+          "direction": "Increase",
+          "explanation": "Higher order values directly contribute to increased revenue."
+        },
+        "dependency_or_risk": [
+          "Requires coordination with sales and product teams to develop offers."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in average order value and overall revenue.",
+          "success_criteria": "Increase in average order value and total revenue.",
+          "check_timing": "Monthly after implementation",
+          "notes": "Consider external factors like economic conditions that may affect purchasing behavior."
+        },
+        "owner_suggestion": "Sales team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Monitor and Adjust Campaigns Based on Performance Data",
+        "category": "Tracking",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "Ongoing",
+        "confidence": "High",
+        "whats_happening": "Campaign performance varies across channels, indicating a need for continuous optimization.",
+        "evidence": [
+          "Varied return-per-dollar across channels."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Regularly review performance data and adjust campaigns accordingly.",
+            "where": "cross-channel",
+            "how": "Use analytics to identify trends and make informed adjustments to campaigns.",
+            "guardrails": [
+              "Avoid over-optimization that may lead to analysis paralysis."
+            ]
+          }
+        ],
+        "why_this_matters": "Continuous monitoring ensures campaigns remain effective and responsive to market changes.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Stabilize",
+          "explanation": "Ongoing adjustments help maintain or improve performance across channels."
+        },
+        "dependency_or_risk": [
+          "Requires reliable data collection and analysis tools."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare performance metrics before and after adjustments.",
+          "success_criteria": "Consistent or improved performance metrics.",
+          "check_timing": "Weekly reviews",
+          "notes": "Consider attribution delays and external market factors."
+        },
+        "owner_suggestion": "Analytics"
+      }
+    ]
+  }
+}

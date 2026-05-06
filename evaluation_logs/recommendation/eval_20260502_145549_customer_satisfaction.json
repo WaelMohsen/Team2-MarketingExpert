@@ -1,0 +1,167 @@
+{
+  "run_id": "run_20260502_145431",
+  "timestamp_utc": "2026-05-02T14:55:49Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.75,
+  "business": {
+    "score": 0.815,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.8,
+        "actionability": 0.8,
+        "data_grounding": 0.9,
+        "kpi_alignment": 0.8,
+        "priority_accuracy": 0.7,
+        "decision_quality": 0.8,
+        "feasibility": 0.9,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Most recommendations provide clear insights into the reasons behind the suggested actions, but some could benefit from more detailed explanations.",
+        "actionability": "Steps are generally clear and specific, though some recommendations could include more detailed execution plans.",
+        "data_grounding": "Recommendations are well-supported by the provided data, with clear references to metrics and performance indicators.",
+        "kpi_alignment": "Most recommendations align well with the campaign KPIs, though some could more explicitly link actions to specific KPIs.",
+        "priority_accuracy": "High-impact recommendations are generally prioritized, but some medium-priority actions could be reconsidered for higher impact.",
+        "decision_quality": "The recommendations are strong business decisions, though some could be more robust with additional context.",
+        "feasibility": "The recommendations are realistic and implementable within the given constraints.",
+        "readability": "The recommendations are clear and simple, making them accessible to non-marketers."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.9,
+          "actionability": 0.9,
+          "data_grounding": 1.0,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.9,
+          "feasibility": 1.0
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.8,
+          "feasibility": 0.9
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Could provide more detailed steps for content optimization."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Lacks detailed explanation on how new formats will be tested and evaluated."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.8,
+          "feasibility": 0.9
+        },
+        "issues": []
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.515,
+    "avg_similarity": 0.478,
+    "coverage": 0.696,
+    "llm_calls": 3,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.551,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.815,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-CS-01",
+        "similarity": 0.772,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.6,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.546,
+        "llm_score": 0.2
+      }
+    ],
+    "missed_ground_truth": [
+      "GT-CS-03"
+    ],
+    "flags": [
+      "low_similarity_to_expert"
+    ],
+    "total_recommendations": 5,
+    "total_ground_truth": 3
+  },
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_145549_customer_satisfaction.json"
+}

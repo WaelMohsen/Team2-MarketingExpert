@@ -1,0 +1,172 @@
+{
+  "run_id": "run_20260502_101950",
+  "timestamp_utc": "2026-05-02T10:22:45Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.78,
+  "business": {
+    "score": 0.77,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.8,
+        "actionability": 0.7,
+        "data_grounding": 0.9,
+        "kpi_alignment": 0.8,
+        "priority_accuracy": 0.7,
+        "decision_quality": 0.7,
+        "feasibility": 0.8,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Most recommendations clearly explain the cause or opportunity, but some lack depth in explaining the underlying reasons.",
+        "actionability": "Steps are generally clear and specific, but some recommendations could benefit from more detailed execution plans.",
+        "data_grounding": "Recommendations are well-supported by the provided data, with clear references to metrics and channels.",
+        "kpi_alignment": "Most recommendations align well with campaign KPIs, though some could better emphasize the link to specific KPIs.",
+        "priority_accuracy": "High-impact recommendations are prioritized, but the order could be refined for better impact.",
+        "decision_quality": "Decisions are generally strong, but some recommendations could be more robust in their strategic approach.",
+        "feasibility": "Recommendations are realistically implementable, though some may require significant resources.",
+        "readability": "Recommendations are clear and simple, making them accessible to non-marketers."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.7,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Action steps could be more detailed."
+        ]
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.7,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Could provide more specifics on email content and frequency."
+        ]
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.6,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.6,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Action steps are vague and lack specificity.",
+          "Requires significant cross-departmental collaboration."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.6,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.6,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Steps for user testing and design improvements need more detail.",
+          "Implementation may be resource-intensive."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.6,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.6,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Recommendation lacks depth in strategic approach.",
+          "Influencer collaboration details are sparse."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.622,
+    "avg_similarity": 0.619,
+    "coverage": 0.752,
+    "llm_calls": 3,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-CR-02",
+        "similarity": 0.766,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-CR-03",
+        "similarity": 0.799,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-CR-03",
+        "similarity": 0.671,
+        "llm_score": 0.4
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-CR-01",
+        "similarity": 0.691,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-CR-02",
+        "similarity": 0.699,
+        "llm_score": 0.3
+      }
+    ],
+    "missed_ground_truth": [],
+    "flags": [],
+    "total_recommendations": 5,
+    "total_ground_truth": 3
+  },
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_102245_customer_retention.json"
+}

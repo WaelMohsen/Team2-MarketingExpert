@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_142555",
+  "timestamp_utc": "2026-05-02T14:29:08Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.37,
+  "overall_status": "fail",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 2,
+      "rationale": "The analysis identifies a bottleneck in the Post-Click phase but fails to provide specific conversion rate figures for the channels, particularly not comparing them to the 1.4% benchmark. It does not state what actions should not be taken based on the identified bottleneck."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 2,
+      "rationale": "While the analysis mentions retention rates and churn rates across channels, it does not compare acquisition costs or conversion rates effectively. There is no identification of which channel has the lowest acquisition cost or which is wasting budget relative to performance."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 2,
+      "rationale": "The analysis mentions retention and churn rates but does not effectively connect the acquisition metric chain from impressions to revenue. It lacks a clear flow of how weaknesses in one metric impact the overall business outcome."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 1,
+      "rationale": "The analysis does not reference any industry benchmarks for conversion rates or revenue returns, which is critical for evaluating performance against standards."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 2,
+      "rationale": "The diagnosis mentions a primary problem but lacks clarity and specificity. It does not state what actions should not be taken, leading to vague conclusions."
+    }
+  ],
+  "summary": "The analysis lacks depth and specificity, failing to effectively diagnose the campaign's performance issues.",
+  "improvement_suggestions": [
+    "Include specific conversion rates for each channel and compare them to the 1.4% benchmark.",
+    "Provide a detailed comparison of acquisition costs and conversion rates across channels to identify budget allocation inefficiencies."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_142908_customer_retention.json"
+}

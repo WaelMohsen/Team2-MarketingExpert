@@ -1,0 +1,469 @@
+{
+  "run_id": "run_20260502_101950",
+  "timestamp_utc": "2026-05-02T10:22:45Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Retention",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "Retained Customers": 1890,
+        "Churn Rate": 9.0,
+        "Retention Rate": 91.0
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "Retained Customers": 410,
+          "Churn Rate": 6.0,
+          "Retention Rate": 94.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "Retained Customers": 250,
+          "Churn Rate": 13.0,
+          "Retention Rate": 87.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "Retained Customers": 280,
+          "Churn Rate": 11.0,
+          "Retention Rate": 89.0
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "Retained Customers": 320,
+          "Churn Rate": 8.0,
+          "Retention Rate": 92.0
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "Retained Customers": 290,
+          "Churn Rate": 9.0,
+          "Retention Rate": 91.0
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "Retained Customers": 340,
+          "Churn Rate": 7.0,
+          "Retention Rate": 93.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "Retained Customers",
+      "Churn Rate",
+      "Retention Rate"
+    ],
+    "analysis": {
+      "analysis": "The overall churn rate is 9.0%, indicating that 9% of customers are leaving, while the retention rate is 91.0%, suggesting that the majority of customers are staying. However, there are significant variations across channels. The highest churn rate is observed in the Facebook channel at 13.0%, which is concerning. The Email channel shows the lowest churn rate at 6.0% and the highest retention rate at 94.0%. The total number of retained customers is 1890, which is a positive sign, but the churn rates indicate potential risks in customer loyalty across different channels.",
+      "key_signals": [
+        {
+          "observation": "Churn rate is 9.0%",
+          "metric_name": "Churn Rate",
+          "actual_value": "9.0%",
+          "benchmark_value": "Industry benchmark not provided",
+          "channel": null,
+          "is_positive": false
+        },
+        {
+          "observation": "Retention rate is 91.0%",
+          "metric_name": "Retention Rate",
+          "actual_value": "91.0%",
+          "benchmark_value": "Industry benchmark not provided",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Highest churn rate in Facebook at 13.0%",
+          "metric_name": "Churn Rate",
+          "actual_value": "13.0%",
+          "benchmark_value": "Industry benchmark not provided",
+          "channel": "Facebook",
+          "is_positive": false
+        },
+        {
+          "observation": "Lowest churn rate in Email at 6.0%",
+          "metric_name": "Churn Rate",
+          "actual_value": "6.0%",
+          "benchmark_value": "Industry benchmark not provided",
+          "channel": "Email",
+          "is_positive": true
+        }
+      ],
+      "detected_issues": [
+        {
+          "issue": "High churn rate in Facebook channel",
+          "affected_channel": "Facebook",
+          "metric_impacted": "Churn Rate",
+          "business_impact": "Potential loss of loyal customers and revenue",
+          "severity": "High"
+        },
+        {
+          "issue": "Inconsistent retention rates across channels",
+          "affected_channel": "Multiple Channels",
+          "metric_impacted": "Retention Rate",
+          "business_impact": "Risk of losing customers in channels with high churn",
+          "severity": "Medium"
+        }
+      ],
+      "root_cause_hypothesis": {
+        "hypothesis": "The variations in churn rates across channels suggest that customer engagement and satisfaction may differ significantly based on the channel used for communication.",
+        "bottleneck_type": "Post-Click",
+        "supporting_signals": [
+          "High churn rate in Facebook channel",
+          "Low churn rate in Email channel"
+        ],
+        "confidence_rationale": "The data shows clear discrepancies in retention metrics across different channels, indicating that the landing page or customer experience may not be optimized for all channels."
+      },
+      "business_risks": [
+        {
+          "risk": "Loss of customers due to high churn rates",
+          "financial_impact": "Potential decrease in revenue from repeat purchases",
+          "likelihood": "High",
+          "time_horizon": "Short-term"
+        },
+        {
+          "risk": "Increased acquisition costs if retention does not improve",
+          "financial_impact": "Higher spending on acquiring new customers instead of retaining existing ones",
+          "likelihood": "Medium",
+          "time_horizon": "Medium-term"
+        }
+      ],
+      "confidence_score": 85.0,
+      "leaky_bucket_detected": true,
+      "highest_churn_channel": "Facebook",
+      "revenue_at_risk": 1100.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Optimize Facebook Engagement to Reduce Churn",
+        "category": "Channel_Mix",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Facebook has the highest churn rate at 13.0%, indicating a risk of losing customers.",
+        "evidence": [
+          "Highest churn rate in Facebook at 13.0%",
+          "Potential loss of loyal customers and revenue"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Enhance content and engagement strategies",
+            "where": "Facebook",
+            "how": "Develop more engaging content and interactive posts to increase customer interaction.",
+            "guardrails": [
+              "Ensure content aligns with brand messaging"
+            ]
+          },
+          {
+            "step": "Implement targeted retention campaigns",
+            "where": "Facebook",
+            "how": "Use customer data to create personalized offers and messages to retain users.",
+            "guardrails": [
+              "Avoid over-targeting which may lead to customer fatigue"
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing churn on Facebook can help retain more customers, directly impacting revenue positively.",
+        "expected_impact": {
+          "primary_kpi": "churn_rate_percent",
+          "direction": "Decrease",
+          "explanation": "Improved engagement and retention strategies should lower the churn rate."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with the creative team for content development"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare churn rate on Facebook before and after implementing changes",
+          "success_criteria": "Churn rate decreases below 10%",
+          "check_timing": "Review after 4 weeks",
+          "notes": "Consider seasonal content engagement patterns"
+        },
+        "owner_suggestion": "Social Media Team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Leverage Email Channel for Retention",
+        "category": "Channel_Mix",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Email channel has the lowest churn rate at 6.0% and highest retention rate at 94.0%.",
+        "evidence": [
+          "Lowest churn rate in Email at 6.0%",
+          "Highest retention rate in Email at 94.0%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase frequency of retention-focused emails",
+            "where": "Email",
+            "how": "Send more personalized retention emails to engage existing customers.",
+            "guardrails": [
+              "Avoid spamming customers with too many emails"
+            ]
+          },
+          {
+            "step": "Incorporate feedback loops in emails",
+            "where": "Email",
+            "how": "Include surveys or feedback forms to understand customer satisfaction.",
+            "guardrails": [
+              "Ensure surveys are concise and easy to complete"
+            ]
+          }
+        ],
+        "why_this_matters": "Maximizing the effectiveness of email can further improve retention and customer loyalty.",
+        "expected_impact": {
+          "primary_kpi": "retained_customers",
+          "direction": "Increase",
+          "explanation": "Enhanced email engagement should lead to more retained customers."
+        },
+        "dependency_or_risk": [
+          "Requires coordination with the email marketing team"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor retention rate and customer feedback post-email campaign",
+          "success_criteria": "Retention rate remains above 94%",
+          "check_timing": "Review after 2 weeks",
+          "notes": "Consider email open rates and response rates"
+        },
+        "owner_suggestion": "Email Marketing Team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Standardize Retention Strategies Across Channels",
+        "category": "Retention",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Inconsistent retention rates across channels suggest varying customer experiences.",
+        "evidence": [
+          "Inconsistent retention rates across channels",
+          "Risk of losing customers in channels with high churn"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct a cross-channel audit of retention practices",
+            "where": "Cross-channel",
+            "how": "Identify best practices from high-retention channels and apply them to others.",
+            "guardrails": [
+              "Ensure practices are adaptable to each channel's unique audience"
+            ]
+          },
+          {
+            "step": "Develop a unified retention strategy",
+            "where": "Cross-channel",
+            "how": "Create a cohesive strategy that aligns retention efforts across all channels.",
+            "guardrails": [
+              "Maintain flexibility to adjust for channel-specific needs"
+            ]
+          }
+        ],
+        "why_this_matters": "A unified approach can stabilize retention rates and reduce churn across all channels.",
+        "expected_impact": {
+          "primary_kpi": "retention_rate_percent",
+          "direction": "Improve",
+          "explanation": "Standardized strategies should lead to more consistent retention rates."
+        },
+        "dependency_or_risk": [
+          "Requires cross-departmental collaboration"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare retention rates across channels before and after strategy implementation",
+          "success_criteria": "Retention rates improve across all channels",
+          "check_timing": "Review after 6 weeks",
+          "notes": "Consider channel-specific challenges and opportunities"
+        },
+        "owner_suggestion": "Retention Strategy Team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Enhance Customer Experience on Landing Pages",
+        "category": "Landing_Page",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "3-5 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Customer engagement and satisfaction may differ based on the channel used for communication.",
+        "evidence": [
+          "Variations in churn rates across channels",
+          "Landing page or customer experience may not be optimized"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct user testing on landing pages",
+            "where": "Cross-channel",
+            "how": "Gather feedback to identify areas for improvement in user experience.",
+            "guardrails": [
+              "Ensure testing covers a diverse range of customer segments"
+            ]
+          },
+          {
+            "step": "Implement design and content improvements",
+            "where": "Cross-channel",
+            "how": "Use insights from testing to enhance usability and relevance of landing pages.",
+            "guardrails": [
+              "Maintain brand consistency across all pages"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving landing pages can enhance customer satisfaction and retention.",
+        "expected_impact": {
+          "primary_kpi": "retained_customers",
+          "direction": "Increase",
+          "explanation": "Better user experience should lead to higher customer retention."
+        },
+        "dependency_or_risk": [
+          "Requires input from UX and design teams"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor customer feedback and retention rates post-improvements",
+          "success_criteria": "Increase in customer satisfaction and retention",
+          "check_timing": "Review after 5 weeks",
+          "notes": "Consider potential delays in design implementation"
+        },
+        "owner_suggestion": "Web Development Team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Utilize TikTok for Customer Engagement",
+        "category": "Channel_Mix",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "2-3 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok has a relatively low churn rate and high engagement metrics.",
+        "evidence": [
+          "Churn rate on TikTok is 7.0%",
+          "High likes, comments, and shares on TikTok"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase content frequency on TikTok",
+            "where": "TikTok",
+            "how": "Post more engaging and interactive content to maintain customer interest.",
+            "guardrails": [
+              "Ensure content remains relevant to the target audience"
+            ]
+          },
+          {
+            "step": "Collaborate with influencers",
+            "where": "TikTok",
+            "how": "Partner with influencers to reach a broader audience and enhance credibility.",
+            "guardrails": [
+              "Select influencers whose values align with the brand"
+            ]
+          }
+        ],
+        "why_this_matters": "Leveraging TikTok's engagement can help maintain low churn and attract new customers.",
+        "expected_impact": {
+          "primary_kpi": "retained_customers",
+          "direction": "Increase",
+          "explanation": "Enhanced engagement should lead to more retained customers."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with content creators"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track engagement metrics and retention rates on TikTok",
+          "success_criteria": "Increase in engagement and retention",
+          "check_timing": "Review after 3 weeks",
+          "notes": "Consider seasonal trends in content engagement"
+        },
+        "owner_suggestion": "Social Media Team"
+      }
+    ]
+  }
+}

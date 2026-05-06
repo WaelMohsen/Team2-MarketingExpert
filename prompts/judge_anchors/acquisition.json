@@ -1,0 +1,118 @@
+{
+  "analysis": "VeloRoast Coffee's Spring Sample Box launch shows a Post-Click bottleneck concentrated on Google Ads, the largest spend channel at 40 percent of the $1,810 budget. Google Ads pulled 3,440 clicks at a healthy 4.0 percent click-through rate, signaling that pre-click targeting, keywords, and creative are working as intended; the breakdown happens after the click, where the channel converts at 1.10 percent against the 1.4 percent minimum benchmark and the 2.5 percent good-performance threshold. The implication is structural: scaling Google Ads spend or rotating in new creative variants will not move the conversion rate, because the failure point sits on the page paid traffic lands on, not on the auction or the ad. Meta sits in worse territory at 0.30 percent conversion rate with $35.00 acquisition cost per customer, indicating both pre-click weakness (1.4 percent click-through) and post-click weakness compound on that channel. Owned channels run the opposite pattern: SMS converts at 19.0 percent on a small 800-contact list, generating $7,296 in revenue from $45 of spend, and email converts at 4.55 percent with revenue return on ad spend of 17.78x. The blended revenue return on ad spend of 9.04x looks healthy in aggregate but masks the truth: 71 percent of revenue comes from owned channels carrying 16 percent of spend, while paid channels consuming 84 percent of spend deliver 18 percent of revenue. Across the metric chain, impressions, click-through rate, and click cost on Google are within healthy bands; conversions and acquisition cost per customer are where the chain breaks.",
+  "key_signals": [
+    {
+      "observation": "Google Ads conversion rate sits below the minimum healthy benchmark despite strong click-through performance, isolating the failure to the post-click experience",
+      "metric_name": "conversion rate",
+      "actual_value": "1.10%",
+      "benchmark_value": "1.4% minimum / 2.5% good",
+      "channel": "Google Ads",
+      "is_positive": false
+    },
+    {
+      "observation": "Google Ads revenue return on ad spend falls below the 4x healthy threshold on the campaign's largest spend channel",
+      "metric_name": "revenue return on ad spend",
+      "actual_value": "2.53x",
+      "benchmark_value": "4x",
+      "channel": "Google Ads",
+      "is_positive": false
+    },
+    {
+      "observation": "SMS conversion rate dramatically exceeds every other channel and the good-performance benchmark",
+      "metric_name": "conversion rate",
+      "actual_value": "19.0%",
+      "benchmark_value": "2.5%",
+      "channel": "SMS",
+      "is_positive": true
+    },
+    {
+      "observation": "SMS receives only 2.5 percent of total spend despite producing the highest conversion rate and 45 percent of campaign revenue",
+      "metric_name": "share of spend versus share of revenue",
+      "actual_value": "2.5% of spend, 45% of revenue",
+      "benchmark_value": "allocation proportional to channel efficiency",
+      "channel": "SMS",
+      "is_positive": false
+    },
+    {
+      "observation": "Meta conversion rate sits dramatically below benchmark with acquisition cost per customer at the upper end of the channel's typical range",
+      "metric_name": "conversion rate",
+      "actual_value": "0.30%",
+      "benchmark_value": "1.4% minimum",
+      "channel": "Meta",
+      "is_positive": false
+    },
+    {
+      "observation": "Email conversion rate exceeds the 2.5 percent good-performance benchmark with revenue return on ad spend of 17.78x",
+      "metric_name": "conversion rate",
+      "actual_value": "4.55%",
+      "benchmark_value": "2.5%",
+      "channel": "Email",
+      "is_positive": true
+    }
+  ],
+  "detected_issues": [
+    {
+      "issue": "Largest-spend channel converts below benchmark while click-through rate remains healthy, isolating the failure point to the post-click experience rather than the auction or creative",
+      "affected_channel": "Google Ads",
+      "metric_impacted": "conversion rate",
+      "business_impact": "$720 of spend produces $1,824 of revenue at 2.53x return; channel consumes 40 percent of budget for 11 percent of conversions",
+      "severity": "High"
+    },
+    {
+      "issue": "Acquisition cost per customer of $35.00 paired with conversion rate of 0.30 percent indicates compounding pre-click and post-click weakness",
+      "affected_channel": "Meta",
+      "metric_impacted": "conversion rate and acquisition cost per customer",
+      "business_impact": "$560 of spend produces $768 of revenue at 1.37x return, the worst paid-channel economics in the campaign and below the breakeven threshold for a 50 percent gross margin product",
+      "severity": "High"
+    },
+    {
+      "issue": "Highest-converting channel is starved of budget and constrained by a small list; absolute revenue is capped by list size, not by performance",
+      "affected_channel": "SMS",
+      "metric_impacted": "share of spend versus channel efficiency",
+      "business_impact": "Channel produces 45 percent of total campaign revenue from 2.5 percent of spend at acquisition cost per customer of $0.30 versus paid-channel average of $24.18; allocation does not match efficiency",
+      "severity": "Medium"
+    },
+    {
+      "issue": "TikTok conversion rate of 0.20 percent is the weakest in the campaign; revenue return of 1.46x indicates the channel is loss-making once cost of goods is factored in",
+      "affected_channel": "TikTok",
+      "metric_impacted": "conversion rate",
+      "business_impact": "$230 of spend produces $336 of revenue, contributing 2 percent of conversions; $168 of gross profit at a 50 percent product margin against $230 of media spend equals $62 of gross loss",
+      "severity": "Medium"
+    }
+  ],
+  "root_cause_hypothesis": {
+    "hypothesis": "The post-click experience (landing page, offer presentation, or checkout flow) fails to convert paid traffic at benchmark rates while owned-channel audiences with prior brand context convert at multiples of the same benchmark on the same destination",
+    "bottleneck_type": "Post-Click",
+    "supporting_signals": [
+      "Google Ads click-through rate of 4.0 percent is healthy but conversion rate of 1.10 percent falls below the 1.4 percent minimum",
+      "Owned channels (email at 4.55 percent, SMS at 19.0 percent) convert dramatically above benchmark, isolating the failure to paid traffic that lacks prior brand familiarity",
+      "Meta and TikTok also convert below benchmark, ruling out a Google-specific creative or keyword problem and pointing to a shared post-click destination",
+      "Click cost on Google of $0.21 is within the healthy range for the category, removing auction inflation as a candidate explanation"
+    ],
+    "confidence_rationale": "Three independent paid channels converge on the same post-click failure pattern while two owned channels reaching the same destination convert healthily; the variable isolated to paid-traffic post-click experience"
+  },
+  "business_risks": [
+    {
+      "risk": "Continued spend at current paid-channel conversion rates produces below-benchmark revenue return; the 2.34x blended paid return sits 41 percent below the 4x healthy threshold",
+      "financial_impact": "$1,510 of paid spend currently produces $3,528 of revenue; the gap to the 4x benchmark equals $2,512 of revenue not realized at the current spend level over the 30-day campaign window",
+      "likelihood": "High",
+      "time_horizon": "immediate"
+    },
+    {
+      "risk": "SMS list size of 800 contacts caps maximum revenue per send cycle at $7,296 at the current 19.0 percent conversion rate; the small list is the binding constraint on the campaign's most efficient channel",
+      "financial_impact": "Each 100 additional SMS contacts at the current 19.0 percent conversion rate and $24 average order value would produce $456 of additional revenue per send cycle, or $1,824 across four quarterly sends; current list constraints forgo approximately $14,592 of quarterly revenue at a list size of 1,600",
+      "likelihood": "Medium",
+      "time_horizon": "short-term"
+    },
+    {
+      "risk": "TikTok economics at 1.46x revenue return and 0.20 percent conversion rate produce negative gross margin once cost of goods is factored in",
+      "financial_impact": "$230 of TikTok spend against $336 of revenue produces $168 of gross profit at a 50 percent product margin, a $62 gross loss; sustaining 90 days at current rates compounds to roughly $5,580 of gross loss",
+      "likelihood": "High",
+      "time_horizon": "short-term"
+    }
+  ],
+  "confidence_score": 87,
+  "bottleneck_type": "Post-Click",
+  "cvr_vs_benchmark": "below",
+  "recommended_action_type": "Fix landing page"
+}

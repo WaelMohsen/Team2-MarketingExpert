@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260501_203352",
+  "timestamp_utc": "2026-05-01T20:36:33Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.72,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 3,
+      "rationale": "The analysis identifies a moderate conversion rate of 12.26%, which is above the 1.4% benchmark, indicating that the bottleneck is not pre-click or post-click. However, it does not specify what actions should be avoided based on this finding."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares channels effectively, noting that the Email channel has the lowest acquisition cost at 1.47, while TikTok, despite high revenue, has a higher acquisition cost of 4.00. It identifies Facebook as potentially wasting budget relative to its performance, as it has the lowest revenue return compared to its spend."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis connects the metrics well, showing how the moderate conversion rate affects overall revenue. It explains that while traffic is converting, the average order value of 22.72 limits revenue potential, indicating a clear flow from impressions to revenue."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 4,
+      "rationale": "The analysis correctly references industry benchmarks, stating that the campaign's return on ad spend is 7.94, significantly above the 4.0 benchmark, and notes the conversion rate of 12.26% is acceptable but could be improved."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 3,
+      "rationale": "The analysis concludes with a diagnosis that highlights the moderate conversion rate and average order value as issues but lacks specificity in stating what should not be done to address these problems."
+    }
+  ],
+  "summary": "The campaign analysis provides a solid overview of performance but lacks clarity in identifying specific actions to improve conversion rates.",
+  "improvement_suggestions": [
+    "Clearly define what actions should be avoided based on the identified bottleneck.",
+    "Provide specific recommendations to enhance the customer experience and increase average order value."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260501_203633_revenue_growth.json"
+}

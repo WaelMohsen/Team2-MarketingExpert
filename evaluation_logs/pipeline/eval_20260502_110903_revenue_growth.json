@@ -1,0 +1,442 @@
+{
+  "run_id": "run_20260502_110706",
+  "timestamp_utc": "2026-05-02T11:09:03Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Revenue Growth",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "AOV": 22.72,
+        "Annual Customer Value": 95.42,
+        "Marketing ROI": 694.48,
+        "Revenue Per Click": 2.78,
+        "LTV:CAC Ratio": 28.31
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "AOV": 18.75,
+          "Annual Customer Value": 95.62,
+          "Marketing ROI": 1400.0,
+          "Revenue Per Click": 2.5,
+          "LTV:CAC Ratio": 65.05
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "AOV": 18.33,
+          "Annual Customer Value": 64.17,
+          "Marketing ROI": 400.0,
+          "Revenue Per Click": 2.12,
+          "LTV:CAC Ratio": 14.58
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "AOV": 25.26,
+          "Annual Customer Value": 96.0,
+          "Marketing ROI": 650.0,
+          "Revenue Per Click": 2.82,
+          "LTV:CAC Ratio": 24.62
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "AOV": 24.62,
+          "Annual Customer Value": 103.38,
+          "Marketing ROI": 611.11,
+          "Revenue Per Click": 2.91,
+          "LTV:CAC Ratio": 25.28
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "AOV": 13.64,
+          "Annual Customer Value": 53.18,
+          "Marketing ROI": 1775.0,
+          "Revenue Per Click": 2.68,
+          "LTV:CAC Ratio": 64.07
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "AOV": 26.67,
+          "Annual Customer Value": 128.0,
+          "Marketing ROI": 700.0,
+          "Revenue Per Click": 3.08,
+          "LTV:CAC Ratio": 32.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "AOV",
+      "Annual Customer Value",
+      "Marketing ROI",
+      "Revenue Per Click",
+      "LTV:CAC Ratio"
+    ],
+    "analysis": {
+      "analysis": "The overall performance of the marketing campaign is strong, with a return on ad spend of 7.94, which is well above the healthy benchmark of 4. This indicates that the campaign is generating significant revenue relative to the amount spent on advertising. The marketing return on investment is also very high at 694.48%, suggesting that the campaign is profitable. However, the customer acquisition cost is $3.37, which is reasonable compared to the annual customer value of $95.42. The conversion rate of 12.26% is healthy, indicating effective traffic conversion. Despite this, there are discrepancies in channel performance, with SMS and Email channels performing exceptionally well, while Facebook and Instagram are underperforming relative to their spending. This suggests potential inefficiencies in ad targeting or creative quality for these channels.",
+      "key_signals": [
+        {
+          "observation": "Return on ad spend is 7.94.",
+          "metric_name": "Return on Ad Spend",
+          "actual_value": "7.94",
+          "benchmark_value": "4",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Marketing return on investment is 694.48%.",
+          "metric_name": "Marketing ROI",
+          "actual_value": "694.48%",
+          "benchmark_value": ">100%",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Customer acquisition cost is $3.37.",
+          "metric_name": "Customer Acquisition Cost",
+          "actual_value": "$3.37",
+          "benchmark_value": "Lower is better",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Conversion rate is 12.26%.",
+          "metric_name": "Conversion Rate",
+          "actual_value": "12.26%",
+          "benchmark_value": "Higher is better",
+          "channel": null,
+          "is_positive": true
+        }
+      ],
+      "detected_issues": [
+        {
+          "issue": "Underperformance of Facebook and Instagram channels.",
+          "affected_channel": "Facebook and Instagram",
+          "metric_impacted": "Return on Ad Spend",
+          "business_impact": "Lower revenue generation relative to ad spend.",
+          "severity": "High"
+        },
+        {
+          "issue": "High spending on underperforming channels.",
+          "affected_channel": "Facebook and Instagram",
+          "metric_impacted": "Budget Allocation",
+          "business_impact": "Inefficient use of budget leading to lower overall returns.",
+          "severity": "Medium"
+        }
+      ],
+      "root_cause_hypothesis": {
+        "hypothesis": "The primary bottleneck appears to be related to the ad creatives or targeting strategies for Facebook and Instagram, which are not converting effectively despite significant spending.",
+        "bottleneck_type": "Pre-Click",
+        "supporting_signals": [
+          "Return on ad spend for Facebook is 5.00 and for Instagram is 7.11, both below the overall average.",
+          "High budget allocation to these channels does not correlate with high returns."
+        ],
+        "confidence_rationale": "The significant disparity in performance between high-performing channels and low-performing channels suggests issues with ad quality or targeting."
+      },
+      "business_risks": [
+        {
+          "risk": "Continued inefficiency in ad spend could lead to reduced profitability.",
+          "financial_impact": "Potential loss of revenue due to ineffective advertising.",
+          "likelihood": "Medium",
+          "time_horizon": "Short-term"
+        },
+        {
+          "risk": "Over-reliance on high-performing channels may lead to vulnerability if performance declines.",
+          "financial_impact": "Risk of revenue drop if top channels underperform.",
+          "likelihood": "Medium",
+          "time_horizon": "Medium-term"
+        }
+      ],
+      "confidence_score": 85.0,
+      "roas_status": "healthy",
+      "highest_roas_channel": "SMS",
+      "ltv_cac_ratio": 28.31
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Reallocate Budget to High-Performing Channels",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "SMS and Email channels have the highest return-per-dollar but receive only 9% of the budget.",
+        "evidence": [
+          "SMS return-per-dollar is 18.75 with 2.5% of budget.",
+          "Email return-per-dollar is 15.00 with 6.1% of budget."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase budget allocation to SMS and Email channels.",
+            "where": "cross-channel",
+            "how": "Shift funds from underperforming channels like Facebook and Instagram to SMS and Email.",
+            "guardrails": [
+              "Ensure not to exceed the capacity of SMS and Email channels to handle increased volume."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing budget for high-performing channels will maximize revenue return per dollar spent.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Allocating more budget to channels with higher returns will increase overall revenue efficiency."
+        },
+        "dependency_or_risk": [
+          "Ensure SMS and Email channels can scale effectively without diminishing returns."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare revenue return per dollar before and after budget reallocation.",
+          "success_criteria": "Increase in overall return-per-dollar metric.",
+          "check_timing": "Review after 1 week of reallocation.",
+          "notes": "Consider potential attribution delays."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Improve Ad Creative for Facebook and Instagram",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Facebook and Instagram are underperforming despite high budget allocation.",
+        "evidence": [
+          "Facebook return-per-dollar is 5.00 with 13.5% of budget.",
+          "Instagram return-per-dollar is 7.11 with 27.6% of budget."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Revise and test new ad creatives.",
+            "where": "Facebook and Instagram",
+            "how": "Develop and test multiple creative variations to identify what resonates best with the audience.",
+            "guardrails": [
+              "Ensure new creatives align with brand guidelines and messaging."
+            ]
+          }
+        ],
+        "why_this_matters": "Enhancing ad creatives can improve engagement and conversion rates, leading to better returns.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Better creatives should lead to higher engagement and conversion, improving revenue efficiency."
+        },
+        "dependency_or_risk": [
+          "Creative development resources and time for testing."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor conversion rates and return-per-dollar for changes post-implementation.",
+          "success_criteria": "Improvement in conversion rates and return-per-dollar.",
+          "check_timing": "Evaluate after 2-4 weeks of new creative launch.",
+          "notes": "Consider seasonal variations that may affect performance."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Optimize Targeting Strategies on Facebook and Instagram",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Current targeting strategies may not be effectively reaching the right audience.",
+        "evidence": [
+          "Facebook and Instagram have lower return-per-dollar compared to other channels."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Refine audience targeting parameters.",
+            "where": "Facebook and Instagram",
+            "how": "Use data insights to adjust targeting criteria, focusing on high-converting demographics.",
+            "guardrails": [
+              "Avoid overly narrow targeting that limits reach."
+            ]
+          }
+        ],
+        "why_this_matters": "Improved targeting can increase conversion rates by reaching more relevant audiences.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Better targeting should lead to higher conversion rates and improved revenue efficiency."
+        },
+        "dependency_or_risk": [
+          "Access to detailed audience insights and data analytics."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in conversion rates and return-per-dollar post-targeting adjustments.",
+          "success_criteria": "Increase in conversion rates and return-per-dollar metrics.",
+          "check_timing": "Assess after 2-4 weeks of targeting changes.",
+          "notes": "Consider external factors like market trends affecting targeting."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Increase Frequency of High-Performing Campaigns",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "High-performing channels like SMS and Email have lower frequency compared to others.",
+        "evidence": [
+          "SMS frequency is 1.2, Email frequency is 1.4."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase the frequency of campaigns on SMS and Email.",
+            "where": "SMS and Email",
+            "how": "Schedule more frequent campaign sends without overwhelming the audience.",
+            "guardrails": [
+              "Monitor for signs of audience fatigue or unsubscribe rates."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing frequency can enhance customer engagement and drive more conversions.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Higher frequency can lead to more touchpoints, increasing the likelihood of conversions."
+        },
+        "dependency_or_risk": [
+          "Ensure content quality is maintained with increased frequency."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Evaluate changes in conversion rates and customer engagement metrics.",
+          "success_criteria": "Increase in conversion rates and engagement.",
+          "check_timing": "Review after 1-2 weeks of increased frequency.",
+          "notes": "Watch for diminishing returns if frequency is too high."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-05",
+        "title": "Conduct A/B Testing on TikTok Ads",
+        "category": "Creative",
+        "priority": "Low",
+        "effort": "High",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok has a moderate return-per-dollar but potential for improvement with creative testing.",
+        "evidence": [
+          "TikTok return-per-dollar is 8.00 with 30.7% of budget."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Implement A/B testing for TikTok ad creatives.",
+            "where": "TikTok",
+            "how": "Develop multiple ad variations and test them against each other to find the most effective.",
+            "guardrails": [
+              "Ensure consistent branding across all ad variations."
+            ]
+          }
+        ],
+        "why_this_matters": "A/B testing can identify the best-performing creatives, optimizing ad spend efficiency.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Optimizing creatives through testing can enhance engagement and conversion rates."
+        },
+        "dependency_or_risk": [
+          "Requires sufficient budget and time for testing and analysis."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare performance metrics of different ad variations.",
+          "success_criteria": "Identify creatives with significantly higher engagement and conversion rates.",
+          "check_timing": "Assess after 4-6 weeks of testing.",
+          "notes": "Consider potential seasonal impacts on ad performance."
+        },
+        "owner_suggestion": "Creative team"
+      }
+    ]
+  }
+}

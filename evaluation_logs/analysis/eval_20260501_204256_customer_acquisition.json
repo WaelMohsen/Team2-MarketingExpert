@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260501_204227",
+  "timestamp_utc": "2026-05-01T20:42:56Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.89,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 5,
+      "rationale": "The analysis correctly identifies that there is no bottleneck since the overall conversion rate is 12.26%, which is significantly above the benchmark of 1.4% to 2.5%. It clearly states that there are no issues to address, which is the correct conclusion."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares multiple channels effectively. For instance, the Email channel has the lowest acquisition cost at approximately $1.47 per new customer, while the Facebook channel has a higher acquisition cost of $4.40 per new customer. It identifies Facebook as wasting budget relative to its performance and suggests that budget allocation should favor channels like Email and TikTok, which have better efficiency."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis connects the acquisition metric chain well, showing that the high conversion rate leads to a low customer acquisition cost of $3.37, which in turn contributes to a strong revenue generation of $8,950 across all channels. This demonstrates how effective performance in one metric positively impacts the overall business outcome."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses correct industry benchmarks, stating that the conversion rate of 12.26% is well above the minimum of 1.4% and the good benchmark of 2.5%. It also mentions that the return on advertising spend of 7.94 is significantly above the typical 4x revenue return on spend, indicating strong campaign performance."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis that the campaign is performing well with effective conversion strategies. It states that there are no bottlenecks to address, which is actionable information. However, it could be improved by explicitly stating what should not be done, such as not reallocating budget away from high-performing channels."
+    }
+  ],
+  "summary": "The campaign analysis is thorough and demonstrates strong performance across multiple metrics, with actionable insights for future improvements.",
+  "improvement_suggestions": [
+    "Explicitly state what should not be done regarding budget allocation to avoid missteps in future campaigns.",
+    "Provide more detailed recommendations on optimizing underperforming channels like Facebook."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260501_204256_customer_acquisition.json"
+}

@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_110706",
+  "timestamp_utc": "2026-05-02T11:08:22Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.83,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 4,
+      "rationale": "The analysis correctly identifies the bottleneck as 'Pre-Click' due to ineffective ad creatives or targeting on Email and Google Ads, where the conversion rate is 12.26%, significantly above the 1.4% benchmark, but the acquisition costs are high. It suggests avoiding ineffective advertising strategies in these channels."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares TikTok and Instagram, which have the lowest acquisition costs of $3.33 and $4.09 per new customer, respectively, against Email and Google Ads, which have higher costs. It identifies that Email is wasting budget with a high bounce rate and low engagement, indicating a misallocation of resources."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis effectively connects the acquisition metric chain by showing how high impressions on TikTok lead to 1300 clicks and 150 conversions, resulting in a revenue of $4000. It highlights that weaknesses in Email and Google Ads lead to lower conversions and potential revenue loss."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses correct industry benchmarks, stating that the overall conversion rate of 12.26% is well above the minimum of 1.4% and indicates good performance. It also notes that the revenue return from TikTok is significantly above the 4x minimum spend benchmark."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis stating that the primary problem is ineffective advertising on Email and Google Ads, and it advises against continuing with the current strategies in these channels."
+    }
+  ],
+  "summary": "The campaign analysis demonstrates strong performance in certain channels but highlights critical issues in others that need immediate attention.",
+  "improvement_suggestions": [
+    "Enhance targeting and creative strategies for Email and Google Ads to improve engagement and conversion rates.",
+    "Reallocate budget towards higher-performing channels like TikTok and Instagram to maximize revenue potential."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_110822_customer_satisfaction.json"
+}

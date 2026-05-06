@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_142555",
+  "timestamp_utc": "2026-05-02T14:26:26Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.76,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 4,
+      "rationale": "The analysis correctly identifies the bottleneck as Pre-Click due to the high customer acquisition cost of $3.37, despite a strong conversion rate of 12.26%, which is well above the 1.4% benchmark. It implies that the focus should be on reducing traffic costs rather than improving the landing page or conversion process."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 3,
+      "rationale": "The analysis mentions high customer acquisition costs across multiple channels but does not provide specific comparisons of acquisition costs and conversion rates for at least two channels. It fails to identify which channel has the lowest acquisition cost or which is wasting budget relative to performance."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis connects the acquisition metric chain by discussing how high customer acquisition costs impact profitability, indicating a flow from high traffic costs to reduced overall profitability. However, it could have elaborated more on how each metric influences the next."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses the correct industry benchmarks for conversion rates, stating that the campaign's conversion rate of 12.26% is significantly above the healthy benchmark of 1.4% to 2.5%. It also mentions the return on advertising spend, which is 7.94, indicating strong performance relative to industry standards."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 3,
+      "rationale": "The analysis concludes with a clear diagnosis that the primary problem is high customer acquisition costs due to expensive traffic sources. However, it lacks a specific recommendation on what actions should not be taken, which would strengthen the actionable nature of the diagnosis."
+    }
+  ],
+  "summary": "The analysis provides a solid overview of the campaign's performance but lacks depth in channel comparisons and actionable recommendations.",
+  "improvement_suggestions": [
+    "Provide specific channel comparisons for acquisition costs and conversion rates.",
+    "Identify which channels are underperforming and suggest reallocating budget to more efficient channels."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_142626_customer_acquisition.json"
+}

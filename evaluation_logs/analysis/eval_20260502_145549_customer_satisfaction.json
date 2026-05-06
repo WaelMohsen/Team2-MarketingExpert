@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_145431",
+  "timestamp_utc": "2026-05-02T14:55:49Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.8,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 4,
+      "rationale": "The analysis correctly identifies the bottleneck as Pre-Click for Email and Google Ads, where the conversion rates are 0.00% for both channels, significantly below the 1.4% benchmark. It suggests that these channels should not be relied upon for customer acquisition due to their lack of engagement."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares TikTok and Email, highlighting that TikTok has a lower acquisition cost of $3.33 per new customer compared to Email's $1.47. It identifies Email as wasting budget due to its 0.00% engagement rate and suggests that budget allocation should favor TikTok, which is performing better."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis effectively connects the metrics by showing that low impressions and clicks on Email lead to zero conversions, resulting in no revenue. This demonstrates how weaknesses in the acquisition metrics directly impact overall business outcomes."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 4,
+      "rationale": "The analysis references the conversion rate benchmark of 1.4%, noting that Email and Google Ads are below this threshold with a 0.00% conversion rate. It also mentions the overall conversion rate of 12.26%, which is above the good benchmark of 2.5%."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes that the primary problem lies in the lack of engagement for Email and Google Ads, stating clearly that these channels should not be used for customer acquisition. It avoids vague conclusions and provides a clear direction for action."
+    }
+  ],
+  "summary": "The campaign analysis provides a solid evaluation of performance with actionable insights, particularly highlighting the need to address engagement issues in specific channels.",
+  "improvement_suggestions": [
+    "Enhance the content strategy for Email and Google Ads to improve engagement and conversion rates.",
+    "Reallocate budget towards higher-performing channels like TikTok to maximize customer acquisition."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_145549_customer_satisfaction.json"
+}

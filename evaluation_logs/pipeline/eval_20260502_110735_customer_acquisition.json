@@ -1,0 +1,377 @@
+{
+  "run_id": "run_20260502_110706",
+  "timestamp_utc": "2026-05-02T11:07:35Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall conversion rate is 12.26%, which is significantly above the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages and conversion processes are functioning effectively. However, the customer acquisition cost is influenced by the high cost per click in channels like Google Ads, TikTok, Instagram, and Facebook. The cost per customer for these channels is notably high, particularly Google Ads at $3.90 and TikTok at $4.00, which suggests that while conversions are occurring, the cost to acquire these customers is elevated. The high spending on these channels (over 60% of the budget) is not yielding a proportionate number of new customers, especially when compared to the lower cost channels like SMS and Email. Therefore, the primary bottleneck appears to be the cost of traffic rather than the conversion efficiency.",
+      "key_signals": [
+        {
+          "observation": "Conversion Rate is 12.26%",
+          "metric_name": "Conversion Rate",
+          "actual_value": "12.26%",
+          "benchmark_value": "1.4% - 2.5%",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Customer Acquisition Cost is high in several channels",
+          "metric_name": "Cost Per Customer",
+          "actual_value": "$3.90 (Google Ads), $4.00 (TikTok), $4.09 (Instagram), $4.40 (Facebook)",
+          "benchmark_value": "Varies by channel",
+          "channel": null,
+          "is_positive": false
+        }
+      ],
+      "detected_issues": [
+        {
+          "issue": "High customer acquisition cost in multiple channels",
+          "affected_channel": "Google Ads, TikTok, Instagram, Facebook",
+          "metric_impacted": "Cost Per Customer",
+          "business_impact": "Increased overall customer acquisition costs, reducing profitability.",
+          "severity": "High"
+        }
+      ],
+      "root_cause_hypothesis": {
+        "hypothesis": "The high customer acquisition cost is primarily driven by expensive traffic sources rather than issues with conversion efficiency.",
+        "bottleneck_type": "Pre-Click",
+        "supporting_signals": [
+          "High cost per customer in Google Ads, TikTok, Instagram, and Facebook",
+          "Effective conversion rate indicating landing pages are not the issue"
+        ],
+        "confidence_rationale": "The conversion rate is significantly above benchmark, indicating that the landing pages are effective, while the cost per customer is high in multiple channels."
+      },
+      "business_risks": [
+        {
+          "risk": "Increased customer acquisition costs may lead to reduced profitability.",
+          "financial_impact": "Higher costs could erode margins and limit growth potential.",
+          "likelihood": "High",
+          "time_horizon": "Short-term"
+        },
+        {
+          "risk": "Over-reliance on high-cost channels could lead to unsustainable marketing practices.",
+          "financial_impact": "Potential for budget misallocation and inefficiencies.",
+          "likelihood": "Medium",
+          "time_horizon": "Medium-term"
+        }
+      ],
+      "confidence_score": 85.0,
+      "bottleneck_type": "Pre-Click",
+      "cvr_vs_benchmark": "above",
+      "recommended_action_type": "None"
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Reallocate Budget to Lower Cost Channels",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "High customer acquisition costs in channels like Google Ads, TikTok, Instagram, and Facebook are reducing profitability.",
+        "evidence": [
+          "Cost per customer is $3.90 for Google Ads, $4.00 for TikTok, $4.09 for Instagram, and $4.40 for Facebook."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reallocate budget from high-cost channels to lower-cost channels.",
+            "where": "Cross-channel",
+            "how": "Reduce budget allocation for Google Ads, TikTok, Instagram, and Facebook and increase budget for SMS and Email.",
+            "guardrails": [
+              "Ensure not to reduce budget too drastically to maintain presence on high-reach platforms."
+            ]
+          }
+        ],
+        "why_this_matters": "Shifting budget to more cost-effective channels can reduce overall customer acquisition costs and improve profitability.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Customer",
+          "direction": "Decrease",
+          "explanation": "Lowering spend on high-cost channels and increasing spend on low-cost channels should reduce the overall cost per customer."
+        },
+        "dependency_or_risk": [
+          "Ensure SMS and Email channels can handle increased volume."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per customer before and after budget reallocation.",
+          "success_criteria": "Cost per customer decreases by at least 10%.",
+          "check_timing": "Review after 2 weeks of implementation.",
+          "notes": "Consider seasonal factors that may affect channel performance."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Test New Creative for High-Cost Channels",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "High cost per click in Google Ads, TikTok, Instagram, and Facebook suggests inefficiencies in ad creatives.",
+        "evidence": [
+          "High cost per customer in Google Ads ($3.90), TikTok ($4.00), Instagram ($4.09), and Facebook ($4.40)."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop and test new ad creatives.",
+            "where": "Google Ads, TikTok, Instagram, Facebook",
+            "how": "Create multiple versions of ad creatives and run A/B tests to identify more effective options.",
+            "guardrails": [
+              "Ensure brand consistency across all creatives."
+            ]
+          }
+        ],
+        "why_this_matters": "Improving ad creatives can increase click-through rates and reduce cost per click, lowering customer acquisition costs.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Click",
+          "direction": "Decrease",
+          "explanation": "Better creatives should lead to higher engagement and lower costs."
+        },
+        "dependency_or_risk": [
+          "Requires creative team resources and time for development."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor click-through rates and cost per click for each creative version.",
+          "success_criteria": "Achieve at least a 15% improvement in click-through rates.",
+          "check_timing": "Evaluate after 4 weeks of testing.",
+          "notes": "Consider creative fatigue and update regularly."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Increase Spend on SMS and Email Channels",
+        "category": "Budget",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "SMS and Email channels have the lowest cost per customer but receive minimal budget allocation.",
+        "evidence": [
+          "SMS cost per customer is $0.83 and Email is $1.47."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase budget allocation for SMS and Email channels.",
+            "where": "SMS and Email",
+            "how": "Gradually increase spend to test scalability of these channels.",
+            "guardrails": [
+              "Monitor for diminishing returns as spend increases."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing investment in cost-effective channels can enhance overall campaign efficiency and reduce average customer acquisition costs.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Customer",
+          "direction": "Decrease",
+          "explanation": "Increasing spend on efficient channels should lower the overall cost per customer."
+        },
+        "dependency_or_risk": [
+          "Ensure these channels can handle increased volume without performance drop."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track cost per customer and conversion volume as spend increases.",
+          "success_criteria": "Maintain or improve cost per customer while increasing conversions.",
+          "check_timing": "Review after 2 weeks of increased spend.",
+          "notes": "Be cautious of list fatigue in Email."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Optimize Audience Targeting for High-Cost Channels",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "High cost per customer in certain channels suggests potential inefficiencies in audience targeting.",
+        "evidence": [
+          "High cost per customer in Google Ads, TikTok, Instagram, and Facebook."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Refine audience targeting strategies.",
+            "where": "Google Ads, TikTok, Instagram, Facebook",
+            "how": "Use data analytics to identify and target more specific audience segments.",
+            "guardrails": [
+              "Avoid overly narrow targeting that limits reach."
+            ]
+          }
+        ],
+        "why_this_matters": "Better audience targeting can improve ad relevance, increase engagement, and reduce costs.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Customer",
+          "direction": "Decrease",
+          "explanation": "More precise targeting should lead to higher conversion rates and lower costs."
+        },
+        "dependency_or_risk": [
+          "Requires access to detailed audience data and analytics tools."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in cost per customer and conversion rates for targeted segments.",
+          "success_criteria": "Achieve a 10% reduction in cost per customer for targeted segments.",
+          "check_timing": "Evaluate after 4 weeks of implementation.",
+          "notes": "Consider seasonal audience behavior changes."
+        },
+        "owner_suggestion": "Analytics"
+      },
+      {
+        "id": "REC-05",
+        "title": "Enhance Landing Page Experience",
+        "category": "Landing_Page",
+        "priority": "Low",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Although conversion rate is high, further improvements to the landing page could enhance user experience and conversion potential.",
+        "evidence": [
+          "Overall conversion rate is 12.26%, above industry benchmark."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct a landing page audit and implement improvements.",
+            "where": "Cross-channel",
+            "how": "Focus on improving load speed, clarity of call-to-action, and mobile optimization.",
+            "guardrails": [
+              "Ensure changes do not disrupt current high conversion rate."
+            ]
+          }
+        ],
+        "why_this_matters": "Enhancing the landing page can further increase conversion rates, maximizing the return on ad spend.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Improve",
+          "explanation": "Improved user experience should lead to higher conversions."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with web development team."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in conversion rate post-implementation.",
+          "success_criteria": "Achieve a 5% increase in conversion rate.",
+          "check_timing": "Review after 4 weeks of changes.",
+          "notes": "Consider A/B testing changes to validate impact."
+        },
+        "owner_suggestion": "Web team"
+      }
+    ]
+  }
+}

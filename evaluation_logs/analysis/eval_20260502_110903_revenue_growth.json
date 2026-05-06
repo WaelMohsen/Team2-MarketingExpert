@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_110706",
+  "timestamp_utc": "2026-05-02T11:09:03Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.89,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 5,
+      "rationale": "The analysis correctly identifies the bottleneck as Pre-Click, citing a conversion rate of 12.26%, which is well above the 1.4% benchmark, while the customer acquisition cost of $3.37 is reasonable. It suggests that the issue lies in the ad creatives or targeting strategies for Facebook and Instagram, which are not converting effectively despite significant spending."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares channels effectively, noting that Email has the lowest acquisition cost at $1.47 and the highest conversion rate of 8%, while Facebook is wasting budget with a high acquisition cost of $3.67 and a low conversion rate of 0.46%. It highlights that budget allocation does not match channel efficiency, as Facebook and Instagram are underperforming relative to their spending."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis connects the acquisition metric chain by showing how the high customer acquisition cost and low conversion rates for Facebook and Instagram lead to lower revenue generation. It explains that weaknesses in these metrics directly impact overall profitability."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses correct industry benchmarks, stating that the campaign's conversion rate of 12.26% is well above the minimum benchmark of 1.4% and that the return on ad spend of 7.94 exceeds the minimum benchmark of 4 times the spend, indicating strong performance."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis that the primary problem is the inefficiency in ad spend on Facebook and Instagram, advising against continued investment in these underperforming channels without addressing the creative and targeting issues."
+    }
+  ],
+  "summary": "The campaign analysis is thorough and identifies key areas for improvement, particularly in channel performance and budget allocation.",
+  "improvement_suggestions": [
+    "Refine ad creatives and targeting strategies for Facebook and Instagram to improve conversion rates.",
+    "Reallocate budget towards higher-performing channels like Email and TikTok to maximize revenue generation."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_110903_revenue_growth.json"
+}

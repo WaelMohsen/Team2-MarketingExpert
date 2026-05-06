@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_101950",
+  "timestamp_utc": "2026-05-02T10:21:08Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.8,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 4,
+      "rationale": "The analysis correctly identifies the bottleneck as post-click issues on the Facebook channel, where the conversion rate is 5.36%, which is below the 1.4% benchmark. It suggests that the landing page may not align with the ad content, leading to higher bounce rates. It advises against continuing with the current Facebook landing page without adjustments."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares the Facebook and SMS channels effectively. Facebook has the highest acquisition cost at 3.67, while SMS has the lowest at 0.14, indicating that SMS is the most efficient channel. The analysis highlights that Facebook is wasting budget relative to its performance due to its higher bounce rate and lower conversion rate."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis connects the acquisition metric chain well, showing how the high bounce rate on Facebook leads to fewer conversions, which in turn increases the acquisition cost and reduces overall revenue. This demonstrates a clear flow from impressions to revenue."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 4,
+      "rationale": "The analysis references industry benchmarks effectively, noting that the overall conversion rate of 12.26% is significantly above the 1.4% minimum benchmark, and the return on advertising spend of 7.94 is also favorable, although it lacks specific revenue benchmarks for comparison."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis stating that the primary problem is the high bounce rate on Facebook, which is leading to potential customer loss. It advises against maintaining the current Facebook landing page without changes, providing a specific action to take."
+    }
+  ],
+  "summary": "The campaign analysis is strong, identifying key issues and providing actionable insights for improvement.",
+  "improvement_suggestions": [
+    "Investigate and optimize the Facebook landing page to reduce bounce rates.",
+    "Enhance engagement strategies for the SMS channel to improve interaction."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_102108_customer_satisfaction.json"
+}

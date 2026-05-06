@@ -1,0 +1,424 @@
+{
+  "run_id": "run_20260502_145431",
+  "timestamp_utc": "2026-05-02T14:55:49Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Satisfaction",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "Engagement Rate": 6.68,
+        "Average Bounce Rate": 0.27,
+        "Average Frequency": 2.18
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.36,
+          "Average Frequency": 1.4
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "Engagement Rate": 5.36,
+          "Average Bounce Rate": 0.34,
+          "Average Frequency": 2.2
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.24,
+          "Average Frequency": 2.0
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "Engagement Rate": 5.6,
+          "Average Bounce Rate": 0.28,
+          "Average Frequency": 2.8
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "Engagement Rate": 0.0,
+          "Average Bounce Rate": 0.19,
+          "Average Frequency": 1.2
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "Engagement Rate": 8.96,
+          "Average Bounce Rate": 0.21,
+          "Average Frequency": 3.5
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "Engagement Rate",
+      "Average Bounce Rate",
+      "Average Frequency"
+    ],
+    "analysis": {
+      "analysis": "The campaign data indicates a strong performance on TikTok with an engagement rate of 8.96%, which is significantly above the industry benchmark of 3-6%. Instagram also performs well with a 5.60% engagement rate, while Facebook and Email show lower engagement rates of 5.36% and 0.00%, respectively. Google Ads and SMS also have an engagement rate of 0.00%. The overall conversion rate of 12.26% is healthy, but the bounce rates vary across channels, with Email and Facebook having higher bounce rates of 0.36 and 0.34, indicating potential issues with content relevance or landing page effectiveness. The average bounce rate across all channels is 0.27, which is acceptable but suggests room for improvement in retaining visitors.",
+      "key_signals": [
+        {
+          "observation": "TikTok has the highest engagement rate at 8.96%.",
+          "metric_name": "Engagement Rate",
+          "actual_value": "8.96%",
+          "benchmark_value": "3-6%",
+          "channel": "TikTok",
+          "is_positive": true
+        },
+        {
+          "observation": "Email and Google Ads have a 0.00% engagement rate.",
+          "metric_name": "Engagement Rate",
+          "actual_value": "0.00%",
+          "benchmark_value": "3-6%",
+          "channel": "Email",
+          "is_positive": false
+        },
+        {
+          "observation": "The overall conversion rate is 12.26%.",
+          "metric_name": "Conversion Rate",
+          "actual_value": "12.26%",
+          "benchmark_value": "Industry benchmark not provided",
+          "channel": "Overall",
+          "is_positive": true
+        },
+        {
+          "observation": "The average bounce rate is 0.27.",
+          "metric_name": "Average Bounce Rate",
+          "actual_value": "0.27",
+          "benchmark_value": "< 55%",
+          "channel": "Overall",
+          "is_positive": true
+        }
+      ],
+      "detected_issues": [
+        {
+          "issue": "Email and Google Ads have no engagement.",
+          "affected_channel": "Email, Google Ads",
+          "metric_impacted": "Engagement Rate",
+          "business_impact": "Low visibility and interaction with potential customers.",
+          "severity": "High"
+        },
+        {
+          "issue": "High bounce rates on Email and Facebook.",
+          "affected_channel": "Email, Facebook",
+          "metric_impacted": "Bounce Rate",
+          "business_impact": "Potential loss of interested visitors.",
+          "severity": "Medium"
+        }
+      ],
+      "root_cause_hypothesis": {
+        "hypothesis": "The primary bottleneck appears to be at the Pre-Click stage for Email and Google Ads due to lack of engagement, while Post-Click issues may exist for Email and Facebook due to high bounce rates.",
+        "bottleneck_type": "Pre-Click",
+        "supporting_signals": [
+          "0.00% engagement rate for Email and Google Ads",
+          "High bounce rates for Email and Facebook"
+        ],
+        "confidence_rationale": "The significant drop in engagement rates for Email and Google Ads indicates that the ads are not resonating with the audience, leading to low interaction."
+      },
+      "business_risks": [
+        {
+          "risk": "Low customer acquisition from Email and Google Ads.",
+          "financial_impact": "Reduced revenue potential from these channels.",
+          "likelihood": "High",
+          "time_horizon": "Short-term"
+        },
+        {
+          "risk": "High bounce rates may lead to lost opportunities.",
+          "financial_impact": "Potential decrease in overall conversions.",
+          "likelihood": "Medium",
+          "time_horizon": "Short-term"
+        }
+      ],
+      "confidence_score": 85.0,
+      "engagement_status": "high",
+      "highest_bounce_channel": "Email",
+      "ad_fatigue_risk": false
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Increase Investment in TikTok",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "TikTok has the highest engagement rate, indicating strong audience interaction.",
+        "evidence": [
+          "TikTok engagement rate is 8.96%, highest among all channels."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reallocate budget to increase spend on TikTok.",
+            "where": "TikTok",
+            "how": "Shift funds from lower-performing channels to TikTok to capitalize on high engagement.",
+            "guardrails": [
+              "Ensure TikTok content remains relevant and engaging."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing budget on TikTok can enhance customer satisfaction by reaching more engaged users.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "Higher budget on TikTok should lead to more impressions and interactions."
+        },
+        "dependency_or_risk": [
+          "Ensure TikTok content quality is maintained."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare engagement rate and impressions before and after budget increase on TikTok.",
+          "success_criteria": "Engagement rate remains above 8.96% with increased reach.",
+          "check_timing": "Review after 2 weeks of budget reallocation.",
+          "notes": "Consider seasonality and content freshness."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Revise Email and Google Ads Strategy",
+        "category": "Targeting",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Email and Google Ads have no engagement, indicating a disconnect with the audience.",
+        "evidence": [
+          "Email and Google Ads both have 0.00% engagement rate."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Analyze and adjust targeting criteria for Email and Google Ads.",
+            "where": "Email, Google Ads",
+            "how": "Review audience demographics and interests to better align with campaign goals.",
+            "guardrails": [
+              "Avoid overly broad targeting that dilutes message relevance."
+            ]
+          }
+        ],
+        "why_this_matters": "Improved targeting can increase engagement and customer satisfaction by reaching the right audience.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "Better targeting should lead to higher interaction rates."
+        },
+        "dependency_or_risk": [
+          "Requires accurate audience data and insights."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in engagement rate and click-through rate for Email and Google Ads.",
+          "success_criteria": "Achieve at least 3% engagement rate on both channels.",
+          "check_timing": "Evaluate after 4 weeks of strategy adjustment.",
+          "notes": "Consider potential delays in audience response."
+        },
+        "owner_suggestion": "Analytics"
+      },
+      {
+        "id": "REC-03",
+        "title": "Optimize Facebook and Email Content",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "High bounce rates on Facebook and Email suggest content or landing page issues.",
+        "evidence": [
+          "Facebook bounce rate is 0.34, Email bounce rate is 0.36."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Revise content and landing pages for Facebook and Email campaigns.",
+            "where": "Facebook, Email",
+            "how": "Ensure content is engaging and landing pages match ad promises.",
+            "guardrails": [
+              "Maintain brand consistency across all content."
+            ]
+          }
+        ],
+        "why_this_matters": "Aligning content with user expectations can reduce bounce rates and improve satisfaction.",
+        "expected_impact": {
+          "primary_kpi": "Bounce Rate",
+          "direction": "Decrease",
+          "explanation": "Relevant content and landing pages should retain more visitors."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with creative team."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track bounce rate changes on Facebook and Email after content updates.",
+          "success_criteria": "Bounce rate decreases to below 0.30 on both channels.",
+          "check_timing": "Assess after 4 weeks of content optimization.",
+          "notes": "Consider variations in user behavior by time of day."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Test New Creative Formats on Instagram",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Instagram has a good engagement rate but could benefit from creative innovation.",
+        "evidence": [
+          "Instagram engagement rate is 5.60%, above industry benchmark."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Introduce new creative formats such as reels or interactive posts.",
+            "where": "Instagram",
+            "how": "Experiment with different formats to see which resonates best with the audience.",
+            "guardrails": [
+              "Ensure new formats align with brand guidelines."
+            ]
+          }
+        ],
+        "why_this_matters": "Innovative content can further boost engagement and maintain audience interest.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "New formats may attract more interactions and shares."
+        },
+        "dependency_or_risk": [
+          "Requires creative resources and time for testing."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare engagement rates and interactions before and after introducing new formats.",
+          "success_criteria": "Engagement rate increases by at least 1%.",
+          "check_timing": "Review after 4 weeks of implementing new formats.",
+          "notes": "Monitor for any negative feedback on new formats."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Reduce Frequency on TikTok",
+        "category": "Bidding",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "TikTok frequency is high, which may lead to ad fatigue.",
+        "evidence": [
+          "TikTok frequency is 3.5, above recommended range of 2-4."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Adjust bidding strategy to reduce ad frequency on TikTok.",
+            "where": "TikTok",
+            "how": "Modify bid settings to lower the number of times ads are shown to the same user.",
+            "guardrails": [
+              "Ensure frequency does not drop below 2 to maintain visibility."
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing frequency can prevent ad fatigue and maintain high engagement levels.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Stabilize",
+          "explanation": "Lower frequency should sustain engagement without overwhelming users."
+        },
+        "dependency_or_risk": [
+          "Requires careful monitoring to avoid underexposure."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in engagement rate and frequency on TikTok.",
+          "success_criteria": "Frequency stabilizes within 2-4 range without drop in engagement.",
+          "check_timing": "Assess within 3 days of adjustment.",
+          "notes": "Consider user behavior patterns and content freshness."
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

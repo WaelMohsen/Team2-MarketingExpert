@@ -3,10 +3,13 @@ import os
 from datetime import datetime
 from typing import Any, Dict, Optional, Tuple
 
-from src.evaluation.run_config import load_run_config
 from src.llm.client import chat_completion, get_client
 
-from ..schemas.analysis_output_schema import AnalysisOutput, validate_analysis_output
+from ..schemas.analysis_output_schema import (
+    AnalysisOutput,
+    get_analysis_schema,
+    validate_analysis_output,
+)
 from ..schemas.recommendation_output_schema import (
     RecommendationOutput,
     validate_recommendation_output,
@@ -65,6 +68,8 @@ def _resolve_generation_settings(
     recommendation_model: Optional[str],
     recommendation_temp: Optional[float],
 ) -> Tuple[str, float, str, float]:
+    from src.evaluation.run_config import load_run_config
+
     if None not in (
         analysis_model,
         analysis_temp,
@@ -125,11 +130,12 @@ def generate_response(
         category, target_prompt_path, sys_analysis_prompt_path
     )
     analysis_user = build_analysis_user_prompt(context_block)
+    analysis_schema = get_analysis_schema(category)
     analysis_resp = chat_completion(
         client,
         analysis_sys,
         analysis_user,
-        response_format=AnalysisOutput,
+        response_format=analysis_schema,
         model=analysis_model_name,
         temp=analysis_temperature,
     )
@@ -138,7 +144,7 @@ def generate_response(
 
     # Run our custom validators (confidence normalization, empty-field checks).
     analysis_json_str = json.dumps(analysis_model.model_dump(), ensure_ascii=False)
-    analysis_model = validate_analysis_output(analysis_json_str)
+    analysis_model = validate_analysis_output(analysis_json_str, category)
     analysis_json_str = json.dumps(analysis_model.model_dump(), ensure_ascii=False)
 
     rec_prompt_path = os.path.join(

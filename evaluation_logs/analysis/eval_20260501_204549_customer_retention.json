@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260501_204227",
+  "timestamp_utc": "2026-05-01T20:45:49Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.51,
+  "overall_status": "fail",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 2,
+      "rationale": "The analysis identifies a bottleneck as post-click due to a conversion rate of 1.2% for Facebook, which is below the benchmark of 1.4%. However, it does not provide a clear recommendation on what actions to avoid based on this finding."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 3,
+      "rationale": "The analysis mentions Facebook and Email channels but does not provide specific acquisition costs or a detailed comparison of their performance. It indicates that Facebook has a high churn rate but lacks a clear identification of which channel has the lowest acquisition cost or is wasting budget."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 3,
+      "rationale": "The analysis connects some metrics, noting the churn rate and retention, but does not clearly illustrate how weaknesses in clicks or conversions directly impact revenue. It lacks a comprehensive view of the entire acquisition metric chain."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 2,
+      "rationale": "The analysis references the conversion rate benchmark but does not provide a clear comparison of the campaign's performance against the industry benchmarks for revenue return or acquisition costs."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 3,
+      "rationale": "The analysis concludes with a diagnosis about high churn rates but does not clearly state the primary problem in a concise manner or provide actionable steps to address the issues."
+    }
+  ],
+  "summary": "The analysis provides some insights but lacks depth and clarity in several areas, limiting its effectiveness for strategic decision-making.",
+  "improvement_suggestions": [
+    "Provide specific acquisition costs and conversion rates for each channel to enhance channel diagnosis.",
+    "Clearly outline the implications of each metric on overall revenue to strengthen metric chain reasoning."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260501_204549_customer_retention.json"
+}

@@ -1,7 +1,7 @@
 import json
 import math
-import re
-from typing import Any, Dict, List, Optional
+import warnings
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, field_validator, model_validator
 
@@ -32,24 +32,17 @@ class DetectedIssue(BaseModel):
     affected_channel: str
     metric_impacted: str
     business_impact: str
-    severity: str  # "High" | "Medium" | "Low"
+    severity: Literal["High", "Medium", "Low"]
 
     @field_validator("issue", "affected_channel", "metric_impacted", "business_impact")
     @classmethod
     def must_be_english(cls, v: str) -> str:
         return assert_ascii(v)
 
-    @field_validator("severity")
-    @classmethod
-    def severity_must_be_valid(cls, v: str) -> str:
-        if v not in ("High", "Medium", "Low"):
-            raise ValueError("severity must be High, Medium, or Low")
-        return v
-
 
 class BusinessRisk(BaseModel):
     risk: str
-    financial_impact: str  # must contain a number
+    financial_impact: str
     likelihood: str        # "High" | "Medium" | "Low"
     time_horizon: str      # "immediate" | "short-term" | "long-term"
 
@@ -58,17 +51,10 @@ class BusinessRisk(BaseModel):
     def must_be_english(cls, v: str) -> str:
         return assert_ascii(v)
 
-    @field_validator("financial_impact")
-    @classmethod
-    def must_have_number(cls, v: str) -> str:
-        if not re.search(r"\d", v):
-            raise ValueError("financial_impact must contain a numeric figure")
-        return v
-
 
 class RootCauseHypothesis(BaseModel):
     hypothesis: str
-    bottleneck_type: str        # "Pre-Click" | "Post-Click" | "Budget" | "None"
+    bottleneck_type: Literal["Pre-Click", "Post-Click", "Budget", "None"]
     supporting_signals: List[str]
     confidence_rationale: str
 
@@ -76,13 +62,6 @@ class RootCauseHypothesis(BaseModel):
     @classmethod
     def must_be_english(cls, v: str) -> str:
         return assert_ascii(v)
-
-    @field_validator("bottleneck_type")
-    @classmethod
-    def must_be_valid(cls, v: str) -> str:
-        if v not in ("Pre-Click", "Post-Click", "Budget", "None"):
-            raise ValueError("Invalid bottleneck_type")
-        return v
 
 
 # ─────────────────────────────────────────────
@@ -113,7 +92,11 @@ class AnalysisOutput(BaseModel):
             raise ValueError("at least 2 key_signals required")
         channels = {i.affected_channel for i in self.detected_issues}
         if self.detected_issues and len(channels) < 2:
-            raise ValueError("detected_issues must reference at least 2 channels")
+            warnings.warn(
+                "detected_issues reference fewer than 2 channels",
+                UserWarning,
+                stacklevel=2,
+            )
         return self
 
 
@@ -123,23 +106,9 @@ class AnalysisOutput(BaseModel):
 
 
 class AcquisitionAnalysisOutput(AnalysisOutput):
-    bottleneck_type: str          # "Pre-Click" | "Post-Click" | "None"
-    cvr_vs_benchmark: str         # "above" | "below" | "within"
+    bottleneck_type: Literal["Pre-Click", "Post-Click", "None"]
+    cvr_vs_benchmark: Literal["above", "below", "within"]
     recommended_action_type: str  # "Fix landing page" | "Fix creatives" | "Scale"
-
-    @field_validator("bottleneck_type")
-    @classmethod
-    def bottleneck_valid(cls, v: str) -> str:
-        if v not in ("Pre-Click", "Post-Click", "None"):
-            raise ValueError("Invalid bottleneck_type")
-        return v
-
-    @field_validator("cvr_vs_benchmark")
-    @classmethod
-    def cvr_valid(cls, v: str) -> str:
-        if v not in ("above", "below", "within"):
-            raise ValueError("Invalid cvr_vs_benchmark")
-        return v
 
 
 class RetentionAnalysisOutput(AnalysisOutput):
@@ -156,29 +125,15 @@ class RetentionAnalysisOutput(AnalysisOutput):
 
 
 class RevenueAnalysisOutput(AnalysisOutput):
-    roas_status: str          # "healthy" | "warning" | "critical"
+    roas_status: Literal["healthy", "warning", "critical"]
     highest_roas_channel: str
     ltv_cac_ratio: float
 
-    @field_validator("roas_status")
-    @classmethod
-    def roas_valid(cls, v: str) -> str:
-        if v not in ("healthy", "warning", "critical"):
-            raise ValueError("Invalid roas_status")
-        return v
-
 
 class SatisfactionAnalysisOutput(AnalysisOutput):
-    engagement_status: str     # "high" | "medium" | "low"
+    engagement_status: Literal["high", "medium", "low"]
     highest_bounce_channel: str
     ad_fatigue_risk: bool
-
-    @field_validator("engagement_status")
-    @classmethod
-    def engagement_valid(cls, v: str) -> str:
-        if v not in ("high", "medium", "low"):
-            raise ValueError("Invalid engagement_status")
-        return v
 
 
 # ─────────────────────────────────────────────

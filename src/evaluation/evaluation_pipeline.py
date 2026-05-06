@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Callable, Optional
 
+from src.evaluation.recommendation import evaluator
 from src.schemas.analysis_output_schema import AnalysisOutput
 
 from .protocols import (
@@ -100,13 +101,10 @@ class EvaluationPipeline:
             analysis_model = analysis_output
         else:
             analysis_model = AnalysisOutput(**analysis_output)
+        evaluator = self._analysis_evaluator_factory(target=target)   # fresh, target-bound
+        result = evaluator.evaluate(analysis_model, campaign_context, model=self.analysis_model,
+            temp=self.analysis_temp)
 
-        result = self.analysis_evaluator.evaluate(
-            analysis_model,
-            campaign_context,
-            model=self.analysis_model,
-            temp=self.analysis_temp,
-        )
 
         if hasattr(result, "model_dump"):
             result = result.model_dump()

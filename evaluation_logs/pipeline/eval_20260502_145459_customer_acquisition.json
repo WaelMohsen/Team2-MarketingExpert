@@ -1,0 +1,420 @@
+{
+  "run_id": "run_20260502_145431",
+  "timestamp_utc": "2026-05-02T14:54:59Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall conversion rate is 12.26%, which is significantly above the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages and conversion processes are functioning effectively. However, the cost per customer varies widely across channels, with Google Ads, TikTok, Instagram, Facebook, and Email all showing higher costs compared to SMS. The high costs in these channels suggest that while the conversion rate is strong, the traffic costs are inflating the overall customer acquisition costs. Therefore, the primary bottleneck appears to be related to the cost of traffic rather than the conversion efficiency.",
+      "key_signals": [
+        {
+          "observation": "Conversion Rate is 12.26%",
+          "metric_name": "Conversion Rate",
+          "actual_value": "12.26%",
+          "benchmark_value": "1.4% - 2.5%",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Cost per customer for Google Ads is $3.90",
+          "metric_name": "Cost Per Customer",
+          "actual_value": "$3.90",
+          "benchmark_value": "Varies",
+          "channel": "Google Ads",
+          "is_positive": false
+        },
+        {
+          "observation": "Cost per customer for TikTok is $4.00",
+          "metric_name": "Cost Per Customer",
+          "actual_value": "$4.00",
+          "benchmark_value": "Varies",
+          "channel": "TikTok",
+          "is_positive": false
+        },
+        {
+          "observation": "Cost per customer for Instagram is $4.09",
+          "metric_name": "Cost Per Customer",
+          "actual_value": "$4.09",
+          "benchmark_value": "Varies",
+          "channel": "Instagram",
+          "is_positive": false
+        },
+        {
+          "observation": "Cost per customer for Facebook is $4.40",
+          "metric_name": "Cost Per Customer",
+          "actual_value": "$4.40",
+          "benchmark_value": "Varies",
+          "channel": "Facebook",
+          "is_positive": false
+        },
+        {
+          "observation": "Cost per customer for Email is $1.47",
+          "metric_name": "Cost Per Customer",
+          "actual_value": "$1.47",
+          "benchmark_value": "Varies",
+          "channel": "Email",
+          "is_positive": true
+        },
+        {
+          "observation": "Cost per customer for SMS is $0.83",
+          "metric_name": "Cost Per Customer",
+          "actual_value": "$0.83",
+          "benchmark_value": "Varies",
+          "channel": "SMS",
+          "is_positive": true
+        }
+      ],
+      "detected_issues": [
+        {
+          "issue": "High cost per customer in multiple channels",
+          "affected_channel": "Google Ads, TikTok, Instagram, Facebook",
+          "metric_impacted": "Cost Per Customer",
+          "business_impact": "Increased customer acquisition costs",
+          "severity": "High"
+        }
+      ],
+      "root_cause_hypothesis": {
+        "hypothesis": "The high customer acquisition costs are primarily driven by expensive traffic sources rather than conversion inefficiencies.",
+        "bottleneck_type": "Pre-Click",
+        "supporting_signals": [
+          "High cost per customer in Google Ads, TikTok, Instagram, and Facebook",
+          "Strong conversion rate indicating effective landing pages"
+        ],
+        "confidence_rationale": "The conversion rate is significantly above the benchmark, indicating that the landing pages are effective, while the cost per customer is high in several channels."
+      },
+      "business_risks": [
+        {
+          "risk": "Increased customer acquisition costs may lead to reduced profitability.",
+          "financial_impact": "Higher costs could erode margins and limit growth potential.",
+          "likelihood": "High",
+          "time_horizon": "Short-term"
+        },
+        {
+          "risk": "Dependence on high-cost channels may limit scalability.",
+          "financial_impact": "Scaling efforts may become unsustainable if costs remain high.",
+          "likelihood": "Medium",
+          "time_horizon": "Medium-term"
+        }
+      ],
+      "confidence_score": 85.0,
+      "bottleneck_type": "Pre-Click",
+      "cvr_vs_benchmark": "above",
+      "recommended_action_type": "None"
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Reallocate Budget to SMS and Email",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "SMS and Email channels have the lowest cost per customer, yet receive only 9% of the total budget.",
+        "evidence": [
+          "SMS cost-per-customer is $0.83 with 2.5% of budget",
+          "Email cost-per-customer is $1.47 with 6.1% of budget"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase budget allocation to SMS and Email channels.",
+            "where": "Budget allocation",
+            "how": "Shift budget from higher cost channels like TikTok and Instagram to SMS and Email.",
+            "guardrails": [
+              "Ensure not to exceed the capacity of SMS and Email channels to handle increased volume."
+            ]
+          }
+        ],
+        "why_this_matters": "By reallocating budget to more cost-effective channels, overall customer acquisition costs can be reduced, improving profitability.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Customer",
+          "direction": "Decrease",
+          "explanation": "Lowering budget allocation to high-cost channels and increasing it for low-cost channels will reduce the average cost per customer."
+        },
+        "dependency_or_risk": [
+          "Ensure SMS and Email channels can scale without diminishing returns."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per customer before and after budget reallocation.",
+          "success_criteria": "Decrease in overall cost per customer by at least 10%.",
+          "check_timing": "Review after 2 weeks of budget reallocation.",
+          "notes": "Monitor for any diminishing returns on SMS and Email channels."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Test New Creatives for TikTok and Instagram",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok and Instagram have high costs per customer, indicating potential issues with ad effectiveness.",
+        "evidence": [
+          "TikTok cost-per-customer is $4.00",
+          "Instagram cost-per-customer is $4.09"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop and test new ad creatives.",
+            "where": "TikTok and Instagram",
+            "how": "Create multiple variations of ad creatives focusing on different messaging and visuals.",
+            "guardrails": [
+              "Ensure new creatives align with brand guidelines and target audience preferences."
+            ]
+          }
+        ],
+        "why_this_matters": "Improving ad effectiveness can reduce the cost per click and subsequently the cost per customer.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Customer",
+          "direction": "Decrease",
+          "explanation": "More effective ads should lead to higher engagement and lower cost per customer."
+        },
+        "dependency_or_risk": [
+          "Creative team availability and resources."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in cost per customer and engagement metrics for new creatives.",
+          "success_criteria": "Decrease in cost per customer by at least 15% on TikTok and Instagram.",
+          "check_timing": "Review after 4 weeks of running new creatives.",
+          "notes": "Consider seasonal effects on ad performance."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Optimize Google Ads Bidding Strategy",
+        "category": "Bidding",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Google Ads has a relatively high cost per customer, suggesting inefficient bidding strategies.",
+        "evidence": [
+          "Google Ads cost-per-customer is $3.90"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Review and adjust bidding strategies to focus on high-performing keywords.",
+            "where": "Google Ads",
+            "how": "Analyze keyword performance and adjust bids to prioritize cost-effective keywords.",
+            "guardrails": [
+              "Avoid overbidding on low-conversion keywords."
+            ]
+          }
+        ],
+        "why_this_matters": "Optimizing bidding strategies can lower traffic costs, reducing the overall cost per customer.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Customer",
+          "direction": "Decrease",
+          "explanation": "More efficient bidding should reduce costs associated with acquiring customers."
+        },
+        "dependency_or_risk": [
+          "Requires accurate keyword performance data."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in cost per customer and keyword performance metrics.",
+          "success_criteria": "Reduction in cost per customer by at least 10% on Google Ads.",
+          "check_timing": "Evaluate after 4 weeks of bidding adjustments.",
+          "notes": "Consider external factors affecting keyword performance."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Increase Frequency of Email Campaigns",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Email has a low cost per customer but is underutilized in terms of budget allocation and frequency.",
+        "evidence": [
+          "Email cost-per-customer is $1.47",
+          "Email spend is 6.1% of budget"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase the frequency of email campaigns to reach more potential customers.",
+            "where": "Email",
+            "how": "Schedule additional email campaigns targeting different segments of the audience.",
+            "guardrails": [
+              "Ensure email content remains relevant and engaging to avoid subscriber fatigue."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing email frequency can leverage its low cost per customer to acquire more customers efficiently.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Customer",
+          "direction": "Decrease",
+          "explanation": "More frequent email campaigns should increase customer acquisition at a low cost."
+        },
+        "dependency_or_risk": [
+          "Avoiding email fatigue among subscribers."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in cost per customer and conversion rates from email campaigns.",
+          "success_criteria": "Increase in new customers acquired through email by 20%.",
+          "check_timing": "Assess after 2 weeks of increased email frequency.",
+          "notes": "Monitor unsubscribe rates to ensure content remains engaging."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-05",
+        "title": "Conduct Audience Segmentation for Facebook",
+        "category": "Targeting",
+        "priority": "Low",
+        "effort": "High",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Facebook has a high cost per customer, indicating potential misalignment with target audience.",
+        "evidence": [
+          "Facebook cost-per-customer is $4.40"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Perform detailed audience segmentation to identify high-value segments.",
+            "where": "Facebook",
+            "how": "Use demographic and behavioral data to refine audience targeting.",
+            "guardrails": [
+              "Ensure segments are large enough to be statistically significant."
+            ]
+          }
+        ],
+        "why_this_matters": "Better audience targeting can improve ad relevance and reduce acquisition costs.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Customer",
+          "direction": "Decrease",
+          "explanation": "Targeting more relevant audiences should increase conversion rates and reduce costs."
+        },
+        "dependency_or_risk": [
+          "Availability of detailed audience data."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per customer and conversion rates before and after segmentation.",
+          "success_criteria": "Reduction in cost per customer by 10% on Facebook.",
+          "check_timing": "Review after 6 weeks of implementing new targeting.",
+          "notes": "Consider potential changes in audience behavior over time."
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

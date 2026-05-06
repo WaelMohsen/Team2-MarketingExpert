@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260501_203352",
+  "timestamp_utc": "2026-05-01T20:35:24Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.83,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 4,
+      "rationale": "The analysis correctly identifies the bottleneck as Post-Click, with a conversion rate of 12.26%, which is above the 1.4% benchmark. It suggests that while the ads are effective in attracting clicks, there may be a mismatch between the ads and landing pages, which could lead to lower customer satisfaction."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares the Instagram and Google Ads channels, noting that Instagram has a lower acquisition cost of approximately $0.41 per conversion compared to Google Ads at about $3.37. It identifies that Facebook is wasting budget relative to its performance, as it has the highest cost per acquisition and the lowest conversion rate."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis effectively connects the acquisition metric chain, showing how high impressions and clicks on Instagram lead to a strong conversion rate and revenue generation. It highlights that weaknesses in landing page alignment could disrupt this chain, impacting overall revenue."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses correct industry benchmarks, stating that the conversion rate is above the minimum benchmark of 1.4% and that the revenue return is significantly higher than the 4x minimum spend, indicating strong campaign performance."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis that the primary problem is the potential mismatch between ad messaging and landing pages, which could lead to decreased customer satisfaction. It advises against continuing with the current landing page strategy without adjustments."
+    }
+  ],
+  "summary": "The campaign analysis is strong, effectively identifying key issues and providing actionable insights for improvement.",
+  "improvement_suggestions": [
+    "Align landing page messaging more closely with ad content to enhance customer satisfaction.",
+    "Reallocate budget from underperforming channels like Facebook to more efficient channels like Instagram."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260501_203524_customer_satisfaction.json"
+}

@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_145431",
+  "timestamp_utc": "2026-05-02T14:54:59Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.79,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 4,
+      "rationale": "The analysis correctly identifies the bottleneck as Pre-Click due to the high customer acquisition costs despite a strong conversion rate of 12.26%, which is well above the 1.4% benchmark. It states that the high costs in traffic sources inflate overall customer acquisition costs, indicating what should not be done is to continue relying on these expensive channels."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares multiple channels by acquisition cost, identifying SMS as the lowest cost channel at $0.83 per customer, while Google Ads, TikTok, Instagram, and Facebook have higher costs ranging from $3.90 to $4.40. It highlights that these higher-cost channels are wasting budget relative to their performance, suggesting a misalignment in budget allocation versus channel efficiency."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 3,
+      "rationale": "The analysis connects the acquisition metric chain by discussing the conversion rate and customer acquisition costs, but it lacks a detailed flow from impressions to revenue. It mentions high costs but does not explicitly show how weaknesses in clicks and conversions impact overall revenue."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses the correct industry benchmarks, clearly stating that the conversion rate of 12.26% is significantly above the healthy benchmark of 1.4% to 2.5%. It effectively communicates that the campaign is performing well in terms of conversion rate."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis that the primary problem is high customer acquisition costs driven by expensive traffic sources. It specifies that the focus should not be on improving conversion rates, as they are already strong, but rather on addressing the high costs."
+    }
+  ],
+  "summary": "The analysis provides a solid evaluation of the campaign's performance, identifying key issues and actionable insights.",
+  "improvement_suggestions": [
+    "Provide a clearer connection between each metric in the acquisition chain to illustrate how weaknesses impact revenue.",
+    "Include specific recommendations for reallocating budget towards lower-cost channels like SMS."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_145459_customer_acquisition.json"
+}

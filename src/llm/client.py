@@ -3,7 +3,6 @@ from typing import Optional, Tuple
 
 from dotenv import load_dotenv
 
-from src.evaluation.run_config import load_run_config
 
 try:
     from openai import OpenAI

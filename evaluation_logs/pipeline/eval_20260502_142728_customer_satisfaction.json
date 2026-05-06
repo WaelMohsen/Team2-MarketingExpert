@@ -1,0 +1,427 @@
+{
+  "run_id": "run_20260502_142555",
+  "timestamp_utc": "2026-05-02T14:27:28Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Satisfaction",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "Engagement Rate": 6.68,
+        "Average Bounce Rate": 0.27,
+        "Average Frequency": 2.18
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.36,
+          "Average Frequency": 1.4
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "Engagement Rate": 5.36,
+          "Average Bounce Rate": 0.34,
+          "Average Frequency": 2.2
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.24,
+          "Average Frequency": 2.0
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "Engagement Rate": 5.6,
+          "Average Bounce Rate": 0.28,
+          "Average Frequency": 2.8
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "Engagement Rate": 0.0,
+          "Average Bounce Rate": 0.19,
+          "Average Frequency": 1.2
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "Engagement Rate": 8.96,
+          "Average Bounce Rate": 0.21,
+          "Average Frequency": 3.5
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "Engagement Rate",
+      "Average Bounce Rate",
+      "Average Frequency"
+    ],
+    "analysis": {
+      "analysis": "The campaign data indicates a strong performance on TikTok with an engagement rate of 8.96%, which is well above the success benchmark of 3-6%. Instagram also shows a healthy engagement rate of 5.60%. However, channels like Email, Google Ads, and SMS are underperforming with engagement rates of 0.00%. The overall conversion rate across all channels is 12.26%, which is positive, but the bounce rate averages at 27%, indicating that users are leaving the landing pages after clicking on ads. This suggests that while the ads are effective in attracting clicks, the landing pages may not be retaining visitors effectively. The cost per acquisition is $3.37, which is reasonable given the return on ad spend of 7.94, indicating that the campaign is generating more revenue than it costs. However, the low engagement rates on certain channels could lead to potential risks in customer satisfaction and retention.",
+      "key_signals": [
+        {
+          "observation": "TikTok has an engagement rate of 8.96%",
+          "metric_name": "Engagement Rate",
+          "actual_value": "8.96%",
+          "benchmark_value": "3-6%",
+          "channel": "TikTok",
+          "is_positive": true
+        },
+        {
+          "observation": "Overall conversion rate is 12.26%",
+          "metric_name": "Conversion Rate",
+          "actual_value": "12.26%",
+          "benchmark_value": "N/A",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Average bounce rate is 27%",
+          "metric_name": "Bounce Rate",
+          "actual_value": "27%",
+          "benchmark_value": "< 55%",
+          "channel": null,
+          "is_positive": true
+        },
+        {
+          "observation": "Email, Google Ads, and SMS have engagement rates of 0.00%",
+          "metric_name": "Engagement Rate",
+          "actual_value": "0.00%",
+          "benchmark_value": "3-6%",
+          "channel": "Email, Google Ads, SMS",
+          "is_positive": false
+        }
+      ],
+      "detected_issues": [
+        {
+          "issue": "Low engagement rates on Email, Google Ads, and SMS",
+          "affected_channel": "Email, Google Ads, SMS",
+          "metric_impacted": "Engagement Rate",
+          "business_impact": "Potential loss of customer interest and satisfaction",
+          "severity": "High"
+        },
+        {
+          "issue": "High bounce rate indicates landing page issues",
+          "affected_channel": "All Channels",
+          "metric_impacted": "Bounce Rate",
+          "business_impact": "Loss of potential conversions and revenue",
+          "severity": "Medium"
+        }
+      ],
+      "root_cause_hypothesis": {
+        "hypothesis": "The primary bottleneck is likely at the post-click stage, where landing pages are not effectively converting visitors.",
+        "bottleneck_type": "Post-Click",
+        "supporting_signals": [
+          "High bounce rate of 27%",
+          "Low engagement rates on Email, Google Ads, and SMS"
+        ],
+        "confidence_rationale": "The high bounce rate suggests that users are not finding the landing pages relevant or engaging after clicking on the ads."
+      },
+      "business_risks": [
+        {
+          "risk": "Decreased customer satisfaction due to low engagement on certain channels",
+          "financial_impact": "Potential decline in revenue from lost customers",
+          "likelihood": "High",
+          "time_horizon": "Short-term"
+        },
+        {
+          "risk": "Increased customer churn due to poor landing page experiences",
+          "financial_impact": "Loss of repeat customers and reduced lifetime value",
+          "likelihood": "Medium",
+          "time_horizon": "Medium-term"
+        }
+      ],
+      "confidence_score": 85.0,
+      "engagement_status": "medium",
+      "highest_bounce_channel": "Email, Google Ads, SMS",
+      "ad_fatigue_risk": false
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Optimize Landing Pages for Better Engagement",
+        "category": "Landing_Page",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "High bounce rates indicate that users are leaving landing pages quickly after clicking on ads.",
+        "evidence": [
+          "Average bounce rate is 27% across all channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Revise and test landing page content to ensure alignment with ad messaging.",
+            "where": "Cross-channel",
+            "how": "Conduct A/B testing to identify which landing page elements improve user retention.",
+            "guardrails": [
+              "Ensure changes do not negatively impact current conversion rates"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving landing page engagement can lead to higher conversion rates and customer satisfaction.",
+        "expected_impact": {
+          "primary_kpi": "Bounce Rate",
+          "direction": "Decrease",
+          "explanation": "Better landing pages should retain more visitors, reducing bounce rates."
+        },
+        "dependency_or_risk": [
+          "Requires coordination with web development team"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare bounce rates before and after changes on the same channels.",
+          "success_criteria": "Bounce rate decreases to below 25%.",
+          "check_timing": "Review after 4 weeks of implementation.",
+          "notes": "Consider seasonality and traffic fluctuations."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Reallocate Budget to High-Performing Channels",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "TikTok and Instagram have high engagement rates, while Email, Google Ads, and SMS are underperforming.",
+        "evidence": [
+          "TikTok engagement rate is 8.96%",
+          "Instagram engagement rate is 5.60%",
+          "Email, Google Ads, and SMS engagement rates are 0.00%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Shift budget from underperforming channels to TikTok and Instagram.",
+            "where": "Cross-channel",
+            "how": "Reduce spend on Email, Google Ads, and SMS and increase spend on TikTok and Instagram.",
+            "guardrails": [
+              "Monitor performance to ensure increased spend maintains or improves engagement rates"
+            ]
+          }
+        ],
+        "why_this_matters": "Investing in high-performing channels can maximize engagement and customer satisfaction.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "More budget on high-engagement channels should increase overall engagement."
+        },
+        "dependency_or_risk": [
+          "Budget reallocation may require approval from finance"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track engagement rates and budget utilization post-reallocation.",
+          "success_criteria": "Overall engagement rate increases by at least 2%.",
+          "check_timing": "Review after 1 week of budget reallocation.",
+          "notes": "Consider potential diminishing returns on increased spend."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Enhance Email and SMS Content",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Email and SMS channels have zero engagement rates, indicating content is not resonating with the audience.",
+        "evidence": [
+          "Email engagement rate is 0.00%",
+          "SMS engagement rate is 0.00%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Revise content strategy for Email and SMS to improve engagement.",
+            "where": "Email and SMS",
+            "how": "Develop more personalized and relevant content based on audience insights.",
+            "guardrails": [
+              "Ensure compliance with data privacy regulations"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving content relevance can increase engagement and customer satisfaction.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "More engaging content should lead to higher interaction rates."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with content creation team"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor engagement rates on Email and SMS after content updates.",
+          "success_criteria": "Engagement rates increase to at least 3%.",
+          "check_timing": "Review after 4 weeks of content changes.",
+          "notes": "Initial results may vary based on audience size and content type."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Improve Ad Relevance on Google Ads",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Google Ads has a low engagement rate, suggesting ads may not be reaching the right audience.",
+        "evidence": [
+          "Google Ads engagement rate is 0.00%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Refine audience targeting and ad copy to better match user intent.",
+            "where": "Google Ads",
+            "how": "Use audience insights to adjust targeting parameters and test new ad variations.",
+            "guardrails": [
+              "Avoid overly narrow targeting that limits reach"
+            ]
+          }
+        ],
+        "why_this_matters": "Better targeting can increase ad relevance and engagement, improving customer satisfaction.",
+        "expected_impact": {
+          "primary_kpi": "Relevance Score",
+          "direction": "Improve",
+          "explanation": "More relevant ads should improve the platform's relevance score."
+        },
+        "dependency_or_risk": [
+          "Requires access to detailed audience data"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in relevance score and engagement rate on Google Ads.",
+          "success_criteria": "Relevance score improves to 7 or above.",
+          "check_timing": "Review after 4 weeks of targeting adjustments.",
+          "notes": "Consider potential lag in data updates."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-05",
+        "title": "Conduct Audience Feedback Surveys",
+        "category": "Other",
+        "priority": "Low",
+        "effort": "Medium",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Low",
+        "whats_happening": "There is a need to understand why certain channels are underperforming in engagement.",
+        "evidence": [
+          "Low engagement rates on Email, Google Ads, and SMS"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Implement surveys to gather feedback on content and channel preferences.",
+            "where": "Cross-channel",
+            "how": "Distribute surveys via email and social media to gather insights.",
+            "guardrails": [
+              "Ensure surveys are concise to maximize response rates"
+            ]
+          }
+        ],
+        "why_this_matters": "Understanding audience preferences can guide future content and channel strategies.",
+        "expected_impact": {
+          "primary_kpi": "Positive Sentiment",
+          "direction": "Improve",
+          "explanation": "Feedback can help tailor content to audience preferences, improving sentiment."
+        },
+        "dependency_or_risk": [
+          "Survey participation may be low without incentives"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Analyze survey responses for actionable insights.",
+          "success_criteria": "Identify clear patterns in audience preferences.",
+          "check_timing": "Review after 6 weeks of survey distribution.",
+          "notes": "Consider potential bias in self-reported data."
+        },
+        "owner_suggestion": "Analytics"
+      }
+    ]
+  }
+}

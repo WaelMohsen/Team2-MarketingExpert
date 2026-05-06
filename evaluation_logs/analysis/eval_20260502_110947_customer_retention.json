@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_110706",
+  "timestamp_utc": "2026-05-02T11:09:47Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.51,
+  "overall_status": "fail",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 2,
+      "rationale": "The analysis identifies a bottleneck related to customer engagement and satisfaction, particularly in the Facebook channel. However, it does not provide specific conversion rates for the channels to determine if the bottleneck is pre-click or post-click, nor does it cite actual conversion rates to compare against the benchmark of 1.4%."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 3,
+      "rationale": "The analysis mentions the performance of different channels but does not provide a clear comparison of acquisition costs and conversion rates. While it identifies Facebook as having the lowest retention rate, it fails to specify which channel has the lowest acquisition cost or which is wasting budget relative to performance."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 3,
+      "rationale": "The analysis connects some metrics, noting the overall retention and churn rates, but does not explicitly link how weaknesses in clicks or conversions impact revenue. It lacks a detailed flow from impressions to revenue."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 2,
+      "rationale": "The analysis mentions retention rates but does not reference specific industry benchmarks for conversion rates or revenue returns. Without these comparisons, it cannot determine if the campaign is performing above or below industry standards."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 3,
+      "rationale": "The analysis concludes with a diagnosis about customer engagement issues but lacks specificity on what actions should be taken or what should not be done. It does not provide a clear, actionable statement."
+    }
+  ],
+  "summary": "The analysis provides some insights but lacks critical details and benchmarks necessary for a comprehensive evaluation.",
+  "improvement_suggestions": [
+    "Include specific conversion rates for each channel to identify the type of bottleneck accurately.",
+    "Provide a detailed comparison of acquisition costs and conversion rates across channels to identify budget wastage and efficiency."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_110947_customer_retention.json"
+}

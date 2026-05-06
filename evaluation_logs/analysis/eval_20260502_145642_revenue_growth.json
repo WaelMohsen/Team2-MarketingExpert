@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_145431",
+  "timestamp_utc": "2026-05-02T14:56:42Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.83,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 4,
+      "rationale": "The analysis correctly identifies the bottleneck as post-click, given that the conversion rate is 12.26%, which is above the 1.4% benchmark. However, it does not specify what actions should be avoided based on this finding."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 4,
+      "rationale": "The analysis compares channels effectively, noting that Email has the lowest acquisition cost at 1.25, while Facebook is wasting budget with a high acquisition cost of 3.67 relative to its performance. It highlights that budget allocation does not match channel efficiency, particularly with Facebook and Instagram underperforming."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 4,
+      "rationale": "The analysis connects the acquisition metric chain well, showing how the high acquisition cost of Facebook and Instagram leads to lower profitability, despite high spend. It illustrates how weaknesses in conversion rates impact overall revenue."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 5,
+      "rationale": "The analysis uses correct industry benchmarks, stating that the campaign's return on ad spend is 7.94, significantly above the 4.0 benchmark, and the conversion rate of 12.26% is acceptable but could be improved, as it is above the minimum benchmark of 1.4%."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 4,
+      "rationale": "The analysis concludes with a clear diagnosis that the primary problem lies in the post-click experience on Facebook and Instagram, which should not be continued without improvement. It avoids vague conclusions and provides a specific area for action."
+    }
+  ],
+  "summary": "The campaign analysis is strong, with clear identification of bottlenecks and actionable insights, but could improve on specifying actions to avoid.",
+  "improvement_suggestions": [
+    "Clearly state what actions should not be taken based on the identified bottleneck.",
+    "Provide more detailed recommendations for improving the post-click experience on underperforming channels."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_145642_revenue_growth.json"
+}

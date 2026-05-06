@@ -6,6 +6,9 @@ from pydantic import BaseModel, Field
 
 from ..llm.client import chat_completion, get_client
 from ..schemas.analysis_output_schema import AnalysisOutput
+import json
+from pathlib import Path
+
 
 
 # ─────────────────────────────────────────────
@@ -33,6 +36,30 @@ class CriterionDefinition:
     borderline_threshold: float = 3.0
     hard_fail_threshold: float = 2.0
 
+# ─────────────────────────────────────────────
+# JUDGE ANCHOR REGISTRY
+# ─────────────────────────────────────────────
+# Reference 5/5 analyses, injected into JUDGE_SYSTEM_PROMPT
+# so the judge calibrates against a concrete example, not just rubric prose.
+
+_ANCHOR_DIR = Path(__file__).resolve().parents[2] / "prompts" / "judge_anchors"
+
+ANCHOR_REGISTRY: Dict[str, str] = {
+    "Customer Acquisition": "acquisition.json",
+    "Customer Retention":   "retention.json",
+}
+
+
+def _load_anchor(target: str) -> str:
+    """Load the 5/5 reference example for a target. Returns empty string if missing."""
+    filename = ANCHOR_REGISTRY.get(target)
+    if filename is None:
+        return ""
+    path = _ANCHOR_DIR / filename
+    try:
+        return path.read_text(encoding="utf-8").strip()
+    except FileNotFoundError:
+        return ""
 
 # ─────────────────────────────────────────────
 # 3. CRITERIA — ACQUISITION
@@ -208,7 +235,8 @@ class JudgeVerdict(BaseModel):
 # ─────────────────────────────────────────────
 
 
-JUDGE_SYSTEM_PROMPT = """
+# in analysis_judge.py — no dataclass change
+JUDGE_SYSTEM_PROMPT_TEMPLATE = """
 You are an expert evaluator of marketing campaign analysis outputs.
 
 SCORING RULES:
@@ -221,7 +249,33 @@ COMMUNICATION RULES:
 - Never use abbreviations like CTR, ROAS, CPA in your rationale.
 - Focus on money impact, growth impact, and risk.
 - Write for a business lead with no marketing background.
+
+<<ANCHOR_BLOCK>>
 """
+
+_ANCHOR_INSTRUCTION = """
+REFERENCE EXAMPLE OF A 5/5 ANALYSIS FOR THIS TARGET:
+The JSON below is the calibration anchor. It demonstrates the depth,
+specificity, benchmark grounding, channel-level rigor, and quantification
+that earn full marks on every criterion.
+
+When scoring a candidate analysis:
+- Match this depth on a criterion → score 5
+- Materially shallower but rubric items present → score 3
+- Generic, missing rubric items, or recommendation language → score 1-2
+
+ANCHOR JSON:
+{anchor_json}
+"""
+
+
+def _build_judge_system_prompt(target: str) -> str:
+    """Inject the target's reference anchor into the system prompt template."""
+    anchor = _load_anchor(target)
+    if not anchor:
+        return JUDGE_SYSTEM_PROMPT_TEMPLATE.replace("<<ANCHOR_BLOCK>>", "")
+    anchor_block = _ANCHOR_INSTRUCTION.replace("{anchor_json}", anchor)
+    return JUDGE_SYSTEM_PROMPT_TEMPLATE.replace("<<ANCHOR_BLOCK>>", anchor_block)
 
 JUDGE_USER_PROMPT = """
 CAMPAIGN CONTEXT:
@@ -256,7 +310,7 @@ Return JSON:
 
 class AnalysisJudge:
 
-    def __init__(self, target: str = "Customer Acquisition") -> None:
+    def __init__(self, target: str) -> None:
         self._target = target
         self._criteria = CRITERIA_REGISTRY.get(
             target, DEFAULT_CRITERIA_ACQUISITION
@@ -335,7 +389,7 @@ class AnalysisJudge:
 
         response = chat_completion(
             client=self._client,
-            system_text=JUDGE_SYSTEM_PROMPT,
+            system_text=_build_judge_system_prompt(self._target),
             user_text=user_prompt,
             response_format=JudgeVerdict,
             model=model,

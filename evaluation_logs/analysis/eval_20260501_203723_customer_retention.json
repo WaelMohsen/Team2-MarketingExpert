@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260501_203352",
+  "timestamp_utc": "2026-05-01T20:37:23Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.51,
+  "overall_status": "fail",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 2,
+      "rationale": "The analysis mentions a bottleneck but does not provide specific conversion rates for the channels, nor does it compare them to the benchmark of 1.4%. Without this data, it cannot accurately identify whether the bottleneck is pre-click or post-click."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 3,
+      "rationale": "The analysis discusses churn rates and retention but does not compare acquisition costs or conversion rates across channels. It fails to identify which channel has the lowest acquisition cost or which is wasting budget, leading to an acceptable but incomplete diagnosis."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 3,
+      "rationale": "The analysis connects some metrics like churn and retention but does not explicitly link impressions, clicks, conversions, acquisition cost, and revenue in a clear chain. It lacks a detailed explanation of how weaknesses in these metrics impact overall business outcomes."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 2,
+      "rationale": "The analysis mentions conversion rates but does not provide specific numbers or compare them to the industry benchmarks of 1.4% and 2.5%. Without this comparison, it cannot determine if the campaign is performing above or below the benchmarks."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 3,
+      "rationale": "The analysis identifies high churn rates as a problem but does not clearly state what actions should be taken or what should not be done. The conclusions are somewhat vague and could apply to any campaign."
+    }
+  ],
+  "summary": "The analysis provides some insights but lacks specific data and comparisons necessary for a thorough evaluation.",
+  "improvement_suggestions": [
+    "Include specific conversion rates for each channel and compare them to the benchmark of 1.4%.",
+    "Identify which channel has the lowest acquisition cost and which is wasting budget relative to performance."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260501_203723_customer_retention.json"
+}

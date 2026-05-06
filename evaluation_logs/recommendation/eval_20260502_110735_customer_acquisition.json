@@ -1,0 +1,167 @@
+{
+  "run_id": "run_20260502_110706",
+  "timestamp_utc": "2026-05-02T11:07:35Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.811,
+  "business": {
+    "score": 0.82,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.8,
+        "actionability": 0.8,
+        "data_grounding": 0.9,
+        "kpi_alignment": 0.9,
+        "priority_accuracy": 0.7,
+        "decision_quality": 0.8,
+        "feasibility": 0.8,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Most recommendations clearly explain the cause or opportunity, but some lack depth in explaining the underlying issues.",
+        "actionability": "Steps are generally clear and specific, but some recommendations could benefit from more detailed execution plans.",
+        "data_grounding": "Recommendations are well-supported by the provided data, with clear references to metrics and platforms.",
+        "kpi_alignment": "Recommendations are well-aligned with campaign KPIs, focusing on cost per customer and conversion rates.",
+        "priority_accuracy": "High-impact recommendations are prioritized, but some medium-priority items could have a higher impact.",
+        "decision_quality": "Decisions are generally strong, but some could be more robust with additional context or data.",
+        "feasibility": "Recommendations are realistically implementable, though some require significant resources.",
+        "readability": "Recommendations are clear and simple, suitable for non-marketers."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.9,
+          "actionability": 0.9,
+          "data_grounding": 1.0,
+          "kpi_alignment": 1.0,
+          "decision_quality": 0.9,
+          "feasibility": 0.9
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.7,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.8,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Actionability could be improved with more detailed steps for creative development."
+        ]
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Insight quality could be improved with more detailed analysis of audience targeting inefficiencies."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation is less critical given the already high conversion rate."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.663,
+    "avg_similarity": 0.702,
+    "coverage": 0.729,
+    "llm_calls": 3,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-CA-03",
+        "similarity": 0.683,
+        "llm_score": 0.6
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-CA-01",
+        "similarity": 0.666,
+        "llm_score": 0.5
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-CA-03",
+        "similarity": 0.814,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-CA-01",
+        "similarity": 0.711,
+        "llm_score": 0.7
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-CA-02",
+        "similarity": 0.766,
+        "llm_score": null
+      }
+    ],
+    "missed_ground_truth": [
+      "GT-CA-04"
+    ],
+    "flags": [],
+    "total_recommendations": 5,
+    "total_ground_truth": 4
+  },
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_110735_customer_acquisition.json"
+}

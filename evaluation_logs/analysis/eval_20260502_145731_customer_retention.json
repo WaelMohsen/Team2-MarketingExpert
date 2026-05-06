@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_145431",
+  "timestamp_utc": "2026-05-02T14:57:31Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.41,
+  "overall_status": "fail",
+  "criteria_scores": [
+    {
+      "name": "churn_diagnosis",
+      "score": 2,
+      "rationale": "The analysis mentions a churn rate of 9.0% but does not identify which channel has the highest churn or quantify the financial impact of churned customers. It lacks specific numbers and fails to compare retained versus churned customer value."
+    },
+    {
+      "name": "leaky_bucket_detection",
+      "score": 2,
+      "rationale": "The analysis does not check for a leaky bucket pattern or quantify any revenue lost through churn. It only states that churn is a risk without providing evidence of acquisition masking retention failure."
+    },
+    {
+      "name": "retention_channel_comparison",
+      "score": 3,
+      "rationale": "The analysis compares retention rates across channels, noting that Email has the highest retention at 94.0% and Facebook the lowest at 87.0%. However, it lacks specific numbers on customer acquisition costs and does not discuss the gap between owned and paid channels."
+    },
+    {
+      "name": "ltv_cac_assessment",
+      "score": 1,
+      "rationale": "The analysis does not evaluate long-term customer value versus acquisition cost, nor does it reference or compute any annual value to acquisition cost ratio. This critical aspect is entirely missing."
+    },
+    {
+      "name": "risk_quantification",
+      "score": 2,
+      "rationale": "The analysis mentions risks associated with increased customer churn and ineffective retention strategies but does not provide specific financial figures or numeric estimates related to potential revenue loss."
+    }
+  ],
+  "summary": "The analysis lacks depth and specificity, particularly in financial quantification and channel comparisons, leading to a low overall score.",
+  "improvement_suggestions": [
+    "Identify the channel with the highest churn rate and quantify the financial impact of churned customers.",
+    "Include a detailed comparison of customer retention across channels with specific numbers and acquisition costs."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_145731_customer_retention.json"
+}

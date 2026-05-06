@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260502_142555",
+  "timestamp_utc": "2026-05-02T14:28:17Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 0.63,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "bottleneck_identification",
+      "score": 3,
+      "rationale": "The analysis identifies a pre-click bottleneck based on the conversion rate of 12.26%, which is above the 1.4% benchmark, but does not clearly state what should not be done based on this finding."
+    },
+    {
+      "name": "channel_diagnosis",
+      "score": 3,
+      "rationale": "The analysis mentions that Facebook and Instagram are underperforming but does not provide specific acquisition costs or conversion rates for comparison. It fails to identify which channel has the lowest acquisition cost or whether budget allocation matches channel efficiency."
+    },
+    {
+      "name": "metric_chain_reasoning",
+      "score": 3,
+      "rationale": "The analysis connects some metrics but does not fully articulate how weaknesses in specific metrics flow through to the overall business outcome, particularly in terms of revenue generation."
+    },
+    {
+      "name": "benchmark_usage",
+      "score": 4,
+      "rationale": "The analysis correctly references the benchmarks for return on investment and customer acquisition cost, indicating that the campaign is performing well above the benchmarks, but it lacks specific references to conversion rate benchmarks."
+    },
+    {
+      "name": "actionable_diagnosis",
+      "score": 3,
+      "rationale": "The analysis concludes with a diagnosis that identifies issues with ad creatives and targeting strategies but lacks specificity on what actions should not be taken, leading to a somewhat vague conclusion."
+    }
+  ],
+  "summary": "The analysis provides a reasonable overview of campaign performance but lacks depth in channel comparisons and specific actionable insights.",
+  "improvement_suggestions": [
+    "Provide specific acquisition costs and conversion rates for all channels to enhance channel diagnosis.",
+    "Clearly state what actions should not be taken based on the identified bottleneck to improve clarity."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260502_142817_revenue_growth.json"
+}
