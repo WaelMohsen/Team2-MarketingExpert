@@ -1,5 +1,6 @@
 import json
 import sys
+from typing import List
 
 from dotenv import load_dotenv
 
@@ -28,7 +29,7 @@ def run_from_config(config_path: str = DEFAULT_CONFIG_PATH) -> dict:
     )
 
 
-def _config_path_from_argv(argv: list[str]) -> str:
+def _config_path_from_argv(argv: List[str]) -> str:
     if len(argv) <= 1:
         return DEFAULT_CONFIG_PATH
     if len(argv) == 2:
