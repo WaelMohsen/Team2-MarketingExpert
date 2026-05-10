@@ -2,7 +2,8 @@
   "runtime": {
     "campaign_id": "Spring Launch",
     "category": null,
-    "context_rows": 10
+    "context_rows": 10,
+    "experiment_tag": "baseline"
   },
   "generation": {
     "analysis_model": "gpt-4o-mini",
