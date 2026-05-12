@@ -26,3 +26,9 @@
 ## Example Scenarios for Model Guidance:
 - **Scenario A (Low CVR):** CVR: 1.1%, CAC: $60.00 → *Bottleneck:* Landing page/Checkout.
 - **Scenario B (High CPC):** CVR: 3.2%, CPC: $2.50 → *Bottleneck:* Ad creative costs/CTR.
+
+## STRICT OUTPUT RULES:
+- detected_issues MUST contain at least 1 issue — if metrics are healthy, explain why that is still a risk
+- confidence_score MUST NOT exceed 85% unless CVR, CPC, and ROAS all beat benchmarks
+- root_cause_hypothesis MUST classify as either "Post-Click bottleneck" or "Pre-Click bottleneck"
+- NEVER output empty arrays for detected_issues or business_risks

@@ -290,7 +290,7 @@ class AnalysisJudge:
                 f"Description: {criterion.description}\n"
             f"Scoring rubric:\n{criterion.rubric}"
         )
-    return "\n\n".join(lines)
+        return "\n\n".join(lines)
 
     @staticmethod
     def _status_for_score(
