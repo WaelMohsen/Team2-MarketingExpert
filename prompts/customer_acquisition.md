@@ -32,3 +32,18 @@
 - confidence_score MUST NOT exceed 85% unless CVR, CPC, and ROAS all beat benchmarks
 - root_cause_hypothesis MUST classify as either "Post-Click bottleneck" or "Pre-Click bottleneck"
 - NEVER output empty arrays for detected_issues or business_risks
+
+## REQUIRED OUTPUT PATTERNS:
+
+- key_signals MUST follow this pattern:
+  "CVR is X% which is [above/below] the 1.4% industry benchmark"
+  "CPC is $X which is [above/below] the $2.00 threshold"
+
+- root_cause_hypothesis MUST start with either:
+  "The primary bottleneck is Post-Click..." or
+  "The primary bottleneck is Pre-Click..."
+  then connect: "because CVR of X% is below the 1.4% benchmark, driving CAC to $Y"
+
+- confidence_score MUST be accompanied by reasoning in root_cause_hypothesis:
+  "Confidence is set to X% because [number of metrics that beat/missed benchmark] 
+   out of [total] metrics show clear evidence"

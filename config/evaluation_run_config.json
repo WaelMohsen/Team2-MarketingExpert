@@ -3,7 +3,7 @@
     "campaign_id": "Spring Launch",
     "category": "Customer Acquisition",
     "context_rows": 10,
-    "experiment_tag": "judge-rubric-v2-customer-acquisition_strict_output_rule"
+    "experiment_tag": "judge-rubric-v2-explicit-benchmarks"
   },
   "generation": {
     "analysis_model": "gpt-4o-mini",

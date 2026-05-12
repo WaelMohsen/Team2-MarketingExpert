@@ -1,0 +1,350 @@
+{
+  "run_id": "run_20260512_180134",
+  "timestamp_utc": "2026-05-12T18:02:02Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign shows a high conversion rate of 12.26%, significantly above the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages are performing well in converting visitors into customers. However, the customer acquisition cost is calculated at $3.37, which is relatively low, suggesting that the campaign is efficient in acquiring new customers. The cost per click across all channels is not explicitly provided, but the overall return on advertising spend is 7.94, indicating that for every dollar spent, nearly eight dollars are generated in revenue. This suggests that the traffic costs are manageable. Despite the high conversion rate, the campaign may still face risks due to varying performance across channels, particularly with Facebook and Google Ads showing lower return on advertising spend compared to others. Therefore, while the overall metrics are strong, the performance inconsistency across channels could pose a risk to sustained customer acquisition efforts.",
+      "key_signals": [
+        "Overall conversion rate is 12.26%, well above benchmark",
+        "Customer acquisition cost is $3.37, indicating efficiency"
+      ],
+      "detected_issues": [
+        "Inconsistent performance across channels, particularly Facebook and Google Ads",
+        "Potential risk of over-reliance on high-performing channels like SMS"
+      ],
+      "root_cause_hypothesis": "Post-Click bottleneck",
+      "business_risks": [
+        "Risk of diminishing returns if high-performing channels become saturated",
+        "Increased competition could drive up costs in effective channels"
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Optimize Facebook and Google Ads Performance",
+        "category": "Channel_Mix",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Facebook and Google Ads are underperforming in terms of return on advertising spend compared to other channels.",
+        "evidence": [
+          "Facebook ROAS: 5.0, Google Ads ROAS: 7.5, compared to SMS ROAS: 18.75"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct a creative audit to improve ad quality.",
+            "where": "Facebook and Google Ads",
+            "how": "Review current ad creatives and test new variations to increase engagement and conversion.",
+            "guardrails": [
+              "Ensure new creatives align with brand guidelines."
+            ]
+          },
+          {
+            "step": "Test new audience segments.",
+            "where": "Facebook and Google Ads",
+            "how": "Identify and target new audience segments to improve ad efficiency.",
+            "guardrails": [
+              "Avoid overlapping with existing high-performing segments."
+            ]
+          }
+        ],
+        "why_this_matters": "Improving performance in these channels can increase overall campaign efficiency and reduce dependency on high-performing channels.",
+        "expected_impact": {
+          "primary_kpi": "Return on Advertising Spend",
+          "direction": "Increase",
+          "explanation": "Better ad performance should lead to higher returns per dollar spent."
+        },
+        "dependency_or_risk": [
+          "Requires creative team involvement",
+          "Potential delay in seeing results due to testing phase"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare ROAS before and after changes in Facebook and Google Ads.",
+          "success_criteria": "Achieve at least a 10% increase in ROAS for both channels.",
+          "check_timing": "Review results monthly.",
+          "notes": "Consider potential seasonal impacts on ad performance."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Diversify Channel Strategy to Mitigate Risks",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Over-reliance on high-performing channels like SMS could lead to saturation and diminishing returns.",
+        "evidence": [
+          "SMS ROAS: 18.75, indicating high performance but potential saturation risk"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Explore additional channels for customer acquisition.",
+            "where": "Cross-channel",
+            "how": "Identify and test new channels that align with target audience behavior.",
+            "guardrails": [
+              "Ensure new channels do not cannibalize existing high-performing channels."
+            ]
+          }
+        ],
+        "why_this_matters": "Expanding to new channels can reduce risk and maintain growth momentum.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Stabilize",
+          "explanation": "New channels can provide additional customer acquisition opportunities without increasing costs."
+        },
+        "dependency_or_risk": [
+          "Requires budget allocation for testing new channels",
+          "Potential initial low performance during testing phase"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track customer acquisition cost and new customer growth from new channels.",
+          "success_criteria": "Maintain or reduce overall customer acquisition cost while increasing new customer numbers.",
+          "check_timing": "Evaluate quarterly.",
+          "notes": "Initial performance may vary; allow time for optimization."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Enhance Creative Testing Across Channels",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "4-8 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Inconsistent performance across channels suggests potential creative fatigue or misalignment.",
+        "evidence": [
+          "Varied conversion rates and ROAS across channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Implement a structured creative testing plan.",
+            "where": "Cross-channel",
+            "how": "Develop and test multiple creative variations to identify high-performing ads.",
+            "guardrails": [
+              "Maintain brand consistency across all creatives."
+            ]
+          }
+        ],
+        "why_this_matters": "Effective creatives can improve engagement and conversion, leading to better overall campaign performance.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Improve",
+          "explanation": "Better creatives should lead to higher engagement and conversion rates."
+        },
+        "dependency_or_risk": [
+          "Requires creative team resources",
+          "Testing phase may require extended time to identify winners"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor conversion rates and engagement metrics for each creative variant.",
+          "success_criteria": "Identify at least one new high-performing creative per channel.",
+          "check_timing": "Review bi-weekly.",
+          "notes": "Consider potential seasonal impacts on creative performance."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Monitor and Adjust Budget Allocation",
+        "category": "Budget",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Current budget allocation may not be optimized across channels given performance discrepancies.",
+        "evidence": [
+          "High ROAS in SMS and Email compared to Facebook and Google Ads"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reallocate budget towards higher-performing channels.",
+            "where": "Cross-channel",
+            "how": "Shift budget from underperforming channels to those with higher ROAS.",
+            "guardrails": [
+              "Ensure budget shifts do not negatively impact brand presence."
+            ]
+          }
+        ],
+        "why_this_matters": "Optimizing budget allocation can maximize returns and improve overall campaign efficiency.",
+        "expected_impact": {
+          "primary_kpi": "Return on Advertising Spend",
+          "direction": "Increase",
+          "explanation": "Better budget allocation should lead to higher returns per dollar spent."
+        },
+        "dependency_or_risk": [
+          "Requires ongoing performance monitoring",
+          "Potential risk of over-saturating high-performing channels"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in ROAS and customer acquisition cost post-budget reallocation.",
+          "success_criteria": "Achieve a 5% increase in overall ROAS.",
+          "check_timing": "Review monthly.",
+          "notes": "Consider potential seasonal impacts on channel performance."
+        },
+        "owner_suggestion": "Analytics"
+      },
+      {
+        "id": "REC-05",
+        "title": "Implement A/B Testing for Landing Pages",
+        "category": "Landing_Page",
+        "priority": "Low",
+        "effort": "Medium",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "While overall conversion rates are high, further optimization could enhance performance.",
+        "evidence": [
+          "Overall conversion rate is 12.26%, above benchmark"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct A/B tests on landing pages.",
+            "where": "Website",
+            "how": "Test different landing page designs and content to optimize conversion rates.",
+            "guardrails": [
+              "Ensure A/B tests do not disrupt user experience."
+            ]
+          }
+        ],
+        "why_this_matters": "Even small improvements in landing page performance can lead to significant increases in conversion rates.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Improve",
+          "explanation": "Optimized landing pages should convert more visitors into customers."
+        },
+        "dependency_or_risk": [
+          "Requires web development resources",
+          "Potential initial drop in conversion during testing phase"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare conversion rates before and after landing page changes.",
+          "success_criteria": "Achieve a 2% increase in conversion rate.",
+          "check_timing": "Review results bi-weekly.",
+          "notes": "Consider potential seasonal impacts on conversion rates."
+        },
+        "owner_suggestion": "Web team"
+      }
+    ]
+  }
+}

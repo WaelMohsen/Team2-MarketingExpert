@@ -1,0 +1,55 @@
+{
+  "run_id": "run_20260512_180134",
+  "timestamp_utc": "2026-05-12T18:02:02Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 3,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis references key metrics like conversion rate and customer acquisition cost, but the benchmark comparison is implicit rather than explicit."
+    },
+    {
+      "name": "key_signals",
+      "score": 3,
+      "rationale": "Key signals mention metrics like conversion rate and customer acquisition cost, but do not explicitly compare them to benchmarks."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "Issues are identified with references to metrics, but the classification as Pre-Click or Post-Click bottleneck is missing."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 3,
+      "rationale": "The hypothesis suggests a Post-Click bottleneck but lacks a clear connection to the metrics and benchmarks."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "Risks are identified and relevant to business impact, but they are not quantified."
+    },
+    {
+      "name": "confidence_score",
+      "score": 3,
+      "rationale": "The confidence score of 80% seems arbitrary without a clear explanation of what drives this level of confidence."
+    }
+  ],
+  "summary": "The analysis provides some useful insights but lacks explicit benchmark comparisons and clear connections between metrics.",
+  "improvement_suggestions": [
+    "Include explicit benchmark comparisons for all key metrics.",
+    "Clearly classify detected issues as Pre-Click or Post-Click bottlenecks.",
+    "Provide a more detailed explanation for the confidence score."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260512_180202_customer_acquisition.json"
+}
