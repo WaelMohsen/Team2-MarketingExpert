@@ -11,7 +11,7 @@
     "recommendation_temp": 0.3
   },
   "evaluation": {
-    "analysis_judge_model": "gpt-4o-mini",
+    "analysis_judge_model": "gpt-4o",
     "analysis_judge_temp": 0.1,
     "recommendation_judge_model": "gpt-4o-mini",
     "recommendation_judge_temp": 0.1
