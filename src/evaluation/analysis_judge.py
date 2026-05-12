@@ -31,6 +31,7 @@ class CriterionDefinition:
     pass_threshold: float
     borderline_threshold: float
     hard_fail_threshold: float
+    rubric: str = ""
 
 
 DEFAULT_CRITERIA: tuple[CriterionDefinition, ...] = (
