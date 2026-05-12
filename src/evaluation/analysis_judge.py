@@ -42,6 +42,13 @@ DEFAULT_CRITERIA: tuple[CriterionDefinition, ...] = (
         pass_threshold=4.0,
         borderline_threshold=3.0,
         hard_fail_threshold=2.0,
+         rubric=(
+            "5: References actual metric values, compares to benchmarks, uses logical connectors (Consequently/Therefore/This indicates), no recommendations\n"
+            "4: References metrics but benchmark comparison is implicit or partial\n"
+            "3: Mentions metrics but draws no benchmark comparison\n"
+            "2: Generic narrative with no specific numbers\n"
+            "1: Vague, fluffy, or contains recommendations (strict violation)"
+        ),
     ),
     CriterionDefinition(
         name="key_signals",
@@ -50,6 +57,13 @@ DEFAULT_CRITERIA: tuple[CriterionDefinition, ...] = (
         pass_threshold=4.0,
         borderline_threshold=3.0,
         hard_fail_threshold=2.0,
+        rubric=(
+            "5: Each signal states actual metric value AND compares to benchmark (e.g. CVR of 1.1% is below the 1.4% industry benchmark)\n"
+            "4: Signals cite metric values but skip explicit benchmark reference\n"
+            "3: Signals present but values missing or only partially cited\n"
+            "2: Generic observations not tied to actual data\n"
+            "1: No signals or signals are copy-pasted from context without interpretation"
+        ),
     ),
     CriterionDefinition(
         name="detected_issues",
@@ -58,6 +72,13 @@ DEFAULT_CRITERIA: tuple[CriterionDefinition, ...] = (
         pass_threshold=4.0,
         borderline_threshold=3.0,
         hard_fail_threshold=2.0,
+        rubric=(
+            "5: Names specific issues with metric evidence AND classifies as Pre-Click or Post-Click bottleneck\n"
+            "4: Names issues with metric evidence but bottleneck classification missing\n"
+            "3: Issues mentioned but vague or without supporting metric values\n"
+            "2: Only one issue named, or issues are generic\n"
+            "1: No issues detected or section is empty"
+        ),
     ),
     CriterionDefinition(
         name="root_cause_hypothesis",
@@ -66,6 +87,13 @@ DEFAULT_CRITERIA: tuple[CriterionDefinition, ...] = (
         pass_threshold=4.0,
         borderline_threshold=3.0,
         hard_fail_threshold=2.0,
+        rubric=(
+            "5: Explicitly states Post-Click or Pre-Click bottleneck, connects CVR→CAC or CPC→CAC chain, cites benchmark\n"
+            "4: Correct bottleneck direction but metric chain incomplete\n"
+            "3: Plausible hypothesis but not grounded in benchmark comparison\n"
+            "2: Hypothesis is speculative with no metric support\n"
+            "1: Missing, generic, or contradicts the data"
+        ),
     ),
     CriterionDefinition(
         name="business_risks",
@@ -74,6 +102,13 @@ DEFAULT_CRITERIA: tuple[CriterionDefinition, ...] = (
         pass_threshold=4.0,
         borderline_threshold=3.0,
         hard_fail_threshold=2.0,
+        rubric=(
+            "5: Risks are specific, quantified where possible, and tied to financial or growth impact\n"
+            "4: Risks are specific and business-relevant but not quantified\n"
+            "3: Risks mentioned but stated as possibilities without evidence\n"
+            "2: Generic risks that apply to any campaign (e.g. performance may decline)\n"
+            "1: No risks identified or risks are fabricated"
+        ),
     ),
     CriterionDefinition(
         name="confidence_score",
@@ -82,6 +117,13 @@ DEFAULT_CRITERIA: tuple[CriterionDefinition, ...] = (
         pass_threshold=4.0,
         borderline_threshold=3.0,
         hard_fail_threshold=2.0,
+        rubric=(
+            "5: Score is realistic (not 95%+ unless all metrics are strong) and analysis explains what drives the confidence level\n"
+            "4: Score is realistic but no explanation of what supports it\n"
+            "3: Score seems arbitrary with no connection to evidence quality\n"
+            "2: Score is unrealistically high given weak or missing evidence\n"
+            "1: Score is missing or nonsensical"
+        ),
     ),
 )
 
