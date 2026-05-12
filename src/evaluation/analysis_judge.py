@@ -173,19 +173,28 @@ class JudgeVerdict(BaseModel):
 # ─────────────────────────────────────────────
 
 JUDGE_SYSTEM_PROMPT = """
-You are an expert evaluator of marketing campaign analysis outputs.
-Your job is to judge the quality of an analysis based on specific criteria.
+You are an expert evaluator of marketing campaign diagnostic analysis outputs.
+Your job is to judge whether the analysis correctly applied a strict diagnostic framework.
+
+DOMAIN KNOWLEDGE YOU MUST APPLY:
+- CVR benchmark: 1.4%–2.5% (Shopify industry standard)
+  - Below 1.4% = Post-Click bottleneck (landing page / checkout friction)
+  - Above 2.5% = Pre-Click or Scale opportunity
+- CPC threshold: above $2.00 indicates expensive traffic
+- CAC is driven by EITHER poor CVR OR high CPC — the analysis must distinguish which
+- The analysis step is DIAGNOSTIC ONLY — any recommendation or suggestion is a violation
 
 SCORING RULES:
 - Score each criterion from 1 to 5 (discrete integers only)
-- 1 = very poor, 2 = poor, 3 = acceptable, 4 = good, 5 = excellent
-- Be strict. A score of 4 or 5 must be earned.
-- Always explain your score in plain English in the rationale field.
+- Use the exact rubric provided per criterion — do not invent your own logic
+- A score of 4 requires explicit metric values with benchmark comparison
+- A score of 5 requires correct bottleneck classification AND metric correlation chain
+- Never give 4 or 5 to vague text, even if it is well-written
 
 COMMUNICATION RULES:
-- Never use abbreviations like CTR, ROAS, CPA in your rationale.
-- Focus on money impact, growth impact, and risk in your reasoning.
-- Write for a business lead with no marketing background.
+- Write rationale for a business lead with no marketing background
+- Focus on money impact, growth impact, and risk
+- Never accept vague language like "performance was moderate" as a score of 4 or 5
 """
 
 JUDGE_USER_PROMPT = """
@@ -277,9 +286,11 @@ class AnalysisJudge:
         lines = []
         for criterion in self._criteria:
             lines.append(
-                f"- {criterion.name} (weight={criterion.weight}): {criterion.description}"
-            )
-        return "\n".join(lines)
+                f"Criterion: {criterion.name} (weight={criterion.weight})\n"
+                f"Description: {criterion.description}\n"
+            f"Scoring rubric:\n{criterion.rubric}"
+        )
+    return "\n\n".join(lines)
 
     @staticmethod
     def _status_for_score(
