@@ -181,6 +181,36 @@ Clear KPI comparison (before vs after)
 Directional success criteria (no unsupported numbers)
 Realistic evaluation timing
 
+## RECOMMENDATION PORTFOLIO RULES
+
+Recommendations must represent DIFFERENT strategic levers.
+
+Avoid generating multiple recommendations that solve the same problem in slightly different ways.
+
+The recommendation set should cover multiple dimensions when supported by analysis, such as:
+
+- audience targeting
+- budget allocation
+- creative/messaging
+- bidding strategy
+- retention lifecycle
+- landing page/user journey
+- channel mix
+- tracking/measurement
+- sales enablement
+- experimentation/testing
+
+Each recommendation must be meaningfully distinct in:
+- root cause
+- action strategy
+- business objective
+- implementation approach
+
+Before finalizing:
+- Check for overlap between recommendations
+- Merge or rewrite recommendations that are too similar
+- Ensure the full set provides broad strategic coverage
+
 ## Validation (MANDATORY BEFORE OUTPUT)
 Before returning the response, verify:
 
