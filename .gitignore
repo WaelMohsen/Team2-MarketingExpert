@@ -211,4 +211,4 @@ __marimo__/
 output_log/
 
 # generated evaluation logs
-evaluation_logs/
+#evaluation_logs/
