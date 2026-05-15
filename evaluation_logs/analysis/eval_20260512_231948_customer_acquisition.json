@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_231932",
+  "timestamp_utc": "2026-05-12T23:19:48Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides specific numbers such as a conversion rate of 12.26%, customer acquisition cost of $3.37, and return on advertising spend of 7.94. However, it lacks direct figures for cost per click and does not provide a breakdown of how these figures were derived, which affects the depth of quantitative grounding.",
+    "benchmark_anchoring": "The conversion rate of 12.26% is compared to the benchmark of 1.4% to 2.5%, indicating strong performance. However, the analysis does not anchor the customer acquisition cost or cost per click against any benchmarks, which is necessary for a complete evaluation.",
+    "coverage": "The analysis addresses conversion rate and customer acquisition cost but does not explicitly mention cost per click or any potential bottlenecks related to CPC. It also fails to evaluate ROAS against any benchmarks, which is critical for a comprehensive analysis.",
+    "no_recommendation": "The analysis includes language that suggests the campaign is performing well and implies no changes are needed, which leans towards a recommendation rather than remaining purely diagnostic."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_231948_customer_acquisition.json"
+}

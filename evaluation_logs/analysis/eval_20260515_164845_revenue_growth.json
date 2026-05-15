@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260515_164522",
+  "timestamp_utc": "2026-05-15T16:48:45Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "o4-mini",
+  "recommendation_generation_temp": 1.0,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 1.0,
+    "benchmark_anchoring": 1.0,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides specific numerical values for key metrics such as ROAS (7.94), Marketing ROI (694.48%), cost per new customer (3.37), and average order value (22.72).",
+    "benchmark_anchoring": "All primary metrics are compared against their respective benchmarks: ROAS is above 4x, Marketing ROI exceeds 100%, and cost per new customer is evaluated against annual customer value. However, the average order value is mentioned without a benchmark reference.",
+    "coverage": "The analysis addresses the primary KPIs of ROAS, Marketing ROI, and cost per new customer but fails to mention the purchase rate percent (conversion rate) as a primary KPI, which is critical for understanding revenue health.",
+    "no_recommendation": "The analysis includes recommendation language, particularly in discussing potential improvements for conversion rates and average order value, which detracts from its diagnostic nature."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260515_164845_revenue_growth.json"
+}

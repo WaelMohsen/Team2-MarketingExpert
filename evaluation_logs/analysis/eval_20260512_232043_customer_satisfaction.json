@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_231932",
+  "timestamp_utc": "2026-05-12T23:20:43Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides specific numbers such as a conversion rate of 12.26%, a click-through rate of 4.65%, and a bounce rate of 27%. However, it lacks detailed numerical grounding for customer acquisition costs and does not specify the total spend or revenue for each channel, which would strengthen the analysis.",
+    "benchmark_anchoring": "The click-through rate of 4.65% is compared to the benchmark of 3-6% for success, which is good. However, the engagement rate of 6.68% is mentioned without a benchmark comparison, and the bounce rate of 27% is noted as acceptable but lacks a benchmark reference. The analysis does not clearly state how the conversion rate compares to any benchmarks.",
+    "coverage": "The analysis addresses several KPIs such as conversion rate, click-through rate, and bounce rate, but it skips others like engagement rate, relevance score, video completion rate, time on page, pages per session, positive sentiment, and quality score. This leaves important aspects of customer satisfaction unaddressed.",
+    "no_recommendation": "The analysis includes diagnostic language but also implies areas for improvement, such as suggesting that there may be room for improvement in ad relevance and mentioning potential inefficiencies. This indicates a mix of diagnostic and recommendation language."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_232043_customer_satisfaction.json"
+}

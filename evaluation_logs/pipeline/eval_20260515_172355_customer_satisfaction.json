@@ -1,0 +1,501 @@
+{
+  "run_id": "run_20260515_172145",
+  "timestamp_utc": "2026-05-15T17:23:55Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "o4-mini",
+  "recommendation_generation_temp": 1.0,
+  "payload": {
+    "Target": "Customer Satisfaction",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "Engagement Rate": 6.68,
+        "Average Bounce Rate": 0.27,
+        "Average Frequency": 2.18
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.36,
+          "Average Frequency": 1.4
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "Engagement Rate": 5.36,
+          "Average Bounce Rate": 0.34,
+          "Average Frequency": 2.2
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.24,
+          "Average Frequency": 2.0
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "Engagement Rate": 5.6,
+          "Average Bounce Rate": 0.28,
+          "Average Frequency": 2.8
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "Engagement Rate": 0.0,
+          "Average Bounce Rate": 0.19,
+          "Average Frequency": 1.2
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "Engagement Rate": 8.96,
+          "Average Bounce Rate": 0.21,
+          "Average Frequency": 3.5
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "Engagement Rate",
+      "Average Bounce Rate",
+      "Average Frequency"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign shows a healthy conversion rate of 12.26%, indicating that a significant portion of clicks are leading to conversions. However, the click-through rate of 4.65% is above the typical success benchmark for social media, suggesting that the ads are engaging. The average bounce rate of 27% is below the 55% threshold, indicating that visitors are finding the content relevant and engaging. Despite these positive indicators, the engagement rate of 6.68% is at the higher end of the success range, which is good, but there are channels like Email and Facebook showing lower engagement rates. The Customer Acquisition Cost is relatively low at 3.37, and the Return on Advertising Spend is strong at 7.94, indicating effective spending. However, the performance varies significantly across channels, with Email and Facebook underperforming in terms of engagement and conversion rates. This indicates potential issues in content relevance or audience targeting for these channels.",
+      "key_signals": [
+        "Overall conversion rate is 12.26%",
+        "Click-through rate is 4.65%",
+        "Average bounce rate is 27%",
+        "Engagement rate is 6.68%"
+      ],
+      "detected_issues": [
+        "Email and Facebook channels show lower engagement and conversion rates",
+        "Potential mismatch between ad content and audience expectations"
+      ],
+      "root_cause_hypothesis": "The primary bottleneck appears to be related to the content relevance and audience targeting on specific channels, particularly Email and Facebook.",
+      "business_risks": [
+        "Lower customer satisfaction due to irrelevant content",
+        "Potential loss of new customers if engagement does not improve"
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Reallocate budget from low-engagement channels to high-performing channels",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Email and Facebook spend delivers lower engagement and click rates compared with SMS and TikTok",
+        "evidence": [
+          "Email click-through rate is six percent versus Facebook four percent versus SMS seven percent and TikTok four point three percent",
+          "Email engagement rate is zero and Facebook is five point three percent versus TikTok eight point nine percent"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Decrease email channel budget by thirty percent",
+            "where": "Email platform",
+            "how": "Reduce daily send volume or ad spend allocation to lower performing segments",
+            "guardrails": [
+              "Do not reduce below fifty dollars daily",
+              "Maintain email frequency above one send per week"
+            ]
+          },
+          {
+            "step": "Reduce Facebook ad spend by twenty-five percent",
+            "where": "Facebook Ads Manager",
+            "how": "Lower daily budget allocation for Spring Launch campaign",
+            "guardrails": [
+              "Keep ad frequency between two and four",
+              "Do not pause all ads"
+            ]
+          },
+          {
+            "step": "Increase SMS channel budget by twenty percent",
+            "where": "SMS marketing platform",
+            "how": "Raise daily spend allocation to SMS sends",
+            "guardrails": [
+              "Limit frequency to two sends per week",
+              "Ensure compliance with opt-in regulations"
+            ]
+          },
+          {
+            "step": "Increase TikTok ad budget by fifteen percent",
+            "where": "TikTok Ads Manager",
+            "how": "Adjust daily budget setting for Spring Launch campaign",
+            "guardrails": [
+              "Keep ad frequency below four impressions per person",
+              "Monitor cost per conversion"
+            ]
+          }
+        ],
+        "why_this_matters": "Shifting spend to channels with higher engagement and click rates will drive more interactions per dollar and improve overall customer satisfaction",
+        "expected_impact": {
+          "primary_kpi": "Click Through Rate",
+          "direction": "Increase",
+          "explanation": "Allocating more budget to channels with proven higher click rates will raise the overall click through rate"
+        },
+        "dependency_or_risk": [
+          "Changes must respect minimum spend requirements for each platform",
+          "Watch for messaging fatigue if frequency caps are ignored"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare overall click through rate before and after budget shift",
+          "success_criteria": "Overall click through rate rises above five percent",
+          "check_timing": "After two weeks of budget change",
+          "notes": "Allow time for budget reallocation to stabilize performance"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Refresh Facebook ad creative and refine targeting",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Facebook engagement and click performance lag behind other social channels, suggesting creative or audience mismatch",
+        "evidence": [
+          "Facebook engagement rate is five point three percent below TikTok eight point nine percent",
+          "Facebook click through rate is four percent below Email six percent"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop two new ad creative concepts",
+            "where": "Creative team",
+            "how": "Create one video and one carousel focusing on product benefits and customer stories",
+            "guardrails": [
+              "Keep videos under thirty seconds",
+              "Use consistent branding colors"
+            ]
+          },
+          {
+            "step": "Set up A/B test for these creatives",
+            "where": "Facebook Ads Manager",
+            "how": "Run 50/50 budget split between current and new creatives for one month",
+            "guardrails": [
+              "Maintain equal budget for test groups",
+              "Stop test if click through rate drops below three percent"
+            ]
+          },
+          {
+            "step": "Refine audience targeting to lookalike of highest-value customers",
+            "where": "Facebook Ads Manager",
+            "how": "Build a one percent lookalike list based on top retained customers",
+            "guardrails": [
+              "Exclude past purchasers from prospecting set",
+              "Keep audience size above five hundred thousand"
+            ]
+          }
+        ],
+        "why_this_matters": "Better creative and more precise targeting will increase relevance, boosting engagement and clicks on Facebook",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "New creative and lookalike targeting will resonate more, raising likes, comments, and shares"
+        },
+        "dependency_or_risk": [
+          "Creative production delays",
+          "Lookalike list quality depends on customer data accuracy"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare engagement rate on test creatives against control",
+          "success_criteria": "New creatives achieve at least six percent engagement rate",
+          "check_timing": "After four weeks of A/B test",
+          "notes": "Facebook reporting may lag by one day"
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Segment and personalize email content",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Email shows high bounce rate and low engagement, indicating content may not match subscriber interests",
+        "evidence": [
+          "Email bounce rate is thirty-six percent above campaign average of twenty-seven percent",
+          "Email click through rate is six percent but engagement metrics are absent"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Divide email list into interest segments",
+            "where": "Email marketing platform",
+            "how": "Use past purchase categories and engagement history to create three segments",
+            "guardrails": [
+              "Ensure segment size is at least five thousand addresses",
+              "Exclude unsubscribed contacts"
+            ]
+          },
+          {
+            "step": "Create personalized subject lines and content blocks",
+            "where": "Email editor",
+            "how": "Use dynamic content to reference segment interests and past behavior",
+            "guardrails": [
+              "Limit dynamic fields to three to avoid rendering errors",
+              "Test on two internal addresses before send"
+            ]
+          },
+          {
+            "step": "Launch segmented send and track performance",
+            "where": "Email platform",
+            "how": "Send to each segment on different days and monitor opens, clicks, and unsubscribes",
+            "guardrails": [
+              "Keep send frequency at one email per week",
+              "Pause any segment with unsubscribe rate above one percent"
+            ]
+          }
+        ],
+        "why_this_matters": "Tailored content will be more relevant to each group, reducing bounces and improving click rates",
+        "expected_impact": {
+          "primary_kpi": "Click Through Rate",
+          "direction": "Increase",
+          "explanation": "Personalization drives more relevant messaging, encouraging more recipients to click"
+        },
+        "dependency_or_risk": [
+          "Need accurate segmentation data",
+          "Overpersonalization could trigger rendering issues"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare click through rate of segmented sends versus previous generic send",
+          "success_criteria": "Segmented sends show at least ten percent lift in click through rate",
+          "check_timing": "One month after segmentation launch",
+          "notes": "Email seasonality may affect open rates"
+        },
+        "owner_suggestion": "Content team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Scale high-conversion SMS channel",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "SMS delivers the highest conversion rate and return on ad spend but has low volume",
+        "evidence": [
+          "SMS conversion rate is nineteen point six percent versus overall conversion twelve point three percent",
+          "SMS return on ad spend is eighteen point seven five versus overall seven point nine four"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase SMS send volume by twenty percent",
+            "where": "SMS platform",
+            "how": "Raise daily send cap for Spring Launch promotions",
+            "guardrails": [
+              "Keep frequency at no more than two sends per week",
+              "Monitor opt-out rate daily"
+            ]
+          },
+          {
+            "step": "Test a new promotional message for SMS",
+            "where": "SMS platform",
+            "how": "Create two variants of the offer text and split audience evenly",
+            "guardrails": [
+              "Limit message length to one hundred sixty characters",
+              "Stop test if opt-out rate exceeds one point five percent"
+            ]
+          }
+        ],
+        "why_this_matters": "Scaling SMS will drive more conversions at a low cost, improving overall satisfaction by delivering timely, relevant offers",
+        "expected_impact": {
+          "primary_kpi": "Click Through Rate",
+          "direction": "Increase",
+          "explanation": "More targeted SMS sends will generate more clicks and conversions per message"
+        },
+        "dependency_or_risk": [
+          "Deliverability issues if opt-out rates rise",
+          "Regulatory limits on send frequency"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare SMS click rate and conversion volume before and after volume increase",
+          "success_criteria": "SMS conversion volume grows by twenty percent without opt-out spike",
+          "check_timing": "Two weeks after adjustments",
+          "notes": "Small sample size may cause daily variance"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-05",
+        "title": "Cap TikTok frequency to prevent ad fatigue",
+        "category": "Bidding",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "TikTok ad frequency is high at three point five, risking fatigue and declining engagement",
+        "evidence": [
+          "TikTok average frequency is three point five impressions per person",
+          "Engagement rate is strong but could drop if viewers see ads too often"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Set a frequency cap at three impressions per user per week",
+            "where": "TikTok Ads Manager",
+            "how": "Adjust frequency control settings on the Spring Launch campaign",
+            "guardrails": [
+              "Do not lower below two to maintain reach",
+              "Monitor performance daily for pacing issues"
+            ]
+          }
+        ],
+        "why_this_matters": "Limiting how often users see the ad will maintain freshness and sustain engagement and click levels",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Stabilize",
+          "explanation": "Reduced repetition will prevent viewer fatigue and keep engagement rates from falling"
+        },
+        "dependency_or_risk": [
+          "May reduce total impressions",
+          "Could increase cost per impression"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare TikTok engagement rate before and after cap",
+          "success_criteria": "Engagement rate holds above eight percent",
+          "check_timing": "One week after setting cap",
+          "notes": "Allow three days for cap settings to take effect"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-06",
+        "title": "Launch Google remarketing to past site visitors",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Search ads rely on new prospects only, missing opportunity to re-engage visitors who already showed interest",
+        "evidence": [
+          "Google Ads bounce rate is twenty-four percent but conversion rate is eleven point two percent",
+          "Remarketing typically yields higher engagement and click through rates"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Create a site visitor audience list from web analytics",
+            "where": "Google Ads Audience Manager",
+            "how": "Include visitors from last thirty days who viewed product pages",
+            "guardrails": [
+              "Exclude converters from list",
+              "Require at least one thousand users for list"
+            ]
+          },
+          {
+            "step": "Set up a dedicated remarketing campaign",
+            "where": "Google Ads",
+            "how": "Use tailored ad copy reminding viewers of their recent visit",
+            "guardrails": [
+              "Cap frequency at three per user per week",
+              "Allocate five percent of Google Ads budget to remarketing"
+            ]
+          }
+        ],
+        "why_this_matters": "Remarketing targets users already familiar with the brand, boosting relevance and click rates",
+        "expected_impact": {
+          "primary_kpi": "Click Through Rate",
+          "direction": "Increase",
+          "explanation": "Ads to past visitors are more relevant, driving higher click through rates"
+        },
+        "dependency_or_risk": [
+          "Audience list must reach minimum size",
+          "Privacy settings may limit audience building"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare click through rate of remarketing campaign to standard search campaign",
+          "success_criteria": "Remarketing click rate exceeds five percent",
+          "check_timing": "Two weeks after campaign launch",
+          "notes": "Allow time for audience list accumulation"
+        },
+        "owner_suggestion": "Analytics team"
+      }
+    ]
+  }
+}

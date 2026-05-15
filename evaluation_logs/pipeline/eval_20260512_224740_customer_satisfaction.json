@@ -1,0 +1,399 @@
+{
+  "run_id": "run_20260512_224646",
+  "timestamp_utc": "2026-05-12T22:47:40Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Satisfaction",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "Engagement Rate": 6.68,
+        "Average Bounce Rate": 0.27,
+        "Average Frequency": 2.18
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.36,
+          "Average Frequency": 1.4
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "Engagement Rate": 5.36,
+          "Average Bounce Rate": 0.34,
+          "Average Frequency": 2.2
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.24,
+          "Average Frequency": 2.0
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "Engagement Rate": 5.6,
+          "Average Bounce Rate": 0.28,
+          "Average Frequency": 2.8
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "Engagement Rate": 0.0,
+          "Average Bounce Rate": 0.19,
+          "Average Frequency": 1.2
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "Engagement Rate": 8.96,
+          "Average Bounce Rate": 0.21,
+          "Average Frequency": 3.5
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "Engagement Rate",
+      "Average Bounce Rate",
+      "Average Frequency"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign shows a strong conversion rate of 12.26%, indicating that the landing pages are effective at converting visitors into customers. However, the click-through rate of 4.65% is above the typical range for social media but within the acceptable range for search, suggesting that the ads are engaging enough to drive traffic. The average bounce rate of 27% is healthy, indicating that visitors are finding the content relevant. However, the engagement rate of 6.68% is on the higher end of the success range, which is positive. The Customer Acquisition Cost is relatively low at 3.37, while the Return on Advertising Spend is high at 7.94, indicating effective spending. Despite these positive metrics, the performance varies significantly across channels, with Email and SMS showing the highest conversion rates and return on investment, while Facebook and Instagram have lower conversion rates and higher costs per acquisition. This suggests potential issues with ad quality or targeting on those platforms.",
+      "key_signals": [
+        "Overall conversion rate is 12.26%",
+        "Click-through rate is 4.65%",
+        "Average bounce rate is 27%",
+        "Customer Acquisition Cost is 3.37",
+        "Return on Advertising Spend is 7.94"
+      ],
+      "detected_issues": [
+        "Facebook and Instagram have lower conversion rates compared to other channels",
+        "Higher Customer Acquisition Cost on Facebook and Instagram"
+      ],
+      "root_cause_hypothesis": "The primary bottleneck appears to be related to ad quality or targeting on Facebook and Instagram, leading to lower conversion rates despite decent engagement metrics.",
+      "business_risks": [
+        "Potential waste of advertising budget on underperforming channels",
+        "Risk of customer dissatisfaction if ads do not align with audience expectations"
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Enhance Ad Targeting on Facebook and Instagram",
+        "category": "Targeting",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Facebook and Instagram are showing lower conversion rates and higher customer acquisition costs compared to other channels.",
+        "evidence": [
+          "Facebook Conversion Rate: 11.54%",
+          "Instagram Conversion Rate: 11.82%",
+          "Higher Customer Acquisition Cost on Facebook and Instagram"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Refine audience targeting parameters",
+            "where": "Facebook and Instagram",
+            "how": "Use detailed demographic and interest-based targeting to better align ads with the audience",
+            "guardrails": [
+              "Avoid overly narrow targeting to ensure reach"
+            ]
+          },
+          {
+            "step": "Test different audience segments",
+            "where": "Facebook and Instagram",
+            "how": "Create multiple ad sets targeting different segments to identify the most responsive audience",
+            "guardrails": [
+              "Monitor performance to avoid budget waste"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving targeting will increase conversion rates and reduce customer acquisition costs, maximizing return on investment.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "Better targeting will lead to more relevant ads, increasing the likelihood of conversions."
+        },
+        "dependency_or_risk": [
+          "Requires access to detailed audience data",
+          "Potential increased cost if targeting is too narrow"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare conversion rates and customer acquisition costs before and after targeting changes",
+          "success_criteria": "Increase in conversion rate by at least 2%",
+          "check_timing": "Review after 4 weeks",
+          "notes": "Consider seasonality and external factors affecting audience behavior"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Improve Ad Creative Quality on Facebook and Instagram",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Despite decent engagement metrics, conversion rates are lower on Facebook and Instagram, indicating potential issues with ad creative quality.",
+        "evidence": [
+          "Facebook Engagement Rate: 5.36%",
+          "Instagram Engagement Rate: 5.6%",
+          "Lower conversion rates compared to other channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct creative audits",
+            "where": "Facebook and Instagram",
+            "how": "Review current ad creatives for alignment with brand messaging and audience preferences",
+            "guardrails": [
+              "Ensure consistency with overall brand strategy"
+            ]
+          },
+          {
+            "step": "Develop new ad creatives",
+            "where": "Facebook and Instagram",
+            "how": "Create visually appealing and engaging ads that highlight key product benefits",
+            "guardrails": [
+              "Test new creatives on a small scale before full rollout"
+            ]
+          }
+        ],
+        "why_this_matters": "High-quality ad creatives capture attention and drive conversions, improving overall campaign performance.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "Enhanced creatives will engage users better, leading to more interactions and conversions."
+        },
+        "dependency_or_risk": [
+          "Requires creative resources and time",
+          "Potential delay in seeing results due to creative production timelines"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in engagement and conversion rates after implementing new creatives",
+          "success_criteria": "Increase in engagement rate by at least 1%",
+          "check_timing": "Review after 4 weeks",
+          "notes": "Consider testing different creative formats to find the most effective"
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Leverage High-Performing Channels for Budget Allocation",
+        "category": "Budget",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Email and SMS channels are delivering higher conversion rates and return on investment compared to other channels.",
+        "evidence": [
+          "Email Conversion Rate: 13.33%",
+          "SMS Conversion Rate: 19.64%",
+          "Higher Return on Advertising Spend for Email and SMS"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reallocate budget to Email and SMS",
+            "where": "Cross-channel",
+            "how": "Shift a portion of the budget from underperforming channels to Email and SMS to capitalize on their efficiency",
+            "guardrails": [
+              "Ensure not to over-saturate these channels"
+            ]
+          }
+        ],
+        "why_this_matters": "Optimizing budget allocation towards high-performing channels will maximize returns and improve overall campaign efficiency.",
+        "expected_impact": {
+          "primary_kpi": "Return on Advertising Spend",
+          "direction": "Increase",
+          "explanation": "Investing more in effective channels will yield higher returns."
+        },
+        "dependency_or_risk": [
+          "Risk of diminishing returns if channels become saturated"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in return on advertising spend and conversion rates post-budget reallocation",
+          "success_criteria": "Increase in return on advertising spend by at least 1 point",
+          "check_timing": "Review after 2 weeks",
+          "notes": "Consider potential audience fatigue if frequency increases significantly"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Optimize Landing Page Experience",
+        "category": "Landing_Page",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "High click-through rates but varying conversion rates suggest potential landing page issues.",
+        "evidence": [
+          "Overall Click-Through Rate: 4.65%",
+          "Conversion Rate: 12.26%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct landing page audits",
+            "where": "Cross-channel",
+            "how": "Review landing pages for consistency with ad messaging and ease of navigation",
+            "guardrails": [
+              "Ensure landing pages load quickly and are mobile-friendly"
+            ]
+          },
+          {
+            "step": "Implement A/B testing",
+            "where": "Cross-channel",
+            "how": "Test different landing page elements such as headlines, images, and calls to action to identify the most effective combinations",
+            "guardrails": [
+              "Avoid making multiple changes at once to isolate effects"
+            ]
+          }
+        ],
+        "why_this_matters": "A seamless landing page experience ensures visitors convert at higher rates, improving overall campaign effectiveness.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "Improved landing page experience will lead to higher conversion rates."
+        },
+        "dependency_or_risk": [
+          "Requires web development resources",
+          "Potential delay in seeing results due to testing timelines"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare conversion rates before and after landing page optimizations",
+          "success_criteria": "Increase in conversion rate by at least 1%",
+          "check_timing": "Review after 4 weeks",
+          "notes": "Consider external factors affecting user behavior during testing"
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Monitor and Adjust Ad Frequency",
+        "category": "Bidding",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "Medium",
+        "whats_happening": "Some channels show higher ad frequency, which may lead to ad fatigue and reduced effectiveness.",
+        "evidence": [
+          "TikTok Frequency: 3.5",
+          "Instagram Frequency: 2.8"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Set frequency caps",
+            "where": "TikTok and Instagram",
+            "how": "Limit the number of times an ad is shown to the same user to prevent fatigue",
+            "guardrails": [
+              "Ensure frequency caps do not significantly reduce reach"
+            ]
+          }
+        ],
+        "why_this_matters": "Managing ad frequency helps maintain audience interest and prevents ad fatigue, which can negatively impact engagement and conversions.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Stabilize",
+          "explanation": "Controlling frequency will prevent audience fatigue, maintaining engagement levels."
+        },
+        "dependency_or_risk": [
+          "Risk of reduced reach if frequency is too low"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in engagement and conversion rates after adjusting frequency",
+          "success_criteria": "Maintain or slightly increase engagement rate",
+          "check_timing": "Review after 1 week",
+          "notes": "Consider platform-specific frequency norms"
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

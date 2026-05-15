@@ -1,0 +1,346 @@
+{
+  "run_id": "run_20260512_234445",
+  "timestamp_utc": "2026-05-12T23:44:59Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign data shows a Conversion Rate of 12.26%, which is significantly above the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages and conversion processes are functioning effectively. However, the Customer Acquisition Cost is $3.37, which is relatively high considering the overall campaign performance. The Cost Per Click across channels varies, with some channels like Facebook and Google Ads showing higher costs relative to their conversion rates. This suggests that while conversions are occurring, the cost to acquire customers through certain channels is inflated due to high traffic costs. Therefore, the primary bottleneck appears to be related to the traffic costs rather than the conversion efficiency of the landing pages.",
+      "key_signals": [
+        "Overall Conversion Rate is 12.26%, well above the benchmark",
+        "Customer Acquisition Cost is $3.37, indicating potential inefficiencies in traffic costs"
+      ],
+      "detected_issues": [
+        "High Customer Acquisition Cost despite good Conversion Rate",
+        "Variability in Cost Per Click across channels"
+      ],
+      "root_cause_hypothesis": "The primary root cause is likely high traffic costs impacting Customer Acquisition Cost, particularly in channels like Facebook and Google Ads.",
+      "business_risks": [
+        "Sustained high Customer Acquisition Cost may limit profitability",
+        "Inefficient ad spending could lead to budget constraints"
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Reduce Traffic Costs on Facebook and Google Ads",
+        "category": "Bidding",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "The cost to acquire customers is high due to expensive traffic on Facebook and Google Ads.",
+        "evidence": [
+          "Facebook CPA is $4.4, Google Ads CPA is $3.9, both higher than other channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Lower bid amounts for Facebook and Google Ads",
+            "where": "Facebook and Google Ads",
+            "how": "Adjust bid settings to target a lower cost per click, aiming for a 10-15% reduction in current bid levels.",
+            "guardrails": [
+              "Monitor conversion rates to ensure they do not drop significantly"
+            ]
+          },
+          {
+            "step": "Test new ad creatives to improve engagement",
+            "where": "Facebook and Google Ads",
+            "how": "Develop and test at least three new ad creatives to increase click-through rates, which can help lower cost per click.",
+            "guardrails": [
+              "Ensure new creatives align with brand guidelines"
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing traffic costs will directly decrease the cost to acquire customers, improving overall profitability.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Lowering traffic costs will reduce the cost per acquisition, making customer acquisition more cost-effective."
+        },
+        "dependency_or_risk": [
+          "Requires creative team to develop new ads",
+          "Potential short-term drop in traffic"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per acquisition before and after bid adjustments and creative tests.",
+          "success_criteria": "Achieve at least a 10% reduction in cost per acquisition within 2 weeks.",
+          "check_timing": "Review results bi-weekly.",
+          "notes": "Consider seasonality and external factors affecting ad performance."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Increase Investment in SMS Channel",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "SMS channel shows the lowest cost per acquisition and highest return on ad spend.",
+        "evidence": [
+          "SMS CPA is $0.83, ROAS is 18.75, both significantly better than other channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Allocate additional budget to SMS campaigns",
+            "where": "SMS",
+            "how": "Increase SMS budget by 20% to capitalize on its high efficiency and low cost per acquisition.",
+            "guardrails": [
+              "Ensure message frequency does not lead to customer fatigue"
+            ]
+          }
+        ],
+        "why_this_matters": "Leveraging the most cost-effective channel can improve overall campaign efficiency and profitability.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Increasing investment in a low-cost channel will reduce the average cost to acquire customers."
+        },
+        "dependency_or_risk": [
+          "Budget reallocation from less efficient channels"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in cost per acquisition and return on ad spend for SMS.",
+          "success_criteria": "Maintain or improve current SMS performance metrics with increased budget.",
+          "check_timing": "Review results weekly.",
+          "notes": "Ensure compliance with SMS marketing regulations."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Optimize Landing Pages for Email Campaigns",
+        "category": "Landing_Page",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Email campaigns have a high conversion rate but could benefit from improved landing page experiences.",
+        "evidence": [
+          "Email Conversion Rate is 13.33%, indicating strong potential for further optimization"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct A/B testing on landing pages",
+            "where": "Email",
+            "how": "Test different landing page designs and content to identify elements that increase conversion rates.",
+            "guardrails": [
+              "Ensure consistent messaging with email content"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving landing page effectiveness can further increase conversion rates, maximizing the return on email marketing efforts.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "Enhanced landing pages will likely convert more visitors into customers."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with web development team"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare conversion rates before and after landing page changes.",
+          "success_criteria": "Achieve a 5% increase in conversion rate within 4 weeks.",
+          "check_timing": "Review results bi-weekly.",
+          "notes": "Consider potential delays in web development."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Test New Audience Segments on TikTok",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok shows potential with a good conversion rate but could benefit from audience expansion.",
+        "evidence": [
+          "TikTok Conversion Rate is 11.54%, indicating room for growth by reaching new audiences"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Identify and target new audience segments",
+            "where": "TikTok",
+            "how": "Use TikTok's audience insights to identify and test at least two new demographic or interest-based segments.",
+            "guardrails": [
+              "Ensure new segments align with brand values"
+            ]
+          }
+        ],
+        "why_this_matters": "Expanding the audience base can increase the number of conversions and overall campaign reach.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "Reaching new audiences can lead to more conversions and a broader customer base."
+        },
+        "dependency_or_risk": [
+          "Requires detailed audience research and analysis"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track conversion rates and customer acquisition from new segments.",
+          "success_criteria": "Increase in conversions from new audience segments within 4 weeks.",
+          "check_timing": "Review results monthly.",
+          "notes": "Consider potential changes in audience behavior over time."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-05",
+        "title": "Enhance Creative Content for Instagram",
+        "category": "Creative",
+        "priority": "Low",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Instagram has a moderate cost per acquisition and could benefit from more engaging creative content.",
+        "evidence": [
+          "Instagram CPA is $4.09, indicating potential for improvement through better engagement"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop and test new creative content",
+            "where": "Instagram",
+            "how": "Create and test at least three new visual and video ad formats to enhance engagement and reduce cost per acquisition.",
+            "guardrails": [
+              "Maintain brand consistency across all creatives"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving creative content can increase engagement, leading to lower costs and higher conversion rates.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "More engaging content can lead to higher click-through rates and lower acquisition costs."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with creative team"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in engagement metrics and cost per acquisition after implementing new creatives.",
+          "success_criteria": "Achieve a 10% reduction in cost per acquisition within 4 weeks.",
+          "check_timing": "Review results bi-weekly.",
+          "notes": "Consider potential seasonal impacts on engagement."
+        },
+        "owner_suggestion": "Creative team"
+      }
+    ]
+  }
+}

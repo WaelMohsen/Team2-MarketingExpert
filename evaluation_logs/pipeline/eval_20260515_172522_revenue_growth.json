@@ -1,0 +1,483 @@
+{
+  "run_id": "run_20260515_172145",
+  "timestamp_utc": "2026-05-15T17:25:22Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "o4-mini",
+  "recommendation_generation_temp": 1.0,
+  "payload": {
+    "Target": "Revenue Growth",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "AOV": 22.72,
+        "Annual Customer Value": 95.42,
+        "Marketing ROI": 694.48,
+        "Revenue Per Click": 2.78,
+        "LTV:CAC Ratio": 28.31
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "AOV": 18.75,
+          "Annual Customer Value": 95.62,
+          "Marketing ROI": 1400.0,
+          "Revenue Per Click": 2.5,
+          "LTV:CAC Ratio": 65.05
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "AOV": 18.33,
+          "Annual Customer Value": 64.17,
+          "Marketing ROI": 400.0,
+          "Revenue Per Click": 2.12,
+          "LTV:CAC Ratio": 14.58
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "AOV": 25.26,
+          "Annual Customer Value": 96.0,
+          "Marketing ROI": 650.0,
+          "Revenue Per Click": 2.82,
+          "LTV:CAC Ratio": 24.62
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "AOV": 24.62,
+          "Annual Customer Value": 103.38,
+          "Marketing ROI": 611.11,
+          "Revenue Per Click": 2.91,
+          "LTV:CAC Ratio": 25.28
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "AOV": 13.64,
+          "Annual Customer Value": 53.18,
+          "Marketing ROI": 1775.0,
+          "Revenue Per Click": 2.68,
+          "LTV:CAC Ratio": 64.07
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "AOV": 26.67,
+          "Annual Customer Value": 128.0,
+          "Marketing ROI": 700.0,
+          "Revenue Per Click": 3.08,
+          "LTV:CAC Ratio": 32.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "AOV",
+      "Annual Customer Value",
+      "Marketing ROI",
+      "Revenue Per Click",
+      "LTV:CAC Ratio"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign performance shows strong primary metrics, with a return on advertising spend of 7.94, significantly exceeding the benchmark of 4.0, indicating effective revenue generation. The marketing return on investment is also healthy at 694.48%, suggesting that the campaign is generating substantial profit relative to the amount spent. However, the cost per new customer is 3.37, which is acceptable given the annual customer value of 95.42. Despite these positive indicators, the conversion rates across channels vary, with the lowest being 11.18% for Google Ads and the highest at 19.64% for SMS. This suggests that while the overall campaign is successful, there are discrepancies in how effectively different channels convert traffic into customers. The average order value is 22.72, which is reasonable but could be improved. The low conversion rates in some channels indicate potential inefficiencies in converting clicks into sales, particularly for Google Ads and Facebook, which are below the overall conversion rate of 12.26%. Therefore, while the campaign is performing well overall, certain channels are underperforming in terms of conversion efficiency.",
+      "key_signals": [
+        "Return on advertising spend is 7.94, exceeding the benchmark of 4.0.",
+        "Marketing return on investment is 694.48%, indicating strong profitability."
+      ],
+      "detected_issues": [
+        "Conversion rates vary significantly across channels, with some underperforming.",
+        "Average order value is reasonable but could be improved."
+      ],
+      "root_cause_hypothesis": "The primary bottleneck appears to be at the bottom-of-funnel, specifically related to conversion efficiency on certain channels.",
+      "business_risks": [
+        "Potential loss of revenue due to underperforming channels.",
+        "Inconsistent customer acquisition costs across different marketing channels."
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Shift Budget to High-Return Channels",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Facebook and Google Ads deliver lower return on advertising spend and higher cost per new customer than other channels.",
+        "evidence": [
+          "Facebook return on advertising spend is 5.0 with cost per new customer of 4.40",
+          "Google Ads return on advertising spend is 7.5 with cost per new customer of 3.90",
+          "SMS return on advertising spend is 18.75 with cost per new customer of 0.83",
+          "Email return on advertising spend is 15.0 with cost per new customer of 1.47"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Decrease budget on Facebook and Google Ads by 20 percent",
+            "where": "Facebook and Google Ads accounts",
+            "how": "Adjust daily budgets down 20 percent in campaign settings",
+            "guardrails": [
+              "Do not lower below 60 percent of current budget",
+              "Maintain current audience and bid settings"
+            ]
+          },
+          {
+            "step": "Increase budget by equivalent amount on SMS and Email",
+            "where": "SMS messaging platform and Email campaign tool",
+            "how": "Add removed funds to daily spend caps for SMS and Email by 20 percent",
+            "guardrails": [
+              "Do not exceed platform send limits",
+              "Keep message frequency unchanged"
+            ]
+          }
+        ],
+        "why_this_matters": "Moving spend to top-performing channels will lift overall return on advertising spend and revenue generation.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Higher spend on channels with greater return raises weighted average return on ad dollars"
+        },
+        "dependency_or_risk": [
+          "High-performing channels may saturate audience quickly",
+          "Budget caps must be flexible"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare overall return on advertising spend before and after reallocation",
+          "success_criteria": "Overall return on advertising spend increases",
+          "check_timing": "1-2 weeks after shift",
+          "notes": "Watch for seasonal demand changes"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Switch Google Ads to Target Cost-Per-Acquisition Bidding",
+        "category": "Bidding",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Google Ads conversion rate is below average, driving higher acquisition cost.",
+        "evidence": [
+          "Google Ads conversion rate is 11.18 percent versus campaign average of 12.26 percent",
+          "Google Ads cost per new customer is 3.90 versus campaign average of 3.37"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Change bidding strategy to target cost per acquisition",
+            "where": "Google Ads campaign settings",
+            "how": "Select automated bidding, set target acquisition cost at 3.37 dollars",
+            "guardrails": [
+              "Cap maximum bid at 20 percent above target",
+              "Keep daily budget constant"
+            ]
+          }
+        ],
+        "why_this_matters": "Automated bidding will focus spend on lower-cost conversions and improve cost efficiency.",
+        "expected_impact": {
+          "primary_kpi": "cost_per_new_customer",
+          "direction": "Decrease",
+          "explanation": "Algorithm will optimize bids to achieve conversions at or below target cost"
+        },
+        "dependency_or_risk": [
+          "Requires at least 15 conversions in last 30 days for algorithm",
+          "Initial performance may fluctuate"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per new customer in Google Ads before and after change",
+          "success_criteria": "At least 5 percent reduction in cost per new customer",
+          "check_timing": "1-2 weeks after switch",
+          "notes": "Conversion tracking delays may affect early data"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Launch Retargeting for Unconverted Clicks",
+        "category": "Targeting",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "Medium",
+        "whats_happening": "Many visitors clicked ads on Google and Facebook but did not convert, missing renewal revenue.",
+        "evidence": [
+          "Total clicks 4650 versus conversions 570 implies 4080 unconverted clicks",
+          "Google Ads and Facebook account for 1970 of these unconverted clicks"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Create retargeting audiences for users who clicked but did not convert",
+            "where": "Google Ads and Facebook audience manager",
+            "how": "Define audience segments of clickers excluding converters",
+            "guardrails": [
+              "Exclude anyone who converted in last 30 days",
+              "Minimum audience size of 1000 users"
+            ]
+          },
+          {
+            "step": "Serve dedicated retargeting ads on Instagram and TikTok",
+            "where": "Instagram and TikTok ad platforms",
+            "how": "Use same creative with message 'Still interested? Enjoy free shipping'",
+            "guardrails": [
+              "Cap frequency at 3 impressions per week",
+              "Do not include broad prospecting creative"
+            ]
+          }
+        ],
+        "why_this_matters": "Retargeting reclaiming engaged users increases conversion and reduces acquisition cost.",
+        "expected_impact": {
+          "primary_kpi": "cost_per_new_customer",
+          "direction": "Decrease",
+          "explanation": "Additional conversions from existing clickers lowers average cost per new customer"
+        },
+        "dependency_or_risk": [
+          "Requires pixel and audience integration across platforms",
+          "Risk of ad fatigue if frequency too high"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per new customer of retargeted ads versus prospecting",
+          "success_criteria": "Retargeted campaigns achieve cost per new customer below 3.37 dollars",
+          "check_timing": "1-2 weeks after launch",
+          "notes": "Cross-channel attribution may undercount conversions"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Refresh Creative with Customer Testimonials",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Ad creative on Facebook and Google may not resonate, limiting conversion.",
+        "evidence": [
+          "Facebook conversion rate is 11.54 percent versus campaign average of 12.26 percent",
+          "Google Ads conversion rate is 11.18 percent versus campaign average of 12.26 percent",
+          "Facebook comments and shares are relatively low at 75 and 95"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Update ad creative to include a 15-second customer testimonial video",
+            "where": "Facebook and Google Ads creative assets",
+            "how": "Produce short video highlighting product benefit and real customer feedback",
+            "guardrails": [
+              "Video must be under 20 seconds",
+              "Include consistent call to action 'Shop now'"
+            ]
+          },
+          {
+            "step": "Run A/B test of new creative against current images",
+            "where": "Facebook and Google Ads campaign settings",
+            "how": "Set up split test with 50/50 traffic allocation",
+            "guardrails": [
+              "Limit to two creative variants",
+              "Run test on equal budgets"
+            ]
+          }
+        ],
+        "why_this_matters": "More compelling creative will raise conversion rates and improve revenue per ad dollar.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Higher conversion rate from engaging creative increases revenue generated per ad dollar"
+        },
+        "dependency_or_risk": [
+          "Requires video production resources",
+          "Creative performance may vary by audience"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare conversion rate and return on advertising spend between new and old creative",
+          "success_criteria": "At least 10 percent lift in conversion rate",
+          "check_timing": "1-2 weeks after test start",
+          "notes": "Small sample size may delay clear results"
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Improve Landing Pages for Facebook and Google Ads",
+        "category": "Landing_Page",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "High bounce rates on Facebook and Google Ads landing pages reduce conversion efficiency.",
+        "evidence": [
+          "Facebook bounce rate is 34 percent with conversion rate of 11.54 percent",
+          "Google Ads bounce rate is 24 percent with conversion rate of 11.18 percent",
+          "Overall campaign bounce average is 28 percent"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Design two simplified landing page variants for each channel",
+            "where": "Website landing page builder",
+            "how": "Match headlines and images to ad messaging, remove navigation links",
+            "guardrails": [
+              "Preserve main offer and price",
+              "Limit variant count to two per channel"
+            ]
+          },
+          {
+            "step": "Run A/B test comparing new pages to current ones",
+            "where": "A/B testing tool",
+            "how": "Split traffic evenly for 2 weeks",
+            "guardrails": [
+              "Do not redirect more than 50 percent of traffic",
+              "Monitor page load speed below 3 seconds"
+            ]
+          }
+        ],
+        "why_this_matters": "Lowering bounce rate increases the share of clicks that convert, reducing cost per new customer.",
+        "expected_impact": {
+          "primary_kpi": "cost_per_new_customer",
+          "direction": "Decrease",
+          "explanation": "Improved landing pages convert more clicks, lowering acquisition cost"
+        },
+        "dependency_or_risk": [
+          "Requires coordination with web development",
+          "Slow pages may cancel gains"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per new customer and bounce rate on test pages versus control",
+          "success_criteria": "At least 10 percent reduction in cost per new customer",
+          "check_timing": "2-4 weeks after test launch",
+          "notes": "Seasonal traffic shifts may affect results"
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-06",
+        "title": "Add Product Bundle Upsell at Checkout",
+        "category": "Sales_Enablement",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Average order value is moderate, limiting total revenue potential per customer.",
+        "evidence": [
+          "Overall average order value is 22.72 dollars",
+          "Campaign return on advertising spend is strong at 7.94 indicating room to increase revenue"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Implement bundle offer in checkout page",
+            "where": "E-commerce platform checkout settings",
+            "how": "Offer a two-pack for 30 percent off when buying two products",
+            "guardrails": [
+              "Ensure discount does not exceed 20 percent of margin",
+              "Limit bundle offer to one per customer"
+            ]
+          },
+          {
+            "step": "Announce bundle in order confirmation email",
+            "where": "Email automation tool",
+            "how": "Include banner and link to bundle page",
+            "guardrails": [
+              "Keep message concise",
+              "Maintain unsubscribe compliance"
+            ]
+          }
+        ],
+        "why_this_matters": "Higher order values increase revenue per customer, boosting return on ad spend.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Larger orders raise overall revenue generated for the same ad spend"
+        },
+        "dependency_or_risk": [
+          "Requires checkout customization",
+          "Bundle discount may impact profit if uptake is high"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare average order value and return on advertising spend before and after bundle launch",
+          "success_criteria": "At least 10 percent increase in average order value",
+          "check_timing": "2-4 weeks after implementation",
+          "notes": "Promotional campaigns may skew baseline metrics"
+        },
+        "owner_suggestion": "Sales team"
+      }
+    ]
+  }
+}

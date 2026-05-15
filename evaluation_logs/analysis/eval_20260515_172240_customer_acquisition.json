@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260515_172145",
+  "timestamp_utc": "2026-05-15T17:22:40Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "o4-mini",
+  "recommendation_generation_temp": 1.0,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides specific numbers such as a conversion rate of 12.26% and a customer acquisition cost of $3.37. However, it lacks details on the cost per click, which is crucial for understanding the traffic costs.",
+    "benchmark_anchoring": "The conversion rate is compared to the benchmark of 1.4% to 2.5%, but the analysis does not mention any benchmarks for customer acquisition cost or return on advertising spend, which limits the context for these figures.",
+    "coverage": "The analysis addresses conversion rate and customer acquisition cost but does not mention cost per click or return on advertising spend in relation to benchmarks, leaving gaps in the evaluation of all relevant KPIs.",
+    "no_recommendation": "The analysis includes language that suggests potential actions, such as 'optimize traffic costs,' which indicates it is not purely diagnostic."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260515_172240_customer_acquisition.json"
+}

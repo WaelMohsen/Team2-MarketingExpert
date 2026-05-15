@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260506_175802",
+  "timestamp_utc": "2026-05-06T18:00:48Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 4,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and uses straightforward language, making it accessible to a business audience. However, it could benefit from more detailed explanations of the implications of the churn rate."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "The key signals are specific and directly tied to the campaign data, providing valuable insights. However, they could be more explicitly linked to the overall performance metrics."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight significant problems that could impact the business. They are not vague, but further elaboration on the implications of these issues would enhance clarity."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The root cause hypothesis logically connects to the detected issues and key signals, providing a reasonable explanation for the churn. However, it could be strengthened with more evidence or examples."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks are articulated well, focusing on potential revenue loss and customer base decline. They are relevant to a non-marketing audience, but could include more specific financial figures to emphasize the impact."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score appears realistic and aligns with the analysis provided. However, a brief explanation of how this score was derived would add credibility."
+    }
+  ],
+  "summary": "The analysis provides a solid overview of the campaign's performance with actionable insights, but could benefit from deeper elaboration in certain areas.",
+  "improvement_suggestions": [
+    "Provide more detailed implications of the churn rate and its impact on revenue.",
+    "Include specific financial figures to emphasize the business risks associated with customer churn."
+  ],
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_180048_customer_retention.json"
+}

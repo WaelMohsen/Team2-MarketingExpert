@@ -1,0 +1,167 @@
+{
+  "run_id": "run_20260506_175802",
+  "timestamp_utc": "2026-05-06T18:00:48Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.796,
+  "business": {
+    "score": 0.805,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.8,
+        "actionability": 0.8,
+        "data_grounding": 0.9,
+        "kpi_alignment": 0.8,
+        "priority_accuracy": 0.7,
+        "decision_quality": 0.8,
+        "feasibility": 0.8,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Recommendations generally explain the cause or opportunity well, but some lack depth in explaining the underlying issues.",
+        "actionability": "Steps are mostly clear and specific, though some could benefit from more detailed execution plans.",
+        "data_grounding": "Recommendations are well-supported by the provided data, with clear references to metrics.",
+        "kpi_alignment": "Most recommendations align with campaign KPIs, but some could better emphasize their impact on specific KPIs.",
+        "priority_accuracy": "High-impact recommendations are prioritized, but the order could be refined based on potential impact.",
+        "decision_quality": "Decisions are generally strong, though some could be more robust with additional context.",
+        "feasibility": "Recommendations are realistically implementable, though some may require significant resources.",
+        "readability": "Recommendations are clear and simple, suitable for non-marketers."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation could better explain the specific benefits of SMS over other channels."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation lacks a detailed explanation of why Google Ads is underperforming."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation could better justify the increased investment in TikTok given its current performance."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.637,
+    "avg_similarity": 0.64,
+    "coverage": 0.756,
+    "llm_calls": 3,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-CR-02",
+        "similarity": 0.739,
+        "llm_score": 0.5
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-CR-03",
+        "similarity": 0.79,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-CR-03",
+        "similarity": 0.843,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-CR-02",
+        "similarity": 0.693,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-CR-02",
+        "similarity": 0.603,
+        "llm_score": 0.3
+      }
+    ],
+    "missed_ground_truth": [
+      "GT-CR-01"
+    ],
+    "flags": [],
+    "total_recommendations": 5,
+    "total_ground_truth": 3
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_180048_customer_retention.json"
+}

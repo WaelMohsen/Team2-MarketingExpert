@@ -1,0 +1,337 @@
+{
+  "run_id": "run_20260506_045507",
+  "timestamp_utc": "2026-05-06T04:55:24Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign shows a high conversion rate of 12.26%, significantly exceeding the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages and conversion processes are performing well. However, the customer acquisition cost is not provided, but the cost per acquisition across channels varies, with the highest being $4.40 and the lowest being $0.83. The overall return on advertising spend is 7.94, which is strong, but the cost per click is not detailed, making it difficult to assess the traffic costs directly. Therefore, while the conversion efficiency appears strong, the lack of detailed cost per click data prevents a full understanding of potential traffic cost issues.",
+      "key_signals": [
+        "Overall conversion rate is 12.26%, well above the benchmark.",
+        "Return on advertising spend is 7.94, indicating good revenue generation."
+      ],
+      "detected_issues": [
+        "No specific cost per click data provided to assess traffic costs.",
+        "Customer acquisition cost is not detailed, making it hard to evaluate overall efficiency."
+      ],
+      "root_cause_hypothesis": "The primary bottleneck is likely not in the conversion process, as the conversion rate is high, but without cost per click data, the impact of traffic costs remains unclear.",
+      "business_risks": [
+        "Potentially high customer acquisition costs if traffic costs are elevated.",
+        "Inability to scale effectively without understanding traffic cost dynamics."
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Collect and Analyze Cost Per Click Data",
+        "category": "Tracking",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "The campaign lacks specific cost per click data, hindering the assessment of traffic costs.",
+        "evidence": [
+          "Detected issue: No specific cost per click data provided to assess traffic costs."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Implement tracking for cost per click data.",
+            "where": "Cross-channel",
+            "how": "Set up tracking mechanisms on all advertising platforms to capture cost per click data.",
+            "guardrails": [
+              "Ensure data privacy compliance."
+            ]
+          }
+        ],
+        "why_this_matters": "Understanding cost per click is crucial to identify if high traffic costs are inflating customer acquisition costs.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "By understanding traffic costs, you can optimize ad spend to reduce customer acquisition costs."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with analytics and IT teams to set up tracking."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per click data across channels and assess its impact on customer acquisition costs.",
+          "success_criteria": "Availability of cost per click data for all channels.",
+          "check_timing": "Review after 2 weeks of data collection.",
+          "notes": "Initial data may have attribution delays."
+        },
+        "owner_suggestion": "Analytics"
+      },
+      {
+        "id": "REC-02",
+        "title": "Optimize High Cost Channels",
+        "category": "Channel_Mix",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Some channels have higher customer acquisition costs, potentially impacting overall efficiency.",
+        "evidence": [
+          "Facebook CPA is $4.40, highest among channels."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Review and adjust budget allocation for high cost channels.",
+            "where": "Facebook",
+            "how": "Analyze performance metrics and consider reallocating budget to more cost-effective channels.",
+            "guardrails": [
+              "Do not reduce budget if it significantly impacts overall conversions."
+            ]
+          }
+        ],
+        "why_this_matters": "Optimizing budget allocation can improve overall campaign efficiency and reduce customer acquisition costs.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Reallocating budget from high cost channels to more efficient ones should lower overall acquisition costs."
+        },
+        "dependency_or_risk": [
+          "Requires accurate performance data for decision making."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in customer acquisition cost after budget reallocation.",
+          "success_criteria": "Reduction in overall customer acquisition cost.",
+          "check_timing": "Evaluate after 4 weeks of budget adjustment.",
+          "notes": "Consider seasonality effects on channel performance."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Enhance Creative Testing",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Creative performance varies, affecting click-through rates and potentially traffic costs.",
+        "evidence": [
+          "Overall CTR is 4.65%, with variations across channels."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct A/B testing of ad creatives.",
+            "where": "Cross-channel",
+            "how": "Develop multiple creative variations and test them to identify high-performing ads.",
+            "guardrails": [
+              "Ensure consistent brand messaging across creatives."
+            ]
+          }
+        ],
+        "why_this_matters": "Improving creative performance can increase click-through rates and potentially reduce traffic costs.",
+        "expected_impact": {
+          "primary_kpi": "Click-Through Rate",
+          "direction": "Increase",
+          "explanation": "Better performing creatives should attract more clicks, improving traffic efficiency."
+        },
+        "dependency_or_risk": [
+          "Requires creative team resources for development and testing."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare click-through rates before and after creative testing.",
+          "success_criteria": "Improvement in click-through rates across tested channels.",
+          "check_timing": "Review results after 4 weeks of testing.",
+          "notes": "Consider audience fatigue when testing multiple creatives."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Improve Landing Page Experience",
+        "category": "Landing_Page",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "While conversion rates are high, further improvements could enhance customer experience and retention.",
+        "evidence": [
+          "Overall conversion rate is 12.26%, indicating a strong base for further optimization."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct user experience testing on landing pages.",
+            "where": "Cross-channel",
+            "how": "Gather user feedback and analytics to identify areas for improvement in the landing page experience.",
+            "guardrails": [
+              "Avoid major changes that could disrupt current high conversion rates."
+            ]
+          }
+        ],
+        "why_this_matters": "Enhancing landing page experience can improve customer satisfaction and potentially increase retention rates.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Improve",
+          "explanation": "A better user experience can lead to higher conversion rates and customer satisfaction."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with web development team."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in conversion rates and user feedback post-implementation.",
+          "success_criteria": "Improvement in user satisfaction metrics and conversion rates.",
+          "check_timing": "Evaluate after 4 weeks of changes.",
+          "notes": "Consider seasonal variations in user behavior."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Expand Successful Channels",
+        "category": "Channel_Mix",
+        "priority": "Low",
+        "effort": "Medium",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Some channels demonstrate high efficiency and could be scaled further.",
+        "evidence": [
+          "SMS channel shows a CPA of $0.83 and ROAS of 18.75, indicating high efficiency."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase investment in high-performing channels.",
+            "where": "SMS",
+            "how": "Allocate additional budget to SMS campaigns to leverage their high efficiency.",
+            "guardrails": [
+              "Ensure scalability without diminishing returns."
+            ]
+          }
+        ],
+        "why_this_matters": "Scaling successful channels can maximize returns and improve overall campaign performance.",
+        "expected_impact": {
+          "primary_kpi": "Return on Advertising Spend",
+          "direction": "Increase",
+          "explanation": "Investing more in efficient channels should enhance overall returns."
+        },
+        "dependency_or_risk": [
+          "Potential for diminishing returns if over-scaled."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in return on advertising spend and customer acquisition cost.",
+          "success_criteria": "Sustained high return on advertising spend with increased budget.",
+          "check_timing": "Assess after 6 weeks of increased investment.",
+          "notes": "Monitor for any signs of audience saturation."
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

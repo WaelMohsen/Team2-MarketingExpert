@@ -1,0 +1,478 @@
+{
+  "run_id": "run_20260515_164522",
+  "timestamp_utc": "2026-05-15T16:46:04Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "o4-mini",
+  "recommendation_generation_temp": 1.0,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign shows a conversion rate of 12.26%, which is significantly above the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages and conversion processes are functioning effectively. However, the customer acquisition cost is not provided directly, but we can infer that it is likely influenced by the cost per click across different channels. The cost per click for the channels varies, with some channels like SMS showing a very low cost per acquisition, while others like Facebook and Google Ads are higher. The return on advertising spend is also high at 7.94, suggesting that the overall campaign is generating substantial revenue relative to the amount spent. Therefore, while the conversion rate is strong, the varying costs across channels indicate potential inefficiencies in traffic acquisition costs. This suggests that the primary bottleneck may be in the pre-click phase, particularly in the ad creatives and targeting strategies used to attract traffic.",
+      "key_signals": [
+        "Conversion Rate is 12.26%, significantly above the benchmark",
+        "Return on Advertising Spend is 7.94, indicating good revenue generation"
+      ],
+      "detected_issues": [
+        "High customer acquisition costs in certain channels",
+        "Variability in cost per click across channels"
+      ],
+      "root_cause_hypothesis": "The primary root cause is likely related to the pre-click phase, specifically the effectiveness of ad creatives and targeting strategies.",
+      "business_risks": [
+        "Potential for increased costs if traffic acquisition strategies are not optimized",
+        "Risk of underperforming channels impacting overall campaign profitability"
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Increase budget for SMS acquisition",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "SMS has the lowest cost per acquisition and highest return on spend",
+        "evidence": [
+          "SMS cost per acquisition is zero point eight three compared to campaign average of three point thirty seven",
+          "SMS return on spend is eighteen point seventy five, above all channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase weekly SMS budget by twenty percent",
+            "where": "SMS platform",
+            "how": "shift twenty percent of budget from Facebook to SMS campaigns",
+            "guardrails": [
+              "Daily SMS volume capped at ten thousand messages",
+              "Monitor opt-out rate below zero point five percent"
+            ]
+          }
+        ],
+        "why_this_matters": "More investment in the most efficient channel will lower overall customer acquisition cost and drive more new customers",
+        "expected_impact": {
+          "primary_kpi": "cost per acquisition",
+          "direction": "Decrease",
+          "explanation": "Shifting spend to SMS reduces average acquisition cost due to its low cost per customer"
+        },
+        "dependency_or_risk": [
+          "SMS subscriber list must be updated to include opt-in contacts",
+          "Higher volume may increase opt-out rates if guardrails are not followed"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per acquisition for SMS before and after budget increase",
+          "success_criteria": "SMS cost per acquisition decreases or remains below one dollar",
+          "check_timing": "After two weeks of increased spend",
+          "notes": "Allow for one week of message delivery delay"
+        },
+        "owner_suggestion": "SMS marketing team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Scale email campaigns for new customers",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Email shows second best cost per acquisition and strong conversion rate",
+        "evidence": [
+          "Email cost per acquisition is one point forty seven, well below campaign average of three point thirty seven",
+          "Email conversion rate is thirteen point thirty three percent, above all paid channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase send volume by fifteen percent to high-engagement segments",
+            "where": "Email service platform",
+            "how": "target subscribers who opened at least one email in past month",
+            "guardrails": [
+              "Maintain bounce rate below thirty five percent",
+              "Monitor unsubscribe rate below zero point seven percent"
+            ]
+          }
+        ],
+        "why_this_matters": "Scaling email to engaged users will add new customers at low cost and leverage a high-return channel",
+        "expected_impact": {
+          "primary_kpi": "new customers acquired",
+          "direction": "Increase",
+          "explanation": "Reaching more engaged subscribers drives additional low-cost acquisitions"
+        },
+        "dependency_or_risk": [
+          "Email list hygiene required to avoid high bounce",
+          "High send volume may affect deliverability if list not segmented"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare new customers acquired from email week over week",
+          "success_criteria": "Email new customers increase without bounce rate rising above thirty five percent",
+          "check_timing": "One week after volume increase",
+          "notes": "Exclude holiday periods due to atypical engagement"
+        },
+        "owner_suggestion": "Email marketing team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Reduce Facebook spend and reallocate to efficient channels",
+        "category": "Channel_Mix",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "Facebook has the highest acquisition cost and lowest return on spend",
+        "evidence": [
+          "Facebook cost per acquisition is four point forty, the highest among channels",
+          "Facebook return on spend is five point zero, the lowest"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Cut thirty percent of Facebook budget",
+            "where": "Facebook Ads Manager",
+            "how": "reduce daily budget by thirty percent and pause lowest performing ad sets",
+            "guardrails": [
+              "Maintain at least eight thousand weekly reach",
+              "Do not drop below minimum daily spend of fifty dollars"
+            ]
+          },
+          {
+            "step": "Shift freed budget to SMS and email",
+            "where": "Cross-channel",
+            "how": "allocate half of freed budget to SMS and half to email campaigns",
+            "guardrails": [
+              "Follow guardrails for SMS and email scaling"
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing spend on inefficient channel and shifting to top performers lowers overall acquisition cost and improves campaign profitability",
+        "expected_impact": {
+          "primary_kpi": "cost per acquisition",
+          "direction": "Decrease",
+          "explanation": "Removing high-cost spend reduces average acquisition cost"
+        },
+        "dependency_or_risk": [
+          "Facebook performance may rebound if new creatives are tested",
+          "Ensure budget shifts do not exceed channel capacity"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor overall campaign cost per acquisition before and after budget shift",
+          "success_criteria": "Overall cost per acquisition decreases",
+          "check_timing": "After one week",
+          "notes": "Account for weekend performance swings"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Test fresh creatives on Instagram to lower traffic cost",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Instagram cost per acquisition is above average and click engagement is lagging",
+        "evidence": [
+          "Instagram cost per acquisition is four point zero nine",
+          "Instagram click rate is four point four percent, below SMS and email rates"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop three new ad creative variations",
+            "where": "Instagram Ads Manager",
+            "how": "focus on product benefit headlines and include direct call to action",
+            "guardrails": [
+              "Allocate no more than twenty percent of Instagram budget to tests",
+              "Pause any variation with click rate below five percent after one week"
+            ]
+          },
+          {
+            "step": "Launch A/B test with equal budget distribution",
+            "where": "Instagram campaign",
+            "how": "run each variation against current control for two weeks",
+            "guardrails": [
+              "Keep audience and bid settings constant",
+              "Ensure at least ten thousand impressions per variation"
+            ]
+          }
+        ],
+        "why_this_matters": "Higher engagement ads will bring in more clicks at lower cost, reducing acquisition cost",
+        "expected_impact": {
+          "primary_kpi": "cost per acquisition",
+          "direction": "Decrease",
+          "explanation": "Improved click engagement lowers cost per click and thus lowers cost per acquisition"
+        },
+        "dependency_or_risk": [
+          "Creative production must meet brand guidelines",
+          "Low performing ads must be paused promptly"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per acquisition and click rates across new variations vs control",
+          "success_criteria": "New creative with cost per acquisition at least ten percent below control",
+          "check_timing": "After two weeks of testing",
+          "notes": "Allow time for delivery optimization"
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Refine Google search targeting to reduce wasted spend",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Google Ads shows high cost per acquisition and moderate bounce rate",
+        "evidence": [
+          "Google cost per acquisition is three point nine",
+          "Google bounce rate is twenty four percent, higher than SMS and TikTok"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Add negative keywords for non-converting search terms",
+            "where": "Google Ads account",
+            "how": "review search term report and exclude low-intent keywords",
+            "guardrails": [
+              "Ensure search volume does not drop by more than twenty percent"
+            ]
+          },
+          {
+            "step": "Switch to phrase match on top converting keywords",
+            "where": "Google Ads campaign",
+            "how": "identify top ten converting keywords and change match type to phrase",
+            "guardrails": [
+              "Monitor search impression share, keep above sixty percent"
+            ]
+          }
+        ],
+        "why_this_matters": "Better keyword targeting reduces irrelevant clicks, lowering cost per acquisition and improving campaign efficiency",
+        "expected_impact": {
+          "primary_kpi": "cost per acquisition",
+          "direction": "Decrease",
+          "explanation": "Filtering out low-value clicks reduces wasted spend and lowers cost for each new customer"
+        },
+        "dependency_or_risk": [
+          "Search volume may decrease if exclusions are too aggressive",
+          "Requires weekly keyword performance review"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track cost per acquisition and click volume before and after targeting changes",
+          "success_criteria": "Cost per acquisition decreases without click volume falling more than twenty percent",
+          "check_timing": "Monthly",
+          "notes": "Account for seasonal search trends"
+        },
+        "owner_suggestion": "Performance marketing team"
+      },
+      {
+        "id": "REC-06",
+        "title": "Expand SMS reach with lookalike segments",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Current SMS reach is limited but shows high conversion efficiency",
+        "evidence": [
+          "SMS reach is three thousand five hundred with conversion rate of nineteen point sixty four percent",
+          "SMS click rate is seven percent, highest among channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Create two lookalike audience lists from top ten percent of customers",
+            "where": "SMS platform",
+            "how": "use customer data to build one percent and two percent lookalike segments",
+            "guardrails": [
+              "Cap new audience size to ten thousand per day",
+              "Exclude existing subscribers"
+            ]
+          },
+          {
+            "step": "Launch targeted SMS campaign to new segments",
+            "where": "SMS platform",
+            "how": "send promotional message with exclusive offer",
+            "guardrails": [
+              "Monitor opt-out rate below zero point five percent",
+              "Pause if unsubscribe spikes"
+            ]
+          }
+        ],
+        "why_this_matters": "New similar audiences will increase scale of low-cost acquisitions and grow new customer count",
+        "expected_impact": {
+          "primary_kpi": "new customers acquired",
+          "direction": "Increase",
+          "explanation": "Lookalike targeting brings qualified contacts likely to convert at SMS baseline rates"
+        },
+        "dependency_or_risk": [
+          "Lookalike accuracy depends on quality of seed list",
+          "High volume may raise opt-outs if message frequency is too great"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Measure new customers from lookalike segments compared to total SMS baseline",
+          "success_criteria": "Lookalike segments produce cost per acquisition at or below zero point eight three",
+          "check_timing": "After first campaign send",
+          "notes": "Allow two weeks for full audience delivery"
+        },
+        "owner_suggestion": "SMS marketing team"
+      },
+      {
+        "id": "REC-07",
+        "title": "Standardize channel cost tracking and reporting",
+        "category": "Tracking",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Cost and performance data are not consolidated for detailed channel analysis",
+        "evidence": [
+          "Spends and returns are reported separately per channel without unified dashboard",
+          "Variability in channel metrics makes decision making slower"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Implement unified cost and conversion tags for each channel",
+            "where": "Analytics platform",
+            "how": "assign unique cost centers and conversion events per channel",
+            "guardrails": [
+              "Do not duplicate tags",
+              "Maintain data privacy compliance"
+            ]
+          },
+          {
+            "step": "Build a dashboard with weekly cost per acquisition and return on spend",
+            "where": "Business intelligence tool",
+            "how": "pull in channel data and display trends side by side",
+            "guardrails": [
+              "Update data sources daily",
+              "Limit access to decision makers only"
+            ]
+          }
+        ],
+        "why_this_matters": "Consolidated reporting speeds up budget decisions and helps identify inefficiencies quickly",
+        "expected_impact": {
+          "primary_kpi": "cost per acquisition",
+          "direction": "Improve",
+          "explanation": "Better visibility enables faster shifts to top performing channels, lowering average acquisition cost"
+        },
+        "dependency_or_risk": [
+          "Requires support from analytics team",
+          "Data may be incomplete during set up"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Review dashboard accuracy against platform reports",
+          "success_criteria": "All channels display correct cost and conversion within five percent variance",
+          "check_timing": "One week after launch",
+          "notes": "Allow for data processing delay"
+        },
+        "owner_suggestion": "Analytics team"
+      }
+    ]
+  }
+}
