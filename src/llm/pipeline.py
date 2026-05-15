@@ -99,6 +99,7 @@ def generate_response(
     Analysis_temp: Optional[float] = None,
     Rec_model: Optional[str] = None,
     Rec_temp: Optional[float] = None,
+    reasoning_effort: Optional[str] = None
 ) -> Dict[str, Any]:
     """Two-step flow: analysis JSON -> recommendation JSON (final schema)."""
     (
@@ -158,6 +159,7 @@ def generate_response(
         response_format=RecommendationOutput,
         model=recommendation_model_name,
         temp=recommendation_temperature,
+        reasoning_effort=reasoning_effort
     )
     rec_model = rec_resp.choices[0].message.parsed
 

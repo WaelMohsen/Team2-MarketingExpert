@@ -57,6 +57,7 @@ def run_target(
         run_config.generation.analysis_temp,
         run_config.generation.recommendation_model,
         run_config.generation.recommendation_temp,
+        run_config.generation.reasoning_effort
     )
 
     analysis_output = generation_output.get("analysis", {})
