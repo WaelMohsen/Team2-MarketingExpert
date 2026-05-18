@@ -1,0 +1,350 @@
+{
+  "run_id": "run_20260512_224646",
+  "timestamp_utc": "2026-05-12T22:47:00Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign shows a very high conversion rate of 12.26%, significantly exceeding the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages and conversion processes are performing well. However, the customer acquisition cost is not provided directly, but can be inferred from the total spend and total new customers. The total spend is $1630.00, and there are 483 new customers, which results in an implied customer acquisition cost of approximately $3.37. This is a reasonable cost for acquiring new customers. The return on advertising spend is also strong at 7.94, indicating that for every dollar spent, the revenue generated is substantial. Therefore, the primary bottleneck does not appear to be at the bottom of the funnel, as the conversion efficiency is high. Instead, the focus should be on the top of the funnel, particularly in terms of traffic costs and ad quality.",
+      "key_signals": [
+        "Conversion Rate is 12.26%",
+        "Customer Acquisition Cost is approximately $3.37",
+        "Return on Advertising Spend is 7.94"
+      ],
+      "detected_issues": [
+        "No significant issues detected at the bottom of the funnel",
+        "Potential for improvement in traffic acquisition costs"
+      ],
+      "root_cause_hypothesis": "The primary bottleneck is likely related to the top of the funnel, specifically the cost of traffic and ad creatives.",
+      "business_risks": [
+        "High traffic costs could limit future growth",
+        "Inefficient ad spend may lead to reduced profitability"
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Test New Ad Creatives to Reduce Traffic Costs",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Traffic costs are high, impacting the cost of acquiring new customers.",
+        "evidence": [
+          "High CPC observed across channels",
+          "Customer Acquisition Cost is approximately $3.37"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop and test new ad creatives",
+            "where": "cross-channel",
+            "how": "Create multiple versions of ad creatives focusing on different messaging and visuals to see which performs best in terms of click-through rates and cost per click.",
+            "guardrails": [
+              "Ensure brand consistency across all creatives",
+              "Monitor performance closely to avoid increasing costs"
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing traffic costs will lower the overall cost of acquiring new customers, improving profitability.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "New creatives can improve click-through rates, leading to lower cost per click and reduced acquisition costs."
+        },
+        "dependency_or_risk": [
+          "Requires creative team resources",
+          "Potential for initial increase in costs during testing phase"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per click and customer acquisition cost before and after implementing new creatives.",
+          "success_criteria": "Decrease in cost per click and customer acquisition cost by at least 10%.",
+          "check_timing": "Review results after 4 weeks of testing.",
+          "notes": "Consider seasonal variations in ad performance."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Optimize Audience Targeting for Cost Efficiency",
+        "category": "Targeting",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Current audience targeting may not be optimized for cost efficiency, leading to higher traffic costs.",
+        "evidence": [
+          "High CPC observed across channels",
+          "Potential for improvement in traffic acquisition costs"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Refine audience segments",
+            "where": "cross-channel",
+            "how": "Use data analytics to identify high-performing audience segments and allocate more budget to these segments while reducing spend on underperforming segments.",
+            "guardrails": [
+              "Avoid narrowing audience too much, which could limit reach",
+              "Ensure compliance with data privacy regulations"
+            ]
+          }
+        ],
+        "why_this_matters": "Optimizing audience targeting can reduce traffic costs and improve the efficiency of ad spend.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Better-targeted ads are more likely to attract clicks from interested users, reducing cost per click."
+        },
+        "dependency_or_risk": [
+          "Requires access to detailed audience analytics",
+          "Potential for reduced reach if audience is too narrowly defined"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in cost per click and customer acquisition cost after adjusting audience targeting.",
+          "success_criteria": "Reduction in customer acquisition cost by 10% or more.",
+          "check_timing": "Evaluate after 4 weeks of implementation.",
+          "notes": "Consider external factors such as market trends that may affect audience behavior."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Increase Budget Allocation to High-Performing Channels",
+        "category": "Budget",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Some channels are performing better in terms of cost efficiency and return on ad spend.",
+        "evidence": [
+          "Email and SMS channels have high ROAS and low CPA"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reallocate budget to high-performing channels",
+            "where": "Email and SMS",
+            "how": "Shift a portion of the budget from lower-performing channels to Email and SMS, which have shown higher return on ad spend and lower cost per acquisition.",
+            "guardrails": [
+              "Ensure not to over-saturate high-performing channels",
+              "Monitor performance to avoid diminishing returns"
+            ]
+          }
+        ],
+        "why_this_matters": "Maximizing budget allocation to efficient channels can enhance overall campaign profitability.",
+        "expected_impact": {
+          "primary_kpi": "Return on Advertising Spend",
+          "direction": "Improve",
+          "explanation": "Increasing spend on channels with high return on ad spend will likely yield higher overall returns."
+        },
+        "dependency_or_risk": [
+          "Potential for diminishing returns if channels become saturated",
+          "Requires regular performance monitoring"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in return on ad spend and customer acquisition cost after budget reallocation.",
+          "success_criteria": "Improvement in return on ad spend by 5% or more.",
+          "check_timing": "Assess after 2 weeks of budget reallocation.",
+          "notes": "Consider market conditions that might affect channel performance."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Conduct A/B Testing on Landing Pages",
+        "category": "Landing_Page",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "While conversion rates are high, there is always room for optimization to further improve efficiency.",
+        "evidence": [
+          "Overall high conversion rate of 12.26%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Set up A/B tests for landing pages",
+            "where": "cross-channel",
+            "how": "Create variations of landing pages with different layouts, calls to action, and content to identify which elements drive higher conversions.",
+            "guardrails": [
+              "Ensure consistent user experience across variations",
+              "Avoid drastic changes that could confuse users"
+            ]
+          }
+        ],
+        "why_this_matters": "Optimizing landing pages can further enhance conversion rates, leading to more efficient customer acquisition.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Improve",
+          "explanation": "Testing different landing page elements can reveal what drives higher conversions."
+        },
+        "dependency_or_risk": [
+          "Requires web development resources",
+          "Potential for initial drop in conversion rates during testing"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare conversion rates of different landing page variations.",
+          "success_criteria": "Increase in conversion rate by at least 5%.",
+          "check_timing": "Review after 4 weeks of testing.",
+          "notes": "Consider user feedback and behavior analytics for deeper insights."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Explore New Audience Segments",
+        "category": "Targeting",
+        "priority": "Low",
+        "effort": "High",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Low",
+        "whats_happening": "Current audience segments may not capture all potential customers, limiting growth.",
+        "evidence": [
+          "Potential for improvement in traffic acquisition costs"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Identify and test new audience segments",
+            "where": "cross-channel",
+            "how": "Use market research and data analytics to discover new potential customer segments and test targeted campaigns to assess their performance.",
+            "guardrails": [
+              "Ensure new segments align with brand values",
+              "Monitor closely to avoid high acquisition costs"
+            ]
+          }
+        ],
+        "why_this_matters": "Expanding to new audience segments can increase reach and customer base, supporting growth objectives.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Reaching new audiences can lead to more efficient customer acquisition if new segments are cost-effective."
+        },
+        "dependency_or_risk": [
+          "Requires significant research and testing resources",
+          "Risk of high initial costs with unproven segments"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track customer acquisition cost and conversion rates for new audience segments.",
+          "success_criteria": "Achieve customer acquisition cost comparable to existing segments.",
+          "check_timing": "Evaluate after 6 weeks of testing.",
+          "notes": "Consider seasonal and market trends that may influence new segments."
+        },
+        "owner_suggestion": "Analytics"
+      }
+    ]
+  }
+}

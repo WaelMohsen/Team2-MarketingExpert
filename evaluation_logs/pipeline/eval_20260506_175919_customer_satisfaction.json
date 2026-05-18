@@ -1,0 +1,405 @@
+{
+  "run_id": "run_20260506_175802",
+  "timestamp_utc": "2026-05-06T17:59:19Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Satisfaction",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "Engagement Rate": 6.68,
+        "Average Bounce Rate": 0.27,
+        "Average Frequency": 2.18
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.36,
+          "Average Frequency": 1.4
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "Engagement Rate": 5.36,
+          "Average Bounce Rate": 0.34,
+          "Average Frequency": 2.2
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.24,
+          "Average Frequency": 2.0
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "Engagement Rate": 5.6,
+          "Average Bounce Rate": 0.28,
+          "Average Frequency": 2.8
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "Engagement Rate": 0.0,
+          "Average Bounce Rate": 0.19,
+          "Average Frequency": 1.2
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "Engagement Rate": 8.96,
+          "Average Bounce Rate": 0.21,
+          "Average Frequency": 3.5
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "Engagement Rate",
+      "Average Bounce Rate",
+      "Average Frequency"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign shows a strong conversion rate of 12.26% and a click-through rate of 4.65%, indicating that the ads are compelling and relevant to the audience. However, the engagement rate of 6.68% is on the higher end of the success range, suggesting that while people are interacting with the content, there may be room for improvement in content relevance across channels. The average bounce rate of 27% is acceptable, indicating that visitors are finding the content relevant enough to stay. The customer acquisition cost is low at 3.37, and the return on advertising spend is high at 7.94, which reflects effective spending. However, the performance varies significantly across channels, with Email showing the highest return on advertising spend at 15.0 but lacking engagement metrics, while Facebook has a lower return at 5.0 with a higher bounce rate. This indicates potential issues with content relevance on Facebook. The primary bottleneck appears to be in the post-click experience, particularly for Facebook, where the landing page may not align well with the ad promise.",
+      "key_signals": [
+        "Overall conversion rate of 12.26%",
+        "Click-through rate of 4.65%",
+        "Engagement rate of 6.68%",
+        "Average bounce rate of 27%"
+      ],
+      "detected_issues": [
+        "Facebook has a lower return on advertising spend and higher bounce rate, indicating potential content mismatch.",
+        "Email has no engagement metrics, suggesting content may not be resonating."
+      ],
+      "root_cause_hypothesis": "The primary root cause is likely the post-click experience, particularly on Facebook, where the landing page may not match the ad's promise.",
+      "business_risks": [
+        "Potential loss of customers due to poor landing page experience on Facebook.",
+        "Low engagement on Email could lead to missed opportunities for customer interaction."
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Improve Facebook Landing Page Alignment",
+        "category": "Landing_Page",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Facebook shows a lower return on advertising spend and a higher bounce rate, indicating a mismatch between the ad and landing page content.",
+        "evidence": [
+          "Facebook has a return on advertising spend of 5.0, lower than other channels.",
+          "Bounce rate on Facebook is 34%, higher than the average."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Revise landing page content to better match ad messaging.",
+            "where": "Facebook",
+            "how": "Analyze ad copy and ensure landing page reflects the same key messages and offers.",
+            "guardrails": [
+              "Maintain brand consistency across all channels."
+            ]
+          },
+          {
+            "step": "Test new landing page design with a small audience first.",
+            "where": "Facebook",
+            "how": "Use A/B testing to compare performance of new vs. old landing page.",
+            "guardrails": [
+              "Ensure test groups are similar in size and demographics."
+            ]
+          }
+        ],
+        "why_this_matters": "Aligning the landing page with ad messaging can reduce bounce rates and improve conversion rates, leading to better customer satisfaction.",
+        "expected_impact": {
+          "primary_kpi": "Bounce Rate",
+          "direction": "Decrease",
+          "explanation": "A better-aligned landing page will keep visitors engaged, reducing bounce rates."
+        },
+        "dependency_or_risk": [
+          "Requires coordination with web development team."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare bounce rates and conversion rates before and after changes.",
+          "success_criteria": "Bounce rate decreases by at least 5%.",
+          "check_timing": "Review results after 2 weeks.",
+          "notes": "Consider seasonal variations in traffic."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Enhance Email Content Engagement",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "Medium",
+        "whats_happening": "Email channel lacks engagement metrics, suggesting content may not be resonating with the audience.",
+        "evidence": [
+          "Email has no recorded likes, comments, or shares."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Incorporate interactive elements such as polls or quizzes in emails.",
+            "where": "Email",
+            "how": "Use email marketing tools to add interactive elements that encourage user interaction.",
+            "guardrails": [
+              "Ensure interactive elements are mobile-friendly."
+            ]
+          },
+          {
+            "step": "Segment email list to tailor content to different audience interests.",
+            "where": "Email",
+            "how": "Use customer data to create segments and personalize email content accordingly.",
+            "guardrails": [
+              "Avoid overly complex segmentation that could delay execution."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing engagement in emails can lead to higher customer interaction and satisfaction, potentially increasing conversions.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "Interactive and personalized content is more likely to engage recipients."
+        },
+        "dependency_or_risk": [
+          "Requires access to customer data for segmentation."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track engagement metrics such as open rates and click rates before and after changes.",
+          "success_criteria": "Engagement rate increases by at least 10%.",
+          "check_timing": "Review results after 1 week.",
+          "notes": "Be aware of potential email delivery delays."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Optimize TikTok Frequency",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "TikTok has a high frequency of 3.5, which may lead to ad fatigue and reduced engagement over time.",
+        "evidence": [
+          "TikTok frequency is 3.5, higher than the recommended range of 2-4."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reduce ad frequency by adjusting the ad schedule.",
+            "where": "TikTok",
+            "how": "Limit the number of times an ad is shown to the same user within a set period.",
+            "guardrails": [
+              "Ensure reach is not compromised by frequency reduction."
+            ]
+          },
+          {
+            "step": "Introduce new ad creatives to refresh the campaign.",
+            "where": "TikTok",
+            "how": "Develop new ad variations to maintain audience interest.",
+            "guardrails": [
+              "Maintain consistent branding across all creatives."
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing frequency can prevent ad fatigue, maintaining engagement and relevance with the audience.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Stabilize",
+          "explanation": "Lower frequency will help maintain engagement by preventing audience fatigue."
+        },
+        "dependency_or_risk": [
+          "Requires creative team to produce new content."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor engagement rates and frequency metrics before and after adjustments.",
+          "success_criteria": "Engagement rate remains stable or increases.",
+          "check_timing": "Review results after 4 weeks.",
+          "notes": "Consider potential changes in audience behavior over time."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Leverage SMS Channel for Higher Engagement",
+        "category": "Channel_Mix",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "SMS channel shows high conversion rates but lacks engagement metrics, indicating potential for increased interaction.",
+        "evidence": [
+          "SMS conversion rate is 19.64%, highest among channels.",
+          "No engagement metrics recorded for SMS."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Introduce personalized messages to increase engagement.",
+            "where": "SMS",
+            "how": "Use customer data to tailor SMS content to individual preferences.",
+            "guardrails": [
+              "Ensure compliance with data privacy regulations."
+            ]
+          },
+          {
+            "step": "Incorporate call-to-action links to drive further interaction.",
+            "where": "SMS",
+            "how": "Add links to relevant content or offers in SMS messages.",
+            "guardrails": [
+              "Avoid overly promotional language that could lead to opt-outs."
+            ]
+          }
+        ],
+        "why_this_matters": "Enhancing SMS engagement can lead to higher customer satisfaction and potential upsell opportunities.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "Personalized and interactive SMS messages are more likely to engage recipients."
+        },
+        "dependency_or_risk": [
+          "Requires access to customer data for personalization."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track engagement metrics such as click rates and response rates before and after changes.",
+          "success_criteria": "Engagement rate increases by at least 5%.",
+          "check_timing": "Review results after 2 weeks.",
+          "notes": "Consider potential opt-out rates."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-05",
+        "title": "Test New Creative Formats on Instagram",
+        "category": "Creative",
+        "priority": "Low",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Instagram has a good engagement rate but there is potential to further captivate the audience with varied creative formats.",
+        "evidence": [
+          "Instagram engagement rate is 5.6%, indicating room for creative experimentation."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop and test new creative formats such as carousel ads or video content.",
+            "where": "Instagram",
+            "how": "Use Instagram's ad manager to create and deploy new ad formats.",
+            "guardrails": [
+              "Ensure all creative formats align with brand guidelines."
+            ]
+          },
+          {
+            "step": "Analyze performance of different formats to identify the most effective.",
+            "where": "Instagram",
+            "how": "Use Instagram analytics to compare engagement and conversion rates across formats.",
+            "guardrails": [
+              "Avoid over-testing to prevent audience confusion."
+            ]
+          }
+        ],
+        "why_this_matters": "Testing new creative formats can enhance audience engagement and improve content relevance.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "Varied creative formats can capture more attention and interest from the audience."
+        },
+        "dependency_or_risk": [
+          "Requires creative team resources for development."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare engagement rates and conversion rates across different creative formats.",
+          "success_criteria": "Identify at least one new format with higher engagement than current.",
+          "check_timing": "Review results after 4 weeks.",
+          "notes": "Consider potential seasonal effects on engagement."
+        },
+        "owner_suggestion": "Creative team"
+      }
+    ]
+  }
+}

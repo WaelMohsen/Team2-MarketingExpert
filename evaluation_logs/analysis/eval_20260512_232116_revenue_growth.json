@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_231932",
+  "timestamp_utc": "2026-05-12T23:21:16Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 1.0,
+    "benchmark_anchoring": 1.0,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides specific numbers for ROAS (7.94), Marketing ROI (694.48%), CPA (3.37), and conversion rate (12.26%), which are all grounded in the campaign data.",
+    "benchmark_anchoring": "The ROAS is compared to the benchmark of 4x, and the Marketing ROI is compared to the >100% benchmark, both indicating strong performance. However, the conversion rate is mentioned without a benchmark reference.",
+    "coverage": "The analysis addresses ROAS, Marketing ROI, and CPA, but it does not mention other primary KPIs like revenue per click or secondary KPIs such as average order value and purchase rate, which are important for a comprehensive analysis.",
+    "no_recommendation": "The analysis includes recommendation language, suggesting potential improvements in conversion rates and mentioning risks, which detracts from its diagnostic nature."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_232116_revenue_growth.json"
+}

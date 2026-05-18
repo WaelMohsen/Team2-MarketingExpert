@@ -38,24 +38,37 @@ def get_client():
     return _client
 
 
-def chat_completion(client, system_text, user_text, response_format, model, temp):
-    """Wrapper around the OpenAI structured-outputs beta endpoint.
 
-    `response_format` should be a **Pydantic model class** (e.g. AnalysisOutput).
-    The SDK automatically generates the JSON schema with additionalProperties: false,
-    sends it with strict: true, and parses the response into a Pydantic instance
-    accessible via `response.choices[0].message.parsed`.
-    """
+def chat_completion(
+    client,
+    system_text,
+    user_text,
+    response_format,
+    model,
+    temp=0,
+    reasoning_effort=None
+):
 
-    return client.beta.chat.completions.parse(
-        model=model,
-        messages=[
+    kwargs = {
+        "model": model,
+        "messages": [
             {"role": "system", "content": system_text},
             {"role": "user", "content": user_text},
         ],
-        temperature=temp,
-        response_format=response_format,
-    )
+        "response_format": response_format,
+    }
+
+    # Only apply temperature to non-reasoning models
+    if temp is not None:
+        kwargs["temperature"] = temp
+
+    # Optional reasoning effort
+    if reasoning_effort:
+        kwargs["reasoning_effort"] = reasoning_effort
+        kwargs["temperature"] =1
+
+    return client.beta.chat.completions.parse(**kwargs)
+
 
 
 def _default_llm_settings() -> Tuple[str, float]:

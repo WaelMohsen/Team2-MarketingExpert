@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_134730",
+  "timestamp_utc": "2026-05-12T13:48:28Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides several specific metrics such as conversion rate (12.26%), click-through rate (4.65%), and bounce rate (27%). However, it lacks some specific numbers for other KPIs like engagement rate and customer acquisition cost, which are mentioned but not quantified in the context of the overall campaign.",
+    "benchmark_anchoring": "The click-through rate of 4.65% is noted as above the typical range for social media, but it does not specify the exact benchmark range (1-2% for social). The engagement rate of 6.68% is mentioned as healthy but lacks a direct comparison to the benchmark of 3-6%. Other metrics like bounce rate and return on advertising spend are not compared to any benchmarks.",
+    "coverage": "The analysis addresses several KPIs including conversion rate, click-through rate, bounce rate, and engagement rate. However, it does not mention other important KPIs such as Relevance Score, Video Completion Rate, Time on Page, Pages Per Session, Positive Sentiment, Ad Frequency, and Quality Score.",
+    "no_recommendation": "The analysis includes recommendation language, such as suggesting that Facebook and Email may need further investigation due to lower conversion rates and engagement metrics, which indicates it does not stay purely diagnostic."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_134828_customer_satisfaction.json"
+}

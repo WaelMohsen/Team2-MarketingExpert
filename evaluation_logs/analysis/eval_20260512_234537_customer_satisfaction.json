@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_234445",
+  "timestamp_utc": "2026-05-12T23:45:37Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides some specific numbers, such as a conversion rate of 12.26%, a click-through rate of 4.65%, and an average bounce rate of 27%. However, it lacks detailed numerical grounding for all claims, particularly regarding engagement rates and customer acquisition costs.",
+    "benchmark_anchoring": "The conversion rate is compared to a benchmark of 2-5%, and the click-through rate is noted as above average, but there are no specific benchmarks provided for engagement rates or bounce rates, which weakens the analysis.",
+    "coverage": "The analysis addresses conversion rate, click-through rate, engagement rate, and bounce rate, but it does not cover all KPIs from the goal benchmarks, such as relevance score, video completion rate, time on page, pages per session, positive sentiment, ad frequency, and quality score.",
+    "no_recommendation": "The analysis includes language that suggests recommendations, such as identifying issues with content relevance and user experience, which indicates it does not remain purely diagnostic."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_234537_customer_satisfaction.json"
+}

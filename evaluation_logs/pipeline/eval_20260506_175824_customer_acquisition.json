@@ -1,0 +1,349 @@
+{
+  "run_id": "run_20260506_175802",
+  "timestamp_utc": "2026-05-06T17:58:24Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign shows a very high conversion rate of 12.26%, significantly exceeding the industry benchmark of 1.4% to 2.5%. This indicates that the landing pages and conversion processes are performing well. However, the customer acquisition cost is not provided, making it difficult to assess the efficiency of the campaign fully. The cost per click is also not detailed, but the overall return on advertising spend is 7.94, which suggests that the campaign is generating substantial revenue relative to its costs. The high conversion rate across channels indicates that the primary bottleneck is not at the landing page or conversion efficiency level. Therefore, the focus should be on the cost of traffic and ad creatives to optimize customer acquisition further.",
+      "key_signals": [
+        "Overall Conversion Rate: 12.26%",
+        "Overall Return on Advertising Spend: 7.94"
+      ],
+      "detected_issues": [
+        "Lack of detailed customer acquisition cost data",
+        "No specific cost per click information"
+      ],
+      "root_cause_hypothesis": "The primary bottleneck is likely related to the cost of traffic rather than conversion efficiency, given the high conversion rates across channels.",
+      "business_risks": [
+        "Potentially high customer acquisition costs if traffic costs are not managed",
+        "Risk of overspending on ineffective advertising channels without clear cost data"
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Test New Ad Creatives to Reduce Traffic Costs",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "The campaign has a high conversion rate, indicating effective landing pages, but potentially high traffic costs are not detailed.",
+        "evidence": [
+          "Overall Conversion Rate: 12.26%",
+          "Overall Return on Advertising Spend: 7.94"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop new ad creatives",
+            "where": "Cross-channel",
+            "how": "Create multiple ad variations focusing on different value propositions or visuals to test which reduces cost per click.",
+            "guardrails": [
+              "Ensure new creatives align with brand guidelines",
+              "Avoid drastic changes that could negatively impact conversion rates"
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing traffic costs will lower customer acquisition costs, improving overall campaign efficiency.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "New creatives can attract more clicks at a lower cost, reducing overall acquisition expenses."
+        },
+        "dependency_or_risk": [
+          "Requires creative team resources",
+          "Potential initial increase in costs during testing phase"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per click and customer acquisition cost before and after creative changes.",
+          "success_criteria": "Decrease in cost per click and customer acquisition cost",
+          "check_timing": "Review after 2 weeks of new creative deployment",
+          "notes": "Initial results may vary; allow time for optimization."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Shift Budget to High-Performing Channels",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "Some channels have a higher return on advertising spend, indicating more efficient customer acquisition.",
+        "evidence": [
+          "SMS ROAS: 18.75",
+          "Email ROAS: 15.0"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reallocate budget",
+            "where": "Cross-channel",
+            "how": "Increase budget allocation to SMS and Email channels, which have the highest return on advertising spend.",
+            "guardrails": [
+              "Monitor performance to ensure increased spend maintains efficiency",
+              "Avoid reducing budget on channels with potential for growth"
+            ]
+          }
+        ],
+        "why_this_matters": "Focusing on channels with higher returns maximizes revenue and reduces acquisition costs.",
+        "expected_impact": {
+          "primary_kpi": "Return on Advertising Spend",
+          "direction": "Increase",
+          "explanation": "Higher budget in efficient channels should yield more revenue per dollar spent."
+        },
+        "dependency_or_risk": [
+          "Potential diminishing returns if over-allocated",
+          "Requires ongoing performance monitoring"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare return on advertising spend and customer acquisition cost before and after budget reallocation.",
+          "success_criteria": "Improved return on advertising spend and reduced customer acquisition cost",
+          "check_timing": "Review daily for the first week, then weekly",
+          "notes": "Be cautious of external factors affecting channel performance."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Enhance Audience Targeting for Cost Efficiency",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "High conversion rates suggest effective landing pages, but traffic costs may be high due to broad targeting.",
+        "evidence": [
+          "Overall Conversion Rate: 12.26%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Refine audience segments",
+            "where": "Cross-channel",
+            "how": "Use data analytics to identify high-performing audience segments and focus targeting efforts on these groups.",
+            "guardrails": [
+              "Ensure targeting changes do not reduce conversion rates",
+              "Avoid overly narrow targeting that limits reach"
+            ]
+          }
+        ],
+        "why_this_matters": "More precise targeting can reduce traffic costs and improve customer acquisition efficiency.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Targeting high-performing segments should lower costs by attracting more relevant clicks."
+        },
+        "dependency_or_risk": [
+          "Requires access to detailed audience data",
+          "Potential initial increase in costs during segment testing"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare customer acquisition cost and conversion rates before and after targeting adjustments.",
+          "success_criteria": "Decrease in customer acquisition cost with stable or improved conversion rates",
+          "check_timing": "Review after 4 weeks of targeting changes",
+          "notes": "Allow time for audience data to stabilize post-change."
+        },
+        "owner_suggestion": "Analytics"
+      },
+      {
+        "id": "REC-04",
+        "title": "Monitor and Adjust Bidding Strategies",
+        "category": "Bidding",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "High conversion rates indicate effective landing pages, but bidding strategies may not be optimized for cost efficiency.",
+        "evidence": [
+          "Overall Conversion Rate: 12.26%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Review and adjust bidding strategies",
+            "where": "Cross-channel",
+            "how": "Analyze current bidding strategies and test automated bidding options to find optimal cost per click.",
+            "guardrails": [
+              "Avoid aggressive bidding that could inflate costs",
+              "Ensure bidding aligns with overall budget constraints"
+            ]
+          }
+        ],
+        "why_this_matters": "Optimizing bidding strategies can reduce traffic costs and improve customer acquisition efficiency.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Better bidding strategies can lower cost per click, reducing overall acquisition expenses."
+        },
+        "dependency_or_risk": [
+          "Requires platform-specific bidding expertise",
+          "Potential initial increase in costs during testing phase"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per click and customer acquisition cost before and after bidding strategy changes.",
+          "success_criteria": "Decrease in cost per click and customer acquisition cost",
+          "check_timing": "Review after 2 weeks of bidding adjustments",
+          "notes": "Results may vary based on market conditions."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-05",
+        "title": "Conduct A/B Testing on Landing Pages",
+        "category": "Landing_Page",
+        "priority": "Low",
+        "effort": "High",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Low",
+        "whats_happening": "Despite high conversion rates, further improvements could be made to landing pages to enhance customer experience.",
+        "evidence": [
+          "Overall Conversion Rate: 12.26%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Implement A/B testing",
+            "where": "Cross-channel",
+            "how": "Test different landing page layouts, messaging, and calls to action to identify elements that improve conversion rates.",
+            "guardrails": [
+              "Ensure tests do not disrupt current high conversion rates",
+              "Avoid changes that could negatively impact user experience"
+            ]
+          }
+        ],
+        "why_this_matters": "Even small improvements in landing page performance can lead to significant gains in customer acquisition.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Improve",
+          "explanation": "Optimized landing pages can convert more visitors into customers, enhancing overall campaign performance."
+        },
+        "dependency_or_risk": [
+          "Requires design and development resources",
+          "Potential initial decrease in conversion rates during testing"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare conversion rates before and after landing page changes.",
+          "success_criteria": "Improved conversion rates",
+          "check_timing": "Review after 6 weeks of testing",
+          "notes": "Consider seasonality and external factors affecting user behavior."
+        },
+        "owner_suggestion": "Web team"
+      }
+    ]
+  }
+}

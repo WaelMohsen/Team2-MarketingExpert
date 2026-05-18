@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260515_164522",
+  "timestamp_utc": "2026-05-15T16:47:24Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "o4-mini",
+  "recommendation_generation_temp": 1.0,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides several specific metrics such as conversion rate (12.26%), click-through rate (4.65%), and average bounce rate (27%). However, it lacks detailed numerical grounding for all claims, particularly in discussing the Customer Acquisition Cost and Return on Advertising Spend without specific context or calculations.",
+    "benchmark_anchoring": "The click-through rate of 4.65% is noted as above the typical benchmark for social media, but it does not specify the exact benchmark range (1-2% for social). The conversion rate is presented without a benchmark for comparison, and the bounce rate is mentioned as healthy but lacks a specific benchmark reference (<55%).",
+    "coverage": "The analysis addresses several KPIs such as conversion rate, click-through rate, bounce rate, and Return on Advertising Spend. However, it fails to mention other important KPIs from the benchmarks, such as engagement rate, relevance score, and video completion rate, which are critical for a comprehensive assessment.",
+    "no_recommendation": "The analysis includes diagnostic language but also suggests potential issues with ad quality or targeting, which implies a recommendation for improvement. This violates the requirement to remain purely diagnostic."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260515_164724_customer_satisfaction.json"
+}

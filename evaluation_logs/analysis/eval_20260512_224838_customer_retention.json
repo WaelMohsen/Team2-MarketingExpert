@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_224646",
+  "timestamp_utc": "2026-05-12T22:48:38Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 1.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides some specific numbers, such as a churn rate of 9.0% and a retention rate of 91.0%. However, it lacks detailed numerical grounding for the total number of retained customers, which is stated as 1890 without clear context or breakdown by channel.",
+    "benchmark_anchoring": "The churn rate of 9.0% is mentioned but not compared to any benchmarks. The analysis states that Facebook has a churn rate of 13.0% but does not indicate how this compares to the target or acceptable levels. The retention rate is given but similarly lacks a benchmark comparison.",
+    "coverage": "The analysis addresses churn rate, retention rate, and retained customers, but it does not mention other important KPIs such as total revenue, total new customers, or cost per new customer, which are relevant for a comprehensive understanding of customer retention.",
+    "no_recommendation": "The analysis remains diagnostic and does not include any recommendation language, focusing instead on describing the current state of customer retention and associated risks."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_224838_customer_retention.json"
+}

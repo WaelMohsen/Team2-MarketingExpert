@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260506_045507",
+  "timestamp_utc": "2026-05-06T04:55:24Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 3,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and avoids technical jargon, making it accessible for a business audience. However, it could benefit from more detailed financial metrics to enhance understanding."
+    },
+    {
+      "name": "key_signals",
+      "score": 3,
+      "rationale": "While the key signals are relevant, they lack specific references to the raw data that would strengthen their impact. More precise data points would improve clarity."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight significant gaps in the analysis, particularly regarding cost metrics, which could affect financial outcomes."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 3,
+      "rationale": "The hypothesis logically connects to the detected issues, but it could be more robust by exploring additional factors that might influence customer acquisition costs."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The identified business risks are specific and highlight potential financial impacts, making them relevant for decision-making. However, they could be expanded with more detail on the implications."
+    },
+    {
+      "name": "confidence_score",
+      "score": 3,
+      "rationale": "The confidence score appears reasonable but lacks a clear justification based on the evidence presented, which could lead to uncertainty about its reliability."
+    }
+  ],
+  "summary": "The analysis provides a solid overview but lacks depth in certain areas, particularly regarding financial metrics.",
+  "improvement_suggestions": [
+    "Include detailed cost per click data to enhance understanding of traffic costs.",
+    "Provide a more comprehensive explanation for the confidence score to clarify its basis."
+  ],
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_045524_customer_acquisition.json"
+}

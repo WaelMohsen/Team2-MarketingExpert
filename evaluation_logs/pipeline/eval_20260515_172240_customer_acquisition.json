@@ -1,0 +1,421 @@
+{
+  "run_id": "run_20260515_172145",
+  "timestamp_utc": "2026-05-15T17:22:40Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "o4-mini",
+  "recommendation_generation_temp": 1.0,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign data indicates a high conversion rate of 12.26%, which significantly exceeds the industry benchmark of 1.4% to 2.5%. This suggests that the landing pages and conversion processes are functioning effectively. However, the overall customer acquisition cost is $3.37, which is relatively low, indicating that the campaign is efficient in acquiring new customers. The cost per click across various channels is not explicitly provided, but the overall return on advertising spend is 7.94, which is favorable. This suggests that while the conversion process is strong, there may be opportunities to optimize traffic costs further. Therefore, the primary bottleneck appears to be in the pre-click stage, specifically related to the cost of traffic from advertisements.",
+      "key_signals": [
+        "Overall conversion rate is 12.26%, significantly above the benchmark.",
+        "Customer acquisition cost is $3.37, indicating efficiency in acquiring customers."
+      ],
+      "detected_issues": [
+        "Potential high cost per click not explicitly analyzed.",
+        "No significant issues detected in the post-click conversion process."
+      ],
+      "root_cause_hypothesis": "The primary bottleneck is likely in the pre-click stage, related to traffic costs from advertisements.",
+      "business_risks": [
+        "High traffic costs could limit future scaling opportunities.",
+        "If traffic costs increase, it may impact overall profitability."
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Shift budget from Facebook to SMS and Email",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "Facebook cost per new customer is high and return on advertising spend is low, while SMS and Email deliver far better efficiency.",
+        "evidence": [
+          "Facebook cost per new customer is four dollars and forty cents and return on advertising spend is five",
+          "SMS cost per new customer is eighty-three cents and return on advertising spend is eighteen point seven five",
+          "Email cost per new customer is one dollar and forty-seven cents and return on advertising spend is fifteen"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reduce Facebook daily budget by twenty percent and reallocate that amount",
+            "where": "Facebook, SMS, Email",
+            "how": "Lower Facebook daily spend by 20%, split the freed budget equally to increase SMS and Email daily budgets by 10% each",
+            "guardrails": [
+              "Maintain at least fifty percent of prior Facebook budget to preserve scale",
+              "Keep SMS send frequency under two messages per week",
+              "Keep Email send frequency under one message per day"
+            ]
+          }
+        ],
+        "why_this_matters": "Moving spend to the most efficient channels will lower overall cost per new customer and boost profit per dollar spent.",
+        "expected_impact": {
+          "primary_kpi": "Cost per new customer",
+          "direction": "Decrease",
+          "explanation": "Shifting spend to channels with lower cost per new customer reduces the campaign average cost"
+        },
+        "dependency_or_risk": [
+          "SMS and Email lists may saturate quickly",
+          "Must monitor audience fatigue to avoid increased churn"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare overall cost per new customer before and after budget shift",
+          "success_criteria": "Overall cost per new customer decreases",
+          "check_timing": "After one week of reallocated spend",
+          "notes": "Small-sample variation possible in first few days"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Increase SMS channel budget by 50 percent",
+        "category": "Channel_Mix",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "SMS has the lowest cost per new customer and the highest return on advertising spend but is underfunded.",
+        "evidence": [
+          "SMS cost per new customer is eighty-three cents",
+          "SMS return on advertising spend is eighteen point seven five",
+          "Total SMS spend is only forty dollars compared to larger budgets on lower-efficiency channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Raise the daily SMS budget by fifty percent",
+            "where": "SMS channel",
+            "how": "Increase SMS daily spend from forty dollars to sixty dollars",
+            "guardrails": [
+              "Ensure SMS send volume does not exceed six messages per week",
+              "Monitor churn rate to stay under nine percent"
+            ]
+          }
+        ],
+        "why_this_matters": "Allocating more budget to this top performer will drive more new customers at a very low cost.",
+        "expected_impact": {
+          "primary_kpi": "New customers",
+          "direction": "Increase",
+          "explanation": "Higher spend on the most efficient channel yields additional new customers at current low cost"
+        },
+        "dependency_or_risk": [
+          "List size may limit send volume",
+          "Need to watch churn rate to avoid negative customer experience"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track new customers acquired via SMS compared to prior two weeks",
+          "success_criteria": "SMS new customer count increases without churn rate rising",
+          "check_timing": "After two weeks",
+          "notes": "Attribution lag of SMS conversions may occur"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Refresh Facebook ad creative with new variants",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Facebook click through is lower than other channels and cost per new customer is above average.",
+        "evidence": [
+          "Facebook click through is four percent vs six percent on Email and seven percent on SMS",
+          "Facebook cost per new customer is four dollars and forty cents vs overall average of three dollars and thirty-seven cents"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop three new Facebook ad variants with fresh images and headlines",
+            "where": "Facebook Ads Manager",
+            "how": "Create three distinct image and headline combinations, upload them into the current campaign as a split test",
+            "guardrails": [
+              "Do not exceed current daily budget",
+              "Rotate only within one campaign to isolate test results"
+            ]
+          },
+          {
+            "step": "Run the split test and pause the two lowest-performing variants after one week",
+            "where": "Facebook Ads Manager",
+            "how": "After seven days, compare click through and pause the two variants with the lowest click through rate",
+            "guardrails": [
+              "Maintain total ad impressions within historical range",
+              "Ensure each variant serves at least two thousand impressions before pausing"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving ad engagement on Facebook will reduce cost per click and cost per new customer.",
+        "expected_impact": {
+          "primary_kpi": "Cost per new customer",
+          "direction": "Decrease",
+          "explanation": "Higher click through lowers cost per click, reducing overall cost per new customer"
+        },
+        "dependency_or_risk": [
+          "Creative production must complete on schedule",
+          "Test results may vary by audience segment"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per new customer on winning variant vs baseline",
+          "success_criteria": "Winning variant cost per new customer is lower than current Facebook average",
+          "check_timing": "After two weeks of test",
+          "notes": "Watch for external factors like holiday traffic shifts"
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Target a lookalike audience for Facebook campaigns",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Broad Facebook targeting is driving high acquisition cost and low click engagement.",
+        "evidence": [
+          "Facebook cost per new customer is four dollars and forty cents",
+          "Facebook click through is four percent vs higher rates on other channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Create a one-percent lookalike audience based on customers acquired in the last six months",
+            "where": "Facebook Audiences",
+            "how": "Upload list of recent purchasers, generate a one percent lookalike, exclude existing contacts",
+            "guardrails": [
+              "Keep lookalike audience above fifty thousand users",
+              "Exclude customers and high-churn segments"
+            ]
+          },
+          {
+            "step": "Allocate fifteen percent of Facebook budget to the new lookalike audience",
+            "where": "Facebook Ads Manager",
+            "how": "Adjust budget allocation settings to direct 15% of daily spend into new audience",
+            "guardrails": [
+              "Maintain at least fifty percent budget on current audiences to preserve stability"
+            ]
+          }
+        ],
+        "why_this_matters": "Reaching users similar to high-value customers increases ad relevance, raising click engagement and lowering cost per new customer.",
+        "expected_impact": {
+          "primary_kpi": "Cost per new customer",
+          "direction": "Decrease",
+          "explanation": "Better targeting yields more qualified clicks, reducing acquisition cost"
+        },
+        "dependency_or_risk": [
+          "Lookalike size must meet Facebook minimum",
+          "Overlap with existing campaigns may blur results"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per new customer in lookalike vs original audience",
+          "success_criteria": "Lookalike cost per new customer is lower",
+          "check_timing": "After four weeks",
+          "notes": "Allow time for audience learning phase"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-05",
+        "title": "Enable responsive search ads in Google with keyword tweaks",
+        "category": "Bidding",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Google cost per new customer is above the campaign average.",
+        "evidence": [
+          "Google cost per new customer is three dollars and ninety cents vs overall average of three dollars thirty-seven cents"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Switch to responsive search ads in the current Google Ads campaign",
+            "where": "Google Ads",
+            "how": "Create ads with at least three headlines and two descriptions, turn on responsive ad format",
+            "guardrails": [
+              "Keep total daily spend at or below three hundred twenty dollars",
+              "Maintain current keyword set during test"
+            ]
+          },
+          {
+            "step": "Implement broad match modified keywords for top performing terms",
+            "where": "Google Ads",
+            "how": "Add plus signs to high-volume keywords, monitor search term report",
+            "guardrails": [
+              "Monitor irrelevant queries and add negatives daily"
+            ]
+          }
+        ],
+        "why_this_matters": "Responsive search ads and keyword optimization improve ad relevance, boosting click engagement and lowering cost per click.",
+        "expected_impact": {
+          "primary_kpi": "Cost per new customer",
+          "direction": "Decrease",
+          "explanation": "Higher relevance increases click through, reducing cost per click and acquisition"
+        },
+        "dependency_or_risk": [
+          "Performance may dip during learning period",
+          "Needs daily oversight to remove unwanted search terms"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track Google cost per new customer before and after changes",
+          "success_criteria": "Cost per new customer falls below three dollars and ninety cents",
+          "check_timing": "After two weeks",
+          "notes": "Allow for algorithm learning period"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-06",
+        "title": "Test incremental spend on TikTok by increasing budget",
+        "category": "Channel_Mix",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok drives high volume of new customers at acceptable cost but sits at average efficiency.",
+        "evidence": [
+          "TikTok new customers are one hundred twenty-five, the highest of any channel",
+          "TikTok cost per new customer is four dollars, near average"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase TikTok daily budget by twenty percent",
+            "where": "TikTok Ads Manager",
+            "how": "Raise daily spend from fifty dollars to sixty dollars",
+            "guardrails": [
+              "Monitor that cost per new customer does not exceed five dollars",
+              "Keep churn rate under eight percent"
+            ]
+          }
+        ],
+        "why_this_matters": "Incremental budget on a strong volume performer may yield additional new customers without raising average cost.",
+        "expected_impact": {
+          "primary_kpi": "New customers",
+          "direction": "Increase",
+          "explanation": "More spend at current cost per new customer yields additional acquisitions"
+        },
+        "dependency_or_risk": [
+          "Incremental spend may hit diminishing returns",
+          "Audience saturation could raise cost per new customer"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare TikTok new customers and cost per new customer before and after increase",
+          "success_criteria": "New customer count increases and cost remains at or below four dollars",
+          "check_timing": "After two weeks",
+          "notes": "Watch for budget pace issues on weekends"
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

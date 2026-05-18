@@ -1,0 +1,396 @@
+{
+  "run_id": "run_20260512_134730",
+  "timestamp_utc": "2026-05-12T13:50:07Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Retention",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "Retained Customers": 1890,
+        "Churn Rate": 9.0,
+        "Retention Rate": 91.0
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "Retained Customers": 410,
+          "Churn Rate": 6.0,
+          "Retention Rate": 94.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "Retained Customers": 250,
+          "Churn Rate": 13.0,
+          "Retention Rate": 87.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "Retained Customers": 280,
+          "Churn Rate": 11.0,
+          "Retention Rate": 89.0
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "Retained Customers": 320,
+          "Churn Rate": 8.0,
+          "Retention Rate": 92.0
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "Retained Customers": 290,
+          "Churn Rate": 9.0,
+          "Retention Rate": 91.0
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "Retained Customers": 340,
+          "Churn Rate": 7.0,
+          "Retention Rate": 93.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "Retained Customers",
+      "Churn Rate",
+      "Retention Rate"
+    ],
+    "analysis": {
+      "analysis": "The overall churn rate is 9.0%, indicating that 91.0% of customers are retained. However, there are significant variations across channels. For instance, the churn rate for Facebook is notably high at 13.0%, while Email has the lowest churn rate at 6.0%. The number of retained customers also varies, with Email retaining 410 customers, while Facebook retains only 250. This suggests that while the overall retention rate appears healthy, certain channels are underperforming, leading to potential risks in customer loyalty and revenue stability.",
+      "key_signals": [
+        "Overall churn rate is 9.0%",
+        "Email channel has the lowest churn rate at 6.0%"
+      ],
+      "detected_issues": [
+        "High churn rate in Facebook channel at 13.0%",
+        "Inconsistent retention rates across channels"
+      ],
+      "root_cause_hypothesis": "The primary root cause is likely related to the effectiveness of customer engagement strategies in specific channels, particularly Facebook.",
+      "business_risks": [
+        "Potential loss of revenue due to high churn in certain channels",
+        "Increased costs associated with acquiring new customers to replace those lost"
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Enhance Customer Engagement on Facebook",
+        "category": "Targeting",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "Facebook has a high churn rate of 13.0%, indicating poor customer retention.",
+        "evidence": [
+          "High churn rate in Facebook channel at 13.0%",
+          "Facebook retains only 250 customers"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop targeted engagement campaigns",
+            "where": "Facebook",
+            "how": "Create personalized content and offers to re-engage existing customers, focusing on their past purchase behavior.",
+            "guardrails": [
+              "Ensure content is relevant to the audience to avoid alienation"
+            ]
+          },
+          {
+            "step": "Increase frequency of customer touchpoints",
+            "where": "Facebook",
+            "how": "Use retargeting ads to remind customers of products they viewed or purchased.",
+            "guardrails": [
+              "Avoid excessive frequency to prevent ad fatigue"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving engagement on Facebook can reduce churn and increase customer retention, stabilizing revenue from this channel.",
+        "expected_impact": {
+          "primary_kpi": "churn_rate_percent",
+          "direction": "Decrease",
+          "explanation": "By engaging customers more effectively, we can reduce the number of customers leaving."
+        },
+        "dependency_or_risk": [
+          "Requires creative and strategic input from the marketing team"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare churn rate and retained customers before and after implementing changes on Facebook.",
+          "success_criteria": "Churn rate decreases to below 10% on Facebook.",
+          "check_timing": "Review after 4 weeks of campaign implementation.",
+          "notes": "Consider seasonal factors that might affect engagement."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Leverage Email Channel for Retention",
+        "category": "Channel_Mix",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Email has the lowest churn rate at 6.0% and retains the most customers.",
+        "evidence": [
+          "Email channel has the lowest churn rate at 6.0%",
+          "Email retains 410 customers"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase email frequency for retention campaigns",
+            "where": "Email",
+            "how": "Send personalized retention emails to existing customers, highlighting loyalty benefits.",
+            "guardrails": [
+              "Ensure emails are not too frequent to avoid unsubscribes"
+            ]
+          },
+          {
+            "step": "Expand email list targeting",
+            "where": "Email",
+            "how": "Include more segments of customers who have shown interest but not purchased recently.",
+            "guardrails": [
+              "Avoid targeting customers who have opted out of marketing communications"
+            ]
+          }
+        ],
+        "why_this_matters": "Maximizing the use of the email channel can further enhance retention and reduce churn across the board.",
+        "expected_impact": {
+          "primary_kpi": "retention_rate_percent",
+          "direction": "Increase",
+          "explanation": "Effective email campaigns can keep customers engaged and loyal."
+        },
+        "dependency_or_risk": [
+          "Requires updated customer data for segmentation"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor retention rate and customer feedback post-email campaigns.",
+          "success_criteria": "Retention rate increases by at least 2%.",
+          "check_timing": "Evaluate results after 2 weeks of campaign execution.",
+          "notes": "Consider email deliverability and open rates."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Optimize Spend on High ROAS Channels",
+        "category": "Budget",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "Medium",
+        "whats_happening": "SMS and Email channels have the highest return on ad spend, indicating efficient use of budget.",
+        "evidence": [
+          "SMS ROAS is 18.75",
+          "Email ROAS is 15.0"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reallocate budget to SMS and Email",
+            "where": "cross-channel",
+            "how": "Shift 10% of the budget from lower ROAS channels to SMS and Email.",
+            "guardrails": [
+              "Ensure budget reallocation does not negatively impact other channels"
+            ]
+          }
+        ],
+        "why_this_matters": "Focusing on channels with high returns can improve overall campaign efficiency and profitability.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Improve",
+          "explanation": "Investing in high-performing channels increases overall return on investment."
+        },
+        "dependency_or_risk": [
+          "Requires analysis of current budget allocations"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in ROAS across channels after budget reallocation.",
+          "success_criteria": "Overall ROAS increases by at least 5%.",
+          "check_timing": "Review after 1 week of budget adjustment.",
+          "notes": "Consider any external factors affecting channel performance."
+        },
+        "owner_suggestion": "Analytics"
+      },
+      {
+        "id": "REC-04",
+        "title": "Reduce Bounce Rate on Instagram",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Instagram has a relatively high bounce rate, suggesting users are not engaging with the landing page.",
+        "evidence": [
+          "Instagram bounce rate is 28%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Revise landing page content",
+            "where": "Instagram",
+            "how": "Ensure the landing page is aligned with ad content and provides a clear call to action.",
+            "guardrails": [
+              "Maintain brand consistency across all content"
+            ]
+          },
+          {
+            "step": "Test different landing page designs",
+            "where": "Instagram",
+            "how": "Use A/B testing to determine which design leads to lower bounce rates.",
+            "guardrails": [
+              "Ensure tests are statistically significant before making changes"
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing bounce rates can lead to higher engagement and conversion rates, ultimately improving customer retention.",
+        "expected_impact": {
+          "primary_kpi": "retained_customers",
+          "direction": "Increase",
+          "explanation": "A more engaging landing page can convert more visitors into retained customers."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with the web team for landing page changes"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare bounce rates and conversion rates before and after landing page changes.",
+          "success_criteria": "Bounce rate decreases by at least 5%.",
+          "check_timing": "Evaluate after 4 weeks of implementing changes.",
+          "notes": "Consider seasonal traffic variations."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Increase Engagement on TikTok",
+        "category": "Creative",
+        "priority": "Low",
+        "effort": "High",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok has high engagement metrics but there is room for further improvement to boost retention.",
+        "evidence": [
+          "TikTok has 1400 likes, 310 comments, and 620 shares"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Create interactive content",
+            "where": "TikTok",
+            "how": "Develop content that encourages user interaction, such as polls or challenges.",
+            "guardrails": [
+              "Ensure content aligns with brand values"
+            ]
+          },
+          {
+            "step": "Collaborate with influencers",
+            "where": "TikTok",
+            "how": "Partner with influencers to reach a wider audience and increase engagement.",
+            "guardrails": [
+              "Select influencers whose audience aligns with target demographics"
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing engagement on TikTok can enhance brand loyalty and retention among a younger audience.",
+        "expected_impact": {
+          "primary_kpi": "retained_customers",
+          "direction": "Increase",
+          "explanation": "Higher engagement can lead to stronger customer relationships and retention."
+        },
+        "dependency_or_risk": [
+          "Requires budget for influencer partnerships"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor engagement rates and retained customers on TikTok post-campaign.",
+          "success_criteria": "Increase in engagement metrics by 10%.",
+          "check_timing": "Review after 6 weeks of campaign execution.",
+          "notes": "Consider TikTok's rapidly changing trends."
+        },
+        "owner_suggestion": "Creative team"
+      }
+    ]
+  }
+}

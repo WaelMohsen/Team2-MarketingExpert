@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260515_172145",
+  "timestamp_utc": "2026-05-15T17:26:39Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "o4-mini",
+  "recommendation_generation_temp": 1.0,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 1.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides some specific numbers, such as the churn rate of 9.0%, retention rate of 91.0%, and retained customers at 1890. However, it lacks detailed quantitative grounding for all claims, particularly regarding total revenue and customer acquisition cost, which are mentioned but not broken down by channel.",
+    "benchmark_anchoring": "The churn rate and retention rate are compared to the overall performance but not explicitly anchored to the benchmarks provided. For example, while the churn rate of 9.0% is mentioned, there is no reference to how this compares to the ideal target or industry standards. The analysis does not state the gap between the actual and benchmark figures.",
+    "coverage": "The analysis addresses churn rate, retention rate, and retained customers, but it fails to mention other important KPIs such as total revenue, new customers, and cost per new customer. This incomplete coverage limits the overall assessment of customer retention.",
+    "no_recommendation": "The analysis remains diagnostic and does not include any recommendation language, focusing instead on describing the current state of customer retention and the associated risks."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260515_172639_customer_retention.json"
+}

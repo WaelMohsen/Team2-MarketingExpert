@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260506_045507",
+  "timestamp_utc": "2026-05-06T04:57:16Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 4,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and uses straightforward language, making it accessible for a business audience. However, it could benefit from a more detailed explanation of how the metrics directly relate to financial outcomes."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "The key signals are specific and based on the data provided, highlighting important metrics like churn and retention rates. However, they could be more explicitly tied to potential financial impacts."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight specific problems, particularly with the Facebook channel. They clearly indicate potential risks to customer retention and revenue, but could be expanded to include more context on how these issues affect overall business performance."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The root cause hypothesis logically connects to the detected issues and key signals, suggesting that customer engagement strategies may be lacking. However, it could be strengthened by providing examples or data to support this hypothesis."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks identified are specific and highlight potential revenue loss and declining customer loyalty. They are articulated in a way that a non-marketing audience can understand, but could include more quantitative estimates of potential financial impact."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score of 80% is reasonable given the analysis provided, but it could be more explicitly justified with references to the strength of the data and findings."
+    }
+  ],
+  "summary": "The analysis provides a solid overview of the campaign's performance with clear insights, but there are areas for improvement in connecting metrics to financial implications.",
+  "improvement_suggestions": [
+    "Enhance the analysis by explicitly linking metrics to financial outcomes to better illustrate their impact.",
+    "Provide more context and examples to support the root cause hypothesis and confidence score."
+  ],
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_045716_customer_retention.json"
+}

@@ -1,0 +1,167 @@
+{
+  "run_id": "run_20260512_224646",
+  "timestamp_utc": "2026-05-12T22:47:40Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.744,
+  "business": {
+    "score": 0.84,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.8,
+        "actionability": 0.8,
+        "data_grounding": 0.9,
+        "kpi_alignment": 0.9,
+        "priority_accuracy": 0.8,
+        "decision_quality": 0.8,
+        "feasibility": 0.9,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Recommendations generally explain the cause or opportunity well, but some could benefit from deeper insights.",
+        "actionability": "Steps are mostly clear and specific, though some recommendations could be more detailed.",
+        "data_grounding": "Recommendations are well-supported by the provided data.",
+        "kpi_alignment": "Recommendations align well with campaign KPIs.",
+        "priority_accuracy": "High-impact recommendations are prioritized, but some medium-priority items could be reconsidered.",
+        "decision_quality": "Decisions are generally strong, though some could be more robust.",
+        "feasibility": "Recommendations are realistically implementable.",
+        "readability": "Recommendations are clear and simple for non-marketers."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.9,
+          "actionability": 0.8,
+          "data_grounding": 1.0,
+          "kpi_alignment": 1.0,
+          "decision_quality": 0.9,
+          "feasibility": 0.9
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.7,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.8,
+          "feasibility": 0.9
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "The recommendation could benefit from more specific insights into landing page issues."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "The recommendation lacks detailed insights into the impact of frequency adjustments."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.48,
+    "avg_similarity": 0.446,
+    "coverage": 0.655,
+    "llm_calls": 4,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.622,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.668,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.582,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-CS-01",
+        "similarity": 0.787,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.562,
+        "llm_score": 0.2
+      }
+    ],
+    "missed_ground_truth": [
+      "GT-CS-03"
+    ],
+    "flags": [
+      "low_similarity_to_expert"
+    ],
+    "total_recommendations": 5,
+    "total_ground_truth": 3
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_224740_customer_satisfaction.json"
+}

@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_134730",
+  "timestamp_utc": "2026-05-12T13:49:19Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 1.0,
+    "benchmark_anchoring": 1.0,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides specific numerical values for key metrics such as ROAS (7.94), Marketing ROI (694.48%), CPA ($3.37), and AOV ($22.72), which are all grounded in the campaign data.",
+    "benchmark_anchoring": "The claims regarding ROAS and Marketing ROI are well anchored to their respective benchmarks (4x and 100%), clearly stating that the campaign exceeds these benchmarks significantly. However, the analysis does not anchor the CPA or AOV against their benchmarks, which would provide more context.",
+    "coverage": "The analysis addresses ROAS, Marketing ROI, CPA, AOV, and conversion rate, but it fails to mention the LTV:CAC ratio and the purchase rate percent, which are also important KPIs from the benchmarks.",
+    "no_recommendation": "The analysis includes diagnostic language but also suggests potential improvements regarding AOV and conversion rates, which indicates a mix of analysis and recommendations."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_134919_revenue_growth.json"
+}

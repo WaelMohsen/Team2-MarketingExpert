@@ -1,0 +1,334 @@
+{
+  "run_id": "run_20260506_172533",
+  "timestamp_utc": "2026-05-06T17:25:56Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall conversion rate across all channels is 12.26%, which is significantly above the industry benchmark of 1.4%. This indicates that the landing pages and conversion processes are functioning effectively. However, the customer acquisition cost is not provided, but the cost per acquisition is 3.37, which suggests that the costs associated with acquiring new customers are manageable given the revenue generated. The overall return on advertising spend is 7.94, indicating a strong revenue generation relative to the advertising investment. Therefore, while the conversion rates are healthy, the analysis of customer acquisition costs and traffic costs is necessary to fully understand the campaign's efficiency.",
+      "key_signals": [
+        "Overall conversion rate is 12.26%, well above the benchmark of 1.4%",
+        "Cost per acquisition is 3.37, indicating manageable customer acquisition costs",
+        "Return on advertising spend is 7.94, showing strong revenue generation"
+      ],
+      "detected_issues": [],
+      "root_cause_hypothesis": "The campaign is performing well in terms of conversion efficiency, suggesting that there are no significant post-click issues.",
+      "business_risks": [],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Increase Budget for SMS Channel",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "The SMS channel has the highest conversion rate and return on advertising spend, indicating it is highly efficient in acquiring customers.",
+        "evidence": [
+          "SMS conversion rate is 19.64%, highest among channels",
+          "SMS return on advertising spend is 18.75, highest among channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase the budget for SMS campaigns by 20%",
+            "where": "SMS",
+            "how": "Allocate additional funds to SMS to capitalize on its high efficiency",
+            "guardrails": [
+              "Monitor conversion rate to ensure it remains stable"
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing the budget for the most efficient channel can lead to more customer acquisitions at a lower cost.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition",
+          "direction": "Increase",
+          "explanation": "More budget on the highest performing channel should increase new customer acquisition."
+        },
+        "dependency_or_risk": [
+          "Ensure SMS channel capacity can handle increased volume"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare new customer acquisition numbers before and after budget increase",
+          "success_criteria": "Increase in new customers acquired via SMS",
+          "check_timing": "Review after 1 week",
+          "notes": "Consider seasonal variations in SMS engagement"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Test New Creatives on Facebook",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Facebook has a lower return on advertising spend compared to other channels, indicating potential inefficiencies in ad creatives.",
+        "evidence": [
+          "Facebook return on advertising spend is 5.0, lower than other channels"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop and test 3 new ad creatives",
+            "where": "Facebook",
+            "how": "Create variations focusing on different value propositions or visuals",
+            "guardrails": [
+              "Ensure new creatives align with brand guidelines"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving ad creatives can enhance engagement and reduce costs, increasing overall efficiency.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Acquisition",
+          "direction": "Decrease",
+          "explanation": "Better creatives should improve engagement, reducing cost per acquisition."
+        },
+        "dependency_or_risk": [
+          "Creative team bandwidth to develop new ads"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in cost per acquisition and engagement metrics",
+          "success_criteria": "Reduction in cost per acquisition by at least 10%",
+          "check_timing": "Evaluate after 2 weeks",
+          "notes": "Consider creative fatigue and audience saturation"
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Optimize Google Ads Bidding Strategy",
+        "category": "Bidding",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Google Ads has a moderate cost per acquisition and return on advertising spend, suggesting room for improvement in bidding strategy.",
+        "evidence": [
+          "Google Ads cost per acquisition is 3.9",
+          "Google Ads return on advertising spend is 7.5"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Implement a bid adjustment strategy based on time of day and device",
+            "where": "Google Ads",
+            "how": "Analyze performance data to identify peak times and devices, then adjust bids accordingly",
+            "guardrails": [
+              "Ensure bid adjustments do not exceed budget constraints"
+            ]
+          }
+        ],
+        "why_this_matters": "Refining bidding strategies can lower costs and improve the efficiency of ad spend.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Acquisition",
+          "direction": "Decrease",
+          "explanation": "More efficient bidding should reduce costs per acquisition."
+        },
+        "dependency_or_risk": [
+          "Availability of detailed performance data"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in cost per acquisition and conversion rates",
+          "success_criteria": "Decrease in cost per acquisition by 5%",
+          "check_timing": "Assess after 2 weeks",
+          "notes": "Consider external factors like competition and market changes"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Enhance TikTok Engagement",
+        "category": "Creative",
+        "priority": "Low",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok has a high engagement rate but could benefit from enhanced creative strategies to further boost performance.",
+        "evidence": [
+          "TikTok has high likes and shares but moderate conversion rate"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop a series of interactive video ads",
+            "where": "TikTok",
+            "how": "Create engaging content that encourages user interaction and sharing",
+            "guardrails": [
+              "Maintain brand consistency across all content"
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing engagement on TikTok can lead to higher conversion rates and more efficient customer acquisition.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "More engaging content should lead to higher conversion rates."
+        },
+        "dependency_or_risk": [
+          "Creative team capacity for video production"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in conversion rates and engagement metrics",
+          "success_criteria": "Increase in conversion rate by 10%",
+          "check_timing": "Review after 4 weeks",
+          "notes": "Consider TikTok's algorithm changes and trends"
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Refine Email Campaign Targeting",
+        "category": "Targeting",
+        "priority": "Low",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Low",
+        "whats_happening": "Email has a high conversion rate but there is potential to further refine targeting to improve efficiency.",
+        "evidence": [
+          "Email conversion rate is 13.33%, high but with room for improvement"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Segment email lists based on customer behavior and preferences",
+            "where": "Email",
+            "how": "Use data analytics to identify key customer segments and tailor messaging",
+            "guardrails": [
+              "Avoid over-segmentation which can lead to inefficiencies"
+            ]
+          }
+        ],
+        "why_this_matters": "Better targeting can improve engagement and conversion rates, leading to more efficient customer acquisition.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "More precise targeting should lead to higher conversion rates."
+        },
+        "dependency_or_risk": [
+          "Availability of detailed customer data"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor changes in open rates and conversion rates",
+          "success_criteria": "Increase in conversion rate by 5%",
+          "check_timing": "Evaluate after 4 weeks",
+          "notes": "Consider email deliverability and list health"
+        },
+        "owner_suggestion": "Analytics"
+      }
+    ]
+  }
+}

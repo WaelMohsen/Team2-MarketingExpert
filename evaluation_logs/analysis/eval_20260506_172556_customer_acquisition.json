@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260506_172533",
+  "timestamp_utc": "2026-05-06T17:25:56Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 3,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and uses plain language to describe the campaign's performance, making it accessible for a business audience."
+    },
+    {
+      "name": "key_signals",
+      "score": 3,
+      "rationale": "While the key signals are based on data, they lack depth and specificity regarding how these metrics directly impact business outcomes."
+    },
+    {
+      "name": "detected_issues",
+      "score": 2,
+      "rationale": "There are no detected issues mentioned, which is a significant oversight as it fails to address potential areas for improvement or risks."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 3,
+      "rationale": "The hypothesis is somewhat logical but lacks a clear connection to any detected issues, making it less impactful."
+    },
+    {
+      "name": "business_risks",
+      "score": 2,
+      "rationale": "The analysis states there are no business risks, which is unrealistic; every campaign has potential risks that should be identified."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score is reasonable and aligns with the positive performance metrics presented, indicating a strong level of certainty."
+    }
+  ],
+  "summary": "The analysis provides a generally positive view of the campaign but lacks critical insights into issues and risks.",
+  "improvement_suggestions": [
+    "Identify and discuss potential issues or risks associated with the campaign to provide a more balanced view.",
+    "Enhance the key signals section by linking metrics to specific business impacts to better inform decision-making."
+  ],
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_172556_customer_acquisition.json"
+}

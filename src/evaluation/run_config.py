@@ -10,6 +10,7 @@ class GenerationConfig:
     analysis_temp: float
     recommendation_model: str
     recommendation_temp: float
+    reasoning_effort: Optional[str] 
 
 
 @dataclass(frozen=True)
@@ -56,6 +57,7 @@ def load_run_config(config_path: str = DEFAULT_CONFIG_PATH) -> RunConfig:
             analysis_temp=float(generation["analysis_temp"]),
             recommendation_model=generation["recommendation_model"],
             recommendation_temp=float(generation["recommendation_temp"]),
+            reasoning_effort=str(generation["reasoning_effort"])
         ),
         evaluation=EvaluationConfig(
             analysis_judge_model=evaluation["analysis_judge_model"],

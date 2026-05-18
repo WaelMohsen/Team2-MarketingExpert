@@ -1,0 +1,172 @@
+{
+  "run_id": "run_20260512_231932",
+  "timestamp_utc": "2026-05-12T23:20:43Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.741,
+  "business": {
+    "score": 0.855,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.9,
+        "actionability": 0.8,
+        "data_grounding": 0.9,
+        "kpi_alignment": 0.9,
+        "priority_accuracy": 0.8,
+        "decision_quality": 0.8,
+        "feasibility": 0.9,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Recommendations are well-grounded in the analysis and clearly explain the causes and opportunities.",
+        "actionability": "Steps are generally clear and specific, but some recommendations could benefit from more detailed execution plans.",
+        "data_grounding": "Recommendations are strongly supported by the provided data and metrics.",
+        "kpi_alignment": "Each recommendation is clearly linked to relevant KPIs, ensuring alignment with campaign goals.",
+        "priority_accuracy": "High-impact recommendations are prioritized, but some medium-priority items could be reconsidered.",
+        "decision_quality": "Decisions are generally strong, but some could be more robust with additional context.",
+        "feasibility": "Recommendations are realistic and implementable within the given constraints.",
+        "readability": "The recommendations are clear and understandable for non-marketers."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 1.0,
+          "actionability": 0.9,
+          "data_grounding": 1.0,
+          "kpi_alignment": 1.0,
+          "decision_quality": 0.9,
+          "feasibility": 1.0
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 1.0,
+          "actionability": 0.9,
+          "data_grounding": 1.0,
+          "kpi_alignment": 1.0,
+          "decision_quality": 0.9,
+          "feasibility": 1.0
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.7,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Actionability could be improved with more specific steps for budget reallocation.",
+          "Decision quality could be enhanced with more context on potential risks."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Actionability lacks specific steps for influencer collaboration.",
+          "Decision quality could be improved with more detailed risk assessment."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Actionability could be more detailed regarding bidding strategy implementation.",
+          "Decision quality could be enhanced with more context on market conditions."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.461,
+    "avg_similarity": 0.397,
+    "coverage": 0.683,
+    "llm_calls": 4,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-CS-01",
+        "similarity": 0.801,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.669,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.524,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.587,
+        "llm_score": 0.2
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-CS-01",
+        "similarity": 0.513,
+        "llm_score": 0.2
+      }
+    ],
+    "missed_ground_truth": [
+      "GT-CS-03"
+    ],
+    "flags": [
+      "low_similarity_to_expert"
+    ],
+    "total_recommendations": 5,
+    "total_ground_truth": 3
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_232043_customer_satisfaction.json"
+}
