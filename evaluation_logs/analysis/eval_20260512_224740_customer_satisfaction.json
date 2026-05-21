@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_224646",
+  "timestamp_utc": "2026-05-12T22:47:40Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides several specific metrics, such as a conversion rate of 12.26%, a click-through rate of 4.65%, and a bounce rate of 27%. However, it lacks detailed numerical grounding for some claims, such as the Customer Acquisition Cost and Return on Advertising Spend, which are mentioned without context or specific calculations.",
+    "benchmark_anchoring": "The click-through rate of 4.65% is noted as being above the typical range for social media but within the acceptable range for search, which is a good benchmark comparison. However, the conversion rate of 12.26% is not compared to any benchmark, nor is the bounce rate of 27% contextualized against the <55% benchmark.",
+    "coverage": "The analysis addresses several KPIs, including conversion rate, click-through rate, bounce rate, and Customer Acquisition Cost. However, it does not mention engagement rate, relevance score, video completion rate, time on page, pages per session, positive sentiment, or quality score, which are all relevant KPIs from the benchmarks.",
+    "no_recommendation": "The analysis includes diagnostic language but also implies recommendations by suggesting potential issues with ad quality or targeting, which indicates a shift towards prescriptive language."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_224740_customer_satisfaction.json"
+}

@@ -1,0 +1,168 @@
+{
+  "run_id": "run_20260512_231932",
+  "timestamp_utc": "2026-05-12T23:21:16Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.807,
+  "business": {
+    "score": 0.845,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.9,
+        "actionability": 0.8,
+        "data_grounding": 0.9,
+        "kpi_alignment": 0.9,
+        "priority_accuracy": 0.8,
+        "decision_quality": 0.8,
+        "feasibility": 0.8,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Recommendations are well-grounded in the analysis and clearly explain the reasons behind them.",
+        "actionability": "Steps are generally clear and specific, but some could benefit from more detailed execution plans.",
+        "data_grounding": "Recommendations are strongly supported by the provided data and metrics.",
+        "kpi_alignment": "There is a clear linkage between recommendations and campaign KPIs.",
+        "priority_accuracy": "High-impact recommendations are prioritized, but some medium-priority items could be reconsidered.",
+        "decision_quality": "Decisions are generally strong, but some recommendations could be more robust.",
+        "feasibility": "Most recommendations are realistically implementable, though some require significant resources.",
+        "readability": "Recommendations are clear and understandable for non-marketers."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 1.0,
+          "actionability": 0.9,
+          "data_grounding": 1.0,
+          "kpi_alignment": 1.0,
+          "decision_quality": 0.9,
+          "feasibility": 0.9
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 1.0,
+          "actionability": 0.8,
+          "data_grounding": 1.0,
+          "kpi_alignment": 1.0,
+          "decision_quality": 0.9,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.7,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Actionability could be improved with more detailed steps.",
+          "Decision quality is slightly lower due to medium confidence and potential resource constraints."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.7,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Actionability lacks detailed execution steps.",
+          "Decision quality is affected by medium confidence and potential initial fluctuations."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.6,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.6,
+          "feasibility": 0.6
+        },
+        "issues": [
+          "Actionability is vague and lacks specific steps.",
+          "Feasibility is lower due to high effort and resource requirements."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.633,
+    "avg_similarity": 0.627,
+    "coverage": 0.767,
+    "llm_calls": 3,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-RG-03",
+        "similarity": 0.816,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-RG-01",
+        "similarity": 0.787,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-RG-02",
+        "similarity": 0.604,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-RG-02",
+        "similarity": 0.671,
+        "llm_score": 0.4
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-RG-04",
+        "similarity": 0.692,
+        "llm_score": 0.4
+      }
+    ],
+    "missed_ground_truth": [],
+    "flags": [],
+    "total_recommendations": 5,
+    "total_ground_truth": 4
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_232116_revenue_growth.json"
+}

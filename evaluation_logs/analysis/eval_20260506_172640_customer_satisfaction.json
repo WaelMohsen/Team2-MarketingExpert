@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260506_172533",
+  "timestamp_utc": "2026-05-06T17:26:40Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 4,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and avoids technical jargon, making it accessible for a business audience. However, it could be more concise in some areas."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "The key signals are specific and derived from the raw data, providing valuable insights into campaign performance. However, they could be more directly tied to business outcomes."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight significant problems that could impact business performance, but they could benefit from more emphasis on the implications of these issues."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The root cause hypothesis logically connects to the detected issues and key signals, providing a reasonable explanation for the performance variations across channels."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks identified are specific and highlight potential financial impacts, but they could be more detailed in terms of how they might affect overall growth."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score appears realistic and aligns with the analysis provided, but it could be better justified with more evidence from the data."
+    }
+  ],
+  "summary": "The analysis provides a strong overview of the campaign's performance with actionable insights, though it could be improved in clarity and depth.",
+  "improvement_suggestions": [
+    "Enhance clarity by summarizing key points more concisely.",
+    "Provide more detailed implications of detected issues on business performance."
+  ],
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_172640_customer_satisfaction.json"
+}

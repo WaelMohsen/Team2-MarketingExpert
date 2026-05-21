@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_130958",
+  "timestamp_utc": "2026-05-12T13:11:10Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.8,
+    "benchmark_anchoring": 0.7,
+    "coverage": 0.6,
+    "no_recommendation": 0.2
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides specific numerical claims such as a conversion rate of 12.26%, a click-through rate of 4.65%, and an engagement rate of 6.68%. However, it lacks some specific dollar figures for cost per acquisition, which would strengthen the grounding.",
+    "benchmark_anchoring": "The click-through rate of 4.65% is compared to the benchmark of 3-6% for social, indicating success. The engagement rate of 6.68% is also noted as being at the higher end of the success range. However, the conversion rates are not compared to any benchmarks, which weakens the analysis.",
+    "coverage": "The analysis addresses several KPIs such as conversion rate, click-through rate, engagement rate, and bounce rate. However, it does not mention other important KPIs like Time on Page, Pages Per Session, or Positive Sentiment, which are part of the goal benchmarks.",
+    "no_recommendation": "The analysis includes some language that suggests recommendations, such as implying that landing pages may not be optimized, which detracts from its diagnostic nature."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_131110_customer_satisfaction.json"
+}

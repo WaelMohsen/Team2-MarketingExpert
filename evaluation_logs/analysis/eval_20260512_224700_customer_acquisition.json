@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_224646",
+  "timestamp_utc": "2026-05-12T22:47:00Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides specific numbers such as a conversion rate of 12.26%, customer acquisition cost of approximately $3.37, and return on advertising spend of 7.94. However, it lacks detailed breakdowns of how these figures were calculated, particularly the CAC, which could be more explicitly tied to the number of new customers and total spend.",
+    "benchmark_anchoring": "The conversion rate of 12.26% is compared to the benchmark of 1.4% to 2.5%, indicating it is significantly above the benchmark. However, the analysis does not provide a benchmark for the CAC, which is crucial for understanding its performance relative to industry standards.",
+    "coverage": "The analysis addresses conversion rate and customer acquisition cost but does not mention cost per click (CPC) or return on advertising spend (ROAS) in relation to benchmarks. It also fails to discuss any potential issues related to CPC, which is a critical KPI in the context of customer acquisition.",
+    "no_recommendation": "The analysis includes language that suggests a focus on improving traffic acquisition costs, which implies a recommendation. Phrases like 'the focus should be on the top of the funnel' indicate a shift towards prescriptive language rather than remaining purely diagnostic."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_224700_customer_acquisition.json"
+}

@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_234445",
+  "timestamp_utc": "2026-05-12T23:44:59Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 0.5,
+    "benchmark_anchoring": 0.5,
+    "coverage": 0.5,
+    "no_recommendation": 0.0
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides some specific numbers, such as a Conversion Rate of 12.26% and a Customer Acquisition Cost of $3.37. However, it lacks detailed breakdowns of Cost Per Click across channels, which would strengthen the quantitative grounding.",
+    "benchmark_anchoring": "The Conversion Rate is compared to the industry benchmark of 1.4% to 2.5%, but the analysis does not quantify how much higher it is than the upper limit. The Customer Acquisition Cost is mentioned but not compared to any benchmark, which is necessary for proper context.",
+    "coverage": "The analysis addresses Conversion Rate and Customer Acquisition Cost but does not mention Cost Per Click, which is a critical KPI in the benchmarks. This omission affects the overall coverage score.",
+    "no_recommendation": "The analysis includes language that suggests a recommendation, such as identifying the primary bottleneck and discussing potential inefficiencies, which detracts from its diagnostic nature."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_234459_customer_acquisition.json"
+}

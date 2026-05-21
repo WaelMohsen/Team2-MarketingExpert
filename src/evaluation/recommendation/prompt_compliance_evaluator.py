@@ -46,7 +46,7 @@ Evaluate if these recommendations follow the system rules:
 RULES:
 1. Use ONLY provided data
 2. Be action-oriented
-3. Do not repeat analysis
+3. Do not repeat analysis and recommendation
 4. Be clear for non-marketers
 5. Each recommendation must map to KPI
 
@@ -58,19 +58,21 @@ ANALYSIS:
 RECOMMENDATIONS:
 {recs}
 
-Score 0 to 1:
+Score from 0 to 1:
 - no_hallucination
 - clarity
 - non_repetition
 
-Return JSON:
+RETURN STRICT JSON:
+
+```json
 {{
     "no_hallucination": float,
     "clarity": float,
     "non_repetition": float
 
  }}
-
+```
 """
         try:
             return parse_llm_mapping(self.llm(prompt, model, temp))

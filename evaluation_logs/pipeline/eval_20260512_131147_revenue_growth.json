@@ -1,0 +1,405 @@
+{
+  "run_id": "run_20260512_130958",
+  "timestamp_utc": "2026-05-12T13:11:47Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Revenue Growth",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "AOV": 22.72,
+        "Annual Customer Value": 95.42,
+        "Marketing ROI": 694.48,
+        "Revenue Per Click": 2.78,
+        "LTV:CAC Ratio": 28.31
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "AOV": 18.75,
+          "Annual Customer Value": 95.62,
+          "Marketing ROI": 1400.0,
+          "Revenue Per Click": 2.5,
+          "LTV:CAC Ratio": 65.05
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "AOV": 18.33,
+          "Annual Customer Value": 64.17,
+          "Marketing ROI": 400.0,
+          "Revenue Per Click": 2.12,
+          "LTV:CAC Ratio": 14.58
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "AOV": 25.26,
+          "Annual Customer Value": 96.0,
+          "Marketing ROI": 650.0,
+          "Revenue Per Click": 2.82,
+          "LTV:CAC Ratio": 24.62
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "AOV": 24.62,
+          "Annual Customer Value": 103.38,
+          "Marketing ROI": 611.11,
+          "Revenue Per Click": 2.91,
+          "LTV:CAC Ratio": 25.28
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "AOV": 13.64,
+          "Annual Customer Value": 53.18,
+          "Marketing ROI": 1775.0,
+          "Revenue Per Click": 2.68,
+          "LTV:CAC Ratio": 64.07
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "AOV": 26.67,
+          "Annual Customer Value": 128.0,
+          "Marketing ROI": 700.0,
+          "Revenue Per Click": 3.08,
+          "LTV:CAC Ratio": 32.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "AOV",
+      "Annual Customer Value",
+      "Marketing ROI",
+      "Revenue Per Click",
+      "LTV:CAC Ratio"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign performance shows a strong return on ad spend at 7.94, significantly exceeding the good benchmark of 4 times. The marketing return on investment is also healthy at 694.48%, indicating that the campaign is generating substantial profit relative to the money spent. However, the cost per new customer is 3.37, which is manageable given the annual customer value of 95.42. The conversion rate across all channels is 12.26%, which is reasonable but could be improved. The average order value is 22.72, suggesting that customers are spending a moderate amount per order. The lifetime value to customer acquisition cost ratio is exceptionally high at 28.31, indicating strong long-term profitability. Overall, the campaign is performing well, but there are slight variations in performance across different channels that could be explored further.",
+      "key_signals": [
+        "Return on ad spend is 7.94, which is above the good benchmark of 4x.",
+        "Marketing return on investment is 694.48%, indicating strong profitability.",
+        "Cost per new customer is 3.37, which is acceptable compared to the annual customer value of 95.42.",
+        "Conversion rate is 12.26%, which is reasonable but could be improved."
+      ],
+      "detected_issues": [
+        "Conversion rate varies across channels, with some channels underperforming.",
+        "Average order value is moderate at 22.72, indicating potential for higher spending."
+      ],
+      "root_cause_hypothesis": "The primary bottleneck appears to be related to the conversion efficiency on certain channels, particularly Facebook and Email, which have lower conversion rates compared to others.",
+      "business_risks": [
+        "If conversion rates do not improve, potential revenue growth may be limited.",
+        "Variability in channel performance could lead to inefficient spending."
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Increase Budget for SMS and Email Channels",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "SMS and Email channels have the highest return on ad spend and marketing return on investment.",
+        "evidence": [
+          "SMS ROAS is 18.75, Email ROAS is 15.0, both above the benchmark of 4x.",
+          "SMS Marketing ROI is 1775%, Email Marketing ROI is 1400%."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Increase budget allocation by 20% for SMS and Email channels.",
+            "where": "cross-channel",
+            "how": "Reallocate budget from underperforming channels to SMS and Email.",
+            "guardrails": [
+              "Ensure total campaign budget remains unchanged."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing budget for high-performing channels can maximize overall revenue growth.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Higher budget in high ROAS channels should increase overall revenue efficiency."
+        },
+        "dependency_or_risk": [
+          "Ensure SMS and Email infrastructure can handle increased volume."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare ROAS and total revenue before and after budget increase.",
+          "success_criteria": "ROAS remains above 15x for both channels.",
+          "check_timing": "Review after 2 weeks.",
+          "notes": "Consider seasonal variations in customer engagement."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Improve Facebook and Email Conversion Rates",
+        "category": "Targeting",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Facebook and Email channels have lower conversion rates compared to others.",
+        "evidence": [
+          "Facebook conversion rate is 11.54%, Email conversion rate is 13.33%, both below TikTok's 11.54%."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Test new audience segments for Facebook and Email.",
+            "where": "Facebook and Email",
+            "how": "Use lookalike audiences and retargeting strategies.",
+            "guardrails": [
+              "Avoid increasing cost per acquisition significantly."
+            ]
+          },
+          {
+            "step": "Optimize landing pages for Facebook and Email traffic.",
+            "where": "Landing_Page",
+            "how": "Improve page load speed and simplify purchase process.",
+            "guardrails": [
+              "Ensure consistent branding across channels."
+            ]
+          }
+        ],
+        "why_this_matters": "Improving conversion rates can directly increase revenue without additional spend.",
+        "expected_impact": {
+          "primary_kpi": "cost_per_new_customer",
+          "direction": "Decrease",
+          "explanation": "Higher conversion rates reduce the cost of acquiring each new customer."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with web development team for landing page changes."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor conversion rates and CPA before and after changes.",
+          "success_criteria": "Conversion rates increase by at least 2%.",
+          "check_timing": "Review after 4 weeks.",
+          "notes": "Consider potential delays in conversion rate improvements."
+        },
+        "owner_suggestion": "Targeting team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Enhance TikTok Engagement Strategies",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok has high engagement but moderate conversion rate.",
+        "evidence": [
+          "TikTok has the highest impressions and clicks but conversion rate is only 11.54%."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop more engaging and interactive content for TikTok.",
+            "where": "TikTok",
+            "how": "Use user-generated content and interactive polls.",
+            "guardrails": [
+              "Maintain brand voice and messaging."
+            ]
+          },
+          {
+            "step": "Test different ad formats such as video ads and carousel ads.",
+            "where": "TikTok",
+            "how": "Rotate ad formats weekly to gauge effectiveness.",
+            "guardrails": [
+              "Ensure ads are optimized for mobile viewing."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing engagement can lead to higher conversion rates and revenue.",
+        "expected_impact": {
+          "primary_kpi": "revenue_per_click",
+          "direction": "Increase",
+          "explanation": "More engaging content can lead to higher click-through and conversion rates."
+        },
+        "dependency_or_risk": [
+          "Creative team must be able to produce new content quickly."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track engagement metrics and conversion rates on TikTok.",
+          "success_criteria": "Increase in conversion rate by 1-2%.",
+          "check_timing": "Review after 4 weeks.",
+          "notes": "Monitor for changes in TikTok algorithm that may affect engagement."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Optimize Average Order Value Across Channels",
+        "category": "Sales_Enablement",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Average order value is moderate, indicating potential for upselling or bundling.",
+        "evidence": [
+          "Overall average order value is 22.72, below TikTok's 26.67."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Introduce product bundling offers to increase order size.",
+            "where": "cross-channel",
+            "how": "Create bundles of complementary products at a discount.",
+            "guardrails": [
+              "Ensure discounts do not erode profit margins."
+            ]
+          },
+          {
+            "step": "Upsell higher-value products during checkout process.",
+            "where": "cross-channel",
+            "how": "Use personalized recommendations based on browsing history.",
+            "guardrails": [
+              "Avoid overwhelming customers with too many options."
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing the average order value can boost revenue without increasing customer acquisition costs.",
+        "expected_impact": {
+          "primary_kpi": "average_order_value",
+          "direction": "Increase",
+          "explanation": "Bundling and upselling can increase the value of each transaction."
+        },
+        "dependency_or_risk": [
+          "Requires coordination with product and pricing teams."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare average order value before and after implementing strategies.",
+          "success_criteria": "Increase in average order value by 10%.",
+          "check_timing": "Review after 6 weeks.",
+          "notes": "Consider seasonal purchasing patterns."
+        },
+        "owner_suggestion": "Sales team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Reduce Spend on Underperforming Channels",
+        "category": "Budget",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Facebook has the lowest return on ad spend and marketing return on investment.",
+        "evidence": [
+          "Facebook ROAS is 5.0, below the benchmark of 4x.",
+          "Facebook Marketing ROI is 400%, lower than other channels."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reduce budget allocation for Facebook by 15%.",
+            "where": "Facebook",
+            "how": "Reallocate budget to higher-performing channels like SMS and TikTok.",
+            "guardrails": [
+              "Ensure overall campaign objectives are not compromised."
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing spend on low-performing channels can improve overall campaign efficiency.",
+        "expected_impact": {
+          "primary_kpi": "marketing_roi_percent",
+          "direction": "Improve",
+          "explanation": "Reallocating budget can enhance return on investment by focusing on effective channels."
+        },
+        "dependency_or_risk": [
+          "Monitor Facebook performance to ensure no further decline."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in overall marketing ROI and Facebook performance.",
+          "success_criteria": "Improvement in overall marketing ROI by 5%.",
+          "check_timing": "Review after 2 weeks.",
+          "notes": "Consider potential impact on brand awareness."
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

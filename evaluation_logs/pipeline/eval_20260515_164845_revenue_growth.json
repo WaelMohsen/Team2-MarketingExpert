@@ -1,0 +1,525 @@
+{
+  "run_id": "run_20260515_164522",
+  "timestamp_utc": "2026-05-15T16:48:45Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "o4-mini",
+  "recommendation_generation_temp": 1.0,
+  "payload": {
+    "Target": "Revenue Growth",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "AOV": 22.72,
+        "Annual Customer Value": 95.42,
+        "Marketing ROI": 694.48,
+        "Revenue Per Click": 2.78,
+        "LTV:CAC Ratio": 28.31
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "AOV": 18.75,
+          "Annual Customer Value": 95.62,
+          "Marketing ROI": 1400.0,
+          "Revenue Per Click": 2.5,
+          "LTV:CAC Ratio": 65.05
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "AOV": 18.33,
+          "Annual Customer Value": 64.17,
+          "Marketing ROI": 400.0,
+          "Revenue Per Click": 2.12,
+          "LTV:CAC Ratio": 14.58
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "AOV": 25.26,
+          "Annual Customer Value": 96.0,
+          "Marketing ROI": 650.0,
+          "Revenue Per Click": 2.82,
+          "LTV:CAC Ratio": 24.62
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "AOV": 24.62,
+          "Annual Customer Value": 103.38,
+          "Marketing ROI": 611.11,
+          "Revenue Per Click": 2.91,
+          "LTV:CAC Ratio": 25.28
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "AOV": 13.64,
+          "Annual Customer Value": 53.18,
+          "Marketing ROI": 1775.0,
+          "Revenue Per Click": 2.68,
+          "LTV:CAC Ratio": 64.07
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "AOV": 26.67,
+          "Annual Customer Value": 128.0,
+          "Marketing ROI": 700.0,
+          "Revenue Per Click": 3.08,
+          "LTV:CAC Ratio": 32.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "AOV",
+      "Annual Customer Value",
+      "Marketing ROI",
+      "Revenue Per Click",
+      "LTV:CAC Ratio"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign performance shows strong primary metrics. The return on ad spend is 7.94, which is significantly above the good benchmark of 4x, indicating effective revenue generation relative to advertising costs. The marketing return on investment is 694.48%, also well above the 100% threshold, suggesting that the campaign is profitable. The cost per new customer is 3.37, which is reasonable given the annual customer value of 95.42. This indicates that the campaign is acquiring customers at a cost that is sustainable in the long term. However, the conversion rate of 12.26% is relatively healthy but could be improved, as it varies across channels. The average order value is 22.72, which is acceptable but may suggest that customers are not spending enough per transaction. The lifetime value to customer acquisition cost ratio is 28.31, indicating a strong profitability per customer acquired. Overall, the campaign is performing well, but there are variations in performance across different channels.",
+      "key_signals": [
+        "Return on ad spend is 7.94, above the good benchmark of 4x.",
+        "Marketing return on investment is 694.48%, indicating strong profitability."
+      ],
+      "detected_issues": [
+        "Conversion rate varies across channels, with some channels underperforming.",
+        "Average order value is 22.72, suggesting potential for higher customer spending."
+      ],
+      "root_cause_hypothesis": "The primary bottleneck appears to be at the bottom of the funnel, specifically related to conversion efficiency on certain channels.",
+      "business_risks": [
+        "Potential for lower customer spending may limit revenue growth.",
+        "Inconsistent conversion rates across channels could lead to inefficiencies."
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Shift budget to top performing channels",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Email and SMS deliver the highest return on ad dollar and lowest cost per new customer, while Facebook returns less revenue per dollar.",
+        "evidence": [
+          "Email return on ad spend is 15.0 and cost per new customer is 1.47",
+          "SMS return on ad spend is 18.75 and cost per new customer is 0.83",
+          "Facebook return on ad spend is 5.0 and cost per new customer is 4.40"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reduce Facebook monthly budget by 25 percent",
+            "where": "Facebook Ads Manager",
+            "how": "Lower spending limit from $220 to $165",
+            "guardrails": [
+              "Facebook budget must stay at or above 75 percent of current spend"
+            ]
+          },
+          {
+            "step": "Increase Email campaign budget by 50 percent",
+            "where": "Email platform",
+            "how": "Raise monthly promotional budget from $100 to $150",
+            "guardrails": [
+              "Maintain current email send frequency"
+            ]
+          },
+          {
+            "step": "Increase SMS campaign budget by 50 percent",
+            "where": "SMS platform",
+            "how": "Raise monthly spend from $40 to $60",
+            "guardrails": [
+              "Monitor opt-out rate to keep below 1 percent"
+            ]
+          },
+          {
+            "step": "Allocate freed budget to TikTok by increasing budget by 15 percent",
+            "where": "TikTok Ads Manager",
+            "how": "Raise monthly budget from $500 to $575",
+            "guardrails": [
+              "Maintain TikTok conversion rate above 11 percent"
+            ]
+          }
+        ],
+        "why_this_matters": "Moving budget to the most efficient channels will drive more revenue for each dollar spent and lower overall cost per customer.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Higher spend on high-return channels raises overall revenue per ad dollar"
+        },
+        "dependency_or_risk": [
+          "SMS frequency may lead to higher opt-out if messages are too frequent",
+          "Email deliverability must remain stable"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare overall return on ad spend before and after reallocation",
+          "success_criteria": "Increase in overall return on ad spend",
+          "check_timing": "2 weeks after reallocation",
+          "notes": "Watch for seasonal shifts and attribution lag"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "A/B test landing page for email visitors",
+        "category": "Landing_Page",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Email bounce rate is the highest at 36 percent, limiting the number of clicks that convert to customers.",
+        "evidence": [
+          "Email bounce rate is 36 percent compared with campaign average bounce rate of 29 percent",
+          "Email conversion rate is 13.33 percent but could be higher if fewer visitors leave immediately"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Design a streamlined landing page variation",
+            "where": "Email campaign landing page",
+            "how": "Shorten form fields to essentials and add a clear value statement",
+            "guardrails": [
+              "Page load time must remain under 3 seconds"
+            ]
+          },
+          {
+            "step": "Set up an A/B test with 50 percent of email traffic on the new page",
+            "where": "Email platform with A/B testing tool",
+            "how": "Use Google Optimize or equivalent to split traffic equally",
+            "guardrails": [
+              "Run test until each variant has at least 500 visits"
+            ]
+          },
+          {
+            "step": "Apply the winning variation to all email traffic",
+            "where": "Email landing page",
+            "how": "After test ends, replace control with the variation",
+            "guardrails": [
+              "Ensure conversion uplift before full rollout"
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing bounce will allow more email visitors to progress to conversion, lowering cost per new customer and increasing revenue.",
+        "expected_impact": {
+          "primary_kpi": "cost_per_new_customer",
+          "direction": "Decrease",
+          "explanation": "Higher email conversion reduces cost for each new customer acquired"
+        },
+        "dependency_or_risk": [
+          "Requires web development time and testing capacity",
+          "Need sufficient traffic for statistical significance"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare email conversion rate and cost per new customer before and after",
+          "success_criteria": "At least 10 percent uplift in email conversion rate",
+          "check_timing": "One month after full rollout",
+          "notes": "Ensure consistent traffic volume and account for any promotional changes during test"
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Test upsell bundles to boost order value",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Average order value is $22.72, limiting revenue per customer.",
+        "evidence": [
+          "Overall average order value is $22.72",
+          "SMS average order value is lowest at $13.64"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Create ad variations featuring bundled product offers",
+            "where": "Instagram, TikTok, Google Ads",
+            "how": "Design ads promoting buy-two-get-10% off and free shipping threshold",
+            "guardrails": [
+              "Limit test spend to 30 percent of each channel budget"
+            ]
+          },
+          {
+            "step": "Implement upsell pop-up on checkout page",
+            "where": "Website checkout",
+            "how": "Configure a clear bundle option before final purchase",
+            "guardrails": [
+              "Pop-up must be easily closable and not block checkout"
+            ]
+          },
+          {
+            "step": "Monitor average order value and conversion weekly",
+            "where": "Analytics dashboard",
+            "how": "Track AOV and conversion; pause upsell if abandonment rises",
+            "guardrails": [
+              "If checkout abandonment increases by over 5 percent, disable pop-up"
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing the amount each customer spends will raise total revenue and improve return on ad spend without additional advertising cost.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Higher order values generate more revenue per ad dollar spent"
+        },
+        "dependency_or_risk": [
+          "Requires creative production and web development",
+          "Upsell may introduce friction in checkout process"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare average order value and return on ad spend for bundle test versus control",
+          "success_criteria": "At least 5 percent increase in average order value",
+          "check_timing": "4 weeks after test launch",
+          "notes": "Exclude major sale events to avoid skewed results"
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Rotate new creatives on Facebook to improve conversion",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Facebook conversion rate is 11.54 percent, lower than other channels.",
+        "evidence": [
+          "Facebook conversion rate is 11.54 percent",
+          "Email conversion rate is 13.33 percent and SMS is 19.64 percent"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Design three new Facebook ad images with customer testimonials",
+            "where": "Facebook Ads Manager",
+            "how": "Use high-resolution images with under 20 percent text overlay",
+            "guardrails": [
+              "Text must not exceed 20 percent of image"
+            ]
+          },
+          {
+            "step": "Deploy a split test with 50 percent of Facebook budget on new creatives",
+            "where": "Facebook campaign",
+            "how": "Duplicate the current ad set, replace only the creative, keep audience and bids same",
+            "guardrails": [
+              "Maintain all other settings identical across test and control"
+            ]
+          },
+          {
+            "step": "After one week, pause any creative with fewer than 25 conversions",
+            "where": "Facebook Ads Manager",
+            "how": "Evaluate performance and turn off underperforming ads",
+            "guardrails": [
+              "Require minimum 25 conversions per creative before decision"
+            ]
+          }
+        ],
+        "why_this_matters": "Fresh creative can reduce ad fatigue and improve conversion, lowering cost per customer.",
+        "expected_impact": {
+          "primary_kpi": "cost_per_new_customer",
+          "direction": "Decrease",
+          "explanation": "Higher conversion on Facebook ads reduces cost to acquire each customer"
+        },
+        "dependency_or_risk": [
+          "Need time for design and review",
+          "Small sample size may require extended test"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare Facebook cost per new customer and conversion rate before and after",
+          "success_criteria": "10 percent lift in conversion rate",
+          "check_timing": "2 weeks after new creative launch",
+          "notes": "Account for weekend versus weekday performance shifts"
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Expand TikTok targeting with lookalike audiences",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok delivers strong results but may reach more qualified users with lookalikes.",
+        "evidence": [
+          "TikTok return on ad spend is 8.0 with 150 conversions",
+          "Current TikTok budget is $500 yielding cost per new customer of 4.00"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Create a 2 percent lookalike audience based on top customers",
+            "where": "TikTok Ads Manager",
+            "how": "Upload list of highest-value customers and select lookalike size at 2 percent",
+            "guardrails": [
+              "Create only one lookalike per ad group"
+            ]
+          },
+          {
+            "step": "Allocate 15 percent of TikTok budget to the lookalike audience",
+            "where": "TikTok campaign budget settings",
+            "how": "Increase budget for lookalike ad group by $75",
+            "guardrails": [
+              "Cap lookalike spend at 15 percent of total TikTok budget"
+            ]
+          },
+          {
+            "step": "Monitor conversion and cost per new customer for lookalike",
+            "where": "TikTok analytics",
+            "how": "Check conversion and cost daily; pause if cost exceeds $5",
+            "guardrails": [
+              "If cost per customer is above $5 for three consecutive days, pause audience"
+            ]
+          }
+        ],
+        "why_this_matters": "Lookalike audiences find more users similar to high-value customers, lifting conversion and revenue per ad dollar.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Higher conversion from qualified traffic increases revenue per ad dollar"
+        },
+        "dependency_or_risk": [
+          "Lookalike accuracy depends on quality of customer list",
+          "Requires TikTok pixel to be properly set up"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare lookalike segment return on ad spend to broad audience",
+          "success_criteria": "Lookalike return on ad spend exceeds broad audience",
+          "check_timing": "1 week after launch",
+          "notes": "Allow time for pixel data to accumulate"
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-06",
+        "title": "Switch Google Ads to target return on ad spend bidding",
+        "category": "Bidding",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Low",
+        "whats_happening": "Google Ads uses manual bidding, missing automation to maximize revenue efficiency.",
+        "evidence": [
+          "Google Ads return on ad spend is 7.5 with cost per new customer of 3.90",
+          "Manual bids may not adjust in real time to higher-value searches"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Change bidding strategy to target return on ad spend",
+            "where": "Google Ads campaign settings",
+            "how": "Select automated bidding and set target at 8.0",
+            "guardrails": [
+              "Keep daily budget at or below current $320"
+            ]
+          },
+          {
+            "step": "Monitor cost per new customer and return on ad spend",
+            "where": "Google Ads dashboard",
+            "how": "Check metrics daily for signs of overspend",
+            "guardrails": [
+              "If cost per customer exceeds $4.50 for three days, revert bidding strategy"
+            ]
+          }
+        ],
+        "why_this_matters": "Automated bidding can allocate spend to auctions that drive more revenue, improving overall efficiency.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Improve",
+          "explanation": "Algorithmic bids will focus spend on highest value conversions to raise return on ad spend"
+        },
+        "dependency_or_risk": [
+          "Requires a two-week learning period",
+          "Potential bid overshoot during learning phase"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare Google Ads return on ad spend before and after switch",
+          "success_criteria": "5 percent improvement in return on ad spend",
+          "check_timing": "4 weeks after switch",
+          "notes": "Expect lower performance in initial learning phase"
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

@@ -1,0 +1,406 @@
+{
+  "run_id": "run_20260506_172533",
+  "timestamp_utc": "2026-05-06T17:26:40Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Satisfaction",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "Engagement Rate": 6.68,
+        "Average Bounce Rate": 0.27,
+        "Average Frequency": 2.18
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.36,
+          "Average Frequency": 1.4
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "Engagement Rate": 5.36,
+          "Average Bounce Rate": 0.34,
+          "Average Frequency": 2.2
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.24,
+          "Average Frequency": 2.0
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "Engagement Rate": 5.6,
+          "Average Bounce Rate": 0.28,
+          "Average Frequency": 2.8
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "Engagement Rate": 0.0,
+          "Average Bounce Rate": 0.19,
+          "Average Frequency": 1.2
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "Engagement Rate": 8.96,
+          "Average Bounce Rate": 0.21,
+          "Average Frequency": 3.5
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "Engagement Rate",
+      "Average Bounce Rate",
+      "Average Frequency"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign shows a strong conversion rate of 12.26%, indicating that once users click through, they are likely to convert. However, the click-through rate of 4.65% is above the typical benchmark for social media, suggesting that the ads are compelling enough to generate interest. The average bounce rate of 27% is within acceptable limits, indicating that users are engaging with the landing pages. The customer acquisition cost is relatively low at 3.37, and the return on advertising spend is high at 7.94, which reflects effective spending. However, the engagement rate of 6.68% is healthy, suggesting that the content resonates with the audience. Despite these positive indicators, the performance varies significantly across channels, with the email channel showing a very high return on advertising spend of 15.0 but low engagement, while the Facebook channel has a lower return of 5.0 and a higher customer acquisition cost of 4.4. This indicates potential issues with content relevance and audience targeting across different platforms.",
+      "key_signals": [
+        "Overall conversion rate is 12.26%",
+        "Click-through rate is 4.65%",
+        "Average bounce rate is 27%",
+        "Return on advertising spend is 7.94"
+      ],
+      "detected_issues": [
+        "Inconsistent performance across channels",
+        "Low engagement in email despite high return on advertising spend",
+        "High customer acquisition cost in Facebook channel"
+      ],
+      "root_cause_hypothesis": "The primary bottleneck appears to be related to content relevance and audience targeting, particularly in channels like Facebook and Email where engagement is low.",
+      "business_risks": [
+        "Potential for declining customer engagement over time",
+        "Increased customer acquisition costs if targeting issues are not addressed",
+        "Risk of ad fatigue if content does not evolve"
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Refine Facebook Audience Targeting",
+        "category": "Targeting",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Facebook channel shows high customer acquisition cost and lower return on advertising spend, indicating potential targeting issues.",
+        "evidence": [
+          "Facebook customer acquisition cost is 4.4, higher than other channels",
+          "Return on advertising spend for Facebook is 5.0, below average"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Review and refine audience segments",
+            "where": "Facebook",
+            "how": "Analyze current audience segments and adjust targeting to focus on high-performing demographics",
+            "guardrails": [
+              "Avoid overly broad targeting that could dilute relevance"
+            ]
+          },
+          {
+            "step": "Test new audience interests",
+            "where": "Facebook",
+            "how": "Introduce new interest-based targeting options and monitor performance",
+            "guardrails": [
+              "Ensure interests align with product offerings"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving audience targeting on Facebook can reduce acquisition costs and increase return on advertising spend.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Better targeting should lead to more efficient spend and lower costs."
+        },
+        "dependency_or_risk": [
+          "Requires accurate audience data for targeting adjustments"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare customer acquisition cost and return on advertising spend before and after targeting changes",
+          "success_criteria": "Decrease in customer acquisition cost and increase in return on advertising spend",
+          "check_timing": "Review after 2 weeks",
+          "notes": "Consider seasonality and external factors that might affect results."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-02",
+        "title": "Enhance Email Content Engagement",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Email channel has high return on advertising spend but low engagement, indicating content may not be resonating with recipients.",
+        "evidence": [
+          "Email return on advertising spend is 15.0, but engagement rate is 0"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Revise email content strategy",
+            "where": "Email",
+            "how": "Develop more engaging and personalized email content based on user data",
+            "guardrails": [
+              "Maintain brand voice and messaging consistency"
+            ]
+          },
+          {
+            "step": "A/B test different email formats",
+            "where": "Email",
+            "how": "Test variations in email design and content to identify what drives higher engagement",
+            "guardrails": [
+              "Ensure compliance with email marketing regulations"
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing engagement in email can lead to higher conversion rates and customer satisfaction.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "More engaging content should lead to higher interaction rates."
+        },
+        "dependency_or_risk": [
+          "Requires creative resources for content development"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in engagement rate and conversion rate post-implementation",
+          "success_criteria": "Increase in engagement rate and conversion rate",
+          "check_timing": "Review after 2 weeks",
+          "notes": "Consider potential delays in email delivery affecting results."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Optimize TikTok Ad Frequency",
+        "category": "Bidding",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "Medium",
+        "whats_happening": "TikTok has a high engagement rate but a frequency of 3.5, which could lead to ad fatigue.",
+        "evidence": [
+          "TikTok engagement rate is 8.96%, frequency is 3.5"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reduce ad frequency slightly",
+            "where": "TikTok",
+            "how": "Adjust bidding strategy to limit ad exposure to 3 times per user",
+            "guardrails": [
+              "Monitor engagement to ensure it remains high"
+            ]
+          },
+          {
+            "step": "Monitor user feedback",
+            "where": "TikTok",
+            "how": "Collect and analyze user comments and feedback for signs of ad fatigue",
+            "guardrails": [
+              "Ensure feedback is acted upon promptly"
+            ]
+          }
+        ],
+        "why_this_matters": "Balancing ad frequency can maintain high engagement without causing audience fatigue.",
+        "expected_impact": {
+          "primary_kpi": "Ad Frequency",
+          "direction": "Stabilize",
+          "explanation": "Reducing frequency should prevent fatigue while maintaining engagement."
+        },
+        "dependency_or_risk": [
+          "Requires monitoring to avoid under-exposure"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare engagement rate and user feedback before and after frequency adjustment",
+          "success_criteria": "Stable engagement rate with reduced frequency",
+          "check_timing": "Review after 1 week",
+          "notes": "Consider changes in user behavior over time."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Increase Instagram Creative Variety",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Instagram shows a moderate engagement rate but could benefit from more diverse creative content to sustain interest.",
+        "evidence": [
+          "Instagram engagement rate is 5.6%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop new creative assets",
+            "where": "Instagram",
+            "how": "Create a variety of ad formats and visuals to test against current creatives",
+            "guardrails": [
+              "Ensure all creatives align with campaign objectives"
+            ]
+          },
+          {
+            "step": "Rotate creatives more frequently",
+            "where": "Instagram",
+            "how": "Implement a schedule for rotating ad creatives every two weeks",
+            "guardrails": [
+              "Monitor performance to identify top-performing creatives"
+            ]
+          }
+        ],
+        "why_this_matters": "Diverse and fresh creatives can capture attention and increase engagement.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "New and varied content should attract more interactions."
+        },
+        "dependency_or_risk": [
+          "Requires creative team bandwidth for asset creation"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track engagement rate changes with new creatives",
+          "success_criteria": "Increase in engagement rate",
+          "check_timing": "Review after 4 weeks",
+          "notes": "Consider creative fatigue and seasonal trends."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Leverage SMS for Retargeting",
+        "category": "Channel_Mix",
+        "priority": "Low",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "SMS channel has a high conversion rate and low customer acquisition cost, suggesting potential for retargeting efforts.",
+        "evidence": [
+          "SMS conversion rate is 19.64%, customer acquisition cost is 0.83"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop retargeting strategy",
+            "where": "SMS",
+            "how": "Identify segments of users who have shown interest but not converted and target them with personalized messages",
+            "guardrails": [
+              "Ensure messages are relevant and not intrusive"
+            ]
+          },
+          {
+            "step": "Integrate SMS with other channels",
+            "where": "Cross-channel",
+            "how": "Coordinate SMS campaigns with email and social media efforts for a cohesive strategy",
+            "guardrails": [
+              "Maintain consistent messaging across channels"
+            ]
+          }
+        ],
+        "why_this_matters": "Retargeting through SMS can capitalize on its high conversion rate to drive additional sales.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "Targeted messages should encourage conversions from interested users."
+        },
+        "dependency_or_risk": [
+          "Requires careful management to avoid spamming users"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor conversion rate changes following retargeting efforts",
+          "success_criteria": "Increase in conversion rate",
+          "check_timing": "Review after 4 weeks",
+          "notes": "Consider user opt-out rates and privacy concerns."
+        },
+        "owner_suggestion": "Sales Enablement"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "run_id": "run_20260512_234445",
+  "timestamp_utc": "2026-05-12T23:46:10Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "scores": {
+    "quantitative_grounding": 1.0,
+    "benchmark_anchoring": 1.0,
+    "coverage": 0.5,
+    "no_recommendation": 0.5
+  },
+  "explanations": {
+    "quantitative_grounding": "The analysis provides specific numerical values for key metrics, such as ROAS of 7.94, marketing ROI of 694.48%, cost per new customer of 3.37, and conversion rate of 12.26%. These figures are clearly stated and grounded in the campaign data.",
+    "benchmark_anchoring": "The claims regarding ROAS and marketing ROI are well anchored to benchmarks, with ROAS exceeding the good benchmark of 4x and marketing ROI being significantly above 100%. However, the analysis does not explicitly compare the cost per new customer or conversion rate to their respective benchmarks.",
+    "coverage": "The analysis addresses the primary KPIs of ROAS, marketing ROI, and cost per new customer, but it fails to mention the annual value per customer, which is crucial for evaluating the cost per new customer. Additionally, while it discusses conversion rate and average order value, it does not cover all secondary KPIs listed in the benchmarks.",
+    "no_recommendation": "The analysis includes some language that suggests potential improvements, such as 'could be improved' regarding conversion rates and 'may indicate' for average order value. This implies a recommendation, which detracts from the diagnostic nature of the analysis."
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_234610_revenue_growth.json"
+}

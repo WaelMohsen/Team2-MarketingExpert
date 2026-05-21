@@ -1,0 +1,405 @@
+{
+  "run_id": "run_20260512_231932",
+  "timestamp_utc": "2026-05-12T23:20:43Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Satisfaction",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "Engagement Rate": 6.68,
+        "Average Bounce Rate": 0.27,
+        "Average Frequency": 2.18
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.36,
+          "Average Frequency": 1.4
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "Engagement Rate": 5.36,
+          "Average Bounce Rate": 0.34,
+          "Average Frequency": 2.2
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "Engagement Rate": 0,
+          "Average Bounce Rate": 0.24,
+          "Average Frequency": 2.0
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "Engagement Rate": 5.6,
+          "Average Bounce Rate": 0.28,
+          "Average Frequency": 2.8
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "Engagement Rate": 0.0,
+          "Average Bounce Rate": 0.19,
+          "Average Frequency": 1.2
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "Engagement Rate": 8.96,
+          "Average Bounce Rate": 0.21,
+          "Average Frequency": 3.5
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "Engagement Rate",
+      "Average Bounce Rate",
+      "Average Frequency"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign performance shows a strong conversion rate of 12.26% and a click-through rate of 4.65%, indicating effective ad engagement. However, the engagement rate of 6.68% is on the higher end of the success range, suggesting that while people are interacting with the content, there may be room for improvement in the relevance of the ads. The average bounce rate of 27% is acceptable, but the bounce rates for individual channels vary, with Email showing a higher bounce rate of 36%, which could indicate a mismatch between the ad content and the landing page. The customer acquisition cost across channels varies significantly, with the lowest being 0.83 for SMS and the highest being 4.4 for Facebook, suggesting that some channels are more efficient than others in acquiring new customers. The return on advertising spend is strong overall at 7.94, but individual channels like SMS and Email show much higher returns, indicating potential inefficiencies in other channels. Therefore, while the top-of-funnel metrics appear strong, the bottom-of-funnel performance, particularly for Email and Facebook, may need further investigation.",
+      "key_signals": [
+        "Overall conversion rate is 12.26%",
+        "Click-through rate is 4.65%",
+        "Average bounce rate is 27%",
+        "Customer acquisition cost varies significantly across channels"
+      ],
+      "detected_issues": [
+        "High bounce rate for Email campaign at 36%",
+        "Low engagement rate for Facebook campaign at 5.36%",
+        "Inconsistency in customer acquisition cost across channels"
+      ],
+      "root_cause_hypothesis": "The primary bottleneck appears to be at the bottom-of-funnel, particularly related to landing page effectiveness and ad relevance for certain channels.",
+      "business_risks": [
+        "Potential loss of customers due to high bounce rates on specific channels",
+        "Inefficiencies in customer acquisition could lead to higher costs",
+        "Underperformance in engagement may affect brand perception"
+      ],
+      "confidence_score": 80.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Improve Email Campaign Landing Page",
+        "category": "Landing_Page",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "The Email campaign has a high bounce rate of 36%, indicating a mismatch between the ad content and the landing page.",
+        "evidence": [
+          "Email campaign bounce rate is 36%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Revise the landing page content to better match the email ad.",
+            "where": "Email",
+            "how": "Ensure the landing page headline and content reflect the email's message and offer.",
+            "guardrails": [
+              "Maintain brand consistency across email and landing page"
+            ]
+          },
+          {
+            "step": "Test different landing page layouts to find the most engaging format.",
+            "where": "Email",
+            "how": "Use A/B testing to compare different designs and content arrangements.",
+            "guardrails": [
+              "Ensure all versions are mobile-friendly"
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing the bounce rate will likely increase conversions and customer satisfaction by providing a seamless experience.",
+        "expected_impact": {
+          "primary_kpi": "Bounce Rate",
+          "direction": "Decrease",
+          "explanation": "A more relevant landing page should reduce bounce rates, indicating better content alignment."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with web design team"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare bounce rates before and after changes.",
+          "success_criteria": "Bounce rate decreases to below 30%.",
+          "check_timing": "Review after 2 weeks of implementation.",
+          "notes": "Consider seasonality and external factors affecting traffic."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Enhance Facebook Ad Engagement",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Facebook campaign has a low engagement rate of 5.36%, suggesting the content is not resonating with the audience.",
+        "evidence": [
+          "Facebook engagement rate is 5.36%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Create new ad creatives that are more visually engaging.",
+            "where": "Facebook",
+            "how": "Use high-quality images or videos that align with audience interests.",
+            "guardrails": [
+              "Ensure brand guidelines are followed"
+            ]
+          },
+          {
+            "step": "Test different messaging strategies to see what resonates best.",
+            "where": "Facebook",
+            "how": "Use A/B testing to evaluate different headlines and calls to action.",
+            "guardrails": [
+              "Maintain consistent messaging across all ads"
+            ]
+          }
+        ],
+        "why_this_matters": "Increasing engagement can lead to higher customer satisfaction and better brand perception.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "More engaging content should lead to higher interaction rates."
+        },
+        "dependency_or_risk": [
+          "Requires creative team resources"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in engagement rates post-implementation.",
+          "success_criteria": "Engagement rate increases to above 6%.",
+          "check_timing": "Review after 2 weeks of new ad deployment.",
+          "notes": "Consider external factors like competitor activity."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-03",
+        "title": "Optimize Channel Mix for Cost Efficiency",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Customer acquisition cost varies significantly across channels, with Facebook being the highest at 4.4.",
+        "evidence": [
+          "Facebook customer acquisition cost is 4.4"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reallocate budget from high-cost channels to more cost-effective ones like SMS.",
+            "where": "Cross-channel",
+            "how": "Adjust budget allocations based on customer acquisition cost efficiency.",
+            "guardrails": [
+              "Ensure no channel is completely paused"
+            ]
+          },
+          {
+            "step": "Increase investment in SMS and Email, which have lower acquisition costs and higher returns.",
+            "where": "SMS and Email",
+            "how": "Shift budget to these channels to maximize return on advertising spend.",
+            "guardrails": [
+              "Monitor performance to avoid diminishing returns"
+            ]
+          }
+        ],
+        "why_this_matters": "Optimizing the budget allocation can reduce costs and improve overall campaign efficiency.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Shifting budget to cost-effective channels should lower the overall acquisition cost."
+        },
+        "dependency_or_risk": [
+          "Requires budget approval and monitoring"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare customer acquisition costs before and after budget reallocation.",
+          "success_criteria": "Overall acquisition cost decreases by 10%.",
+          "check_timing": "Review monthly after changes.",
+          "notes": "Consider external economic factors affecting consumer behavior."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-04",
+        "title": "Increase TikTok Engagement Through Content Value",
+        "category": "Content",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "TikTok has the highest engagement rate at 8.96%, indicating potential for further growth by enhancing content value.",
+        "evidence": [
+          "TikTok engagement rate is 8.96%"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop content that provides more educational or entertaining value.",
+            "where": "TikTok",
+            "how": "Create videos that address audience interests and trends.",
+            "guardrails": [
+              "Ensure content aligns with brand values"
+            ]
+          },
+          {
+            "step": "Collaborate with influencers to expand reach and credibility.",
+            "where": "TikTok",
+            "how": "Partner with influencers who resonate with the target audience.",
+            "guardrails": [
+              "Select influencers with a positive brand image"
+            ]
+          }
+        ],
+        "why_this_matters": "Enhancing content value can lead to increased engagement and customer satisfaction.",
+        "expected_impact": {
+          "primary_kpi": "Engagement Rate",
+          "direction": "Increase",
+          "explanation": "Higher content value should attract more interactions."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with influencers"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor engagement rates and audience feedback.",
+          "success_criteria": "Engagement rate increases by 10%.",
+          "check_timing": "Review after 4 weeks of content changes.",
+          "notes": "Consider seasonal trends in content consumption."
+        },
+        "owner_suggestion": "Content team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Test New Google Ads Bidding Strategies",
+        "category": "Bidding",
+        "priority": "Low",
+        "effort": "High",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Google Ads has a moderate return on advertising spend at 7.5, suggesting room for improvement through bidding strategies.",
+        "evidence": [
+          "Google Ads return on advertising spend is 7.5"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Experiment with automated bidding strategies to optimize for conversions.",
+            "where": "Google Ads",
+            "how": "Implement automated bidding options like Target CPA or Maximize Conversions.",
+            "guardrails": [
+              "Set clear budget limits to control costs"
+            ]
+          },
+          {
+            "step": "Monitor performance and adjust bids based on conversion data.",
+            "where": "Google Ads",
+            "how": "Use conversion tracking to refine bidding strategies.",
+            "guardrails": [
+              "Avoid drastic bid changes that could disrupt performance"
+            ]
+          }
+        ],
+        "why_this_matters": "Optimizing bidding strategies can improve cost efficiency and increase return on investment.",
+        "expected_impact": {
+          "primary_kpi": "Return on Advertising Spend",
+          "direction": "Improve",
+          "explanation": "Better bidding strategies should enhance cost efficiency and returns."
+        },
+        "dependency_or_risk": [
+          "Requires ongoing monitoring and adjustments"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare return on advertising spend before and after strategy changes.",
+          "success_criteria": "Return on advertising spend improves by 10%.",
+          "check_timing": "Review monthly after implementation.",
+          "notes": "Consider market fluctuations affecting ad costs."
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

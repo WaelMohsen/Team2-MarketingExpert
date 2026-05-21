@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260506_175802",
+  "timestamp_utc": "2026-05-06T17:59:19Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 4,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and avoids technical jargon, making it accessible to a business audience. However, it could benefit from a more straightforward presentation of the financial implications."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "The key signals are specific and derived from the campaign data, providing valuable insights. However, they could be more explicitly tied to financial outcomes."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight significant problems that could impact business performance. They are not overly vague, but could be more detailed regarding potential financial losses."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The root cause hypothesis logically connects to the detected issues and key signals, providing a clear reasoning path. However, it could be strengthened by quantifying the potential impact of the identified issues."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks identified are specific and highlight potential financial impacts, making them relevant for decision-makers. They could be more detailed in terms of the scale of potential losses."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score is realistic and aligns with the evidence presented. However, it could be more explicitly justified with examples from the data."
+    }
+  ],
+  "summary": "The analysis provides a solid overview of the campaign's performance with actionable insights, but there is room for improvement in clarity and financial implications.",
+  "improvement_suggestions": [
+    "Enhance the clarity of financial implications in the analysis to better inform business decisions.",
+    "Provide more detailed quantification of potential financial impacts related to detected issues and business risks."
+  ],
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_175919_customer_satisfaction.json"
+}

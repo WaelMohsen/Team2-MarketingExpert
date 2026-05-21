@@ -113,6 +113,32 @@ class TestRecommendationSchemaValidation:
 
         assert model.recommendations[0].title == "Align landing page messaging"
 
+    def test_recommendation_unicode_punctuation_is_normalized(self):
+        """High: Smart punctuation is normalized instead of failing ASCII validation."""
+        cards = [
+            _recommendation_payload()["recommendations"][0].copy() for _ in range(5)
+        ]
+        for i, card in enumerate(cards):
+            card["id"] = f"REC-{i:02d}"
+
+        cards[0]["evidence"] = [
+            "Frequency levels\u2014already high\u2026 avoid scaling"
+        ]
+        cards[0][
+            "why_this_matters"
+        ] = "Customers\u2019 trust improves with clearer messaging."
+
+        payload = {"recommendations": cards}
+        model = validate_recommendation_output(json.dumps(payload, ensure_ascii=False))
+
+        assert model.recommendations[0].evidence == [
+            "Frequency levels-already high... avoid scaling"
+        ]
+        assert (
+            model.recommendations[0].why_this_matters
+            == "Customers' trust improves with clearer messaging."
+        )
+
     def test_recommendation_multiple_cards_different_ids_valid(self):
         """High: Multiple cards (5+) with different ids all validate successfully."""
         cards = []

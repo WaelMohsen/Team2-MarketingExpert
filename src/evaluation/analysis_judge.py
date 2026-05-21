@@ -1,6 +1,5 @@
-from dataclasses import dataclass
 from enum import Enum
-from typing import Any, List, Optional, Sequence
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -19,7 +18,7 @@ class EvaluationStatus(str, Enum):
 
 
 # ─────────────────────────────────────────────
-# 2. CRITERION DEFINITION (config/rubric)
+# 2. JUDGE VERDICT (Pydantic — LLM output)
 # ─────────────────────────────────────────────
 
 
@@ -126,51 +125,44 @@ DEFAULT_CRITERIA: tuple[CriterionDefinition, ...] = (
         ),
     ),
 )
+class DimensionScores(BaseModel):
+    quantitative_grounding: float = Field(..., ge=0.0, le=1.0)
+    benchmark_anchoring: float = Field(..., ge=0.0, le=1.0)
+    coverage: float = Field(..., ge=0.0, le=1.0)
+    no_recommendation: float = Field(..., ge=0.0, le=1.0)
 
 
-# ─────────────────────────────────────────────
-# 3. CRITERION SCORE (result per criterion)
-# ─────────────────────────────────────────────
-
-
-@dataclass(frozen=True)
-class CriterionScore:
-    name: str
-    score: int
-    status: EvaluationStatus
-    rationale: str
-
-    def to_dict(self) -> dict[str, Any]:
-        return {
-            "name": self.name,
-            "score": self.score,
-            "status": self.status.value,
-            "rationale": self.rationale,
-        }
-
-
-# ─────────────────────────────────────────────
-# 4. JUDGE VERDICT (Pydantic — LLM output)
-# ─────────────────────────────────────────────
-
-
-class CriterionScoreSchema(BaseModel):
-    name: str
-    score: int = Field(..., ge=1, le=5)
-    rationale: str
+class DimensionExplanations(BaseModel):
+    quantitative_grounding: str
+    benchmark_anchoring: str
+    coverage: str
+    no_recommendation: str
 
 
 class JudgeVerdict(BaseModel):
-    overall_score: int = Field(..., ge=1, le=5)
-    overall_status: EvaluationStatus
-    criteria_scores: List[CriterionScoreSchema]
-    summary: str
-    improvement_suggestions: List[str]
+    scores: DimensionScores
+    explanations: DimensionExplanations
 
 
 # ─────────────────────────────────────────────
-# 5. JUDGE PROMPT
+# 3. JUDGE PROMPTS
 # ─────────────────────────────────────────────
+
+JUDGE_SYSTEM_PROMPT = """# Analysis Quality Judge — System Prompt
+
+## Role
+
+You are an expert evaluator of marketing campaign analysis outputs. Your job is to score the quality of an analysis across four well-defined dimensions, anchored to the campaign goal's industry benchmarks.
+
+## Scoring Rules
+
+- Score each dimension from 0.0 to 1.0 (decimals allowed).
+  - 0.0 = the dimension is completely absent or factually wrong.
+  - 0.5 = acceptable but missing depth, anchoring, or concrete numbers.
+  - 1.0 = excellent — must be truly earned, not given for being "well written".
+- Be strict. Do not inflate scores. A flowery, jargon-free analysis with no numbers does NOT earn 1.0 on data grounding.
+
+## Communication Rules
 
 JUDGE_SYSTEM_PROMPT = """
 You are an expert evaluator of marketing campaign diagnostic analysis outputs.
@@ -197,13 +189,24 @@ COMMUNICATION RULES:
 - Never accept vague language like "performance was moderate" as a score of 4 or 5
 """
 
-JUDGE_USER_PROMPT = """
-You are evaluating the following marketing analysis output.
+JUDGE_USER_PROMPT = """# Analysis Quality Judge — User Prompt Template
 
-ORIGINAL CAMPAIGN CONTEXT:
+Evaluate the following marketing campaign analysis against the GOAL BENCHMARKS provided. Use the benchmarks to verify whether each numerical claim in the analysis is correctly anchored.
+
+## Campaign Goal
+
+{goal}
+
+## Goal Benchmarks (use these to verify benchmark_anchoring)
+
+{benchmarks}
+
+## Original Campaign Context
+
 {context}
 
-ANALYSIS OUTPUT TO JUDGE:
+## Analysis Output to Score
+
 - Analysis: {analysis}
 - Key Signals: {key_signals}
 - Detected Issues: {detected_issues}
@@ -211,55 +214,62 @@ ANALYSIS OUTPUT TO JUDGE:
 - Business Risks: {business_risks}
 - Confidence Score: {confidence_score}
 
-CRITERIA TO EVALUATE:
-{criteria_text}
+## Output Format
 
 Return a JSON object with this exact structure:
+
+```json
 {{
-  "overall_score": <float 1-5>,
-  "overall_status": <"pass" | "borderline" | "fail">,
-  "criteria_scores": [
-    {{"name": "<criterion_name>", "score": <int 1-5>, "rationale": "<explanation>"}}
-  ],
-  "summary": "<one sentence overall verdict>",
-  "improvement_suggestions": ["<suggestion1>", "<suggestion2>"]
+  "scores": {{
+    "quantitative_grounding": <float 0.0-1.0>,
+    "benchmark_anchoring": <float 0.0-1.0>,
+    "coverage": <float 0.0-1.0>,
+    "no_recommendation": <float 0.0-1.0>
+  }},
+  "explanations": {{
+    "quantitative_grounding": "<brief explanation citing specific examples from the analysis>",
+    "benchmark_anchoring": "<brief explanation noting which claims were/were not anchored to a benchmark above>",
+    "coverage": "<brief explanation of which KPIs from GOAL BENCHMARKS were addressed and which were skipped>",
+    "no_recommendation": "<brief explanation of whether the analysis stayed diagnostic>"
+  }}
 }}
+```
 """
 
 
 # ─────────────────────────────────────────────
-# 6. ANALYSIS JUDGE CLASS
+# 4. ANALYSIS JUDGE CLASS
 # ─────────────────────────────────────────────
 
 
 class AnalysisJudge:
-    def __init__(
-        self,
-        criteria: Optional[Sequence[CriterionDefinition]] = None,
-        pass_threshold: float = 3.5,
-    ) -> None:
-        self._criteria = tuple(criteria or DEFAULT_CRITERIA)
-        self._pass_threshold = pass_threshold
+    def __init__(self) -> None:
         self._client = get_client()
 
     def evaluate(
-        self, analysis: AnalysisOutput, context: str, model: str, temp: float
+        self,
+        analysis: AnalysisOutput,
+        context: str,
+        model: Optional[str] = None,
+        temp: Optional[float] = None,
+        goal: str = "",
+        benchmarks: str = "",
     ) -> JudgeVerdict:
-        criteria_text = self._build_criteria_text()
-
+        formatted_signals = (
+            "\n- ".join(analysis.key_signals) if analysis.key_signals else "None"
+        )
         formatted_issues = (
             "\n- ".join(analysis.detected_issues)
             if analysis.detected_issues
             else "None"
-        )
-        formatted_signals = (
-            "\n- ".join(analysis.key_signals) if analysis.key_signals else "None"
         )
         formatted_risks = (
             "\n- ".join(analysis.business_risks) if analysis.business_risks else "None"
         )
 
         user_prompt = JUDGE_USER_PROMPT.format(
+            goal=goal,
+            benchmarks=benchmarks,
             context=context,
             analysis=analysis.analysis,
             key_signals=formatted_signals,
@@ -267,7 +277,6 @@ class AnalysisJudge:
             root_cause_hypothesis=analysis.root_cause_hypothesis,
             business_risks=formatted_risks,
             confidence_score=analysis.confidence_score,
-            criteria_text=criteria_text,
         )
 
         response = chat_completion(

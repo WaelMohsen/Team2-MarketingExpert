@@ -1,0 +1,171 @@
+{
+  "run_id": "run_20260506_175802",
+  "timestamp_utc": "2026-05-06T17:58:24Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.766,
+  "business": {
+    "score": 0.74,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.7,
+        "actionability": 0.8,
+        "data_grounding": 0.6,
+        "kpi_alignment": 0.8,
+        "priority_accuracy": 0.7,
+        "decision_quality": 0.7,
+        "feasibility": 0.8,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Recommendations generally explain the reasoning, but some lack depth in identifying root causes.",
+        "actionability": "Steps are mostly clear and specific, though some could benefit from more detail.",
+        "data_grounding": "Recommendations are somewhat supported by data, but lack specific metrics like customer acquisition cost.",
+        "kpi_alignment": "Most recommendations align well with KPIs, focusing on cost efficiency and ROAS.",
+        "priority_accuracy": "High-impact recommendations are prioritized, but some medium-priority items could be more impactful.",
+        "decision_quality": "Decisions are generally sound, but some lack comprehensive risk assessment.",
+        "feasibility": "Recommendations are realistic, though some require significant resources.",
+        "readability": "Recommendations are clear and understandable for non-marketers."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.8,
+          "data_grounding": 0.6,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Lacks specific data on traffic costs to fully support the recommendation."
+        ]
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.9,
+          "data_grounding": 0.7,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.8,
+          "feasibility": 0.9
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.6,
+          "actionability": 0.7,
+          "data_grounding": 0.5,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.6,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Limited data on audience segments; lacks detailed targeting metrics."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.6,
+          "actionability": 0.7,
+          "data_grounding": 0.5,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.6,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Requires more specific data on current bidding strategies."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.5,
+          "actionability": 0.6,
+          "data_grounding": 0.5,
+          "kpi_alignment": 0.6,
+          "decision_quality": 0.5,
+          "feasibility": 0.6
+        },
+        "issues": [
+          "Low priority and confidence; lacks strong justification given high current conversion rates."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": [
+      "REC-05"
+    ]
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.609,
+    "avg_similarity": 0.63,
+    "coverage": 0.702,
+    "llm_calls": 5,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-CA-01",
+        "similarity": 0.698,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-CA-03",
+        "similarity": 0.723,
+        "llm_score": 0.8
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-CA-01",
+        "similarity": 0.748,
+        "llm_score": 0.6
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-CA-01",
+        "similarity": 0.707,
+        "llm_score": 0.4
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-CA-02",
+        "similarity": 0.728,
+        "llm_score": 0.6
+      }
+    ],
+    "missed_ground_truth": [
+      "GT-CA-04"
+    ],
+    "flags": [],
+    "total_recommendations": 5,
+    "total_ground_truth": 4
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_175824_customer_acquisition.json"
+}

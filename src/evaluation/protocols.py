@@ -10,6 +10,8 @@ class AnalysisEvaluatorProtocol(Protocol):
         context: str,
         model: Optional[str],
         temp: Optional[float],
+        goal: str,
+        benchmarks: str,
     ) -> Any: ...
 
 

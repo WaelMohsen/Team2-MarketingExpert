@@ -1,0 +1,203 @@
+{
+  "run_id": "run_20260515_164522",
+  "timestamp_utc": "2026-05-15T16:50:19Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "o4-mini",
+  "recommendation_generation_temp": 1.0,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.793,
+  "business": {
+    "score": 0.805,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.8,
+        "actionability": 0.8,
+        "data_grounding": 0.9,
+        "kpi_alignment": 0.8,
+        "priority_accuracy": 0.7,
+        "decision_quality": 0.8,
+        "feasibility": 0.8,
+        "readability": 0.9
+      },
+      "explanations": {
+        "insight_quality": "Most recommendations provide clear insights into the issues and opportunities, but some lack depth in explaining the root causes.",
+        "actionability": "Steps are generally clear and specific, but some recommendations could benefit from more detailed execution plans.",
+        "data_grounding": "Recommendations are well-supported by the provided data, with clear references to metrics and platforms.",
+        "kpi_alignment": "Most recommendations align well with the campaign KPIs, but a few could have stronger links.",
+        "priority_accuracy": "High-impact recommendations are generally prioritized correctly, but some medium-priority items could be reconsidered.",
+        "decision_quality": "The decisions are mostly strong and correct, though some could be more robust with additional context.",
+        "feasibility": "Recommendations are realistically implementable, though some may require more resources than indicated.",
+        "readability": "The recommendations are clear and simple for non-marketers, with minor exceptions."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.9,
+          "actionability": 0.9,
+          "data_grounding": 1.0,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.9,
+          "feasibility": 0.9
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation could benefit from more detailed steps and stronger alignment with KPIs."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation lacks depth in explaining the root cause and could have more detailed execution steps."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-06",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.6,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.6
+        },
+        "issues": [
+          "The recommendation is complex and may require more resources than indicated, with less clear action steps."
+        ]
+      },
+      {
+        "id": "REC-07",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation could benefit from more detailed steps and stronger alignment with KPIs."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.628,
+    "avg_similarity": 0.615,
+    "coverage": 0.773,
+    "llm_calls": 5,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-CR-02",
+        "similarity": 0.696,
+        "llm_score": 0.5
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-CR-02",
+        "similarity": 0.797,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-CR-02",
+        "similarity": 0.692,
+        "llm_score": 0.5
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-CR-01",
+        "similarity": 0.686,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-CR-03",
+        "similarity": 0.796,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-06",
+        "matched_gt_id": "GT-CR-02",
+        "similarity": 0.699,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-07",
+        "matched_gt_id": "GT-CR-02",
+        "similarity": 0.645,
+        "llm_score": 0.4
+      }
+    ],
+    "missed_ground_truth": [],
+    "flags": [],
+    "total_recommendations": 7,
+    "total_ground_truth": 3
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260515_165019_customer_retention.json"
+}

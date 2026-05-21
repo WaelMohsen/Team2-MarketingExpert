@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260506_175802",
+  "timestamp_utc": "2026-05-06T18:00:00Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 4,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and uses straightforward language, making it accessible for a business lead. However, it could benefit from a bit more detail on how the metrics directly impact business growth."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "The key signals are specific and based on the campaign data, highlighting important performance metrics. However, they could be more explicitly tied to potential business outcomes."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight specific areas of concern that could impact revenue. They are not vague, but could be more detailed in terms of the potential financial implications."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The root cause hypothesis logically connects to the detected issues and key signals, providing a reasonable explanation for the observed performance. However, it could be strengthened with more data-driven insights."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks identified are specific and relate to potential revenue growth limitations. They are articulated in a way that a non-marketing audience can understand, but could include more quantitative impacts."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score is realistic and aligns with the analysis provided. It reflects a strong level of evidence, but could be more explicitly justified with examples from the data."
+    }
+  ],
+  "summary": "The analysis provides a solid overview of the campaign's performance with actionable insights, though it could be enhanced with more detailed financial implications.",
+  "improvement_suggestions": [
+    "Include more specific examples of how metrics impact overall business growth.",
+    "Provide a clearer connection between detected issues and their potential financial consequences."
+  ],
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_180000_revenue_growth.json"
+}

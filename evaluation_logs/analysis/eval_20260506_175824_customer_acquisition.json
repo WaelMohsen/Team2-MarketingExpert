@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260506_175802",
+  "timestamp_utc": "2026-05-06T17:58:24Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 4,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and avoids technical jargon, making it accessible to a business audience. However, it could benefit from a more detailed explanation of the implications of the high conversion rate."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "The key signals are specific and relevant, highlighting important metrics like conversion rate and return on advertising spend. However, more context on how these metrics compare to industry standards would enhance understanding."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight significant gaps in the analysis, such as the lack of customer acquisition cost data. This directly impacts the ability to assess campaign efficiency."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The hypothesis logically connects the detected issues to the observed performance metrics, suggesting a clear area for improvement. However, it could be strengthened with more data-driven reasoning."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The identified business risks are specific and relate directly to financial implications, such as potential overspending. More detail on how these risks could impact overall growth would be beneficial."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score appears reasonable given the analysis, but it would be more credible if it included a brief explanation of how it was derived from the data."
+    }
+  ],
+  "summary": "The analysis provides a solid overview of the campaign's performance but could be improved with more detailed insights and context.",
+  "improvement_suggestions": [
+    "Include a detailed explanation of the implications of the high conversion rate.",
+    "Provide context on how key metrics compare to industry standards."
+  ],
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_175824_customer_acquisition.json"
+}

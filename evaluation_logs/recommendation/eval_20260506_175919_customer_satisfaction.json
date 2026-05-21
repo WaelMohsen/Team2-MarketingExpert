@@ -1,0 +1,172 @@
+{
+  "run_id": "run_20260506_175802",
+  "timestamp_utc": "2026-05-06T17:59:19Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Satisfaction",
+  "category": "Customer Satisfaction",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.758,
+  "business": {
+    "score": 0.768,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.75,
+        "actionability": 0.75,
+        "data_grounding": 0.8,
+        "kpi_alignment": 0.8,
+        "priority_accuracy": 0.7,
+        "decision_quality": 0.75,
+        "feasibility": 0.8,
+        "readability": 0.85
+      },
+      "explanations": {
+        "insight_quality": "Most recommendations provide clear insights into the issues, but some lack depth in explaining the root causes.",
+        "actionability": "Steps are generally clear and specific, but some recommendations could benefit from more detailed execution plans.",
+        "data_grounding": "Recommendations are mostly well-supported by data, though some could use more explicit connections to the analysis.",
+        "kpi_alignment": "Most recommendations align well with KPIs, but a few could better highlight their impact on specific metrics.",
+        "priority_accuracy": "High-impact recommendations are generally prioritized, but some medium-priority items could be more impactful.",
+        "decision_quality": "Decisions are mostly sound, but a few recommendations could be more robust in addressing the issues.",
+        "feasibility": "Recommendations are generally feasible, though some require significant resources or coordination.",
+        "readability": "The recommendations are mostly clear and understandable, with some technical terms that could be simplified."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.9,
+          "kpi_alignment": 0.9,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.7,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Lacks detailed explanation of why engagement is low."
+        ]
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.8
+        },
+        "issues": [
+          "Could provide more detail on the impact of frequency changes."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.6,
+          "actionability": 0.7,
+          "data_grounding": 0.7,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.6,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Insight into SMS engagement potential is vague.",
+          "Decision quality could be improved with more data."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.7,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "Could better explain the potential impact of new creative formats."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.57,
+    "avg_similarity": 0.546,
+    "coverage": 0.732,
+    "llm_calls": 3,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-CS-01",
+        "similarity": 0.791,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.852,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.565,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.67,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-CS-02",
+        "similarity": 0.583,
+        "llm_score": 0.3
+      }
+    ],
+    "missed_ground_truth": [
+      "GT-CS-03"
+    ],
+    "flags": [
+      "low_similarity_to_expert"
+    ],
+    "total_recommendations": 5,
+    "total_ground_truth": 3
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260506_175919_customer_satisfaction.json"
+}

@@ -1,0 +1,169 @@
+{
+  "run_id": "run_20260512_234445",
+  "timestamp_utc": "2026-05-12T23:46:10Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o",
+  "judge_temp": 0.1,
+  "final_score": 0.788,
+  "business": {
+    "score": 0.737,
+    "overall": {
+      "scores": {
+        "insight_quality": 0.75,
+        "actionability": 0.75,
+        "data_grounding": 0.75,
+        "kpi_alignment": 0.75,
+        "priority_accuracy": 0.7,
+        "decision_quality": 0.7,
+        "feasibility": 0.75,
+        "readability": 0.8
+      },
+      "explanations": {
+        "insight_quality": "Recommendations generally explain the reasons behind the suggestions, but some lack depth in identifying root causes.",
+        "actionability": "Steps are mostly clear and specific, but some recommendations could benefit from more detailed execution plans.",
+        "data_grounding": "Recommendations are generally supported by data, but some could use more explicit connections to the analysis.",
+        "kpi_alignment": "Most recommendations align with KPIs, but some could better highlight their impact on specific metrics.",
+        "priority_accuracy": "High-impact recommendations are prioritized, but the order could be refined based on potential impact.",
+        "decision_quality": "Decisions are generally sound, but some recommendations could be more robust in addressing business risks.",
+        "feasibility": "Recommendations are mostly feasible, though some require significant resources or changes.",
+        "readability": "Recommendations are clear and understandable, but some technical terms may need further simplification."
+      }
+    },
+    "per_recommendation": [
+      {
+        "id": "REC-01",
+        "scores": {
+          "insight_quality": 0.8,
+          "actionability": 0.8,
+          "data_grounding": 0.8,
+          "kpi_alignment": 0.8,
+          "decision_quality": 0.8,
+          "feasibility": 0.8
+        },
+        "issues": []
+      },
+      {
+        "id": "REC-02",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.7,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation could benefit from more detailed steps on how to implement upsell strategies effectively."
+        ]
+      },
+      {
+        "id": "REC-03",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.7,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation lacks specific data on which channels are underperforming, making it less actionable."
+        ]
+      },
+      {
+        "id": "REC-04",
+        "scores": {
+          "insight_quality": 0.7,
+          "actionability": 0.7,
+          "data_grounding": 0.7,
+          "kpi_alignment": 0.7,
+          "decision_quality": 0.7,
+          "feasibility": 0.7
+        },
+        "issues": [
+          "The recommendation requires significant resources and may not be immediately feasible for all channels."
+        ]
+      },
+      {
+        "id": "REC-05",
+        "scores": {
+          "insight_quality": 0.6,
+          "actionability": 0.6,
+          "data_grounding": 0.6,
+          "kpi_alignment": 0.6,
+          "decision_quality": 0.6,
+          "feasibility": 0.6
+        },
+        "issues": [
+          "The recommendation is less grounded in data and lacks specific steps for increasing engagement effectively."
+        ]
+      }
+    ],
+    "flags": [],
+    "weak_recommendations": []
+  },
+  "compliance": {
+    "score": 1.0,
+    "dimensions": {
+      "count_valid": 1.0,
+      "required_fields": 1.0,
+      "priority_order": 1.0,
+      "no_hallucination": 1.0,
+      "clarity": 1.0,
+      "non_repetition": 1.0
+    },
+    "flags": []
+  },
+  "ground_truth": {
+    "score": 0.667,
+    "avg_similarity": 0.667,
+    "coverage": 0.792,
+    "llm_calls": 2,
+    "matches": [
+      {
+        "rec_id": "REC-01",
+        "matched_gt_id": "GT-RG-03",
+        "similarity": 0.839,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-02",
+        "matched_gt_id": "GT-RG-04",
+        "similarity": 0.799,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-03",
+        "matched_gt_id": "GT-RG-02",
+        "similarity": 0.816,
+        "llm_score": null
+      },
+      {
+        "rec_id": "REC-04",
+        "matched_gt_id": "GT-RG-04",
+        "similarity": 0.657,
+        "llm_score": 0.3
+      },
+      {
+        "rec_id": "REC-05",
+        "matched_gt_id": "GT-RG-04",
+        "similarity": 0.608,
+        "llm_score": 0.2
+      }
+    ],
+    "missed_ground_truth": [
+      "GT-RG-01"
+    ],
+    "flags": [],
+    "total_recommendations": 5,
+    "total_ground_truth": 4
+  },
+  "pipeline_log_path": "evaluation_logs\\pipeline\\eval_20260512_234610_revenue_growth.json"
+}

@@ -1,5 +1,5 @@
 import os
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 from dotenv import load_dotenv
 
@@ -38,24 +38,37 @@ def get_client():
     return _client
 
 
-def chat_completion(client, system_text, user_text, response_format, model, temp):
-    """Wrapper around the OpenAI structured-outputs beta endpoint.
 
-    `response_format` should be a **Pydantic model class** (e.g. AnalysisOutput).
-    The SDK automatically generates the JSON schema with additionalProperties: false,
-    sends it with strict: true, and parses the response into a Pydantic instance
-    accessible via `response.choices[0].message.parsed`.
-    """
+def chat_completion(
+    client,
+    system_text,
+    user_text,
+    response_format,
+    model,
+    temp=0,
+    reasoning_effort=None
+):
 
-    return client.beta.chat.completions.parse(
-        model=model,
-        messages=[
+    kwargs = {
+        "model": model,
+        "messages": [
             {"role": "system", "content": system_text},
             {"role": "user", "content": user_text},
         ],
-        temperature=temp,
-        response_format=response_format,
-    )
+        "response_format": response_format,
+    }
+
+    # Only apply temperature to non-reasoning models
+    if temp is not None:
+        kwargs["temperature"] = temp
+
+    # Optional reasoning effort
+    if reasoning_effort:
+        kwargs["reasoning_effort"] = reasoning_effort
+        kwargs["temperature"] =1
+
+    return client.beta.chat.completions.parse(**kwargs)
+
 
 
 def _default_llm_settings() -> Tuple[str, float]:
@@ -85,7 +98,7 @@ def llm_callable(
     return response.choices[0].message.content
 
 
-def embedding_callable(text: str) -> list[float]:
+def embedding_callable(text: str) -> List[float]:
     client = get_client()
     response = client.embeddings.create(model="text-embedding-3-small", input=text)
     return response.data[0].embedding

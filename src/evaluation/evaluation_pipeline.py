@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from typing import Callable, Optional
 
@@ -8,6 +9,32 @@ from .protocols import (
     GroundTruthLoaderProtocol,
     RecommendationEvaluatorProtocol,
 )
+
+CATEGORY_BENCHMARK_FILES = {
+    "Customer Acquisition": "customer_acquisition.md",
+    "Customer Satisfaction": "customer_satisfaction.md",
+    "Revenue Growth": "revenue_growth.md",
+    "Customer Retention": "customer_retention.md",
+}
+
+
+def _repo_root_dir() -> str:
+    here = os.path.abspath(__file__)
+    return os.path.dirname(os.path.dirname(os.path.dirname(here)))
+
+
+def load_benchmarks_for_category(category: Optional[str]) -> str:
+    if not category:
+        return ""
+    filename = CATEGORY_BENCHMARK_FILES.get(category)
+    if not filename:
+        return ""
+    path = os.path.join(_repo_root_dir(), "prompts", filename)
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return f.read()
+    except OSError:
+        return ""
 
 
 class EvaluationPipeline:
@@ -106,6 +133,8 @@ class EvaluationPipeline:
             campaign_context,
             model=self.analysis_model,
             temp=self.analysis_temp,
+            goal=category or "",
+            benchmarks=load_benchmarks_for_category(category),
         )
 
         if hasattr(result, "model_dump"):
