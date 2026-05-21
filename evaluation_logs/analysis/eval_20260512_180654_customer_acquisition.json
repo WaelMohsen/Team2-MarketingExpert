@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260512_180627",
+  "timestamp_utc": "2026-05-12T18:06:54Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 3,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis references key metrics like conversion rate and customer acquisition cost, but the benchmark comparison is somewhat implicit, lacking clear logical connectors."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "Key signals cite specific metric values such as the conversion rate and customer acquisition cost, but do not explicitly reference the benchmarks for comparison."
+    },
+    {
+      "name": "detected_issues",
+      "score": 3,
+      "rationale": "Issues are mentioned, such as potential high cost per click, but the classification of bottlenecks is not clearly defined."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The hypothesis correctly identifies a Pre-Click bottleneck and connects the conversion rate to customer acquisition cost, but lacks a complete metric chain."
+    },
+    {
+      "name": "business_risks",
+      "score": 3,
+      "rationale": "Risks are mentioned, such as increased traffic costs, but they are not quantified or tied to specific financial impacts."
+    },
+    {
+      "name": "confidence_score",
+      "score": 3,
+      "rationale": "The confidence score of 75% is somewhat realistic, but there is no explanation provided for what drives this score."
+    }
+  ],
+  "summary": "The analysis provides some valuable insights but lacks clarity in benchmark comparisons and specific classifications.",
+  "improvement_suggestions": [
+    "Include explicit benchmark comparisons for all key metrics.",
+    "Clearly classify detected issues as Pre-Click or Post-Click bottlenecks."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260512_180654_customer_acquisition.json"
+}

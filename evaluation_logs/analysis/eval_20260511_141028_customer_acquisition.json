@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260511_141003",
+  "timestamp_utc": "2026-05-11T14:10:28Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 4,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and avoids technical jargon, making it accessible for a business audience. However, it could benefit from more detailed explanations of how specific metrics impact overall performance."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "The key signals are relevant and based on actual campaign data, providing valuable insights. However, they could be more explicitly tied to potential actions or strategies."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight specific problems that could impact profitability. They are not overly vague, but could include more detail on the implications of these issues."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The root cause hypothesis logically connects to the detected issues and key signals, providing a reasonable explanation for the observed problems. However, it could be strengthened with more data-driven insights."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks identified are specific and highlight potential financial impacts, making them relevant for decision-makers. More emphasis on the long-term implications would enhance this section."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score appears realistic and aligns with the strength of the evidence presented. However, a brief explanation of how this score was derived would add clarity."
+    }
+  ],
+  "summary": "The analysis provides a solid overview of the campaign's performance with actionable insights, but could be improved with more detailed explanations and connections to business outcomes.",
+  "improvement_suggestions": [
+    "Enhance the analysis by providing more detailed explanations of how specific metrics impact overall performance.",
+    "Include more explicit connections between key signals and potential actions or strategies."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260511_141028_customer_acquisition.json"
+}

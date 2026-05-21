@@ -1,0 +1,338 @@
+{
+  "run_id": "run_20260511_141003",
+  "timestamp_utc": "2026-05-11T14:10:28Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall conversion rate is 12.26%, which is significantly above the industry benchmark of 1.4%. This indicates that the landing pages and conversion processes are functioning effectively. However, the customer acquisition cost is $3.37, which is relatively low. The cost per click across the channels varies, with some channels like Facebook and Google Ads showing higher costs compared to others like SMS. The return on advertising spend is 7.94, indicating that for every dollar spent, the revenue generated is substantial. This suggests that while the conversion process is strong, there may be opportunities to optimize traffic costs in certain channels.",
+      "key_signals": [
+        "Overall conversion rate is 12.26%, well above the benchmark.",
+        "Customer acquisition cost is $3.37, indicating efficiency.",
+        "Return on advertising spend is 7.94, showing strong revenue generation."
+      ],
+      "detected_issues": [
+        "High cost per click in some channels like Facebook and Google Ads.",
+        "Potential for optimizing ad creatives to reduce traffic costs."
+      ],
+      "root_cause_hypothesis": "The primary bottleneck appears to be related to traffic costs, particularly in channels with higher cost per click.",
+      "business_risks": [
+        "High traffic costs could erode profit margins if not addressed.",
+        "Dependence on specific channels for customer acquisition may lead to vulnerabilities."
+      ],
+      "confidence_score": 85.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Optimize Ad Creatives for Facebook and Google Ads",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "High cost per click in Facebook and Google Ads is increasing traffic costs.",
+        "evidence": [
+          "High cost per click in Facebook and Google Ads channels."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop and test new ad creatives.",
+            "where": "Facebook and Google Ads",
+            "how": "Create multiple ad variations focusing on different messaging and visuals to see which performs best.",
+            "guardrails": [
+              "Ensure brand consistency across all creatives."
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing traffic costs will improve profit margins and make customer acquisition more cost-effective.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Click",
+          "direction": "Decrease",
+          "explanation": "Better performing ad creatives should lead to a lower cost per click."
+        },
+        "dependency_or_risk": [
+          "Creative team availability for developing new ads."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per click before and after new creatives are implemented.",
+          "success_criteria": "Cost per click decreases by at least 10%.",
+          "check_timing": "Review after 4 weeks of new ad implementation.",
+          "notes": "Consider seasonality and external factors affecting ad performance."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Increase Budget Allocation to SMS Channel",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "SMS channel has the lowest customer acquisition cost and highest return on advertising spend.",
+        "evidence": [
+          "SMS channel has a customer acquisition cost of $0.83 and return on advertising spend of 18.75."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reallocate budget from higher cost channels to SMS.",
+            "where": "Cross-channel",
+            "how": "Shift a portion of the budget from Facebook and Google Ads to SMS to capitalize on its efficiency.",
+            "guardrails": [
+              "Monitor SMS performance to ensure it can handle increased volume."
+            ]
+          }
+        ],
+        "why_this_matters": "Maximizing investment in the most efficient channel will improve overall campaign profitability.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Increasing spend in the most cost-effective channel should lower the overall acquisition cost."
+        },
+        "dependency_or_risk": [
+          "SMS channel capacity to handle increased budget."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor customer acquisition cost and return on advertising spend after budget reallocation.",
+          "success_criteria": "Overall customer acquisition cost decreases.",
+          "check_timing": "Review after 1 week of budget reallocation.",
+          "notes": "Ensure SMS channel can scale without diminishing returns."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Conduct Audience Segmentation Analysis",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "There is potential to optimize targeting to reduce high traffic costs.",
+        "evidence": [
+          "High cost per click in certain channels suggests inefficient targeting."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Analyze current audience segments and identify high-performing groups.",
+            "where": "Cross-channel",
+            "how": "Use analytics tools to assess which audience segments have the highest conversion rates and lowest costs.",
+            "guardrails": [
+              "Ensure data privacy compliance in all analyses."
+            ]
+          }
+        ],
+        "why_this_matters": "Better targeting can reduce traffic costs and improve conversion rates.",
+        "expected_impact": {
+          "primary_kpi": "Cost Per Click",
+          "direction": "Decrease",
+          "explanation": "More precise targeting should lead to more efficient ad spend and lower costs."
+        },
+        "dependency_or_risk": [
+          "Access to detailed audience data."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per click and conversion rate before and after targeting changes.",
+          "success_criteria": "Improvement in cost per click and conversion rates.",
+          "check_timing": "Review after 4 weeks of implementing new targeting strategies.",
+          "notes": "Consider external factors that may affect audience behavior."
+        },
+        "owner_suggestion": "Analytics"
+      },
+      {
+        "id": "REC-04",
+        "title": "Enhance Landing Page Experience",
+        "category": "Landing_Page",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "While conversion rates are high, further improvements could enhance customer experience and retention.",
+        "evidence": [
+          "Overall conversion rate is 12.26%, indicating strong performance but room for optimization."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct user testing and implement landing page improvements.",
+            "where": "Website",
+            "how": "Gather user feedback to identify pain points and make necessary design and functionality enhancements.",
+            "guardrails": [
+              "Ensure changes do not negatively impact current conversion rates."
+            ]
+          }
+        ],
+        "why_this_matters": "Improving the landing page can increase customer satisfaction and retention, leading to long-term growth.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Improve",
+          "explanation": "Enhancements should lead to a smoother user experience and higher conversions."
+        },
+        "dependency_or_risk": [
+          "Availability of web development resources."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor conversion rate and customer feedback post-implementation.",
+          "success_criteria": "Conversion rate improves by at least 5%.",
+          "check_timing": "Review after 6 weeks of changes.",
+          "notes": "Consider seasonal trends that may affect conversion rates."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-05",
+        "title": "Diversify Channel Mix",
+        "category": "Channel_Mix",
+        "priority": "Low",
+        "effort": "High",
+        "time_to_see_impact": "6-8 weeks",
+        "confidence": "Low",
+        "whats_happening": "Dependence on specific channels could lead to vulnerabilities in customer acquisition.",
+        "evidence": [
+          "High reliance on channels like Facebook and Google Ads."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Explore new advertising channels and partnerships.",
+            "where": "Cross-channel",
+            "how": "Research and test new channels that align with target audience demographics.",
+            "guardrails": [
+              "Ensure new channels align with brand values and target audience."
+            ]
+          }
+        ],
+        "why_this_matters": "Diversifying channels can reduce risk and open new customer acquisition opportunities.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition",
+          "direction": "Increase",
+          "explanation": "New channels can bring in additional customers and reduce dependency on current ones."
+        },
+        "dependency_or_risk": [
+          "Resource allocation for testing new channels."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track new customer acquisition from new channels.",
+          "success_criteria": "Increase in new customers from diversified channels.",
+          "check_timing": "Review after 8 weeks of new channel implementation.",
+          "notes": "Initial results may vary due to learning curve and optimization needs."
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

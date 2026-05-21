@@ -1,0 +1,348 @@
+{
+  "run_id": "run_20260512_180627",
+  "timestamp_utc": "2026-05-12T18:06:54Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Customer Acquisition",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": 12.26,
+        "CTR": 4.65,
+        "CPA": 3.37,
+        "ROAS": 7.94
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": 13.33,
+          "CTR": 6.0,
+          "CPA": 1.47,
+          "ROAS": 15.0
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": 11.54,
+          "CTR": 4.0,
+          "CPA": 4.4,
+          "ROAS": 5.0
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": 11.18,
+          "CTR": 4.72,
+          "CPA": 3.9,
+          "ROAS": 7.5
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": 11.82,
+          "CTR": 4.4,
+          "CPA": 4.09,
+          "ROAS": 7.11
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": 19.64,
+          "CTR": 7.0,
+          "CPA": 0.83,
+          "ROAS": 18.75
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": 11.54,
+          "CTR": 4.33,
+          "CPA": 4.0,
+          "ROAS": 8.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS"
+    ],
+    "analysis": {
+      "analysis": "The overall conversion rate is 12.26%, which is significantly above the 1.4% industry benchmark. The cost per click is not provided, but the overall customer acquisition cost is $3.37, which is reasonable. The return on advertising spend is 7.94, indicating a strong revenue generation relative to the spend. However, the cost per click for individual channels could be high, impacting overall profitability. Therefore, while the conversion rate is healthy, the potential for high traffic costs remains a concern.",
+      "key_signals": [
+        "Conversion rate is 12.26% which is above the 1.4% industry benchmark",
+        "Customer acquisition cost is $3.37 which is below the $2.00 threshold"
+      ],
+      "detected_issues": [
+        "Potential high cost per click not analyzed due to missing data",
+        "High customer acquisition cost could still pose a risk if traffic costs increase"
+      ],
+      "root_cause_hypothesis": "The primary bottleneck is Pre-Click because the conversion rate of 12.26% is above the 1.4% benchmark, driving customer acquisition cost to $3.37.",
+      "business_risks": [
+        "Increased traffic costs could inflate customer acquisition costs",
+        "High reliance on specific channels may lead to vulnerability if performance declines"
+      ],
+      "confidence_score": 75.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Optimize Ad Creatives to Reduce Traffic Costs",
+        "category": "Creative",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "The conversion rate is strong, but potential high cost per click could impact profitability.",
+        "evidence": [
+          "Conversion rate is 12.26% which is above the 1.4% industry benchmark",
+          "Customer acquisition cost is $3.37 which is below the $2.00 threshold"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct A/B testing on ad creatives to improve engagement and reduce cost per click.",
+            "where": "cross-channel",
+            "how": "Develop multiple versions of ad creatives and test them against current ads to identify which versions yield lower costs.",
+            "guardrails": [
+              "Ensure new creatives align with brand messaging",
+              "Monitor for any negative impact on conversion rates"
+            ]
+          }
+        ],
+        "why_this_matters": "Reducing traffic costs will lower overall customer acquisition costs, improving profitability.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Improved ad creatives can lead to cheaper clicks, reducing acquisition costs."
+        },
+        "dependency_or_risk": [
+          "Requires creative team bandwidth",
+          "Potential for initial increase in costs during testing phase"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per click and customer acquisition cost before and after creative changes.",
+          "success_criteria": "Reduction in cost per click and customer acquisition cost by at least 10%.",
+          "check_timing": "Review results bi-weekly after implementation.",
+          "notes": "Consider seasonal variations in ad performance."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Diversify Channel Mix to Mitigate Risk",
+        "category": "Channel_Mix",
+        "priority": "Medium",
+        "effort": "High",
+        "time_to_see_impact": "4-6 weeks",
+        "confidence": "Medium",
+        "whats_happening": "High reliance on specific channels may lead to vulnerability if performance declines.",
+        "evidence": [
+          "High customer acquisition cost could still pose a risk if traffic costs increase"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Identify and test additional marketing channels to reduce dependency on current high-performing channels.",
+            "where": "cross-channel",
+            "how": "Research and select new channels that align with target audience demographics and test small-scale campaigns.",
+            "guardrails": [
+              "Allocate a limited budget for testing new channels",
+              "Ensure new channels do not cannibalize existing performance"
+            ]
+          }
+        ],
+        "why_this_matters": "Diversifying channels reduces risk and can uncover new opportunities for customer acquisition.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Stabilize",
+          "explanation": "Spreading spend across more channels can prevent spikes in acquisition costs due to channel performance fluctuations."
+        },
+        "dependency_or_risk": [
+          "Requires additional budget for testing",
+          "Potential for initial low performance on new channels"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor customer acquisition cost and conversion rates across new and existing channels.",
+          "success_criteria": "Maintain or reduce overall customer acquisition cost while adding new channels.",
+          "check_timing": "Evaluate after 6 weeks of testing new channels.",
+          "notes": "Allow time for new channels to optimize."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Enhance Landing Page Experience",
+        "category": "Landing_Page",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "While conversion rates are high, optimizing landing pages can further improve performance.",
+        "evidence": [
+          "Conversion rate is 12.26% which is above the 1.4% industry benchmark"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct user testing and gather feedback to identify landing page improvements.",
+            "where": "Website",
+            "how": "Use tools like heatmaps and session recordings to understand user behavior and make data-driven changes.",
+            "guardrails": [
+              "Ensure changes do not negatively impact current conversion rates",
+              "Maintain consistent branding"
+            ]
+          }
+        ],
+        "why_this_matters": "Improving the landing page experience can increase conversion rates, leading to more efficient customer acquisition.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "Enhanced user experience can lead to higher conversion rates."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with web development team",
+          "Potential for temporary disruption during implementation"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track changes in conversion rate and bounce rate post-implementation.",
+          "success_criteria": "Increase in conversion rate by at least 5%.",
+          "check_timing": "Review results monthly after changes.",
+          "notes": "Consider external factors like seasonal traffic changes."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Implement Retargeting Campaigns",
+        "category": "Retention",
+        "priority": "Medium",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "High",
+        "whats_happening": "Potential customers who do not convert initially can be re-engaged through retargeting.",
+        "evidence": [
+          "High customer acquisition cost could still pose a risk if traffic costs increase"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Set up retargeting campaigns to engage users who visited the site but did not convert.",
+            "where": "cross-channel",
+            "how": "Use pixel tracking to identify and retarget users with personalized ads.",
+            "guardrails": [
+              "Ensure frequency capping to avoid ad fatigue",
+              "Maintain privacy compliance"
+            ]
+          }
+        ],
+        "why_this_matters": "Retargeting can convert interested users who did not initially purchase, improving overall conversion rates.",
+        "expected_impact": {
+          "primary_kpi": "Conversion Rate",
+          "direction": "Increase",
+          "explanation": "Retargeting can capture users who are already interested, leading to higher conversion rates."
+        },
+        "dependency_or_risk": [
+          "Requires pixel implementation",
+          "Potential for privacy concerns if not managed properly"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor conversion rates and return on advertising spend from retargeting campaigns.",
+          "success_criteria": "Increase in conversion rate and return on advertising spend from retargeting by at least 10%.",
+          "check_timing": "Evaluate results bi-weekly after campaign launch.",
+          "notes": "Ensure attribution is correctly set up to measure retargeting impact."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-05",
+        "title": "Monitor and Adjust Bidding Strategies",
+        "category": "Bidding",
+        "priority": "Low",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Potential high cost per click could impact overall profitability.",
+        "evidence": [
+          "Potential high cost per click not analyzed due to missing data"
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Review and adjust bidding strategies to optimize cost per click.",
+            "where": "cross-channel",
+            "how": "Analyze performance data to identify high-cost keywords and adjust bids accordingly.",
+            "guardrails": [
+              "Avoid drastic bid changes that could impact traffic volume",
+              "Ensure alignment with overall budget constraints"
+            ]
+          }
+        ],
+        "why_this_matters": "Optimizing bids can reduce cost per click, lowering customer acquisition costs and improving profitability.",
+        "expected_impact": {
+          "primary_kpi": "Customer Acquisition Cost",
+          "direction": "Decrease",
+          "explanation": "Lowering cost per click will reduce overall acquisition costs."
+        },
+        "dependency_or_risk": [
+          "Requires access to detailed bidding data",
+          "Potential for temporary traffic fluctuations"
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare cost per click and customer acquisition cost before and after bid adjustments.",
+          "success_criteria": "Reduction in cost per click by at least 5%.",
+          "check_timing": "Review results monthly after adjustments.",
+          "notes": "Consider market competition and seasonal demand in bid strategies."
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}

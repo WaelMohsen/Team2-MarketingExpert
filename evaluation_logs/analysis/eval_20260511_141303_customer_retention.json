@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260511_141003",
+  "timestamp_utc": "2026-05-11T14:13:03Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Retention",
+  "category": "Customer Retention",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 3,
+  "overall_status": "borderline",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 3,
+      "rationale": "The analysis is mostly clear but lacks depth in explaining the financial implications of the churn rate and retention issues. It could better articulate how these factors directly impact revenue and customer loyalty."
+    },
+    {
+      "name": "key_signals",
+      "score": 3,
+      "rationale": "While the key signals are present, they are somewhat generic and do not fully leverage the specific data points from the campaign. More detailed insights from the data would enhance the analysis."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are concrete and highlight specific problems, particularly with the Facebook channel. This provides a clear direction for potential improvements."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 3,
+      "rationale": "The root cause hypothesis is logical but could benefit from more detailed reasoning that connects the detected issues to specific customer behaviors or feedback."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks are articulated well, focusing on revenue decline and customer loyalty, which are critical for a non-marketing audience to understand."
+    },
+    {
+      "name": "confidence_score",
+      "score": 2,
+      "rationale": "The confidence score of 0.0 is unrealistic given the analysis provided. A more reasonable score should reflect the evidence and insights presented."
+    }
+  ],
+  "summary": "The analysis provides a reasonable overview but lacks depth in several areas, particularly in financial implications and confidence assessment.",
+  "improvement_suggestions": [
+    "Enhance the analysis by providing clearer financial implications of churn and retention rates.",
+    "Use more specific data points to strengthen key signals and root cause hypotheses."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260511_141303_customer_retention.json"
+}

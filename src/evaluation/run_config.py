@@ -26,7 +26,7 @@ class RuntimeConfig:
     campaign_id: str
     category: Optional[str]
     context_rows: int
-
+    experiment_tag: str = ""
 
 @dataclass(frozen=True)
 class RunConfig:
@@ -51,6 +51,7 @@ def load_run_config(config_path: str = DEFAULT_CONFIG_PATH) -> RunConfig:
             campaign_id=runtime.get("campaign_id", "Spring Launch"),
             category=runtime.get("category"),
             context_rows=int(runtime.get("context_rows", 10)),
+            experiment_tag=runtime.get("experiment_tag", ""),
         ),
         generation=GenerationConfig(
             analysis_model=generation["analysis_model"],

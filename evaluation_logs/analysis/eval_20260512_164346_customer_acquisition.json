@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260512_164324",
+  "timestamp_utc": "2026-05-12T16:43:46Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Customer Acquisition",
+  "category": "Customer Acquisition",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 2,
+  "overall_status": "fail",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 3,
+      "rationale": "The analysis mentions metrics like conversion rate and cost per acquisition but does not provide explicit benchmark comparisons for all metrics, limiting its effectiveness."
+    },
+    {
+      "name": "key_signals",
+      "score": 2,
+      "rationale": "Key signals are presented but lack specific metric values tied to benchmarks, making them generic and not grounded in the raw campaign data."
+    },
+    {
+      "name": "detected_issues",
+      "score": 1,
+      "rationale": "No specific issues are identified, and the analysis claims there are no significant bottlenecks, which is vague and lacks evidence."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 1,
+      "rationale": "The hypothesis is missing as there are no detected issues to logically connect to, resulting in a lack of clear reasoning."
+    },
+    {
+      "name": "business_risks",
+      "score": 1,
+      "rationale": "No specific business risks are identified, and the section is vague, failing to address potential financial or growth impacts."
+    },
+    {
+      "name": "confidence_score",
+      "score": 2,
+      "rationale": "The confidence score of 95% is unrealistic given the lack of strong evidence and specific metrics, making it seem arbitrary."
+    }
+  ],
+  "summary": "The analysis lacks critical elements such as detected issues and clear connections between metrics, resulting in a low overall score.",
+  "improvement_suggestions": [
+    "Include specific detected issues with metric evidence and classify them as Pre-Click or Post-Click bottlenecks.",
+    "Provide explicit benchmark comparisons for all key metrics to strengthen the analysis."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260512_164346_customer_acquisition.json"
+}

@@ -1,0 +1,54 @@
+{
+  "run_id": "run_20260511_141003",
+  "timestamp_utc": "2026-05-11T14:12:11Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "judge_model": "gpt-4o-mini",
+  "judge_temp": 0.1,
+  "overall_score": 4,
+  "overall_status": "pass",
+  "criteria_scores": [
+    {
+      "name": "analysis",
+      "score": 4,
+      "rationale": "The analysis is mostly clear and uses straightforward language, making it accessible to a business audience. However, it could benefit from more specific examples of how the metrics relate to overall business goals."
+    },
+    {
+      "name": "key_signals",
+      "score": 4,
+      "rationale": "The key signals are well-defined and directly linked to the campaign data, providing valuable insights. However, including more context on how these signals compare to industry benchmarks would enhance their impact."
+    },
+    {
+      "name": "detected_issues",
+      "score": 4,
+      "rationale": "The detected issues are specific and highlight a clear problem with the conversion rate, which has a direct impact on revenue. More detail on how this issue affects overall performance could strengthen the analysis."
+    },
+    {
+      "name": "root_cause_hypothesis",
+      "score": 4,
+      "rationale": "The root cause hypothesis logically connects to the detected issues and key signals, suggesting a plausible reason for the conversion rate problem. However, it could be improved by suggesting specific actions to address the identified bottleneck."
+    },
+    {
+      "name": "business_risks",
+      "score": 4,
+      "rationale": "The business risks are articulated well, focusing on the potential financial implications of a low conversion rate. More quantitative estimates of how this could affect future revenue would enhance the analysis."
+    },
+    {
+      "name": "confidence_score",
+      "score": 4,
+      "rationale": "The confidence score of 85% is reasonable and aligns with the analysis provided. However, a brief explanation of how this score was derived would add credibility."
+    }
+  ],
+  "summary": "The analysis provides a solid overview of the campaign's performance with actionable insights, though it could be enhanced with more specific examples and quantitative details.",
+  "improvement_suggestions": [
+    "Include specific examples of how metrics relate to overall business goals.",
+    "Provide more context on how key signals compare to industry benchmarks."
+  ],
+  "pipeline_log_path": "evaluation_logs/pipeline/eval_20260511_141211_revenue_growth.json"
+}

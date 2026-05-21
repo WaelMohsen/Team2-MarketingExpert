@@ -1,8 +1,9 @@
 {
   "runtime": {
     "campaign_id": "Spring Launch",
-    "category": null,
-    "context_rows": 10
+    "category": "Customer Acquisition",
+    "context_rows": 10,
+    "experiment_tag": "judge-rubric-v2-explicit-benchmarks"
   },
   "generation": {
     "analysis_model": "gpt-4o-mini",

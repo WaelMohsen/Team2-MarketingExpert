@@ -1,0 +1,377 @@
+{
+  "run_id": "run_20260511_141003",
+  "timestamp_utc": "2026-05-11T14:12:11Z",
+  "campaign_id": "Spring Launch",
+  "campaign_name": "Spring Launch",
+  "target": "Revenue Growth",
+  "category": "Revenue Growth",
+  "analysis_generation_model": "gpt-4o-mini",
+  "analysis_generation_temp": 0.2,
+  "recommendation_generation_model": "gpt-4o",
+  "recommendation_generation_temp": 0.3,
+  "payload": {
+    "Target": "Revenue Growth",
+    "metrics": {
+      "overall": {
+        "Campaign Name": "Spring Launch",
+        "Total Spend": 1630.0,
+        "Total Revenue": 12950.0,
+        "Total Impressions": 100000,
+        "Total Clicks": 4650,
+        "Total Conversions": 570,
+        "Total New Customers": 483,
+        "Conversion Rate": "12.26%",
+        "CTR": "4.65%",
+        "CPA": 3.37,
+        "ROAS": 7.94,
+        "AOV": 22.72,
+        "Annual Customer Value": 95.42,
+        "Marketing ROI": 694.48,
+        "Revenue Per Click": 2.78,
+        "LTV:CAC Ratio": 28.31
+      },
+      "per_channel": {
+        "Email": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 100.0,
+          "Total Revenue": 1500.0,
+          "Total Impressions": 10000,
+          "Total Clicks": 600,
+          "Total Conversions": 80,
+          "Total New Customers": 68,
+          "Conversion Rate": "13.33%",
+          "CTR": "6.0%",
+          "CPA": 1.47,
+          "ROAS": 15.0,
+          "AOV": 18.75,
+          "Annual Customer Value": 95.62,
+          "Marketing ROI": 1400.0,
+          "Revenue Per Click": 2.5,
+          "LTV:CAC Ratio": 65.05
+        },
+        "Facebook": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 220.0,
+          "Total Revenue": 1100.0,
+          "Total Impressions": 13000,
+          "Total Clicks": 520,
+          "Total Conversions": 60,
+          "Total New Customers": 50,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.0%",
+          "CPA": 4.4,
+          "ROAS": 5.0,
+          "AOV": 18.33,
+          "Annual Customer Value": 64.17,
+          "Marketing ROI": 400.0,
+          "Revenue Per Click": 2.12,
+          "LTV:CAC Ratio": 14.58
+        },
+        "Google Ads": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 320.0,
+          "Total Revenue": 2400.0,
+          "Total Impressions": 18000,
+          "Total Clicks": 850,
+          "Total Conversions": 95,
+          "Total New Customers": 82,
+          "Conversion Rate": "11.18%",
+          "CTR": "4.72%",
+          "CPA": 3.9,
+          "ROAS": 7.5,
+          "AOV": 25.26,
+          "Annual Customer Value": 96.0,
+          "Marketing ROI": 650.0,
+          "Revenue Per Click": 2.82,
+          "LTV:CAC Ratio": 24.62
+        },
+        "Instagram": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 450.0,
+          "Total Revenue": 3200.0,
+          "Total Impressions": 25000,
+          "Total Clicks": 1100,
+          "Total Conversions": 130,
+          "Total New Customers": 110,
+          "Conversion Rate": "11.82%",
+          "CTR": "4.4%",
+          "CPA": 4.09,
+          "ROAS": 7.11,
+          "AOV": 24.62,
+          "Annual Customer Value": 103.38,
+          "Marketing ROI": 611.11,
+          "Revenue Per Click": 2.91,
+          "LTV:CAC Ratio": 25.28
+        },
+        "SMS": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 40.0,
+          "Total Revenue": 750.0,
+          "Total Impressions": 4000,
+          "Total Clicks": 280,
+          "Total Conversions": 55,
+          "Total New Customers": 48,
+          "Conversion Rate": "19.64%",
+          "CTR": "7.0%",
+          "CPA": 0.83,
+          "ROAS": 18.75,
+          "AOV": 13.64,
+          "Annual Customer Value": 53.18,
+          "Marketing ROI": 1775.0,
+          "Revenue Per Click": 2.68,
+          "LTV:CAC Ratio": 64.07
+        },
+        "TikTok": {
+          "Campaign Name": "Spring Launch",
+          "Total Spend": 500.0,
+          "Total Revenue": 4000.0,
+          "Total Impressions": 30000,
+          "Total Clicks": 1300,
+          "Total Conversions": 150,
+          "Total New Customers": 125,
+          "Conversion Rate": "11.54%",
+          "CTR": "4.33%",
+          "CPA": 4.0,
+          "ROAS": 8.0,
+          "AOV": 26.67,
+          "Annual Customer Value": 128.0,
+          "Marketing ROI": 700.0,
+          "Revenue Per Click": 3.08,
+          "LTV:CAC Ratio": 32.0
+        }
+      }
+    },
+    "kpis": [
+      "Campaign Name",
+      "Total Spend",
+      "Total Revenue",
+      "Total Impressions",
+      "Total Clicks",
+      "Total Conversions",
+      "Total New Customers",
+      "Conversion Rate",
+      "CTR",
+      "CPA",
+      "ROAS",
+      "AOV",
+      "Annual Customer Value",
+      "Marketing ROI",
+      "Revenue Per Click",
+      "LTV:CAC Ratio"
+    ],
+    "analysis": {
+      "analysis": "The overall campaign performance shows a strong return on ad spend at 7.94, which is well above the good benchmark of 4.0. The marketing return on investment is also healthy at 694.48%, indicating that for every dollar spent, the business is generating a significant profit. The customer acquisition cost is 3.37, which is reasonable given the annual customer value of 95.42. However, the conversion rate across all channels is 12.26%, which, while decent, indicates that there may be room for improvement in converting traffic into sales. The average order value is 22.72, suggesting that customers are spending a moderate amount per transaction. The lifetime value to customer acquisition cost ratio is exceptionally high at 28.31, indicating that the business is likely profitable in the long term. Overall, the primary metrics are performing well, but the conversion rate could be a point of focus for further analysis.",
+      "key_signals": [
+        "Return on ad spend is 7.94, indicating strong profitability.",
+        "Marketing return on investment is 694.48%, showing effective spending.",
+        "Customer acquisition cost is 3.37, which is low relative to customer value."
+      ],
+      "detected_issues": [
+        "Conversion rate is 12.26%, suggesting potential inefficiencies in converting clicks to sales."
+      ],
+      "root_cause_hypothesis": "The primary bottleneck appears to be at the bottom of the funnel, specifically related to the efficiency of the landing pages or website in converting traffic into sales.",
+      "business_risks": [
+        "If the conversion rate does not improve, future revenue growth may be limited despite high return on ad spend.",
+        "A low conversion rate could lead to increased customer acquisition costs over time."
+      ],
+      "confidence_score": 85.0
+    },
+    "recommendations": [
+      {
+        "id": "REC-01",
+        "title": "Optimize Landing Pages for Better Conversion",
+        "category": "Landing_Page",
+        "priority": "High",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "High",
+        "whats_happening": "The conversion rate is 12.26%, indicating potential inefficiencies in converting clicks to sales.",
+        "evidence": [
+          "Conversion rate is 12.26%, suggesting potential inefficiencies in converting clicks to sales."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Conduct A/B testing on landing pages to identify elements that improve conversion rates.",
+            "where": "Cross-channel",
+            "how": "Test different headlines, calls to action, and page layouts to see which combinations lead to higher conversions.",
+            "guardrails": [
+              "Ensure that changes do not negatively impact user experience."
+            ]
+          }
+        ],
+        "why_this_matters": "Improving conversion rates will increase the number of sales from existing traffic, maximizing revenue without increasing ad spend.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Higher conversion rates lead to more sales from the same amount of traffic, improving return on ad spend."
+        },
+        "dependency_or_risk": [
+          "Requires collaboration with the web team to implement changes."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Compare conversion rates before and after changes are implemented.",
+          "success_criteria": "Increase in conversion rate by at least 2 percentage points.",
+          "check_timing": "Review after 4 weeks of implementation.",
+          "notes": "Consider seasonality and external factors that might influence conversion rates."
+        },
+        "owner_suggestion": "Web team"
+      },
+      {
+        "id": "REC-02",
+        "title": "Increase Budget Allocation to High-Performing Channels",
+        "category": "Budget",
+        "priority": "High",
+        "effort": "Low",
+        "time_to_see_impact": "1-3 days",
+        "confidence": "High",
+        "whats_happening": "Channels like SMS and Email have high return on ad spend and marketing ROI.",
+        "evidence": [
+          "SMS ROAS is 18.75 and Email ROAS is 15.0, both well above the benchmark."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Reallocate budget from lower-performing channels to SMS and Email.",
+            "where": "Cross-channel",
+            "how": "Reduce spend on channels with lower ROAS and increase spend on SMS and Email.",
+            "guardrails": [
+              "Ensure that increased spend does not lead to diminishing returns."
+            ]
+          }
+        ],
+        "why_this_matters": "Focusing on high-performing channels maximizes revenue growth and profitability.",
+        "expected_impact": {
+          "primary_kpi": "marketing_roi_percent",
+          "direction": "Increase",
+          "explanation": "Higher budget allocation to effective channels increases overall marketing ROI."
+        },
+        "dependency_or_risk": [
+          "Ensure that increased spend does not saturate the audience."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor ROAS and marketing ROI after budget reallocation.",
+          "success_criteria": "Maintain or improve current ROAS and marketing ROI levels.",
+          "check_timing": "Review weekly after changes.",
+          "notes": "Watch for audience fatigue or diminishing returns."
+        },
+        "owner_suggestion": "Media buyer"
+      },
+      {
+        "id": "REC-03",
+        "title": "Enhance Creative Content to Boost Engagement",
+        "category": "Creative",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Engagement metrics such as likes and shares are moderate, indicating room for improvement.",
+        "evidence": [
+          "Instagram likes are 780 and shares are 200, indicating moderate engagement."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Develop new creative content that resonates more with the target audience.",
+            "where": "Instagram, TikTok, Facebook",
+            "how": "Use audience insights to create content that is more aligned with their interests and preferences.",
+            "guardrails": [
+              "Ensure brand consistency across all creative content."
+            ]
+          }
+        ],
+        "why_this_matters": "Higher engagement can lead to increased reach and potential conversions.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Better engagement can lead to more conversions and higher revenue per ad dollar."
+        },
+        "dependency_or_risk": [
+          "Requires creative team resources and time to develop new content."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track engagement metrics and conversion rates post-implementation.",
+          "success_criteria": "Increase in engagement metrics by 10%.",
+          "check_timing": "Review after 4 weeks.",
+          "notes": "Consider the impact of external events on engagement."
+        },
+        "owner_suggestion": "Creative team"
+      },
+      {
+        "id": "REC-04",
+        "title": "Refine Targeting to Improve Customer Acquisition Efficiency",
+        "category": "Targeting",
+        "priority": "Medium",
+        "effort": "Medium",
+        "time_to_see_impact": "2-4 weeks",
+        "confidence": "Medium",
+        "whats_happening": "The customer acquisition cost is low, but there is potential to further optimize targeting to improve efficiency.",
+        "evidence": [
+          "Customer acquisition cost is 3.37, which is low but can be optimized further."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Analyze audience segments to identify high-value customers.",
+            "where": "Cross-channel",
+            "how": "Use data analytics to refine targeting criteria and focus on segments with higher conversion potential.",
+            "guardrails": [
+              "Avoid over-segmentation that could limit reach."
+            ]
+          }
+        ],
+        "why_this_matters": "Better targeting can reduce acquisition costs and increase the number of new customers.",
+        "expected_impact": {
+          "primary_kpi": "cost_per_new_customer",
+          "direction": "Decrease",
+          "explanation": "More efficient targeting reduces the cost of acquiring new customers."
+        },
+        "dependency_or_risk": [
+          "Requires access to detailed audience data."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Monitor customer acquisition cost and conversion rates after targeting adjustments.",
+          "success_criteria": "Reduction in customer acquisition cost by 10%.",
+          "check_timing": "Review after 4 weeks.",
+          "notes": "Consider changes in market conditions that may affect targeting."
+        },
+        "owner_suggestion": "Analytics"
+      },
+      {
+        "id": "REC-05",
+        "title": "Leverage Retargeting to Capture Lost Opportunities",
+        "category": "Retention",
+        "priority": "Low",
+        "effort": "Low",
+        "time_to_see_impact": "1-2 weeks",
+        "confidence": "Medium",
+        "whats_happening": "Bounce rates indicate that some potential customers leave without converting.",
+        "evidence": [
+          "Bounce rates are moderate across channels, indicating lost opportunities."
+        ],
+        "what_you_should_do": [
+          {
+            "step": "Implement retargeting campaigns to re-engage visitors who did not convert.",
+            "where": "Cross-channel",
+            "how": "Use retargeting ads to remind visitors of products they viewed but did not purchase.",
+            "guardrails": [
+              "Ensure frequency capping to avoid ad fatigue."
+            ]
+          }
+        ],
+        "why_this_matters": "Retargeting can recover lost sales opportunities and improve conversion rates.",
+        "expected_impact": {
+          "primary_kpi": "revenue_return_per_ad_dollar",
+          "direction": "Increase",
+          "explanation": "Retargeting can convert previously lost opportunities into sales, improving revenue per ad dollar."
+        },
+        "dependency_or_risk": [
+          "Requires retargeting setup and budget allocation."
+        ],
+        "measurement_plan": {
+          "how_to_measure": "Track conversion rates and revenue from retargeting campaigns.",
+          "success_criteria": "Increase in conversion rate by 5%.",
+          "check_timing": "Review after 2 weeks.",
+          "notes": "Consider attribution delays in measuring retargeting impact."
+        },
+        "owner_suggestion": "Media buyer"
+      }
+    ]
+  }
+}
