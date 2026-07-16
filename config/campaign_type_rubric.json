@@ -1,0 +1,42 @@
+{
+  "awareness": {
+    "target_job": "Create efficient qualified visibility before expecting sales.",
+    "success_question": "Did the campaign reach enough people at efficient cost without showing fatigue?",
+    "primary_kpis": ["reach", "cpm", "frequency", "link_ctr_pct"]
+  },
+  "always_on": {
+    "target_job": "Acquire steady sales with stable economics.",
+    "success_question": "Did the campaign generate continuous orders at acceptable ROAS and CPA?",
+    "primary_kpis": ["net_roas", "delivered_rate", "cost_per_delivered_order", "ctwa_conversations", "negative_outcome_rate"]
+  },
+  "promotional": {
+    "target_job": "Turn offer-driven interest into orders quickly and efficiently.",
+    "success_question": "Did the promotion create low-cost conversations that converted into orders?",
+    "primary_kpis": ["cost_per_ctwa", "order_creation_rate", "net_roas", "aov", "negative_outcome_rate"]
+  },
+  "seasonal": {
+    "target_job": "Capture time-sensitive demand during a limited window.",
+    "success_question": "Did the campaign produce strong revenue intensity during the seasonal period?",
+    "primary_kpis": ["net_revenue_per_day", "delivered_orders", "net_roas", "cost_per_delivered_order", "negative_outcome_rate"]
+  },
+  "experimental": {
+    "target_job": "Generate enough evidence to learn which audience, ad, or creative should be scaled.",
+    "success_question": "Did the test produce enough volume and creative variation to support a decision?",
+    "primary_kpis": ["unique_creatives", "ads_tested", "ctwa_conversations", "cost_per_ctwa", "negative_outcome_rate"]
+  },
+  "launch": {
+    "target_job": "Validate demand for new or newly emphasized products.",
+    "success_question": "Did the launch create product adoption and revenue without poor-quality outcomes?",
+    "primary_kpis": ["net_revenue", "unique_products_ordered", "net_revenue_per_day", "delivered_rate", "negative_outcome_rate"]
+  },
+  "scale": {
+    "target_job": "Increase volume while keeping efficiency and quality within acceptable limits.",
+    "success_question": "Did the campaign grow volume without breaking ROAS, CPA, or quality?",
+    "primary_kpis": ["ctwa_conversations", "net_roas", "cost_per_delivered_order", "ctwa_conversations_per_day", "negative_outcome_rate"]
+  },
+  "retention": {
+    "target_job": "Re-engage existing customers and create profitable repeat orders.",
+    "success_question": "Did the campaign bring repeat customers back and convert them profitably?",
+    "primary_kpis": ["repeat_conversation_rate", "repeat_delivered_orders", "net_roas", "aov", "negative_outcome_rate"]
+  }
+}

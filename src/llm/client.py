@@ -3,8 +3,6 @@ from typing import List, Optional, Tuple
 
 from dotenv import load_dotenv
 
-from src.evaluation.run_config import load_run_config
-
 try:
     from openai import OpenAI
 except ImportError:  # pragma: no cover
@@ -59,6 +57,10 @@ def chat_completion(client, system_text, user_text, response_format, model, temp
 
 
 def _default_llm_settings() -> Tuple[str, float]:
+    # Imported lazily to avoid a circular import (src.evaluation imports
+    # src.llm.client at module load).
+    from src.evaluation.run_config import load_run_config
+
     config = load_run_config()
     return (
         config.generation.recommendation_model,

@@ -3,7 +3,6 @@ import os
 from datetime import datetime
 from typing import Any, Dict, Optional, Tuple
 
-from src.evaluation.run_config import load_run_config
 from src.llm.client import chat_completion, get_client
 
 from ..schemas.analysis_output_schema import AnalysisOutput, validate_analysis_output
@@ -77,6 +76,10 @@ def _resolve_generation_settings(
             recommendation_model,
             recommendation_temp,
         )
+
+    # Imported lazily to avoid a circular import (src.evaluation imports
+    # src.llm.pipeline at module load).
+    from src.evaluation.run_config import load_run_config
 
     generation = load_run_config().generation
     return (

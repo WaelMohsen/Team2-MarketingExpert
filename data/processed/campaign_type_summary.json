@@ -1,0 +1,168 @@
+[
+  {
+    "campaign_type": "awareness",
+    "target_job": "Create efficient qualified visibility before expecting sales.",
+    "success_question": "Did the campaign reach enough people at efficient cost without showing fatigue?",
+    "primary_kpis": [
+      "reach",
+      "cpm",
+      "frequency",
+      "link_ctr_pct"
+    ],
+    "num_campaigns": 1,
+    "campaigns": "Awareness Boost January",
+    "primary_kpi_values": {
+      "reach": 636884.0,
+      "cpm": 5.4746,
+      "frequency": 1.7113,
+      "link_ctr_pct": 1.1958
+    }
+  },
+  {
+    "campaign_type": "always_on",
+    "target_job": "Acquire steady sales with stable economics.",
+    "success_question": "Did the campaign generate continuous orders at acceptable ROAS and CPA?",
+    "primary_kpis": [
+      "net_roas",
+      "delivered_rate",
+      "cost_per_delivered_order",
+      "ctwa_conversations",
+      "negative_outcome_rate"
+    ],
+    "num_campaigns": 1,
+    "campaigns": "Always-On Premium Acquisition",
+    "primary_kpi_values": {
+      "net_roas": 0.451,
+      "delivered_rate": 0.7429,
+      "cost_per_delivered_order": 2707.3829,
+      "ctwa_conversations": 111.0,
+      "negative_outcome_rate": 0.4685
+    }
+  },
+  {
+    "campaign_type": "promotional",
+    "target_job": "Turn offer-driven interest into orders quickly and efficiently.",
+    "success_question": "Did the promotion create low-cost conversations that converted into orders?",
+    "primary_kpis": [
+      "cost_per_ctwa",
+      "order_creation_rate",
+      "net_roas",
+      "aov",
+      "negative_outcome_rate"
+    ],
+    "num_campaigns": 2,
+    "campaigns": "Pre-Ramadan Bundle Promo, Mid-Year Sale",
+    "primary_kpi_values": {
+      "cost_per_ctwa": 393.8901,
+      "order_creation_rate": 0.775,
+      "net_roas": 1.3357,
+      "aov": 1026.5366,
+      "negative_outcome_rate": 0.4625
+    }
+  },
+  {
+    "campaign_type": "seasonal",
+    "target_job": "Capture time-sensitive demand during a limited window.",
+    "success_question": "Did the campaign produce strong revenue intensity during the seasonal period?",
+    "primary_kpis": [
+      "net_revenue_per_day",
+      "delivered_orders",
+      "net_roas",
+      "cost_per_delivered_order",
+      "negative_outcome_rate"
+    ],
+    "num_campaigns": 3,
+    "campaigns": "Ramadan Suhoor Specials, Ramadan Iftar Premium Bundles, Eid Gifting Premium",
+    "primary_kpi_values": {
+      "net_revenue_per_day": 2323.28,
+      "delivered_orders": 111.0,
+      "net_roas": 1.6696,
+      "cost_per_delivered_order": 940.2241,
+      "negative_outcome_rate": 0.4205
+    }
+  },
+  {
+    "campaign_type": "experimental",
+    "target_job": "Generate enough evidence to learn which audience, ad, or creative should be scaled.",
+    "success_question": "Did the test produce enough volume and creative variation to support a decision?",
+    "primary_kpis": [
+      "unique_creatives",
+      "ads_tested",
+      "ctwa_conversations",
+      "cost_per_ctwa",
+      "negative_outcome_rate"
+    ],
+    "num_campaigns": 2,
+    "campaigns": "January Trial Bundle Test, Post-Eid Lookalike Test",
+    "primary_kpi_values": {
+      "unique_creatives": 3,
+      "ads_tested": 3,
+      "ctwa_conversations": 78.0,
+      "cost_per_ctwa": 135.6362,
+      "negative_outcome_rate": 0.5
+    }
+  },
+  {
+    "campaign_type": "launch",
+    "target_job": "Validate demand for new or newly emphasized products.",
+    "success_question": "Did the launch create product adoption and revenue without poor-quality outcomes?",
+    "primary_kpis": [
+      "net_revenue",
+      "unique_products_ordered",
+      "net_revenue_per_day",
+      "delivered_rate",
+      "negative_outcome_rate"
+    ],
+    "num_campaigns": 1,
+    "campaigns": "Summer Premium Launch",
+    "primary_kpi_values": {
+      "net_revenue": 69558.0,
+      "unique_products_ordered": 58,
+      "net_revenue_per_day": 1159.3,
+      "delivered_rate": 0.8312,
+      "negative_outcome_rate": 0.299
+    }
+  },
+  {
+    "campaign_type": "scale",
+    "target_job": "Increase volume while keeping efficiency and quality within acceptable limits.",
+    "success_question": "Did the campaign grow volume without breaking ROAS, CPA, or quality?",
+    "primary_kpis": [
+      "ctwa_conversations",
+      "net_roas",
+      "cost_per_delivered_order",
+      "ctwa_conversations_per_day",
+      "negative_outcome_rate"
+    ],
+    "num_campaigns": 1,
+    "campaigns": "Lookalike Scale Cycle 3",
+    "primary_kpi_values": {
+      "ctwa_conversations": 36.0,
+      "net_roas": 1.1953,
+      "cost_per_delivered_order": 1368.0813,
+      "ctwa_conversations_per_day": 0.75,
+      "negative_outcome_rate": 0.3056
+    }
+  },
+  {
+    "campaign_type": "retention",
+    "target_job": "Re-engage existing customers and create profitable repeat orders.",
+    "success_question": "Did the campaign bring repeat customers back and convert them profitably?",
+    "primary_kpis": [
+      "repeat_conversation_rate",
+      "repeat_delivered_orders",
+      "net_roas",
+      "aov",
+      "negative_outcome_rate"
+    ],
+    "num_campaigns": 1,
+    "campaigns": "Summer Retention Push",
+    "primary_kpi_values": {
+      "repeat_conversation_rate": 0.25,
+      "repeat_delivered_orders": 3.0,
+      "net_roas": 0.5243,
+      "aov": 674.5714,
+      "negative_outcome_rate": 0.5625
+    }
+  }
+]
