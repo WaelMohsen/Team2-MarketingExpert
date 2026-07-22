@@ -1,0 +1,249 @@
+version: 1
+
+benchmark_fallback_order:
+  - explicit_campaign_target
+  - historical_same_type
+  - current_cycle_same_type_median
+  - portfolio_median
+
+campaign_types:
+  awareness:
+    business_job: Create efficient qualified visibility before expecting sales.
+    success_question: Did the campaign reach people efficiently without excessive repetition?
+    primary_kpis:
+      - reach
+    supporting_kpis:
+      - cpm
+      - frequency
+      - link_ctr_pct
+      - meta_conversation_starts
+    guardrails:
+      - metric: frequency
+        operator: within
+        minimum: 1.0
+        maximum: 3.5
+        required_for: [target]
+    allocation_metric:
+      metric: cpm
+      direction: lower
+    budget_pool: core
+    analysis_guidance:
+      - Treat downstream WhatsApp outcomes as diagnostic evidence, not the primary awareness objective.
+      - Look for efficient reach, healthy frequency, and evidence of useful attention.
+
+  always_on:
+    business_job: Acquire steady sales with stable economics.
+    success_question: Did the campaign generate continuous delivered orders at acceptable return and quality?
+    primary_kpis:
+      - net_roas
+    supporting_kpis:
+      - delivered_rate
+      - cost_per_delivered_order
+      - observed_conversations
+      - net_revenue_per_day
+    guardrails:
+      - metric: observed_conversations
+        operator: greater_than_or_equal
+        value: 10
+        required_for: [target, allocation]
+      - metric: delivered_orders
+        operator: greater_than
+        value: 0
+        required_for: [allocation]
+      - metric: negative_outcome_rate
+        operator: benchmark
+        benchmark_strategy: same_type_median
+        required_for: [allocation]
+    allocation_metric:
+      metric: net_roas
+      direction: higher
+    budget_pool: core
+    analysis_guidance:
+      - Evaluate stability across time as well as the final return.
+      - Flag cheap conversations that do not become delivered orders.
+
+  promotional:
+    business_job: Convert offer-driven WhatsApp interest into delivered orders quickly.
+    success_question: Did the promotion create valuable delivered orders at an acceptable return?
+    primary_kpis:
+      - net_roas
+    supporting_kpis:
+      - order_creation_rate
+      - delivered_rate
+      - aov
+      - cost_per_observed_conversation
+    guardrails:
+      - metric: observed_conversations
+        operator: greater_than_or_equal
+        value: 10
+        required_for: [target, allocation]
+      - metric: delivered_orders
+        operator: greater_than
+        value: 0
+        required_for: [allocation]
+      - metric: negative_outcome_rate
+        operator: benchmark
+        benchmark_strategy: same_type_median
+        required_for: [allocation]
+    allocation_metric:
+      metric: net_roas
+      direction: higher
+    budget_pool: core
+    analysis_guidance:
+      - Separate offer-driven volume from delivered-order quality.
+      - Examine whether higher average order value compensates for acquisition cost.
+
+  seasonal:
+    business_job: Capture time-sensitive demand during a limited campaign window.
+    success_question: Did the campaign generate strong delivered revenue during its seasonal window?
+    primary_kpis:
+      - net_revenue_per_day
+    supporting_kpis:
+      - delivered_orders
+      - net_roas
+      - cost_per_delivered_order
+      - aov
+    guardrails:
+      - metric: observed_conversations
+        operator: greater_than_or_equal
+        value: 10
+        required_for: [target, allocation]
+      - metric: delivered_orders
+        operator: greater_than
+        value: 0
+        required_for: [allocation]
+      - metric: negative_outcome_rate
+        operator: benchmark
+        benchmark_strategy: same_type_median
+        required_for: [allocation]
+    allocation_metric:
+      metric: net_revenue_per_day
+      direction: higher
+    budget_pool: core
+    analysis_guidance:
+      - Normalize volume by active days because seasonal windows differ.
+      - Identify reusable audience, offer, and creative combinations.
+
+  experimental:
+    business_job: Generate enough evidence to identify audiences and creatives worth funding again.
+    success_question: Did the test produce enough comparable outcome evidence to separate promising patterns?
+    primary_kpis:
+      - observed_conversations
+    supporting_kpis:
+      - unique_creatives
+      - ad_count
+      - cost_per_observed_conversation
+      - delivered_rate
+    guardrails:
+      - metric: unique_creatives
+        operator: greater_than_or_equal
+        value: 2
+        required_for: [target]
+      - metric: ad_count
+        operator: greater_than_or_equal
+        value: 2
+        required_for: [target]
+      - metric: observed_conversations
+        operator: greater_than_or_equal
+        value: 10
+        required_for: [target, allocation]
+    allocation_metric:
+      metric: cost_per_observed_conversation
+      direction: lower
+    budget_pool: test
+    analysis_guidance:
+      - Verify that test cells are comparable before naming a winner.
+      - Treat low-sample winners as hypotheses, not scale decisions.
+
+  launch:
+    business_job: Validate demand for newly launched or newly emphasized products.
+    success_question: Did the launch create product adoption and delivered revenue?
+    primary_kpis:
+      - net_revenue
+    supporting_kpis:
+      - unique_products_ordered
+      - net_revenue_per_day
+      - delivered_rate
+      - units_ordered
+    guardrails:
+      - metric: observed_conversations
+        operator: greater_than_or_equal
+        value: 10
+        required_for: [target, allocation]
+      - metric: delivered_orders
+        operator: greater_than
+        value: 0
+        required_for: [allocation]
+      - metric: negative_outcome_rate
+        operator: benchmark
+        benchmark_strategy: portfolio_median
+        required_for: [allocation]
+    allocation_metric:
+      metric: net_revenue
+      direction: higher
+    budget_pool: core
+    analysis_guidance:
+      - Distinguish product breadth from revenue concentrated in one product.
+      - Treat product adoption as unavailable when order-line coverage is incomplete.
+
+  scale:
+    business_job: Increase outcome volume while protecting efficiency and quality.
+    success_question: Did volume increase without damaging return, delivery cost, or outcome quality?
+    primary_kpis:
+      - observed_conversations
+    supporting_kpis:
+      - observed_conversations_per_day
+      - net_roas
+      - cost_per_delivered_order
+      - delivered_rate
+    guardrails:
+      - metric: observed_conversations
+        operator: greater_than_or_equal
+        value: 10
+        required_for: [target, allocation]
+      - metric: net_roas
+        operator: benchmark
+        benchmark_strategy: historical_same_type
+        required_for: [target, allocation]
+      - metric: negative_outcome_rate
+        operator: benchmark
+        benchmark_strategy: portfolio_median
+        required_for: [allocation]
+    allocation_metric:
+      metric: observed_conversations
+      direction: higher
+    budget_pool: core
+    analysis_guidance:
+      - Do not call volume growth successful when efficiency or quality deteriorates materially.
+      - Compare per-day volume when campaign durations differ.
+
+  retention:
+    business_job: Re-engage existing customers and create profitable repeat orders.
+    success_question: Did previous customers return and complete valuable delivered orders?
+    primary_kpis:
+      - repeat_delivered_orders
+    supporting_kpis:
+      - repeat_conversation_rate
+      - repeat_order_rate
+      - net_roas
+      - aov
+    guardrails:
+      - metric: observed_conversations
+        operator: greater_than_or_equal
+        value: 10
+        required_for: [target, allocation]
+      - metric: repeat_delivered_orders
+        operator: greater_than
+        value: 0
+        required_for: [target, allocation]
+      - metric: negative_outcome_rate
+        operator: benchmark
+        benchmark_strategy: portfolio_median
+        required_for: [allocation]
+    allocation_metric:
+      metric: repeat_delivered_orders
+      direction: higher
+    budget_pool: core
+    analysis_guidance:
+      - Confirm that customer identity and repeat-cycle definitions are reliable.
+      - Separate repeat-customer response from acquisition-like lookalike activity.

@@ -1,0 +1,12 @@
+version: 1
+status: poc_assumption
+
+minimum_observed_conversations:
+  campaign: 10
+  adset: 5
+  ad: 3
+
+notes:
+  - These thresholds are demonstration rules, not statistically validated sample sizes.
+  - Rates should include confidence intervals before production budget execution.
+  - A child entity cannot override a blocked parent entity.

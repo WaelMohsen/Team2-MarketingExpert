@@ -38,11 +38,29 @@ Set your environment variables in the `.env` file. Like `OPENAI_API_KEY` value.
 
 ## Running the Application
 
-To start the application, run:
+To start the original chatbot, run:
 
 ```bash
 $ streamlit run app.py
 ```
+
+To start the completed-cycle Sample 2 reporting application, run:
+
+```bash
+$ python -m streamlit run app_v2.py
+```
+
+The v2 report is deterministic by default and does not require an API key. To
+generate its narrative layers with the validated LLM prompts:
+
+1. Set `OPENAI_API_KEY` and, optionally, `OPENAI_MODEL` in `.env`.
+2. Select **OpenAI prompts** under **Narrative engine** in the sidebar.
+3. Select **Generate full LLM report**. The result is cached for the selected
+   input directory and model until **Reload cycle** is selected.
+
+The LLM generates one analysis per campaign, one portfolio synthesis, and one
+stakeholder narrative. KPI calculation, target assessment, funding decisions,
+and budget allocation remain deterministic.
 
 ## Running Unit Tests
 

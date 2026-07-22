@@ -1,0 +1,441 @@
+{"kind":"deck","id":"pr/5eht2d","name":"Deck"}
+{"kind":"layout","layoutId":"fb2852b1-4d77-4bb9-a997-ddc03cbedbf8","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"a54d845f-3aa5-4cdc-a22b-4af1972cf28b","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/f87h9x","slide":1,"title":"TEAM 2 | MARKETING REPORTING","textShapes":5}
+{"kind":"textbox","id":"sh/i9gb2tsj","slide":1,"name":"text-1","text":"TEAM 2 | MARKETING REPORTING","textPreview":"TEAM 2 | MARKETING REPORTING","textChars":28,"textLines":1,"bbox":[41,41,520,38]}
+{"kind":"textbox","id":"sh/5c7ax8ru","slide":1,"name":"text-2","text":"Marketing Cycle\nReporting POC","textPreview":"Marketing Cycle | Reporting POC","textChars":29,"textLines":2,"bbox":[41,166,850,250]}
+{"kind":"shape","id":"sh/kbyt43ap","slide":1,"name":"shape-3","bbox":[952,166,286,250]}
+{"kind":"textbox","id":"sh/7ypszi90","slide":1,"name":"text-4","text":"META\n+\nWHATSAPP","textPreview":"META | + | WHATSAPP","textChars":15,"textLines":3,"bbox":[987,215,220,160]}
+{"kind":"textbox","id":"sh/6xgb6dsf","slide":1,"name":"text-5","text":"How the code turns media delivery and observed business outcomes into explainable next-cycle scenarios","textPreview":"How the code turns media delivery and observed business outcomes into explainable next-cycle scenarios","textChars":102,"textLines":1,"bbox":[41,478,840,96]}
+{"kind":"textbox","id":"sh/t0ru1sr6","slide":1,"name":"text-6","text":"For data scientists new to marketing","textPreview":"For data scientists new to marketing","textChars":36,"textLines":1,"bbox":[41,628,620,30]}
+{"kind":"notes","id":"nt/f87h9x","slide":1,"text":"The deck explains the business problem, the data model, deterministic calculations, decisions already taken in src_2, and how prompt implementations can later be replaced by agents. The existing src baseline and the src_2 target architecture are deliberately kept separate."}
+{"kind":"slide","id":"sl/x5a1bu","slide":2,"title":"Three questions keep decisions honest","textShapes":13}
+{"kind":"textbox","id":"sh/e1wba9sz","slide":2,"name":"slide-2-title","text":"Three questions keep decisions honest","textPreview":"Three questions keep decisions honest","textChars":37,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/1o7a5oba","slide":2,"name":"line-21","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/0nytcja5","slide":2,"name":"slide-2-source","text":"Source: src_2 methodology and decision contracts","textPreview":"Source: src_2 methodology and decision contracts","textChars":48,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/ry5szut8","slide":2,"name":"slide-2-number","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/qxwb6psn","slide":2,"name":"shape-7","bbox":[41,190,374,360]}
+{"kind":"shape","id":"sh/d0na14be","slide":2,"name":"shape-8","bbox":[453,190,374,360]}
+{"kind":"shape","id":"sh/szet8zat","slide":2,"name":"shape-9","bbox":[865,190,374,360]}
+{"kind":"textbox","id":"sh/3ulsvutc","slide":2,"name":"text-10","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[70,220,70,70]}
+{"kind":"textbox","id":"sh/itcb2psr","slide":2,"name":"text-11","text":"Target achievement","textPreview":"Target achievement","textChars":18,"textLines":1,"bbox":[70,305,300,50]}
+{"kind":"textbox","id":"sh/cnulsby1","slide":2,"name":"text-12","text":"Did the campaign do the job associated with its type?","textPreview":"Did the campaign do the job associated with its type?","textChars":53,"textLines":1,"bbox":[70,374,300,110]}
+{"kind":"textbox","id":"sh/xo321gfm","slide":2,"name":"text-13","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[482,220,70,70]}
+{"kind":"textbox","id":"sh/alc3qlgv","slide":2,"name":"text-14","text":"Business outcome","textPreview":"Business outcome","textChars":16,"textLines":1,"bbox":[482,305,300,50]}
+{"kind":"textbox","id":"sh/bmlkzqxg","slide":2,"name":"text-15","text":"Did observed WhatsApp conversations become valuable orders?","textPreview":"Did observed WhatsApp conversations become valuable orders?","textChars":59,"textLines":1,"bbox":[482,374,300,110]}
+{"kind":"textbox","id":"sh/oju1obyp","slide":2,"name":"text-16","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[894,220,70,70]}
+{"kind":"textbox","id":"sh/pk32xgfa","slide":2,"name":"text-17","text":"Evidence readiness","textPreview":"Evidence readiness","textChars":18,"textLines":1,"bbox":[894,305,300,50]}
+{"kind":"textbox","id":"sh/2hsjm1gz","slide":2,"name":"text-18","text":"Is the sample complete, mature, and comparable enough to act?","textPreview":"Is the sample complete, mature, and comparable enough to act?","textChars":61,"textLines":1,"bbox":[894,374,300,110]}
+{"kind":"textbox","id":"sh/nilkv6x4","slide":2,"name":"text-19","text":"The recommendation is valid only when all three questions remain visible.","textPreview":"The recommendation is valid only when all three questions remain visible.","textChars":73,"textLines":1,"bbox":[41,588,1198,46]}
+{"kind":"notes","id":"nt/x5a1bu","slide":2,"text":"Use this slide as the mental model for the entire system. A campaign can achieve its media objective but fail to produce business value. It can also appear commercially strong in a sample that is too incomplete for automatic allocation."}
+{"kind":"slide","id":"sl/wjnmkz","slide":3,"title":"Marketing decisions follow a hierarchy","textShapes":14}
+{"kind":"textbox","id":"sh/tova5cve","slide":3,"name":"slide-3-title","text":"Marketing decisions follow a hierarchy","textPreview":"Marketing decisions follow a hierarchy","textChars":38,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/6l4buhw3","slide":3,"name":"line-45","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/7mds32do","slide":3,"name":"slide-3-source","text":"Source: Sample 2 Meta hierarchy; src_2 domain models","textPreview":"Source: Sample 2 Meta hierarchy; src_2 domain models","textChars":52,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/grmt0re5","slide":3,"name":"slide-3-number","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/hsfa9wvq","slide":3,"name":"line-24","bbox":[247,316,104,1]}
+{"kind":"shape","id":"sh/up4byhwz","slide":3,"name":"line-25","bbox":[557,316,104,1]}
+{"kind":"shape","id":"sh/fqds7mdk","slide":3,"name":"line-26","bbox":[867,316,104,1]}
+{"kind":"shape","id":"sh/4v6t4re1","slide":3,"name":"line-27","bbox":[454,414,1,76]}
+{"kind":"shape","id":"sh/pgfadwvm","slide":3,"name":"shape-28","bbox":[41,236,206,160]}
+{"kind":"shape","id":"sh/lcjetwvy","slide":3,"name":"shape-29","bbox":[351,236,206,160]}
+{"kind":"shape","id":"sh/0bqd0red","slide":3,"name":"shape-30","bbox":[661,236,206,160]}
+{"kind":"shape","id":"sh/zahwr6d8","slide":3,"name":"shape-31","bbox":[971,236,206,160]}
+{"kind":"shape","id":"sh/y98vy1wn","slide":3,"name":"shape-32","bbox":[351,490,206,110]}
+{"kind":"textbox","id":"sh/9gjexgva","slide":3,"name":"text-33","text":"CAMPAIGN","textPreview":"CAMPAIGN","textChars":8,"textLines":1,"bbox":[70,264,148,36]}
+{"kind":"textbox","id":"sh/8fad4bep","slide":3,"name":"text-34","text":"Objective and strategic budget","textPreview":"Objective and strategic budget","textChars":30,"textLines":1,"bbox":[70,318,148,58]}
+{"kind":"textbox","id":"sh/ne1wv6d4","slide":3,"name":"text-35","text":"ADSET","textPreview":"ADSET","textChars":5,"textLines":1,"bbox":[380,264,148,36]}
+{"kind":"textbox","id":"sh/mdsv21wj","slide":3,"name":"text-36","text":"Audience, bid, budget, optimization","textPreview":"Audience, bid, budget, optimization","textChars":35,"textLines":1,"bbox":[380,318,148,60]}
+{"kind":"textbox","id":"sh/pkzulcvq","slide":3,"name":"text-37","text":"AD","textPreview":"AD","textChars":2,"textLines":1,"bbox":[690,264,148,36]}
+{"kind":"textbox","id":"sh/4j6ds7el","slide":3,"name":"text-38","text":"Delivered message inside the adset","textPreview":"Delivered message inside the adset","textChars":34,"textLines":1,"bbox":[690,318,148,60]}
+{"kind":"textbox","id":"sh/g3ad8rm1","slide":3,"name":"text-39","text":"CREATIVE","textPreview":"CREATIVE","textChars":8,"textLines":1,"bbox":[1000,264,148,36]}
+{"kind":"textbox","id":"sh/hojehcnm","slide":3,"name":"text-40","text":"Image or video, copy, theme, angle","textPreview":"Image or video, copy, theme, angle","textChars":34,"textLines":1,"bbox":[1000,318,148,60]}
+{"kind":"textbox","id":"sh/u1sv6h4b","slide":3,"name":"text-41","text":"AUDIENCE","textPreview":"AUDIENCE","textChars":8,"textLines":1,"bbox":[380,516,148,30]}
+{"kind":"textbox","id":"sh/v21wfm5w","slide":3,"name":"text-42","text":"Broad, lookalike, retargeting, custom","textPreview":"Broad, lookalike, retargeting, custom","textChars":37,"textLines":1,"bbox":[370,552,168,38]}
+{"kind":"textbox","id":"sh/4rudcrmd","slide":3,"name":"text-43","text":"Parent rules matter: a winning ad cannot rescue a blocked campaign.","textPreview":"Parent rules matter: a winning ad cannot rescue a blocked campaign.","textChars":67,"textLines":1,"bbox":[661,488,516,112]}
+{"kind":"notes","id":"nt/wjnmkz","slide":3,"text":"Campaign is the strategic container. Adset is where Meta targeting and optimization live. Audience is therefore an adset characteristic. An ad carries a creative, but ad performance also includes the adset context. The v2 policy will enforce parent-child eligibility."}
+{"kind":"slide","id":"sl/gdytkv","slide":4,"title":"Media response is not business value","textShapes":17}
+{"kind":"textbox","id":"sh/vm5obe94","slide":4,"name":"slide-4-title","text":"Media response is not business value","textPreview":"Media response is not business value","textChars":36,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/wne54jqp","slide":4,"name":"line-70","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/hon6dora","slide":4,"name":"slide-4-source","text":"Source: Sample 2 totals; observed outcomes only","textPreview":"Source: Sample 2 totals; observed outcomes only","textChars":47,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/mhwny98n","slide":4,"name":"slide-4-number","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/7i5o7e98","slide":4,"name":"line-48","bbox":[130,360,1010,1]}
+{"kind":"shape","id":"sh/8je50zqt","slide":4,"name":"shape-49","bbox":[45,252,180,216]}
+{"kind":"shape","id":"sh/9kn694re","slide":4,"name":"shape-50","bbox":[247,270,180,180]}
+{"kind":"shape","id":"sh/6dgnat8r","slide":4,"name":"shape-51","bbox":[449,288,180,144]}
+{"kind":"shape","id":"sh/repojy9c","slide":4,"name":"shape-52","bbox":[651,300,180,120]}
+{"kind":"shape","id":"sh/v61crax0","slide":4,"name":"shape-53","bbox":[853,312,180,96]}
+{"kind":"shape","id":"sh/a5svi5gf","slide":4,"name":"shape-54","bbox":[1055,322,180,76]}
+{"kind":"textbox","id":"sh/x8jut0f6","slide":4,"name":"text-55","text":"73.9M","textPreview":"73.9M","textChars":5,"textLines":1,"bbox":[65,290,140,52]}
+{"kind":"textbox","id":"sh/w7adkfyl","slide":4,"name":"text-56","text":"Impressions","textPreview":"Impressions","textChars":11,"textLines":1,"bbox":[65,372,140,38]}
+{"kind":"textbox","id":"sh/jalcvaxc","slide":4,"name":"text-57","text":"823K","textPreview":"823K","textChars":4,"textLines":1,"bbox":[267,300,140,52]}
+{"kind":"textbox","id":"sh/i9cvm5gr","slide":4,"name":"text-58","text":"Link clicks","textPreview":"Link clicks","textChars":11,"textLines":1,"bbox":[267,372,140,38]}
+{"kind":"textbox","id":"sh/5c3uxkf2","slide":4,"name":"text-59","text":"116,098","textPreview":"116,098","textChars":7,"textLines":1,"bbox":[469,310,140,52]}
+{"kind":"textbox","id":"sh/kbudofyh","slide":4,"name":"text-60","text":"Meta conversation starts","textPreview":"Meta conversation starts","textChars":24,"textLines":1,"bbox":[469,366,140,54]}
+{"kind":"textbox","id":"sh/7elwzux8","slide":4,"name":"text-61","text":"617","textPreview":"617","textChars":3,"textLines":1,"bbox":[671,318,140,46]}
+{"kind":"textbox","id":"sh/6dcvqpgn","slide":4,"name":"text-62","text":"Supplied WhatsApp conversations","textPreview":"Supplied WhatsApp conversations","textChars":31,"textLines":1,"bbox":[671,366,140,48]}
+{"kind":"textbox","id":"sh/2tgfit0v","slide":4,"name":"text-63","text":"457","textPreview":"457","textChars":3,"textLines":1,"bbox":[873,326,140,40]}
+{"kind":"textbox","id":"sh/3upgryhg","slide":4,"name":"text-64","text":"Orders created","textPreview":"Orders created","textChars":14,"textLines":1,"bbox":[873,370,140,30]}
+{"kind":"textbox","id":"sh/4vyxkji1","slide":4,"name":"text-65","text":"331","textPreview":"331","textChars":3,"textLines":1,"bbox":[1075,330,140,36]}
+{"kind":"textbox","id":"sh/pw7ytozm","slide":4,"name":"text-66","text":"Delivered","textPreview":"Delivered","textChars":9,"textLines":1,"bbox":[1075,368,140,26]}
+{"kind":"textbox","id":"sh/u5wfe90z","slide":4,"name":"text-67","text":"0.53%","textPreview":"0.53%","textChars":5,"textLines":1,"bbox":[631,500,220,60]}
+{"kind":"textbox","id":"sh/f65gnehk","slide":4,"name":"text-68","text":"The event populations are not yet reconciled","textPreview":"The event populations are not yet reconciled","textChars":44,"textLines":1,"bbox":[556,568,370,46]}
+{"kind":"notes","id":"nt/gdytkv","slide":4,"text":"This is not a fully reconciled conversion funnel. Meta reports attributed conversation-start actions; the WhatsApp file contains unique supplied conversation records. We can follow the 617 observed records into orders, but we cannot assume they represent all Meta-attributed starts."}
+{"kind":"slide","id":"sl/tur65h","slide":5,"title":"Three files form one evidence model","textShapes":12}
+{"kind":"textbox","id":"sh/cni5gve1","slide":5,"name":"slide-5-title","text":"Three files form one evidence model","textPreview":"Three files form one evidence model","textChars":35,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/bm9onqdg","slide":5,"name":"line-92","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/al0nelwv","slide":5,"name":"slide-5-source","text":"Source: src cycle_data.py; src_2 data architecture","textPreview":"Source: src cycle_data.py; src_2 data architecture","textChars":50,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/pkr6lgva","slide":5,"name":"slide-5-number","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/oji5cvep","slide":5,"name":"line-73","bbox":[220,250,270,105]}
+{"kind":"shape","id":"sh/nipojqd4","slide":5,"name":"line-74","bbox":[640,250,1,105]}
+{"kind":"shape","id":"sh/2hgnalwj","slide":5,"name":"line-75","bbox":[790,250,270,105]}
+{"kind":"shape","id":"sh/9gb6xkve","slide":5,"name":"line-76","bbox":[640,470,1,90]}
+{"kind":"shape","id":"sh/8f2pofe9","slide":5,"name":"shape-77","bbox":[41,166,358,126]}
+{"kind":"shape","id":"sh/ydsn29s7","slide":5,"name":"shape-78","bbox":[461,166,358,126]}
+{"kind":"shape","id":"sh/je1ove9c","slide":5,"name":"shape-79","bbox":[881,166,358,126]}
+{"kind":"shape","id":"sh/kfa54jax","slide":5,"name":"shape-80","bbox":[388,355,504,116]}
+{"kind":"shape","id":"sh/lgj6xori","slide":5,"name":"shape-81","bbox":[190,560,900,76]}
+{"kind":"textbox","id":"sh/ap8nypsv","slide":5,"name":"text-82","text":"meta_data.json","textPreview":"meta_data.json","textChars":14,"textLines":1,"bbox":[70,188,300,34]}
+{"kind":"textbox","id":"sh/bqhorutg","slide":5,"name":"text-83","text":"Campaigns, adsets, ads, creatives, daily insights","textPreview":"Campaigns, adsets, ads, creatives, daily insights","textChars":49,"textLines":1,"bbox":[70,232,300,46]}
+{"kind":"textbox","id":"sh/cra50za1","slide":5,"name":"text-84","text":"conversations.json","textPreview":"conversations.json","textChars":18,"textLines":1,"bbox":[490,188,300,34]}
+{"kind":"textbox","id":"sh/xsj6t4rm","slide":5,"name":"text-85","text":"Source IDs, customer cycle, order outcome, messages","textPreview":"Source IDs, customer cycle, order outcome, messages","textChars":51,"textLines":1,"bbox":[490,232,300,46]}
+{"kind":"textbox","id":"sh/ulcnatsf","slide":5,"name":"text-86","text":"products.json","textPreview":"products.json","textChars":13,"textLines":1,"bbox":[910,188,300,34]}
+{"kind":"textbox","id":"sh/vmlo3y9k","slide":5,"name":"text-87","text":"Product metadata joined to order line items","textPreview":"Product metadata joined to order line items","textChars":43,"textLines":1,"bbox":[910,232,300,46]}
+{"kind":"textbox","id":"sh/rqdkvq9c","slide":5,"name":"text-88","text":"CANONICAL EVIDENCE MODEL","textPreview":"CANONICAL EVIDENCE MODEL","textChars":24,"textLines":1,"bbox":[428,383,424,36]}
+{"kind":"textbox","id":"sh/qp432l8r","slide":5,"name":"text-89","text":"Keep daily media facts separate from conversation and order facts","textPreview":"Keep daily media facts separate from conversation and order facts","textChars":65,"textLines":1,"bbox":[428,426,424,28]}
+{"kind":"textbox","id":"sh/dsf2x0r2","slide":5,"name":"text-90","text":"Aggregate separately, then join at campaign / adset / ad grain","textPreview":"Aggregate separately, then join at campaign / adset / ad grain","textChars":62,"textLines":1,"bbox":[220,582,840,34]}
+{"kind":"notes","id":"nt/tur65h","slide":5,"text":"A giant flat join would multiply daily Meta rows by conversation rows and double-count spend or revenue. The v2 design keeps fact tables at natural grain and joins only after aggregation. Campaign and ad IDs are the conformed keys; adset is derivable from ad ownership."}
+{"kind":"slide","id":"sl/17og29","slide":6,"title":"The 0.53% gap blocks automation, not analysis","textShapes":10}
+{"kind":"textbox","id":"sh/r6d8vu1w","slide":6,"name":"slide-6-title","text":"The 0.53% gap blocks automation, not analysis","textPreview":"The 0.53% gap blocks automation, not analysis","textChars":45,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/srm9of2h","slide":6,"name":"line-107","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/tsvqxkj2","slide":6,"name":"slide-6-source","text":"Source: Sample 2 data-quality audit; src_2 data_quality_rules.yaml","textPreview":"Source: Sample 2 data-quality audit; src_2 data_quality_rules.yaml","textChars":66,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/i1kri5kf","slide":6,"name":"slide-6-number","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/j2t8ra10","slide":6,"name":"shape-95","bbox":[41,186,374,290]}
+{"kind":"shape","id":"sh/4329kf2l","slide":6,"name":"shape-96","bbox":[453,186,374,290]}
+{"kind":"shape","id":"sh/54vqtkjq","slide":6,"name":"shape-97","bbox":[865,186,374,290]}
+{"kind":"textbox","id":"sh/2xoru90j","slide":6,"name":"text-98","text":"0.53%","textPreview":"0.53%","textChars":5,"textLines":1,"bbox":[70,226,316,88]}
+{"kind":"textbox","id":"sh/3yxs3e14","slide":6,"name":"text-99","text":"617 supplied records divided by 116,098 Meta actions","textPreview":"617 supplied records divided by 116,098 Meta actions","textChars":52,"textLines":1,"bbox":[80,346,296,74]}
+{"kind":"textbox","id":"sh/vy5sb69g","slide":6,"name":"text-100","text":"617 / 617","textPreview":"617 / 617","textChars":9,"textLines":1,"bbox":[482,226,316,88]}
+{"kind":"textbox","id":"sh/uxwr218v","slide":6,"name":"text-101","text":"Every supplied Meta-sourced conversation joins to known hierarchy IDs","textPreview":"Every supplied Meta-sourced conversation joins to known hierarchy IDs","textChars":69,"textLines":1,"bbox":[492,346,296,74]}
+{"kind":"textbox","id":"sh/h0nadg76","slide":6,"name":"text-102","text":"2 definitions","textPreview":"2 definitions","textChars":13,"textLines":1,"bbox":[894,226,316,88]}
+{"kind":"textbox","id":"sh/wze94bq1","slide":6,"name":"text-103","text":"Meta attributed actions and WhatsApp unique records may not be the same population","textPreview":"Meta attributed actions and WhatsApp unique records may not be the same population","textChars":82,"textLines":1,"bbox":[904,346,296,74]}
+{"kind":"shape","id":"sh/j25sfqpc","slide":6,"name":"shape-104","bbox":[41,520,1198,102]}
+{"kind":"textbox","id":"sh/i1wr6l8r","slide":6,"name":"text-105","text":"Decision: media analysis remains available; outcome allocation is illustrative and non-operational until reconciliation.","textPreview":"Decision: media analysis remains available; outcome allocation is illustrative and non-operational until reconciliation.","textChars":120,"textLines":1,"bbox":[76,548,1128,54]}
+{"kind":"notes","id":"nt/17og29","slide":6,"text":"The join logic is working for the records we received. The unresolved issue is completeness and event semantics. This is why src_2 models evidence readiness separately and downgrades an apparent scale action to a controlled test when evidence is limited."}
+{"kind":"slide","id":"sl/wtn3dl","slide":7,"title":"Meta and WhatsApp answer different questions","textShapes":4}
+{"kind":"textbox","id":"sh/29kr6lwb","slide":7,"name":"slide-7-title","text":"Meta and WhatsApp answer different questions","textPreview":"Meta and WhatsApp answer different questions","textChars":44,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/pwbah0fm","slide":7,"name":"line-112","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/4v298veh","slide":7,"name":"slide-7-source","text":"Source: src_2 KPI definitions; Sample 2 methodology","textPreview":"Source: src_2 KPI definitions; Sample 2 methodology","textChars":51,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/f6tsb6xk","slide":7,"name":"slide-7-number","text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"textbox","id":"sh/u50r21wz","slide":7,"name":"text-110","text":"Ratios are recomputed from totals; daily ratios are never averaged.","textPreview":"Ratios are recomputed from totals; daily ratios are never averaged.","textChars":67,"textLines":1,"bbox":[41,128,1198,38]}
+{"kind":"table","id":"tb/ov6lsfap","slide":7,"name":"","rows":7,"cols":4,"preview":"Metric | Formula | Data source | Question answered","bbox":[41,188,1198,442]}
+{"kind":"notes","id":"nt/wtn3dl","slide":7,"text":"Meta metrics explain how efficiently media was delivered and whether it generated response. WhatsApp metrics describe downstream business quality. Net revenue and ROAS remain profit proxies because margin and fulfilment cost are absent."}
+{"kind":"slide","id":"sl/4hw7bw","slide":8,"title":"Six terms unlock the scorecard","textShapes":15}
+{"kind":"textbox","id":"sh/tknipkru","slide":8,"name":"slide-8-title","text":"Six terms unlock the scorecard","textPreview":"Six terms unlock the scorecard","textChars":30,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/6hwjepsj","slide":8,"name":"line-134","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/7i50na94","slide":8,"name":"slide-8-source","text":"Source: src_2 business glossary","textPreview":"Source: src_2 business glossary","textChars":31,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/gny1kzal","slide":8,"name":"slide-8-number","text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/ho7it4r6","slide":8,"name":"shape-115","bbox":[41,170,374,190]}
+{"kind":"textbox","id":"sh/ulwjipsf","slide":8,"name":"text-116","text":"CTR","textPreview":"CTR","textChars":3,"textLines":1,"bbox":[69,196,318,42]}
+{"kind":"textbox","id":"sh/vm50ru90","slide":8,"name":"text-117","text":"Click-through rate. The share of impressions that produced a link click.","textPreview":"Click-through rate. The share of impressions that produced a link click.","textChars":72,"textLines":1,"bbox":[69,252,318,84]}
+{"kind":"shape","id":"sh/4ry1ozah","slide":8,"name":"shape-118","bbox":[453,170,374,190]}
+{"kind":"textbox","id":"sh/5c72x4r2","slide":8,"name":"text-119","text":"CPM","textPreview":"CPM","textChars":3,"textLines":1,"bbox":[481,196,318,42]}
+{"kind":"textbox","id":"sh/tgn69wri","slide":8,"name":"text-120","text":"Cost per 1,000 impressions. A standard measure of media delivery cost.","textPreview":"Cost per 1,000 impressions. A standard measure of media delivery cost.","textChars":70,"textLines":1,"bbox":[481,252,318,84]}
+{"kind":"shape","id":"sh/sfepgrqx","slide":8,"name":"shape-121","bbox":[865,170,374,190]}
+{"kind":"textbox","id":"sh/7elo7m9c","slide":8,"name":"text-122","text":"Conversion","textPreview":"Conversion","textChars":10,"textLines":1,"bbox":[893,196,318,42]}
+{"kind":"textbox","id":"sh/6dc7e18r","slide":8,"name":"text-123","text":"A movement to the next desired step: click, conversation, order, or delivery.","textPreview":"A movement to the next desired step: click, conversation, order, or delivery.","textChars":77,"textLines":1,"bbox":[893,252,318,84]}
+{"kind":"shape","id":"sh/hkn6dgre","slide":8,"name":"shape-124","bbox":[41,414,374,190]}
+{"kind":"textbox","id":"sh/gjepkbqt","slide":8,"name":"text-125","text":"AOV","textPreview":"AOV","textChars":3,"textLines":1,"bbox":[69,440,318,42]}
+{"kind":"textbox","id":"sh/fi5ob698","slide":8,"name":"text-126","text":"Average order value. Delivered revenue divided by delivered orders.","textPreview":"Average order value. Delivered revenue divided by delivered orders.","textChars":67,"textLines":1,"bbox":[69,496,318,84]}
+{"kind":"shape","id":"sh/uhw7i183","slide":8,"name":"shape-127","bbox":[453,414,374,190]}
+{"kind":"textbox","id":"sh/xo361cra","slide":8,"name":"text-128","text":"ROAS","textPreview":"ROAS","textChars":4,"textLines":1,"bbox":[481,440,318,42]}
+{"kind":"textbox","id":"sh/wnu587qp","slide":8,"name":"text-129","text":"Return on ad spend. Observed net revenue divided by advertising spend.","textPreview":"Return on ad spend. Observed net revenue divided by advertising spend.","textChars":70,"textLines":1,"bbox":[481,496,318,84]}
+{"kind":"shape","id":"sh/oreporyl","slide":8,"name":"shape-130","bbox":[865,414,374,190]}
+{"kind":"textbox","id":"sh/9s76xcz6","slide":8,"name":"text-131","text":"Negative outcome","textPreview":"Negative outcome","textChars":16,"textLines":1,"bbox":[893,440,318,42]}
+{"kind":"textbox","id":"sh/m5w7mhgf","slide":8,"name":"text-132","text":"Ghosted, cancelled, refunded, or adversarial conversation outcome.","textPreview":"Ghosted, cancelled, refunded, or adversarial conversation outcome.","textChars":66,"textLines":1,"bbox":[893,496,318,84]}
+{"kind":"notes","id":"nt/4hw7bw","slide":8,"text":"The word conversion is context dependent. Always name the denominator and the next step. ROAS is not profit because cost of goods, fulfilment, payment fees, and overhead are missing. AOV measures order size, not customer profitability."}
+{"kind":"slide","id":"sl/3tji3d","slide":9,"title":"Campaign type defines success","textShapes":4}
+{"kind":"textbox","id":"sh/dgnu9cva","slide":9,"name":"slide-9-title","text":"Campaign type defines success","textPreview":"Campaign type defines success","textChars":29,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/qdcvyhwj","slide":9,"name":"line-139","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/relc7md4","slide":9,"name":"slide-9-source","text":"Source: src_2/config/campaign_types.yaml","textPreview":"Source: src_2/config/campaign_types.yaml","textChars":40,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/03ed4re1","slide":9,"name":"slide-9-number","text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"textbox","id":"sh/14nudwv6","slide":9,"name":"text-137","text":"The lookup focuses analysis on the campaign's job; the LLM does not infer purpose from the name.","textPreview":"The lookup focuses analysis on the campaign's job; the LLM does not infer purpose from the name.","textChars":96,"textLines":1,"bbox":[41,128,1198,42]}
+{"kind":"table","id":"tb/n69sryhk","slide":9,"name":"","rows":9,"cols":3,"preview":"Campaign type | Business job | Primary KPI","bbox":[41,192,1198,440]}
+{"kind":"notes","id":"nt/3tji3d","slide":9,"text":"Campaign type changes the success question. An awareness campaign should not be judged as though its primary purpose were immediate revenue. The YAML lookup supplies one primary KPI, supporting diagnostics, guardrails, allocation metric, and analysis guidance."}
+{"kind":"slide","id":"sl/0r6ny3","slide":10,"title":"v2 removes arbitrary KPI weighting","textShapes":10}
+{"kind":"textbox","id":"sh/wfydwbil","slide":10,"name":"slide-10-title","text":"v2 removes arbitrary KPI weighting","textPreview":"v2 removes arbitrary KPI weighting","textChars":34,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/vepwn6h0","slide":10,"name":"line-153","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/udgvu10v","slide":10,"name":"slide-10-source","text":"Source: existing src campaign_targets.py; src_2 campaign_types.yaml","textPreview":"Source: existing src campaign_targets.py; src_2 campaign_types.yaml","textChars":67,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/54retgzi","slide":10,"name":"slide-10-number","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/43ix0bix","slide":10,"name":"shape-142","bbox":[41,170,535,414]}
+{"kind":"shape","id":"sh/j29wr6hc","slide":10,"name":"shape-143","bbox":[704,170,535,414]}
+{"kind":"shape","id":"sh/i10fy10r","slide":10,"name":"line-144","bbox":[594,377,92,1]}
+{"kind":"textbox","id":"sh/t8bex0ze","slide":10,"name":"text-145","text":"EXISTING src BASELINE","textPreview":"EXISTING src BASELINE","textChars":21,"textLines":1,"bbox":[76,202,465,36]}
+{"kind":"textbox","id":"sh/s72x4vit","slide":10,"name":"text-146","text":"Weighted composite","textPreview":"Weighted composite","textChars":18,"textLines":1,"bbox":[76,260,465,54]}
+{"kind":"textbox","id":"sh/m1432d87","slide":10,"name":"text-147","text":"Seasonal example\n30% revenue/day\n25% delivered orders\n25% ROAS\n10% delivery cost\n10% negative rate","textPreview":"Seasonal example | 30% revenue/day | 25% delivered orders | 25% ROAS | 10% delivery cost | 10% negative rate","textChars":98,"textLines":6,"bbox":[76,338,465,208]}
+{"kind":"textbox","id":"sh/n2d4vips","slide":10,"name":"text-148","text":"src_2 POLICY","textPreview":"src_2 POLICY","textChars":12,"textLines":1,"bbox":[739,202,465,36]}
+{"kind":"textbox","id":"sh/o3ml4nqx","slide":10,"name":"text-149","text":"Primary + support + guards","textPreview":"Primary + support + guards","textChars":26,"textLines":1,"bbox":[739,260,465,54]}
+{"kind":"textbox","id":"sh/94vmxs7i","slide":10,"name":"text-150","text":"Primary: net revenue/day\nSupport: orders, ROAS, cost, AOV\nGuards: evidence, delivery, outcome quality\n\nNo hidden weighted average","textPreview":"Primary: net revenue/day | Support: orders, ROAS, cost, AOV | Guards: evidence, delivery, outcome quality |  | No hidden weighted average","textChars":129,"textLines":5,"bbox":[739,338,465,208]}
+{"kind":"textbox","id":"sh/a54n6d83","slide":10,"name":"text-151","text":"Transparent business rules replace a score whose result depends on unapproved weights.","textPreview":"Transparent business rules replace a score whose result depends on unapproved weights.","textChars":86,"textLines":1,"bbox":[150,616,980,36]}
+{"kind":"notes","id":"nt/0r6ny3","slide":10,"text":"Weights are useful only when the business approves the trade-offs. For the POC, src_2 makes the primary objective explicit, uses supporting KPIs to explain it, and lets guardrails restrict a decision. This is easier to audit and teach."}
+{"kind":"slide","id":"sl/dc0u9t","slide":11,"title":"Target status follows explicit gates","textShapes":16}
+{"kind":"textbox","id":"sh/bmdgj2l8","slide":11,"name":"slide-11-title","text":"Target status follows explicit gates","textPreview":"Target status follows explicit gates","textChars":36,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/wnmxs72t","slide":11,"name":"line-182","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/xofyls3e","slide":11,"name":"slide-11-source","text":"Source: src_2/domain/assessment_rules.py","textPreview":"Source: src_2/domain/assessment_rules.py","textChars":40,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/mx4fmdkr","slide":11,"name":"slide-11-number","text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/nydgfilc","slide":11,"name":"line-156","bbox":[235,290,125,1]}
+{"kind":"shape","id":"sh/ojmxon2x","slide":11,"name":"line-157","bbox":[545,290,125,1]}
+{"kind":"shape","id":"sh/9kvyhs3i","slide":11,"name":"line-158","bbox":[855,290,125,1]}
+{"kind":"shape","id":"sh/etkfidkv","slide":11,"name":"shape-159","bbox":[41,214,194,152]}
+{"kind":"shape","id":"sh/zutwbil0","slide":11,"name":"shape-160","bbox":[360,214,185,152]}
+{"kind":"shape","id":"sh/ry9gje1o","slide":11,"name":"shape-161","bbox":[670,214,185,152]}
+{"kind":"shape","id":"sh/qx0za903","slide":11,"name":"shape-162","bbox":[980,214,259,152]}
+{"kind":"textbox","id":"sh/d0byl4ju","slide":11,"name":"text-163","text":"Evidence ready?","textPreview":"Evidence ready?","textChars":15,"textLines":1,"bbox":[62,245,152,40]}
+{"kind":"textbox","id":"sh/czihczi9","slide":11,"name":"text-164","text":"Complete and mature enough","textPreview":"Complete and mature enough","textChars":26,"textLines":1,"bbox":[62,300,152,44]}
+{"kind":"textbox","id":"sh/z2tgne1k","slide":11,"name":"text-165","text":"Primary KPI met?","textPreview":"Primary KPI met?","textChars":16,"textLines":1,"bbox":[380,245,145,40]}
+{"kind":"textbox","id":"sh/e1kze90z","slide":11,"name":"text-166","text":"Actual versus documented benchmark","textPreview":"Actual versus documented benchmark","textChars":34,"textLines":1,"bbox":[380,300,145,44]}
+{"kind":"textbox","id":"sh/14bipojq","slide":11,"name":"text-167","text":"Guards pass?","textPreview":"Guards pass?","textChars":12,"textLines":1,"bbox":[690,245,145,40]}
+{"kind":"textbox","id":"sh/032hgji5","slide":11,"name":"text-168","text":"Evidence, delivery, quality","textPreview":"Evidence, delivery, quality","textChars":27,"textLines":1,"bbox":[690,300,145,44]}
+{"kind":"textbox","id":"sh/f6pgbu1g","slide":11,"name":"text-169","text":"TARGET STATUS","textPreview":"TARGET STATUS","textChars":13,"textLines":1,"bbox":[1009,245,201,40]}
+{"kind":"textbox","id":"sh/u5gz2p0v","slide":11,"name":"text-170","text":"Deterministic classification","textPreview":"Deterministic classification","textChars":28,"textLines":1,"bbox":[1009,300,201,44]}
+{"kind":"shape","id":"sh/ilojaxkj","slide":11,"name":"shape-171","bbox":[41,474,214,94]}
+{"kind":"textbox","id":"sh/jmxkj2l4","slide":11,"name":"text-172","text":"ACHIEVED","textPreview":"ACHIEVED","textChars":8,"textLines":1,"bbox":[53,500,190,42]}
+{"kind":"shape","id":"sh/kn61cn2p","slide":11,"name":"shape-173","bbox":[287,474,214,94]}
+{"kind":"textbox","id":"sh/5of2ls3a","slide":11,"name":"text-174","text":"WITH CONCERNS","textPreview":"WITH CONCERNS","textChars":13,"textLines":1,"bbox":[299,500,190,42]}
+{"kind":"shape","id":"sh/ax4j6dk7","slide":11,"name":"shape-175","bbox":[533,474,214,94]}
+{"kind":"textbox","id":"sh/vydkfils","slide":11,"name":"text-176","text":"NOT ACHIEVED","textPreview":"NOT ACHIEVED","textChars":12,"textLines":1,"bbox":[545,500,190,42]}
+{"kind":"shape","id":"sh/wz618n2d","slide":11,"name":"shape-177","bbox":[779,474,214,94]}
+{"kind":"textbox","id":"sh/xkf2hs3y","slide":11,"name":"text-178","text":"INSUFFICIENT","textPreview":"INSUFFICIENT","textChars":12,"textLines":1,"bbox":[791,500,190,42]}
+{"kind":"shape","id":"sh/mt4j2dkb","slide":11,"name":"shape-179","bbox":[1025,474,214,94]}
+{"kind":"textbox","id":"sh/nudkbilw","slide":11,"name":"text-180","text":"DATA NOT READY","textPreview":"DATA NOT READY","textChars":14,"textLines":1,"bbox":[1037,500,190,42]}
+{"kind":"notes","id":"nt/dc0u9t","slide":11,"text":"There is no LLM in this path. Limited evidence can produce achieved with concerns even when the primary KPI passes. Missing outcome maturity produces data not ready. Every classification can be reconstructed from component results and reason codes."}
+{"kind":"slide","id":"sl/dgb3c1","slide":12,"title":"Funding decisions are rule based","textShapes":4}
+{"kind":"textbox","id":"sh/gj61sbm5","slide":12,"name":"slide-12-title","text":"Funding decisions are rule based","textPreview":"Funding decisions are rule based","textChars":32,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/fix0j65k","slide":12,"name":"line-187","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/ehojql4f","slide":12,"name":"slide-12-source","text":"Source: src_2 deterministic assessment rules","textPreview":"Source: src_2 deterministic assessment rules","textChars":44,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/tgfihgnu","slide":12,"name":"slide-12-number","text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"textbox","id":"sh/sf61obm9","slide":12,"name":"text-185","text":"The decision describes eligibility for the next cycle, never an edit to the ended campaign.","textPreview":"The decision describes eligibility for the next cycle, never an edit to the ended campaign.","textChars":91,"textLines":1,"bbox":[41,128,1198,42]}
+{"kind":"table","id":"tb/qd0jq9g7","slide":12,"name":"","rows":6,"cols":3,"preview":"Decision | When it is assigned | POC budget treatment","bbox":[41,198,1198,414]}
+{"kind":"notes","id":"nt/dgb3c1","slide":12,"text":"Scale requires the allocation metric and critical guardrails to pass with ready evidence. Limited evidence deliberately downgrades a potential scale to keep as test. Positive spend with zero delivered orders becomes do not fund."}
+{"kind":"slide","id":"sl/6iu81u","slide":13,"title":"Aggregations move from strategy to execution","textShapes":19}
+{"kind":"textbox","id":"sh/wz2h43ul","slide":13,"name":"slide-13-title","text":"Aggregations move from strategy to execution","textPreview":"Aggregations move from strategy to execution","textChars":44,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/vytgbytg","slide":13,"name":"line-210","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/uxkz2tcv","slide":13,"name":"slide-13-source","text":"Source: agreed v2 aggregation design","textPreview":"Source: agreed v2 aggregation design","textChars":36,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/5ovyh8bi","slide":13,"name":"slide-13-number","text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/4nmh83ux","slide":13,"name":"shape-190","bbox":[41,180,374,408]}
+{"kind":"shape","id":"sh/jmdgfytc","slide":13,"name":"shape-191","bbox":[453,180,374,408]}
+{"kind":"shape","id":"sh/il4z6tcr","slide":13,"name":"shape-192","bbox":[865,180,374,408]}
+{"kind":"textbox","id":"sh/tsfylsbe","slide":13,"name":"text-193","text":"CAMPAIGN","textPreview":"CAMPAIGN","textChars":8,"textLines":1,"bbox":[76,218,304,44]}
+{"kind":"textbox","id":"sh/srmhcnut","slide":13,"name":"text-194","text":"Question","textPreview":"Question","textChars":8,"textLines":1,"bbox":[76,286,304,28]}
+{"kind":"textbox","id":"sh/exwnqpwv","slide":13,"name":"text-195","text":"Which strategic pattern deserves another cycle?","textPreview":"Which strategic pattern deserves another cycle?","textChars":47,"textLines":1,"bbox":[76,320,304,58]}
+{"kind":"textbox","id":"sh/fy5ozuxg","slide":13,"name":"text-196","text":"Peer group","textPreview":"Peer group","textChars":10,"textLines":1,"bbox":[76,410,304,28]}
+{"kind":"textbox","id":"sh/0ze5sze1","slide":13,"name":"text-197","text":"Same campaign type; portfolio fallback","textPreview":"Same campaign type; portfolio fallback","textChars":38,"textLines":1,"bbox":[76,444,304,58]}
+{"kind":"textbox","id":"sh/10n614fm","slide":13,"name":"text-198","text":"ADSET + AUDIENCE","textPreview":"ADSET + AUDIENCE","textChars":16,"textLines":1,"bbox":[488,218,304,44]}
+{"kind":"textbox","id":"sh/21w7u9w7","slide":13,"name":"text-199","text":"Question","textPreview":"Question","textChars":8,"textLines":1,"bbox":[488,286,304,28]}
+{"kind":"textbox","id":"sh/n25o3exc","slide":13,"name":"text-200","text":"Which targeting and delivery setup performed best?","textPreview":"Which targeting and delivery setup performed best?","textChars":50,"textLines":1,"bbox":[488,320,304,58]}
+{"kind":"textbox","id":"sh/o3epwjex","slide":13,"name":"text-201","text":"Peer group","textPreview":"Peer group","textChars":10,"textLines":1,"bbox":[488,410,304,28]}
+{"kind":"textbox","id":"sh/p47654fi","slide":13,"name":"text-202","text":"Sibling adsets inside the campaign","textPreview":"Sibling adsets inside the campaign","textChars":34,"textLines":1,"bbox":[488,444,304,58]}
+{"kind":"textbox","id":"sh/i5cni5gn","slide":13,"name":"text-203","text":"AD + CREATIVE","textPreview":"AD + CREATIVE","textChars":13,"textLines":1,"bbox":[900,218,304,44]}
+{"kind":"textbox","id":"sh/36lorax8","slide":13,"name":"text-204","text":"Question","textPreview":"Question","textChars":8,"textLines":1,"bbox":[900,286,304,28]}
+{"kind":"textbox","id":"sh/7ahkz6d0","slide":13,"name":"text-205","text":"Which delivered message deserves reuse or retest?","textPreview":"Which delivered message deserves reuse or retest?","textChars":49,"textLines":1,"bbox":[900,320,304,58]}
+{"kind":"textbox","id":"sh/6983q1cf","slide":13,"name":"text-206","text":"Peer group","textPreview":"Peer group","textChars":10,"textLines":1,"bbox":[900,410,304,28]}
+{"kind":"textbox","id":"sh/tcz21gv6","slide":13,"name":"text-207","text":"Sibling ads; creative rollup is exploratory","textPreview":"Sibling ads; creative rollup is exploratory","textChars":43,"textLines":1,"bbox":[900,444,304,58]}
+{"kind":"textbox","id":"sh/8bqlsbul","slide":13,"name":"text-208","text":"All levels reuse totals, KPI definitions, benchmark provenance, evidence counts, and parent gates.","textPreview":"All levels reuse totals, KPI definitions, benchmark provenance, evidence counts, and parent gates.","textChars":98,"textLines":1,"bbox":[160,620,960,32]}
+{"kind":"notes","id":"nt/6iu81u","slide":13,"text":"Audience is not currently an independent causal entity; it is an adset attribute. Creative rollups can aggregate a creative ID across ads, but timing and audience differences remain confounders. The hierarchy provides diagnostic depth, not experimental proof."}
+{"kind":"slide","id":"sl/aaie01","slide":14,"title":"Audience and creative wins are not causal","textShapes":10}
+{"kind":"textbox","id":"sh/vi5kbe14","slide":14,"name":"slide-14-title","text":"Audience and creative wins are not causal","textPreview":"Audience and creative wins are not causal","textChars":41,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/wjel4j29","slide":14,"name":"line-224","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/hkn2doju","slide":14,"name":"slide-14-source","text":"Source: Sample 2 Eid adset and ad aggregates","textPreview":"Source: Sample 2 Eid adset and ad aggregates","textChars":44,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/mdcjy9k7","slide":14,"name":"slide-14-number","text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"textbox","id":"sh/7elk7e1s","slide":14,"name":"text-213","text":"Eid Gifting Premium: observed adset ROAS","textPreview":"Eid Gifting Premium: observed adset ROAS","textChars":40,"textLines":1,"bbox":[41,132,620,36]}
+{"kind":"shape","id":"sh/8fu10z2d","slide":14,"name":"shape-214","bbox":[692,154,547,142]}
+{"kind":"shape","id":"sh/9g3294jy","slide":14,"name":"shape-215","bbox":[692,316,547,142]}
+{"kind":"shape","id":"sh/ypsjupkb","slide":14,"name":"shape-216","bbox":[692,478,547,142]}
+{"kind":"textbox","id":"sh/zqlk3u1w","slide":14,"name":"text-217","text":"HOSTESS GIFT AD","textPreview":"HOSTESS GIFT AD","textChars":15,"textLines":1,"bbox":[724,178,482,30]}
+{"kind":"textbox","id":"sh/bmtc7a58","slide":14,"name":"text-218","text":"ROAS 9.93 | 13 delivered orders","textPreview":"ROAS 9.93 | 13 delivered orders","textChars":31,"textLines":1,"bbox":[724,220,482,44]}
+{"kind":"textbox","id":"sh/qlkvy5on","slide":14,"name":"text-219","text":"BROAD ADSET","textPreview":"BROAD ADSET","textChars":11,"textLines":1,"bbox":[724,340,482,30]}
+{"kind":"textbox","id":"sh/dobu90ny","slide":14,"name":"text-220","text":"ROAS 5.53 | 22 delivered orders","textPreview":"ROAS 5.53 | 22 delivered orders","textChars":31,"textLines":1,"bbox":[724,382,482,44]}
+{"kind":"textbox","id":"sh/cn2d0v6d","slide":14,"name":"text-221","text":"CAUSALITY WARNING","textPreview":"CAUSALITY WARNING","textChars":17,"textLines":1,"bbox":[724,502,482,30]}
+{"kind":"textbox","id":"sh/zadcba54","slide":14,"name":"text-222","text":"Audience and creative changed together. The winning combination needs a controlled comparison.","textPreview":"Audience and creative changed together. The winning combination needs a controlled comparison.","textChars":94,"textLines":1,"bbox":[724,544,482,60]}
+{"kind":"chart","id":"ch/yhsrep03","slide":14,"name":"","chartType":"bar","bbox":[41,190,600,420]}
+{"kind":"notes","id":"nt/aaie01","slide":14,"text":"The observed association is useful: broad Gift-buyer targeting plus the Hostess Gift message is a strong next-cycle hypothesis. But the audience cannot be credited alone because the lookalike adset received a different creative and delivery context."}
+{"kind":"slide","id":"sl/39twti","slide":15,"title":"Eid is strong, with a large caveat","textShapes":11}
+{"kind":"textbox","id":"sh/8bepojax","slide":15,"name":"slide-15-title","text":"Eid is strong, with a large caveat","textPreview":"Eid is strong, with a large caveat","textChars":34,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/nalofe9c","slide":15,"name":"line-239","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/m9cnm9sr","slide":15,"name":"slide-15-source","text":"Source: Sample 2; existing src baseline; v2 evidence policy","textPreview":"Source: Sample 2; existing src baseline; v2 evidence policy","textChars":59,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/l836d4rm","slide":15,"name":"slide-15-number","text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"textbox","id":"sh/07u5kza1","slide":15,"name":"text-227","text":"Observed seasonal campaign ROAS","textPreview":"Observed seasonal campaign ROAS","textChars":31,"textLines":1,"bbox":[41,132,610,36]}
+{"kind":"shape","id":"sh/z6lobutg","slide":15,"name":"shape-228","bbox":[686,150,553,120]}
+{"kind":"shape","id":"sh/y5cnipsv","slide":15,"name":"shape-229","bbox":[686,290,553,120]}
+{"kind":"shape","id":"sh/5476porq","slide":15,"name":"shape-230","bbox":[686,430,553,184]}
+{"kind":"textbox","id":"sh/43ypw3a5","slide":15,"name":"text-231","text":"EGP 64,990","textPreview":"EGP 64,990","textChars":10,"textLines":1,"bbox":[718,176,489,46]}
+{"kind":"textbox","id":"sh/65cjy9sn","slide":15,"name":"text-232","text":"Observed net revenue","textPreview":"Observed net revenue","textChars":20,"textLines":1,"bbox":[718,226,489,28]}
+{"kind":"textbox","id":"sh/r6lkret8","slide":15,"name":"text-233","text":"28 delivered | AOV EGP 2,235","textPreview":"28 delivered | AOV EGP 2,235","textChars":28,"textLines":1,"bbox":[718,316,489,46]}
+{"kind":"textbox","id":"sh/s7u10jat","slide":15,"name":"text-234","text":"47 supplied conversations","textPreview":"47 supplied conversations","textChars":25,"textLines":1,"bbox":[718,366,489,28]}
+{"kind":"textbox","id":"sh/t832t4be","slide":15,"name":"text-235","text":"Existing baseline result","textPreview":"Existing baseline result","textChars":24,"textLines":1,"bbox":[718,456,489,30]}
+{"kind":"textbox","id":"sh/i1sjupsb","slide":15,"name":"text-236","text":"Scale; 39.52% of the seasonal envelope","textPreview":"Scale; 39.52% of the seasonal envelope","textChars":38,"textLines":1,"bbox":[718,496,489,42]}
+{"kind":"textbox","id":"sh/j21knutw","slide":15,"name":"text-237","text":"v2 interpretation: illustrative only while outcome evidence is globally limited.","textPreview":"v2 interpretation: illustrative only while outcome evidence is globally limited.","textChars":80,"textLines":1,"bbox":[718,550,489,48]}
+{"kind":"chart","id":"ch/8nuxcnql","slide":15,"name":"","chartType":"bar","bbox":[41,190,590,420]}
+{"kind":"notes","id":"nt/39twti","slide":15,"text":"Eid is the strongest observed seasonal campaign by ROAS. The existing src engine also recommends the largest share of the seasonal envelope. The v2 decision adds an evidence-readiness gate, so this remains a scenario rather than an executable instruction."}
+{"kind":"slide","id":"sl/yacwns","slide":16,"title":"The POC preserves the previous strategy","textShapes":9}
+{"kind":"textbox","id":"sh/nup8z2d8","slide":16,"name":"slide-16-title","text":"The POC preserves the previous strategy","textPreview":"The POC preserves the previous strategy","textChars":39,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/ovy9s7et","slide":16,"name":"line-251","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/9g7q1sve","slide":16,"name":"slide-16-source","text":"Source: Sample 2 spend; src_2 budget_policy.poc.yaml","textPreview":"Source: Sample 2 spend; src_2 budget_policy.poc.yaml","textChars":52,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/epw7mdwr","slide":16,"name":"slide-16-number","text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"textbox","id":"sh/zq58vidc","slide":16,"name":"text-242","text":"Previous-cycle spend share by campaign type","textPreview":"Previous-cycle spend share by campaign type","textChars":43,"textLines":1,"bbox":[41,132,700,36]}
+{"kind":"shape","id":"sh/0ryponex","slide":16,"name":"shape-243","bbox":[762,164,477,184]}
+{"kind":"shape","id":"sh/1s7qxsvi","slide":16,"name":"shape-244","bbox":[762,372,477,184]}
+{"kind":"textbox","id":"sh/yl0ryhwv","slide":16,"name":"text-245","text":"2.63 units","textPreview":"2.63 units","textChars":10,"textLines":1,"bbox":[798,204,405,60]}
+{"kind":"textbox","id":"sh/jm987mdg","slide":16,"name":"text-246","text":"Historical experimental envelope","textPreview":"Historical experimental envelope","textChars":32,"textLines":1,"bbox":[798,274,405,42]}
+{"kind":"textbox","id":"sh/rmhojedw","slide":16,"name":"text-247","text":"100 units","textPreview":"100 units","textChars":9,"textLines":1,"bbox":[798,412,405,60]}
+{"kind":"textbox","id":"sh/6l87a9cb","slide":16,"name":"text-248","text":"Normalized POC budget; no campaign concentration cap","textPreview":"Normalized POC budget; no campaign concentration cap","textChars":52,"textLines":1,"bbox":[798,482,405,56]}
+{"kind":"textbox","id":"sh/toz6lob2","slide":16,"name":"text-249","text":"The type mix is preserved first; optimization happens inside each envelope.","textPreview":"The type mix is preserved first; optimization happens inside each envelope.","textChars":75,"textLines":1,"bbox":[168,616,944,34]}
+{"kind":"chart","id":"ch/gz61cza5","slide":16,"name":"","chartType":"bar","bbox":[41,180,680,420]}
+{"kind":"notes","id":"nt/yacwns","slide":16,"text":"Without business priorities, the POC should not decide whether awareness is more important than retention. It preserves the historical type mix. Experimental spend was EGP 10,579.62 out of EGP 402,274.64, giving 2.63 units. No maximum campaign concentration rule is applied."}
+{"kind":"slide","id":"sl/3ed1x3","slide":17,"title":"Two code paths coexist during migration","textShapes":16}
+{"kind":"textbox","id":"sh/cnu10byd","slide":17,"name":"slide-17-title","text":"Two code paths coexist during migration","textPreview":"Two code paths coexist during migration","textChars":39,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/bmlkrqhs","slide":17,"name":"line-273","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/qlcjylg7","slide":17,"name":"slide-17-source","text":"Source: Team2-MarketingExpert/src and src_2","textPreview":"Source: Team2-MarketingExpert/src and src_2","textChars":43,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/lcn2x0zu","slide":17,"name":"slide-17-number","text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/kbe14vy9","slide":17,"name":"line-254","bbox":[126,348,1028,1]}
+{"kind":"shape","id":"sh/za5kvqho","slide":17,"name":"shape-255","bbox":[64,214,244,250]}
+{"kind":"textbox","id":"sh/y9cj2lg3","slide":17,"name":"text-256","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[88,236,44,44]}
+{"kind":"textbox","id":"sh/1gjilwzq","slide":17,"name":"text-257","text":"Existing src","textPreview":"Existing src","textChars":12,"textLines":1,"bbox":[88,294,196,42]}
+{"kind":"textbox","id":"sh/gfa1sry5","slide":17,"name":"text-258","text":"Working baseline\nWeighted scores\nDirect prompt pipeline","textPreview":"Working baseline | Weighted scores | Direct prompt pipeline","textChars":55,"textLines":3,"bbox":[88,354,196,90]}
+{"kind":"shape","id":"sh/m54red4f","slide":17,"name":"shape-259","bbox":[346,214,244,250]}
+{"kind":"textbox","id":"sh/76d8ni5k","slide":17,"name":"text-260","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[370,236,44,44]}
+{"kind":"textbox","id":"sh/87m9gnm5","slide":17,"name":"text-261","text":"src_2 scaffold","textPreview":"src_2 scaffold","textChars":14,"textLines":1,"bbox":[370,294,196,42]}
+{"kind":"textbox","id":"sh/98vapsnq","slide":17,"name":"text-262","text":"Policy in YAML\nTyped contracts\nRule-based gates","textPreview":"Policy in YAML | Typed contracts | Rule-based gates","textChars":47,"textLines":3,"bbox":[370,354,196,90]}
+{"kind":"shape","id":"sh/u9orix4b","slide":17,"name":"shape-263","bbox":[628,214,244,250]}
+{"kind":"textbox","id":"sh/vaxsr2lw","slide":17,"name":"text-264","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[652,236,44,44]}
+{"kind":"textbox","id":"sh/wb69k7mh","slide":17,"name":"text-265","text":"Parity increment","textPreview":"Parity increment","textChars":16,"textLines":1,"bbox":[652,294,196,42]}
+{"kind":"textbox","id":"sh/hcfats32","slide":17,"name":"text-266","text":"Canonical facts\nAggregates\nBenchmarks + allocator","textPreview":"Canonical facts | Aggregates | Benchmarks + allocator","textChars":49,"textLines":3,"bbox":[652,354,196,90]}
+{"kind":"shape","id":"sh/ixormx47","slide":17,"name":"shape-267","bbox":[910,214,244,250]}
+{"kind":"textbox","id":"sh/jyxsv2ls","slide":17,"name":"text-268","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[934,236,44,44]}
+{"kind":"textbox","id":"sh/f2h83210","slide":17,"name":"text-269","text":"Agent adapters","textPreview":"Agent adapters","textChars":14,"textLines":1,"bbox":[934,294,196,42]}
+{"kind":"textbox","id":"sh/e18raxkf","slide":17,"name":"text-270","text":"Tools over evidence\nSame ports\nSame validated outputs","textPreview":"Tools over evidence | Same ports | Same validated outputs","textChars":53,"textLines":3,"bbox":[934,354,196,90]}
+{"kind":"textbox","id":"sh/14zq5cj6","slide":17,"name":"text-271","text":"The existing application remains the reference until v2 proves data and decision parity.","textPreview":"The existing application remains the reference until v2 proves data and decision parity.","textChars":88,"textLines":1,"bbox":[150,564,980,54]}
+{"kind":"notes","id":"nt/3ed1x3","slide":17,"text":"src_2 was created in parallel to avoid breaking the current application. The next engineering task is not an agent. It is deterministic parity: normalize the same data, reproduce aggregates, then compare every entity-level KPI before switching the UI."}
+{"kind":"slide","id":"sl/jvmi18","slide":18,"title":"src_2 separates policy from execution","textShapes":20}
+{"kind":"textbox","id":"sh/7qd0bmhg","slide":18,"name":"slide-18-title","text":"src_2 separates policy from execution","textPreview":"src_2 separates policy from execution","textChars":37,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/sr61kri1","slide":18,"name":"line-302","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/tsfidwzm","slide":18,"name":"slide-18-source","text":"Source: src_2/README.md and package structure","textPreview":"Source: src_2/README.md and package structure","textChars":45,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/i14jeh0z","slide":18,"name":"slide-18-number","text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/j2d072hk","slide":18,"name":"shape-276","bbox":[41,168,271,190]}
+{"kind":"textbox","id":"sh/knm1g7i5","slide":18,"name":"text-277","text":"DOMAIN","textPreview":"DOMAIN","textChars":6,"textLines":1,"bbox":[63,194,227,34]}
+{"kind":"textbox","id":"sh/5ovi9czq","slide":18,"name":"text-278","text":"Vocabulary, formulas, assessment and budget rules","textPreview":"Vocabulary, formulas, assessment and budget rules","textChars":49,"textLines":1,"bbox":[63,246,227,84]}
+{"kind":"shape","id":"sh/axkjax03","slide":18,"name":"shape-279","bbox":[350,168,271,190]}
+{"kind":"textbox","id":"sh/vyt032h8","slide":18,"name":"text-280","text":"INGESTION","textPreview":"INGESTION","textChars":9,"textLines":1,"bbox":[372,194,227,34]}
+{"kind":"textbox","id":"sh/z2tcr6xk","slide":18,"name":"text-281","text":"Load raw JSON, validate sources, build canonical facts","textPreview":"Load raw JSON, validate sources, build canonical facts","textChars":54,"textLines":1,"bbox":[372,246,227,84]}
+{"kind":"shape","id":"sh/y1kbi1wz","slide":18,"name":"shape-282","bbox":[659,168,271,190]}
+{"kind":"textbox","id":"sh/l4butgfq","slide":18,"name":"text-283","text":"ANALYTICS","textPreview":"ANALYTICS","textChars":9,"textLines":1,"bbox":[681,194,227,34]}
+{"kind":"textbox","id":"sh/032dkbe5","slide":18,"name":"text-284","text":"Aggregate, benchmark, assess, allocate","textPreview":"Aggregate, benchmark, assess, allocate","textChars":38,"textLines":1,"bbox":[681,246,227,84]}
+{"kind":"shape","id":"sh/n6tcvqxg","slide":18,"name":"shape-285","bbox":[968,168,271,190]}
+{"kind":"textbox","id":"sh/m5kvmlwv","slide":18,"name":"text-286","text":"APPLICATION","textPreview":"APPLICATION","textChars":11,"textLines":1,"bbox":[990,194,227,34]}
+{"kind":"textbox","id":"sh/98vuxgfm","slide":18,"name":"text-287","text":"Coordinate one completed-cycle use case","textPreview":"Coordinate one completed-cycle use case","textChars":39,"textLines":1,"bbox":[990,246,227,84]}
+{"kind":"shape","id":"sh/87mdobe1","slide":18,"name":"shape-288","bbox":[41,410,271,190]}
+{"kind":"textbox","id":"sh/3a9cjmxc","slide":18,"name":"text-289","text":"CONTRACTS","textPreview":"CONTRACTS","textChars":9,"textLines":1,"bbox":[63,436,227,34]}
+{"kind":"textbox","id":"sh/290bahgr","slide":18,"name":"text-290","text":"Pydantic boundaries for evidence and outputs","textPreview":"Pydantic boundaries for evidence and outputs","textChars":44,"textLines":1,"bbox":[63,488,227,84]}
+{"kind":"shape","id":"sh/6pofipgf","slide":18,"name":"shape-291","bbox":[350,410,271,190]}
+{"kind":"textbox","id":"sh/7qxgruh0","slide":18,"name":"text-292","text":"INTELLIGENCE","textPreview":"INTELLIGENCE","textChars":12,"textLines":1,"bbox":[372,436,227,34]}
+{"kind":"textbox","id":"sh/srqxkzyl","slide":18,"name":"text-293","text":"Prompt adapters now; agents later","textPreview":"Prompt adapters now; agents later","textChars":33,"textLines":1,"bbox":[372,488,227,84]}
+{"kind":"shape","id":"sh/tszyt4zq","slide":18,"name":"shape-294","bbox":[659,410,271,190]}
+{"kind":"textbox","id":"sh/i1ofepg3","slide":18,"name":"text-295","text":"INFRASTRUCTURE","textPreview":"INFRASTRUCTURE","textChars":14,"textLines":1,"bbox":[681,436,227,34]}
+{"kind":"textbox","id":"sh/j2xwnaho","slide":18,"name":"text-296","text":"YAML, repositories, LLM clients, artifact store","textPreview":"YAML, repositories, LLM clients, artifact store","textChars":47,"textLines":1,"bbox":[681,488,227,84]}
+{"kind":"shape","id":"sh/k36xgfy9","slide":18,"name":"shape-297","bbox":[968,410,271,190]}
+{"kind":"textbox","id":"sh/54fepkzu","slide":18,"name":"text-298","text":"PRESENTATION","textPreview":"PRESENTATION","textChars":12,"textLines":1,"bbox":[990,436,227,34]}
+{"kind":"textbox","id":"sh/ax4fa5g7","slide":18,"name":"text-299","text":"Streamlit and API render results only","textPreview":"Streamlit and API render results only","textChars":37,"textLines":1,"bbox":[990,488,227,84]}
+{"kind":"textbox","id":"sh/vydwjahs","slide":18,"name":"text-300","text":"Dependency direction protects the deterministic core from UI and model-provider changes.","textPreview":"Dependency direction protects the deterministic core from UI and model-provider changes.","textChars":88,"textLines":1,"bbox":[130,624,1020,30]}
+{"kind":"notes","id":"nt/jvmi18","slide":18,"text":"Domain and analytics contain the rules we must be able to test. Application orchestration depends on interfaces. Infrastructure and intelligence implement those interfaces. Presentation never calculates metrics or calls a model directly."}
+{"kind":"slide","id":"sl/2vkpyl","slide":19,"title":"Each file format has one job","textShapes":16}
+{"kind":"textbox","id":"sh/oj2hkz25","slide":19,"name":"slide-19-title","text":"Each file format has one job","textPreview":"Each file format has one job","textChars":28,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/nit0rulk","slide":19,"name":"line-323","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/mhkzi9kz","slide":19,"name":"slide-19-source","text":"Source: src_2 mixed-format architecture","textPreview":"Source: src_2 mixed-format architecture","textChars":39,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/x8bixo3m","slide":19,"name":"slide-19-number","text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/w72hoj2h","slide":19,"name":"shape-305","bbox":[41,174,271,390]}
+{"kind":"textbox","id":"sh/bmt0velw","slide":19,"name":"text-306","text":"PYTHON","textPreview":"PYTHON","textChars":6,"textLines":1,"bbox":[65,206,223,44]}
+{"kind":"textbox","id":"sh/alkzm9kb","slide":19,"name":"text-307","text":"Executable behavior","textPreview":"Executable behavior","textChars":19,"textLines":1,"bbox":[65,274,223,48]}
+{"kind":"textbox","id":"sh/dcrylk3i","slide":19,"name":"text-308","text":"KPI formulas\nRules\nLoaders\nOrchestration","textPreview":"KPI formulas | Rules | Loaders | Orchestration","textChars":40,"textLines":4,"bbox":[65,350,223,150]}
+{"kind":"shape","id":"sh/cbihcfmx","slide":19,"name":"shape-309","bbox":[350,174,271,390]}
+{"kind":"textbox","id":"sh/i9o7i9g3","slide":19,"name":"text-310","text":"YAML","textPreview":"YAML","textChars":4,"textLines":1,"bbox":[374,206,223,44]}
+{"kind":"textbox","id":"sh/juxobeho","slide":19,"name":"text-311","text":"Business policy","textPreview":"Business policy","textChars":15,"textLines":1,"bbox":[374,274,223,48]}
+{"kind":"textbox","id":"sh/4v6pkzy9","slide":19,"name":"text-312","text":"Campaign lookup\nBudget method\nEvidence rules\nQuality gates","textPreview":"Campaign lookup | Budget method | Evidence rules | Quality gates","textChars":58,"textLines":4,"bbox":[374,350,223,150]}
+{"kind":"shape","id":"sh/5wz6d4zu","slide":19,"name":"shape-313","bbox":[659,174,271,390]}
+{"kind":"textbox","id":"sh/6x87m9gf","slide":19,"name":"text-314","text":"MARKDOWN","textPreview":"MARKDOWN","textChars":8,"textLines":1,"bbox":[683,206,223,44]}
+{"kind":"textbox","id":"sh/ryhofehk","slide":19,"name":"text-315","text":"Human instructions","textPreview":"Human instructions","textChars":18,"textLines":1,"bbox":[683,274,223,48]}
+{"kind":"textbox","id":"sh/szqpojy5","slide":19,"name":"text-316","text":"Campaign prompt\nPortfolio prompt\nMethodology\nGlossary","textPreview":"Campaign prompt | Portfolio prompt | Methodology | Glossary","textChars":53,"textLines":4,"bbox":[683,350,223,150]}
+{"kind":"shape","id":"sh/t0z6hozq","slide":19,"name":"shape-317","bbox":[968,174,271,390]}
+{"kind":"textbox","id":"sh/e187qtgb","slide":19,"name":"text-318","text":"JSON","textPreview":"JSON","textChars":4,"textLines":1,"bbox":[992,206,223,44]}
+{"kind":"textbox","id":"sh/f2hojyhw","slide":19,"name":"text-319","text":"Machine records","textPreview":"Machine records","textChars":15,"textLines":1,"bbox":[992,274,223,48]}
+{"kind":"textbox","id":"sh/b61o7yd4","slide":19,"name":"text-320","text":"Raw inputs\nAssessments\nInsights\nBudget scenarios","textPreview":"Raw inputs | Assessments | Insights | Budget scenarios","textChars":48,"textLines":4,"bbox":[992,350,223,150]}
+{"kind":"textbox","id":"sh/a5snytwj","slide":19,"name":"text-321","text":"Rule of thumb: edit policy without rewriting code; change code only when behavior changes.","textPreview":"Rule of thumb: edit policy without rewriting code; change code only when behavior changes.","textChars":90,"textLines":1,"bbox":[130,614,1020,38]}
+{"kind":"notes","id":"nt/2vkpyl","slide":19,"text":"YAML can select named metrics and benchmark strategies, but it must not execute arbitrary formulas. Python loaders validate YAML with Pydantic. Markdown contains prose instructions but not KPI math. JSON and later Parquet provide auditable artifacts."}
+{"kind":"slide","id":"sl/hupxhz","slide":20,"title":"Prompts today, agents tomorrow","textShapes":14}
+{"kind":"textbox","id":"sh/h8v25o7u","slide":20,"name":"slide-20-title","text":"Prompts today, agents tomorrow","textPreview":"Prompts today, agents tomorrow","textChars":30,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/ul43a9o3","slide":20,"name":"line-347","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/v6dk3epo","slide":20,"name":"slide-20-source","text":"Source: src_2/application/ports.py and contracts","textPreview":"Source: src_2/application/ports.py and contracts","textChars":48,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/4bmlgj65","slide":20,"name":"slide-20-number","text":"20","textPreview":"20","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/5cfm9onq","slide":20,"name":"line-326","bbox":[292,270,138,1]}
+{"kind":"shape","id":"sh/i943etof","slide":20,"name":"line-327","bbox":[760,200,112,70]}
+{"kind":"shape","id":"sh/3ad47epk","slide":20,"name":"line-328","bbox":[760,270,112,100]}
+{"kind":"shape","id":"sh/kf2l4z61","slide":20,"name":"line-329","bbox":[595,438,1,90]}
+{"kind":"shape","id":"sh/lgb2x47m","slide":20,"name":"shape-330","bbox":[41,188,251,164]}
+{"kind":"shape","id":"sh/1gj6loby","slide":20,"name":"shape-331","bbox":[430,188,330,164]}
+{"kind":"shape","id":"sh/0fapcjud","slide":20,"name":"shape-332","bbox":[872,128,367,164]}
+{"kind":"shape","id":"sh/zehojets","slide":20,"name":"shape-333","bbox":[872,330,367,164]}
+{"kind":"shape","id":"sh/ed8na9c7","slide":20,"name":"shape-334","bbox":[430,528,330,104]}
+{"kind":"textbox","id":"sh/94j6pobu","slide":20,"name":"text-335","text":"Campaign Evidence","textPreview":"Campaign Evidence","textChars":17,"textLines":1,"bbox":[65,226,203,44]}
+{"kind":"textbox","id":"sh/o3apgju9","slide":20,"name":"text-336","text":"Calculated facts only","textPreview":"Calculated facts only","textChars":21,"textLines":1,"bbox":[65,292,203,32]}
+{"kind":"textbox","id":"sh/ni1oneto","slide":20,"name":"text-337","text":"CampaignAnalyst PORT","textPreview":"CampaignAnalyst PORT","textChars":20,"textLines":1,"bbox":[466,226,258,44]}
+{"kind":"textbox","id":"sh/mhs7e9cj","slide":20,"name":"text-338","text":"Input and output contract stays stable","textPreview":"Input and output contract stays stable","textChars":38,"textLines":1,"bbox":[466,290,258,36]}
+{"kind":"textbox","id":"sh/x836t8b6","slide":20,"name":"text-339","text":"TODAY","textPreview":"TODAY","textChars":5,"textLines":1,"bbox":[906,158,299,30]}
+{"kind":"textbox","id":"sh/w7upk3ul","slide":20,"name":"text-340","text":"SinglePromptCampaignAnalyst","textPreview":"SinglePromptCampaignAnalyst","textChars":27,"textLines":1,"bbox":[906,206,299,44]}
+{"kind":"textbox","id":"sh/gb29g72h","slide":20,"name":"text-341","text":"LATER","textPreview":"LATER","textChars":5,"textLines":1,"bbox":[906,360,299,30]}
+{"kind":"textbox","id":"sh/hcbqpcj2","slide":20,"name":"text-342","text":"CampaignAnalysisAgent","textPreview":"CampaignAnalysisAgent","textChars":21,"textLines":1,"bbox":[906,408,299,44]}
+{"kind":"textbox","id":"sh/u90rexkr","slide":20,"name":"text-343","text":"CampaignInsight","textPreview":"CampaignInsight","textChars":15,"textLines":1,"bbox":[466,556,258,34]}
+{"kind":"textbox","id":"sh/vat8n21c","slide":20,"name":"text-344","text":"Validated structured output","textPreview":"Validated structured output","textChars":27,"textLines":1,"bbox":[466,594,258,24]}
+{"kind":"textbox","id":"sh/4f29kr2t","slide":20,"name":"text-345","text":"Agents may query evidence tools; deterministic services remain the source of numbers and actions.","textPreview":"Agents may query evidence tools; deterministic services remain the source of numbers and actions.","textChars":97,"textLines":1,"bbox":[41,548,340,80]}
+{"kind":"notes","id":"nt/hupxhz","slide":20,"text":"The application depends on a Protocol, not an OpenAI call. A future agent may use tools such as get campaign evidence, compare peers, or simulate a budget policy. It must return the same validated CampaignInsight and cannot mutate deterministic calculations."}
+{"kind":"slide","id":"sl/ij59sb","slide":21,"title":"One evidence base, three stakeholder views","textShapes":13}
+{"kind":"textbox","id":"sh/69w3apwz","slide":21,"name":"slide-21-title","text":"One evidence base, three stakeholder views","textPreview":"One evidence base, three stakeholder views","textChars":42,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/twnm54va","slide":21,"name":"line-364","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/8be5czu5","slide":21,"name":"slide-21-source","text":"Source: agreed stakeholder report design","textPreview":"Source: agreed stakeholder report design","textChars":40,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/j6l4zud8","slide":21,"name":"slide-21-number","text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/y5c36pwn","slide":21,"name":"shape-350","bbox":[41,174,374,414]}
+{"kind":"shape","id":"sh/l83m1kve","slide":21,"name":"shape-351","bbox":[453,174,374,414]}
+{"kind":"shape","id":"sh/k7ul8zet","slide":21,"name":"shape-352","bbox":[865,174,374,414]}
+{"kind":"textbox","id":"sh/32p4beds","slide":21,"name":"text-353","text":"BUSINESS OWNER","textPreview":"BUSINESS OWNER","textChars":14,"textLines":1,"bbox":[76,212,304,40]}
+{"kind":"textbox","id":"sh/i1gni9c7","slide":21,"name":"text-354","text":"Needs decisions","textPreview":"Needs decisions","textChars":15,"textLines":1,"bbox":[76,278,304,30]}
+{"kind":"textbox","id":"sh/cnid8jil","slide":21,"name":"text-355","text":"Spend and observed revenue\nProfit-proxy caveat\nWinners and risks\nNormalized scenarios\nConfidence status","textPreview":"Spend and observed revenue | Profit-proxy caveat | Winners and risks | Normalized scenarios | Confidence status","textChars":103,"textLines":5,"bbox":[76,324,304,208]}
+{"kind":"textbox","id":"sh/x8behoz6","slide":21,"name":"text-356","text":"MARKETING DIRECTOR","textPreview":"MARKETING DIRECTOR","textChars":18,"textLines":1,"bbox":[488,212,304,40]}
+{"kind":"textbox","id":"sh/al0v6t0f","slide":21,"name":"text-357","text":"Needs strategy","textPreview":"Needs strategy","textChars":14,"textLines":1,"bbox":[488,278,304,30]}
+{"kind":"textbox","id":"sh/bm9wfeh0","slide":21,"name":"text-358","text":"Objective achievement\nPortfolio by campaign type\nBudget envelopes\nRepeated lessons\nNext controlled tests","textPreview":"Objective achievement | Portfolio by campaign type | Budget envelopes | Repeated lessons | Next controlled tests","textChars":104,"textLines":5,"bbox":[488,324,304,208]}
+{"kind":"textbox","id":"sh/ojid4jip","slide":21,"name":"text-359","text":"PERFORMANCE MANAGER","textPreview":"PERFORMANCE MANAGER","textChars":19,"textLines":1,"bbox":[900,212,304,40]}
+{"kind":"textbox","id":"sh/pkredoza","slide":21,"name":"text-360","text":"Needs execution","textPreview":"Needs execution","textChars":15,"textLines":1,"bbox":[900,278,304,30]}
+{"kind":"textbox","id":"sh/2h0v290j","slide":21,"name":"text-361","text":"Campaign action\nAdset and audience evidence\nAd and creative evidence\nParent gates\nMonitoring thresholds","textPreview":"Campaign action | Adset and audience evidence | Ad and creative evidence | Parent gates | Monitoring thresholds","textChars":103,"textLines":5,"bbox":[900,324,304,208]}
+{"kind":"textbox","id":"sh/ni9cbe14","slide":21,"name":"text-362","text":"The values do not change by audience; only the explanation and decision depth change.","textPreview":"The values do not change by audience; only the explanation and decision depth change.","textChars":85,"textLines":1,"bbox":[140,620,1000,32]}
+{"kind":"notes","id":"nt/ij59sb","slide":21,"text":"The report should not create three independent truths. It should create one validated evidence model and project it into three stakeholder views. The business owner sees portfolio consequences, the director sees objective and strategy, and the manager sees entity-level execution."}
+{"kind":"slide","id":"sl/rmj9tu","slide":22,"title":"What exists now and what comes next","textShapes":8}
+{"kind":"textbox","id":"sh/3ydw7yp8","slide":22,"name":"slide-22-title","text":"What exists now and what comes next","textPreview":"What exists now and what comes next","textChars":35,"textLines":1,"bbox":[52,34,1186,66]}
+{"kind":"shape","id":"sh/4z6dg3qt","slide":22,"name":"line-375","bbox":[52,111,1186,1]}
+{"kind":"textbox","id":"sh/p0fe987e","slide":22,"name":"slide-22-source","text":"Source: src_2 current scaffold and test suite","textPreview":"Source: src_2 current scaffold and test suite","textChars":45,"textLines":1,"bbox":[41,674,1040,20]}
+{"kind":"textbox","id":"sh/u94vat8r","slide":22,"name":"slide-22-number","text":"22","textPreview":"22","textChars":2,"textLines":1,"bbox":[1184,670,54,24]}
+{"kind":"shape","id":"sh/fudw3ypc","slide":22,"name":"shape-367","bbox":[41,170,581,424]}
+{"kind":"shape","id":"sh/gvmdc3qx","slide":22,"name":"shape-368","bbox":[658,170,581,424]}
+{"kind":"textbox","id":"sh/hwve587i","slide":22,"name":"text-369","text":"IMPLEMENTED IN src_2","textPreview":"IMPLEMENTED IN src_2","textChars":20,"textLines":1,"bbox":[76,206,511,40]}
+{"kind":"textbox","id":"sh/epofmd8v","slide":22,"name":"text-370","text":"+ Package boundaries and paths\n+ Copied Sample 2 input\n+ Eight campaign YAML policies\n+ Pydantic contracts\n+ Pure KPI helpers\n+ Rule-based target and action gates\n+ Three focused prompts\n+ Full suite: 94 tests passed","textPreview":"+ Package boundaries and paths | + Copied Sample 2 input | + Eight campaign YAML policies | + Pydantic contracts | + Pure KPI helpers | +...","textChars":216,"textLines":8,"bbox":[76,276,511,268]}
+{"kind":"textbox","id":"sh/zqhwfipg","slide":22,"name":"text-371","text":"NEXT DETERMINISTIC INCREMENT","textPreview":"NEXT DETERMINISTIC INCREMENT","textChars":28,"textLines":1,"bbox":[693,206,511,40]}
+{"kind":"textbox","id":"sh/rmdczix0","slide":22,"name":"text-372","text":"1  Canonical normalizer\n2  Entity aggregation views\n3  Benchmark provenance\n4  Evidence-pack builder\n5  Parent-aware allocator\n6  Artifact persistence\n7  Baseline parity comparison\n8  Streamlit integration","textPreview":"1  Canonical normalizer | 2  Entity aggregation views | 3  Benchmark provenance | 4  Evidence-pack builder | 5  Parent-aware allocator | ...","textChars":205,"textLines":8,"bbox":[693,276,511,268]}
+{"kind":"textbox","id":"sh/ql4vqdwf","slide":22,"name":"text-373","text":"Agent implementation starts after the deterministic evidence path reaches parity.","textPreview":"Agent implementation starts after the deterministic evidence path reaches parity.","textChars":81,"textLines":1,"bbox":[130,620,1020,34]}
+{"kind":"notes","id":"nt/rmj9tu","slide":22,"text":"The scaffold is real and tested, but it is not yet the production path. The next work should be canonical data and parity. This sequencing protects the team from debugging data math and agent behavior at the same time."}
+{"kind":"slide","id":"sl/dt7ywp","slide":23,"title":"THE OPERATING PRINCIPLE","textShapes":8}
+{"kind":"textbox","id":"sh/vy94v65k","slide":23,"name":"text-378","text":"THE OPERATING PRINCIPLE","textPreview":"THE OPERATING PRINCIPLE","textChars":23,"textLines":1,"bbox":[41,41,520,38]}
+{"kind":"textbox","id":"sh/wzil4bm5","slide":23,"name":"text-379","text":"Trust the math.\nChallenge the assumptions.\nKeep AI reviewable.","textPreview":"Trust the math. | Challenge the assumptions. | Keep AI reviewable.","textChars":62,"textLines":3,"bbox":[41,166,1050,294]}
+{"kind":"shape","id":"sh/h0bmxgnq","slide":23,"name":"line-380","bbox":[41,510,1198,1]}
+{"kind":"textbox","id":"sh/mt03y1o3","slide":23,"name":"text-381","text":"Deterministic evidence","textPreview":"Deterministic evidence","textChars":22,"textLines":1,"bbox":[41,552,330,34]}
+{"kind":"textbox","id":"sh/7u94r65o","slide":23,"name":"text-382","text":"Human-editable policy","textPreview":"Human-editable policy","textChars":21,"textLines":1,"bbox":[455,552,330,34]}
+{"kind":"textbox","id":"sh/8vil0bm9","slide":23,"name":"text-383","text":"Replaceable intelligence","textPreview":"Replaceable intelligence","textChars":24,"textLines":1,"bbox":[869,552,330,34]}
+{"kind":"textbox","id":"sh/9wrmtgnu","slide":23,"name":"text-384","text":"Same inputs produce the same facts","textPreview":"Same inputs produce the same facts","textChars":34,"textLines":1,"bbox":[41,600,330,48]}
+{"kind":"textbox","id":"sh/y5g3u1o7","slide":23,"name":"text-385","text":"Business choices stay visible","textPreview":"Business choices stay visible","textChars":29,"textLines":1,"bbox":[455,600,330,48]}
+{"kind":"textbox","id":"sh/z6pknm5s","slide":23,"name":"text-386","text":"Prompts can become agents safely","textPreview":"Prompts can become agents safely","textChars":32,"textLines":1,"bbox":[869,600,330,48]}
+{"kind":"notes","id":"nt/dt7ywp","slide":23,"text":"Close by reinforcing the design discipline. The team should be able to challenge a benchmark, inspect a rule, reproduce a KPI, and replace an intelligence adapter without changing the evidence contract."}

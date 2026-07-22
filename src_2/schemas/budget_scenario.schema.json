@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BudgetScenario",
+  "type": "object",
+  "required": [
+    "cycle_id",
+    "scenario_name",
+    "total_budget_units",
+    "evidence_status",
+    "operational",
+    "assumptions",
+    "allocations"
+  ],
+  "properties": {
+    "cycle_id": {"type": "string"},
+    "scenario_name": {"type": "string"},
+    "total_budget_units": {"type": "number", "exclusiveMinimum": 0},
+    "evidence_status": {
+      "enum": ["ready", "limited_evidence", "insufficient_evidence", "data_not_ready"]
+    },
+    "operational": {"type": "boolean"},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "allocations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["entity_level", "entity_id", "entity_name", "action", "budget_units", "budget_share_pct", "reason"],
+        "properties": {
+          "entity_level": {"type": "string"},
+          "entity_id": {"type": "string"},
+          "entity_name": {"type": "string"},
+          "action": {"type": "string"},
+          "budget_units": {"type": "number", "minimum": 0},
+          "budget_share_pct": {"type": "number", "minimum": 0, "maximum": 100},
+          "reason": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "unallocated_units": {"type": "number", "minimum": 0}
+  },
+  "additionalProperties": false
+}

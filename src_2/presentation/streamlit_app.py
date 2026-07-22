@@ -1,0 +1,716 @@
+"""Streamlit adapter for the completed-cycle reporting use case."""
+
+from __future__ import annotations
+
+import json
+import os
+import sys
+from pathlib import Path
+
+import altair as alt
+import pandas as pd
+import streamlit as st
+from dotenv import load_dotenv
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src_2.application import CompletedCycleReport, run_completed_cycle
+from src_2.intelligence import (
+    OpenAICampaignAnalyst,
+    OpenAIPortfolioSynthesizer,
+    OpenAIReportNarrator,
+)
+from src_2.paths import INPUT_DIR
+
+load_dotenv(ROOT / ".env")
+
+ACTION_LABELS = {
+    "scale": "Scale",
+    "keep_as_test": "Keep as test",
+    "do_not_fund": "Do not fund",
+    "insufficient_evidence": "Insufficient evidence",
+    "data_not_ready": "Data not ready",
+}
+TARGET_LABELS = {
+    "achieved": "Achieved",
+    "achieved_with_concerns": "Achieved with concerns",
+    "not_achieved": "Not achieved",
+    "insufficient_evidence": "Insufficient evidence",
+    "data_not_ready": "Data not ready",
+}
+ACTION_COLORS = {
+    "keep_as_test": "#3D8DFF",
+    "scale": "#2E8B57",
+    "do_not_fund": "#C94C4C",
+    "insufficient_evidence": "#D89A2B",
+    "data_not_ready": "#6B7280",
+}
+
+
+def _money(value: float) -> str:
+    return f"EGP {value:,.0f}"
+
+
+def _money_compact(value: float) -> str:
+    if abs(value) >= 1_000_000:
+        return f"EGP {value / 1_000_000:.1f}M"
+    if abs(value) >= 1_000:
+        return f"EGP {value / 1_000:.1f}K"
+    return _money(value)
+
+
+def _ratio(value: float | None) -> str:
+    return "n/a" if value is None or pd.isna(value) else f"{value:.2f}x"
+
+
+def _percent(value: float | None) -> str:
+    return "n/a" if value is None or pd.isna(value) else f"{value:.1%}"
+
+
+@st.cache_resource(show_spinner="Building completed-cycle evidence...")
+def _load_report(input_directory: str) -> CompletedCycleReport:
+    return run_completed_cycle(input_directory)
+
+
+@st.cache_resource(show_spinner=False)
+def _load_llm_report(input_directory: str, model: str) -> CompletedCycleReport:
+    return run_completed_cycle(
+        input_directory,
+        campaign_analyst=OpenAICampaignAnalyst(model=model),
+        portfolio_synthesizer=OpenAIPortfolioSynthesizer(model=model),
+        report_narrator=OpenAIReportNarrator(model=model),
+    )
+
+
+def _configure_page() -> None:
+    st.set_page_config(
+        page_title="Completed Cycle Review",
+        page_icon=":material/analytics:",
+        layout="wide",
+    )
+    st.markdown(
+        """
+        <style>
+        :root { --ink:#15171a; --muted:#646a73; --rule:#d6d9de; --blue:#3d8dff; }
+        .stApp { background:#ffffff; color:var(--ink); }
+        [data-testid="stHeader"] { background:rgba(255,255,255,.96); }
+        [data-testid="stMetric"] { border:1px solid var(--rule); border-radius:6px; padding:14px 16px; }
+        [data-testid="stMetricLabel"] { color:var(--muted); }
+        [data-testid="stMetricValue"] { font-size:1.65rem; }
+        .report-kicker { color:var(--blue); font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+        .report-title { font-size:2rem; font-weight:720; line-height:1.15; margin:.15rem 0 .3rem; }
+        .report-meta { color:var(--muted); font-size:.92rem; }
+        .warning-strip { border-left:5px solid #d89a2b; background:#fff7e8; padding:14px 16px; margin:18px 0; }
+        .status-line { border-left:5px solid var(--blue); background:#f4f8ff; padding:13px 16px; margin:8px 0 18px; }
+        .small-note { color:var(--muted); font-size:.82rem; }
+        div[data-testid="stDataFrame"] { border:1px solid var(--rule); }
+        button[kind="primary"] { border-radius:6px; }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def _sidebar() -> tuple[str, str, str, bool]:
+    with st.sidebar:
+        st.header("Cycle controls")
+        input_directory = st.text_input(
+            "Input directory",
+            value=str(INPUT_DIR),
+            help="Directory containing meta_data.json, conversations.json, and products.json.",
+        )
+        if st.button(
+            "Reload cycle",
+            icon=":material/refresh:",
+            use_container_width=True,
+        ):
+            _load_report.clear()
+            _load_llm_report.clear()
+            st.session_state.pop("llm_report_request", None)
+            st.session_state.pop("ai_campaign_insights", None)
+            st.rerun()
+        st.divider()
+        st.subheader("Narrative engine")
+        narrative_engine = st.segmented_control(
+            "Narrative engine",
+            options=["deterministic", "llm"],
+            default="deterministic",
+            format_func=lambda value: {
+                "deterministic": "Deterministic",
+                "llm": "OpenAI prompts",
+            }[value],
+            label_visibility="collapsed",
+            width="stretch",
+        )
+        narrative_engine = narrative_engine or "deterministic"
+        model = os.getenv("OPENAI_MODEL", "gpt-5-mini")
+        generate_llm = False
+        if narrative_engine == "llm":
+            has_key = bool(os.getenv("OPENAI_API_KEY"))
+            st.caption(
+                "Runs one validated analysis call per campaign, then portfolio synthesis and report narration."
+            )
+            st.caption(f"Model: `{model}`")
+            generate_llm = st.button(
+                "Generate full LLM report",
+                icon=":material/auto_awesome:",
+                type="primary",
+                disabled=not has_key,
+                use_container_width=True,
+            )
+            if not has_key:
+                st.warning("Add `OPENAI_API_KEY` to `.env` to enable this mode.")
+        st.divider()
+        st.subheader("Business glossary")
+        with st.expander("ROAS and AOV"):
+            st.markdown(
+                "**ROAS** is net revenue divided by advertising spend. **AOV** is delivered revenue divided by delivered orders. Neither metric is profit because product and operating costs are unavailable."
+            )
+        with st.expander("Campaign, adset, ad, creative"):
+            st.markdown(
+                "A **campaign** owns the objective. An **adset** defines audience and delivery settings. An **ad** is the delivered unit. A **creative** is the message and visual used by an ad."
+            )
+        with st.expander("Broad and lookalike audiences"):
+            st.markdown(
+                "A **broad** audience gives the platform wide freedom. A **lookalike** audience is modeled from people similar to a source group; 1% is narrower and usually more similar than a larger percentage."
+            )
+        st.caption("All currency values are EGP. Budget units are illustrative.")
+    return input_directory, narrative_engine, model, generate_llm
+
+
+def _header(report: CompletedCycleReport, narrative_source: str) -> None:
+    manifest = report.manifest
+    st.markdown('<div class="report-kicker">Marketing evidence system</div>', unsafe_allow_html=True)
+    st.markdown('<div class="report-title">Completed Cycle Review</div>', unsafe_allow_html=True)
+    st.markdown(
+        f'<div class="report-meta">{manifest.reporting_start:%d %b %Y} to {manifest.reporting_end:%d %b %Y} &nbsp;|&nbsp; {manifest.cycle_id} &nbsp;|&nbsp; Narrative: {narrative_source}</div>',
+        unsafe_allow_html=True,
+    )
+    quality = report.data_quality
+    st.markdown(
+        f"""<div class="warning-strip"><b>Outcome evidence is limited.</b> The supplied WhatsApp file contains
+        {quality.observed_meta_whatsapp_conversations:,} Meta-sourced conversations versus
+        {quality.meta_conversation_starts:,} Meta-attributed starts ({quality.reconciliation_ratio:.2%}).
+        Rankings describe the observed sample; budget output is a non-operational scenario.</div>""",
+        unsafe_allow_html=True,
+    )
+
+
+def _portfolio_chart(campaigns: pd.DataFrame) -> alt.Chart:
+    chart_data = campaigns.copy()
+    chart_data["campaign_type_label"] = chart_data["campaign_type"].str.replace(
+        "_", " ", regex=False
+    ).str.title()
+    return (
+        alt.Chart(chart_data)
+        .mark_circle(opacity=0.82, stroke="white", strokeWidth=1.5)
+        .encode(
+            x=alt.X("spend:Q", title="Spend (EGP)", scale=alt.Scale(zero=True)),
+            y=alt.Y("net_revenue:Q", title="Observed net revenue (EGP)"),
+            size=alt.Size(
+                "delivered_orders:Q",
+                title="Delivered orders",
+                scale=alt.Scale(range=[100, 1100]),
+            ),
+            color=alt.Color(
+                "campaign_type_label:N",
+                title="Campaign type",
+                scale=alt.Scale(scheme="tableau10"),
+            ),
+            tooltip=[
+                alt.Tooltip("campaign_name:N", title="Campaign"),
+                alt.Tooltip("campaign_type_label:N", title="Type"),
+                alt.Tooltip("spend:Q", title="Spend", format=",.0f"),
+                alt.Tooltip("net_revenue:Q", title="Net revenue", format=",.0f"),
+                alt.Tooltip("net_roas:Q", title="Net ROAS", format=".2f"),
+                alt.Tooltip("delivered_orders:Q", title="Delivered orders", format=",.0f"),
+            ],
+        )
+        .properties(height=390)
+    )
+
+
+def _executive_view(report: CompletedCycleReport) -> None:
+    campaigns = report.scorecards.campaign
+    spend = float(campaigns["spend"].sum())
+    net_revenue = float(campaigns["net_revenue"].sum())
+    delivered = int(campaigns["delivered_orders"].sum())
+    roas = net_revenue / spend if spend else None
+    contribution_proxy = net_revenue - spend
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.metric("Media spend", _money_compact(spend))
+    c2.metric("Observed net revenue", _money_compact(net_revenue))
+    c3.metric("Observed net ROAS", _ratio(roas))
+    c4.metric("Delivered orders", f"{delivered:,}")
+    c5.metric("Contribution proxy*", _money_compact(contribution_proxy))
+    st.caption("*Net revenue minus media spend only; product cost, fulfillment, tax, and overhead are unavailable.")
+
+    left, right = st.columns([1.65, 1])
+    with left:
+        st.subheader("Portfolio economics")
+        st.altair_chart(_portfolio_chart(campaigns), use_container_width=True)
+    with right:
+        st.subheader("Management view")
+        st.write(report.stakeholder_report.executive_summary)
+        for item in report.stakeholder_report.business_owner_sections:
+            st.markdown(f"- {item}")
+        action_counts = (
+            campaigns["next_cycle_action"].map(ACTION_LABELS).value_counts().rename_axis("Action").reset_index(name="Campaigns")
+        )
+        action_chart = (
+            alt.Chart(action_counts)
+            .mark_bar(cornerRadiusEnd=3)
+            .encode(
+                y=alt.Y("Action:N", sort="-x", title=None),
+                x=alt.X("Campaigns:Q", title="Campaign count", axis=alt.Axis(tickMinStep=1)),
+                color=alt.value("#3D8DFF"),
+                tooltip=["Action:N", "Campaigns:Q"],
+            )
+            .properties(height=190)
+        )
+        st.altair_chart(action_chart, use_container_width=True)
+
+
+def _campaign_table(frame: pd.DataFrame) -> pd.DataFrame:
+    shown = frame.copy()
+    shown["campaign_type"] = shown["campaign_type"].str.replace("_", " ").str.title()
+    shown["target_status"] = shown["target_status"].map(TARGET_LABELS)
+    shown["next_cycle_action"] = shown["next_cycle_action"].map(ACTION_LABELS)
+    return shown[
+        [
+            "campaign_name",
+            "campaign_type",
+            "target_status",
+            "next_cycle_action",
+            "spend",
+            "observed_conversations",
+            "delivered_orders",
+            "net_revenue",
+            "net_roas",
+            "negative_outcome_rate_pct",
+        ]
+    ].rename(
+        columns={
+            "campaign_name": "Campaign",
+            "campaign_type": "Type",
+            "target_status": "Target assessment",
+            "next_cycle_action": "Next-cycle decision",
+            "spend": "Spend",
+            "observed_conversations": "Observed conversations",
+            "delivered_orders": "Delivered orders",
+            "net_revenue": "Net revenue",
+            "net_roas": "Net ROAS",
+            "negative_outcome_rate_pct": "Negative outcome %",
+        }
+    )
+
+
+def _campaigns_view(report: CompletedCycleReport) -> None:
+    campaigns = report.scorecards.campaign.copy()
+    c1, c2 = st.columns(2)
+    types = sorted(campaigns["campaign_type"].unique())
+    actions = sorted(campaigns["next_cycle_action"].unique())
+    selected_types = c1.multiselect(
+        "Campaign type", types, default=types, format_func=lambda value: value.replace("_", " ").title()
+    )
+    selected_actions = c2.multiselect(
+        "Decision", actions, default=actions, format_func=lambda value: ACTION_LABELS[value]
+    )
+    filtered = campaigns[
+        campaigns["campaign_type"].isin(selected_types)
+        & campaigns["next_cycle_action"].isin(selected_actions)
+    ]
+    st.dataframe(
+        _campaign_table(filtered),
+        hide_index=True,
+        use_container_width=True,
+        column_config={
+            "Spend": st.column_config.NumberColumn(format="EGP %.0f"),
+            "Net revenue": st.column_config.NumberColumn(format="EGP %.0f"),
+            "Net ROAS": st.column_config.NumberColumn(format="%.2fx"),
+            "Negative outcome %": st.column_config.NumberColumn(format="%.1f%%"),
+        },
+    )
+    st.subheader("Spend versus observed business outcome")
+    st.altair_chart(_portfolio_chart(filtered), use_container_width=True)
+
+
+def _benchmark_chart(pack) -> alt.Chart:
+    rows = []
+    for metric in pack.primary_kpis:
+        rows.extend(
+            [
+                {"Metric": metric.label, "Value type": "Actual", "Value": metric.actual},
+                {"Metric": metric.label, "Value type": "Benchmark", "Value": metric.benchmark},
+            ]
+        )
+    return (
+        alt.Chart(pd.DataFrame(rows))
+        .mark_bar()
+        .encode(
+            x=alt.X("Value type:N", title=None),
+            y=alt.Y("Value:Q", title=None),
+            color=alt.Color(
+                "Value type:N",
+                scale=alt.Scale(domain=["Actual", "Benchmark"], range=["#3D8DFF", "#B8BCC4"]),
+                legend=None,
+            ),
+            column=alt.Column("Metric:N", title=None),
+            tooltip=["Metric:N", "Value type:N", alt.Tooltip("Value:Q", format=",.2f")],
+        )
+        .properties(height=210)
+    )
+
+
+def _entity_chart(frame: pd.DataFrame) -> alt.Chart:
+    chart = frame.copy()
+    chart["Decision"] = chart["next_cycle_action"].map(ACTION_LABELS)
+    domain = [ACTION_LABELS[key] for key in ACTION_COLORS]
+    colors = [ACTION_COLORS[key] for key in ACTION_COLORS]
+    return (
+        alt.Chart(chart)
+        .mark_circle(opacity=0.82, stroke="white", strokeWidth=1.4)
+        .encode(
+            x=alt.X("spend:Q", title="Spend (EGP)"),
+            y=alt.Y("net_roas:Q", title="Observed net ROAS"),
+            size=alt.Size("observed_conversations:Q", title="Observed conversations", scale=alt.Scale(range=[90, 1000])),
+            color=alt.Color("Decision:N", scale=alt.Scale(domain=domain, range=colors)),
+            tooltip=[
+                alt.Tooltip("entity_name:N", title="Entity"),
+                alt.Tooltip("spend:Q", title="Spend", format=",.0f"),
+                alt.Tooltip("net_roas:Q", title="Net ROAS", format=".2f"),
+                alt.Tooltip("observed_conversations:Q", title="Observed conversations", format=",.0f"),
+                alt.Tooltip("delivered_orders:Q", title="Delivered orders", format=",.0f"),
+                "Decision:N",
+            ],
+        )
+        .properties(height=340)
+    )
+
+
+def _entity_table(frame: pd.DataFrame, level: str) -> pd.DataFrame:
+    optional = {
+        "adset": ["audience_type"],
+        "ad": ["adset_name", "creative_name", "angle"],
+        "creative": ["angle", "theme"],
+        "audience": ["audience_type"],
+    }[level]
+    columns = [
+        "entity_name",
+        *[column for column in optional if column in frame],
+        "next_cycle_action",
+        "spend",
+        "observed_conversations",
+        "delivered_orders",
+        "net_revenue",
+        "net_roas",
+        "decision_reason",
+    ]
+    shown = frame[columns].copy()
+    shown["next_cycle_action"] = shown["next_cycle_action"].map(ACTION_LABELS)
+    return shown.rename(
+        columns={
+            "entity_name": level.title(),
+            "next_cycle_action": "Decision",
+            "spend": "Spend",
+            "observed_conversations": "Observed conversations",
+            "delivered_orders": "Delivered orders",
+            "net_revenue": "Net revenue",
+            "net_roas": "Net ROAS",
+            "decision_reason": "Reason",
+        }
+    )
+
+
+def _render_insight(insight) -> None:
+    st.markdown(f'<div class="status-line"><b>Assessment:</b> {insight.target_assessment}</div>', unsafe_allow_html=True)
+    left, right = st.columns(2)
+    with left:
+        st.markdown("**Performance drivers**")
+        for item in insight.performance_drivers:
+            st.markdown(f"- {item}")
+        for item in [*insight.audience_findings, *insight.creative_findings]:
+            st.markdown(f"- {item}")
+    with right:
+        st.markdown("**Risks and next test**")
+        for item in insight.risks_and_confounders:
+            st.markdown(f"- {item}")
+        if insight.next_controlled_test:
+            st.info(insight.next_controlled_test)
+
+
+def _deep_dive_view(report: CompletedCycleReport, llm_active: bool) -> None:
+    campaigns = report.scorecards.campaign.sort_values("campaign_name")
+    selected_name = st.selectbox("Campaign", campaigns["campaign_name"].tolist())
+    campaign = campaigns[campaigns["campaign_name"].eq(selected_name)].iloc[0]
+    campaign_id = str(campaign["campaign_id"])
+    pack = report.campaign_evidence(campaign_id)
+
+    st.markdown(f"### {pack.campaign_name}")
+    st.write(f"**Business job:** {pack.business_job}")
+    st.write(f"**Success question:** {pack.success_question}")
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Target assessment", TARGET_LABELS[campaign["target_status"]])
+    c2.metric("Decision", ACTION_LABELS[campaign["next_cycle_action"]])
+    c3.metric("Observed net ROAS", _ratio(campaign["net_roas"]))
+    c4.metric("Observed conversations", f"{int(campaign['observed_conversations']):,}")
+    st.altair_chart(_benchmark_chart(pack), use_container_width=True)
+
+    insight = report.campaign_insight(campaign_id)
+    _render_insight(insight)
+    if llm_active:
+        st.caption("This campaign analysis is the validated output of the full LLM prompt pipeline.")
+        show_single_campaign_ai = False
+    else:
+        show_single_campaign_ai = True
+    has_key = bool(os.getenv("OPENAI_API_KEY"))
+    if show_single_campaign_ai:
+        if st.button(
+            "Generate AI campaign analysis",
+            icon=":material/auto_awesome:",
+            type="primary",
+            disabled=not has_key,
+            help="Uses calculated evidence only; raw messages and customer identifiers are excluded.",
+        ):
+            try:
+                with st.spinner("Generating validated campaign insight..."):
+                    st.session_state.setdefault("ai_campaign_insights", {})[campaign_id] = (
+                        OpenAICampaignAnalyst().analyze(pack)
+                    )
+            except Exception as exc:
+                st.error(f"AI analysis failed: {exc}")
+        if not has_key:
+            st.caption("Add OPENAI_API_KEY to .env to enable optional AI narration.")
+        ai_insight = st.session_state.get("ai_campaign_insights", {}).get(campaign_id)
+        if ai_insight is not None:
+            st.subheader("AI narrative")
+            _render_insight(ai_insight)
+
+    st.subheader("Performance by execution level")
+    level_tabs = st.tabs(["Adsets", "Audiences", "Ads", "Creatives", "Ad timeline"])
+    for tab, level in zip(level_tabs[:4], ["adset", "audience", "ad", "creative"]):
+        with tab:
+            child = report.scorecards.by_level(level)
+            child = child[child["campaign_id"].eq(campaign_id)].copy()
+            st.altair_chart(_entity_chart(child), use_container_width=True)
+            st.dataframe(
+                _entity_table(child, level),
+                hide_index=True,
+                use_container_width=True,
+                column_config={
+                    "Spend": st.column_config.NumberColumn(format="EGP %.0f"),
+                    "Net revenue": st.column_config.NumberColumn(format="EGP %.0f"),
+                    "Net ROAS": st.column_config.NumberColumn(format="%.2fx"),
+                },
+            )
+    with level_tabs[4]:
+        ads = report.scorecards.ad
+        ads = ads[ads["campaign_id"].eq(campaign_id)].dropna(
+            subset=["entity_start_date", "entity_end_date"]
+        )
+        timeline = (
+            alt.Chart(ads)
+            .mark_bar(color="#3D8DFF", cornerRadius=2)
+            .encode(
+                x=alt.X("entity_start_date:T", title="Date"),
+                x2="entity_end_date:T",
+                y=alt.Y(
+                    "entity_name:N",
+                    title=None,
+                    sort="x",
+                    axis=alt.Axis(labelLimit=250),
+                ),
+                tooltip=[
+                    alt.Tooltip("entity_name:N", title="Ad"),
+                    alt.Tooltip("entity_start_date:T", title="Start", format="%d %b %Y"),
+                    alt.Tooltip("entity_end_date:T", title="End", format="%d %b %Y"),
+                ],
+            )
+            .properties(height=max(240, len(ads) * 42))
+        )
+        st.altair_chart(timeline, use_container_width=True)
+
+
+def _budget_view(report: CompletedCycleReport) -> None:
+    scenario = report.budget_scenario
+    c1, c2, c3 = st.columns(3)
+    assigned = sum(item.budget_units for item in scenario.allocations)
+    c1.metric("Scenario budget", f"{scenario.total_budget_units:.0f} units")
+    c2.metric("Assigned", f"{assigned:.1f} units")
+    c3.metric("Unallocated", f"{scenario.unallocated_units:.1f} units")
+    st.markdown(
+        '<div class="warning-strip"><b>Illustrative only.</b> This allocation is not an approved media budget and cannot be executed while outcome populations remain unreconciled.</div>',
+        unsafe_allow_html=True,
+    )
+    allocations = pd.DataFrame(
+        [
+            {
+                "Campaign": item.entity_name,
+                "Action": ACTION_LABELS[item.action.value],
+                "Budget units": item.budget_units,
+                "Share %": item.budget_share_pct,
+                "Reason": item.reason,
+            }
+            for item in scenario.allocations
+        ]
+    ).sort_values("Budget units", ascending=False)
+    chart = (
+        alt.Chart(allocations[allocations["Budget units"] > 0])
+        .mark_bar(cornerRadiusEnd=3, color="#3D8DFF")
+        .encode(
+            y=alt.Y(
+                "Campaign:N",
+                sort="-x",
+                title=None,
+                axis=alt.Axis(labelLimit=230),
+            ),
+            x=alt.X("Budget units:Q", title="Normalized budget units"),
+            tooltip=["Campaign:N", "Action:N", alt.Tooltip("Budget units:Q", format=".2f"), "Reason:N"],
+        )
+        .properties(height=350)
+    )
+    st.altair_chart(chart, use_container_width=True)
+    st.dataframe(
+        allocations,
+        hide_index=True,
+        use_container_width=True,
+        column_config={
+            "Budget units": st.column_config.NumberColumn(format="%.2f"),
+            "Share %": st.column_config.NumberColumn(format="%.2f%%"),
+        },
+    )
+    st.subheader("Scenario assumptions")
+    for item in scenario.assumptions:
+        st.markdown(f"- {item}")
+
+
+def _methodology_view(report: CompletedCycleReport) -> None:
+    quality = report.data_quality
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Meta conversation starts", f"{quality.meta_conversation_starts:,}")
+    c2.metric("Supplied Meta WhatsApp rows", f"{quality.observed_meta_whatsapp_conversations:,}")
+    c3.metric("Population ratio", _percent(quality.reconciliation_ratio))
+    st.subheader("What the pipeline calculates")
+    formulas = pd.DataFrame(
+        [
+            ["Link CTR", "Link clicks / impressions", "Media response"],
+            ["CPM", "Spend / impressions x 1,000", "Media delivery cost"],
+            ["Delivered rate", "Delivered orders / observed conversations", "Observed outcome quality"],
+            ["Net ROAS", "Observed net revenue / spend", "Observed spend efficiency"],
+            ["AOV", "Delivered revenue / delivered orders", "Delivered basket value"],
+            ["Negative outcome rate", "Negative outcomes / observed conversations", "Observed risk guardrail"],
+            ["Net revenue per day", "Observed net revenue / active media days", "Time-normalized outcome"],
+        ],
+        columns=["Metric", "Calculation", "Business meaning"],
+    )
+    st.dataframe(formulas, hide_index=True, use_container_width=True)
+    st.subheader("Decision sequence")
+    st.markdown(
+        "1. Evaluate the campaign type's primary KPI against an explicit or peer benchmark.\n"
+        "2. Apply minimum-evidence and quality guardrails.\n"
+        "3. Assign scale, keep as test, do not fund, or insufficient evidence.\n"
+        "4. Build historical campaign-type envelopes and allocate within each type using one allocation KPI.\n"
+        "5. Leave blocked budget unallocated and let the narrative explain, never override, the calculation."
+    )
+    st.subheader("Current POC assumptions")
+    for warning in quality.warnings:
+        st.warning(warning)
+    st.markdown(
+        "- Current-cycle peer medians are temporary references, not approved business targets.\n"
+        "- Minimum samples of 10 campaign, 5 adset/audience, and 3 ad/creative conversations are demonstration rules.\n"
+        "- Product cost, contribution margin, fulfillment cost, and customer lifetime value are unavailable.\n"
+        "- Raw messages, names, and phone numbers never enter model prompts."
+    )
+
+
+def _export_view(report: CompletedCycleReport) -> None:
+    payload = json.dumps(report.to_export_dict(), indent=2, ensure_ascii=True)
+    st.download_button(
+        "Download complete report JSON",
+        data=payload,
+        file_name=f"{report.manifest.cycle_id}_report.json",
+        mime="application/json",
+        icon=":material/download:",
+        type="primary",
+    )
+    st.subheader("Scorecard exports")
+    columns = st.columns(5)
+    for column, level in zip(columns, ["campaign", "adset", "audience", "ad", "creative"]):
+        frame = report.scorecards.by_level(level)
+        column.download_button(
+            level.title(),
+            data=frame.to_csv(index=False).encode("utf-8"),
+            file_name=f"{report.manifest.cycle_id}_{level}.csv",
+            mime="text/csv",
+            icon=":material/download:",
+            use_container_width=True,
+        )
+
+
+def main() -> None:
+    _configure_page()
+    input_directory, narrative_engine, model, generate_llm = _sidebar()
+    request_key = (input_directory, model)
+    if generate_llm:
+        st.session_state["llm_report_request"] = request_key
+
+    llm_requested = (
+        narrative_engine == "llm"
+        and st.session_state.get("llm_report_request") == request_key
+    )
+    llm_active = False
+    try:
+        if llm_requested:
+            with st.spinner(
+                "Running campaign analyses, portfolio synthesis, and report narration..."
+            ):
+                report = _load_llm_report(input_directory, model)
+            llm_active = True
+        else:
+            report = _load_report(input_directory)
+    except Exception as exc:
+        if llm_requested:
+            st.session_state.pop("llm_report_request", None)
+            st.error(
+                f"The full LLM report failed validation or could not be generated: {exc}"
+            )
+            st.info("The deterministic report is shown below; no partial LLM output is used.")
+            report = _load_report(input_directory)
+        else:
+            st.error(f"The completed cycle could not be loaded: {exc}")
+            st.stop()
+
+    narrative_source = f"OpenAI prompts ({model})" if llm_active else "Deterministic"
+    _header(report, narrative_source)
+    if narrative_engine == "llm" and not llm_active:
+        st.info(
+            "OpenAI prompts are selected. Use **Generate full LLM report** in the sidebar to run the validated prompt pipeline."
+        )
+    tabs = st.tabs(
+        [
+            "Executive",
+            "Campaigns",
+            "Campaign deep dive",
+            "Budget scenario",
+            "Methodology",
+            "Export",
+        ]
+    )
+    with tabs[0]:
+        _executive_view(report)
+    with tabs[1]:
+        _campaigns_view(report)
+    with tabs[2]:
+        _deep_dive_view(report, llm_active)
+    with tabs[3]:
+        _budget_view(report)
+    with tabs[4]:
+        _methodology_view(report)
+    with tabs[5]:
+        _export_view(report)
+
+
+if __name__ == "__main__":
+    main()

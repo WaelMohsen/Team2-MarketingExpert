@@ -1,0 +1,28 @@
+version: 1
+budget_units: 100
+
+campaign_type_envelopes:
+  method: historical_spend_share
+
+test_envelope:
+  method: historical_campaign_type_spend_share
+  campaign_type: experimental
+
+maximum_campaign_concentration: null
+allow_unallocated_budget: true
+allow_limited_evidence_scenarios: true
+
+action_eligibility:
+  core:
+    - scale
+    - keep_as_test
+  test:
+    - keep_as_test
+    - insufficient_evidence
+  blocked:
+    - do_not_fund
+    - data_not_ready
+
+metadata:
+  purpose: POC normalized allocation scenario
+  note: The experimental envelope is part of the historical type mix and must not be counted twice.

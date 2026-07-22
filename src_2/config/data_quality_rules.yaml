@@ -1,0 +1,20 @@
+version: 1
+
+outcome_reconciliation:
+  require_compatible_event_definitions: true
+  unresolved_status: limited_evidence
+  operational_budget_requires_reconciliation: true
+  allow_scenario_when_unresolved: true
+
+join_quality:
+  campaign_id_required: true
+  ad_id_required_for_ad_level: true
+  unmatched_entities_are_reported: true
+
+outcome_maturity:
+  required: true
+  policy: configured_before_production
+
+privacy:
+  send_raw_messages_to_llm: false
+  send_customer_identifiers_to_llm: false
