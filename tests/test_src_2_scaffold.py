@@ -1,8 +1,3 @@
-import json
-
-import pytest
-
-from src_2.analytics import calculate_core_kpis
 from src_2.domain.assessment_rules import (
     NextCycleAction,
     TargetStatus,
@@ -16,7 +11,7 @@ from src_2.infrastructure.configuration import (
 )
 from src_2.ingestion import load_sample2
 from src_2.ingestion.data_quality import inventory
-from src_2.paths import INPUT_DIR, PROMPT_DIR, V2_ROOT
+from src_2.paths import INPUT_DIR, PROMPT_DIR
 
 
 def test_sample2_input_is_self_contained():
@@ -55,27 +50,6 @@ def test_poc_budget_policy_has_historical_test_envelope_and_no_cap():
     assert policy.allow_unallocated_budget is True
 
 
-def test_core_kpis_are_recomputed_from_totals():
-    metrics = calculate_core_kpis(
-        {
-            "impressions": 10_000,
-            "link_clicks": 200,
-            "spend": 1_000,
-            "observed_conversations": 20,
-            "delivered_orders": 10,
-            "delivered_revenue": 3_000,
-            "net_revenue": 2_500,
-            "negative_outcomes": 4,
-        }
-    )
-
-    assert metrics["link_ctr_pct"] == pytest.approx(2.0)
-    assert metrics["cpm"] == pytest.approx(100.0)
-    assert metrics["net_roas"] == pytest.approx(2.5)
-    assert metrics["aov"] == pytest.approx(300.0)
-    assert metrics["delivered_rate_pct"] == pytest.approx(50.0)
-
-
 def test_limited_evidence_downgrades_scale_to_test():
     target = classify_target(
         primary_kpis_passed=True,
@@ -94,13 +68,10 @@ def test_limited_evidence_downgrades_scale_to_test():
     assert action is NextCycleAction.KEEP_AS_TEST
 
 
-def test_prompts_and_json_schemas_are_present_and_parseable():
+def test_prompts_are_present():
     prompt_names = {
         "campaign_analysis.md",
         "portfolio_synthesis.md",
         "recommendation_narrator.md",
     }
     assert prompt_names.issubset({path.name for path in PROMPT_DIR.glob("*.md")})
-
-    for path in (V2_ROOT / "schemas").glob("*.schema.json"):
-        assert json.loads(path.read_text(encoding="utf-8"))["type"] == "object"

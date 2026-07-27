@@ -45,3 +45,6 @@ class CampaignEvidencePack(BaseModel):
     creatives: list[EntityEvidence] = Field(default_factory=list)
     audiences: list[EntityEvidence] = Field(default_factory=list)
     limitations: list[str] = Field(default_factory=list)
+    # Decision-grade allocation-KPI evidence (benchmark + direction-correct pass/fail),
+    # so a CampaignAssessor can reproduce the funding decision from the pack alone.
+    allocation_kpi: MetricEvidence | None = None

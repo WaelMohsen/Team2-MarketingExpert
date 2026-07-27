@@ -125,3 +125,20 @@ def build_budget_scenario(
         allocations=allocations,
         unallocated_units=unallocated,
     )
+
+
+class DeterministicBudgetAllocator:
+    """Default `BudgetAllocator`: historical-envelope allocation with one KPI per type."""
+
+    def allocate(
+        self,
+        cycle_id: str,
+        campaign_scorecard: pd.DataFrame,
+        assessments: list[CampaignAssessment],
+        registry: CampaignTypeRegistry,
+        policy: BudgetPolicy,
+        quality: DataQualityReport,
+    ) -> BudgetScenario:
+        return build_budget_scenario(
+            cycle_id, campaign_scorecard, assessments, registry, policy, quality
+        )

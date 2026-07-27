@@ -304,13 +304,14 @@ def _assessment_reason(metric: MetricEvidence) -> str:
     )
 
 
-def _campaign_pack_and_assessment(
+def _build_campaign_pack(
     cycle_id: str,
     row: pd.Series,
     scorecards: CycleScorecards,
     registry: CampaignTypeRegistry,
     quality: DataQualityReport,
-) -> tuple[CampaignEvidencePack, CampaignAssessment]:
+) -> CampaignEvidencePack:
+    """Deterministic measurement for one campaign — evidence only, no decision."""
     campaign_type = CampaignType(row["campaign_type"])
     config = registry.campaign_types[campaign_type]
     campaign_frame = scorecards.campaign
@@ -328,36 +329,11 @@ def _campaign_pack_and_assessment(
         _guardrail_evidence(campaign_frame, row, guardrail)
         for guardrail in config.guardrails
     ]
-    target_guards = [
-        evidence
-        for evidence, guardrail in zip(guards, config.guardrails)
-        if "target" in guardrail.required_for
-    ]
-    allocation_guards = [
-        evidence
-        for evidence, guardrail in zip(guards, config.guardrails)
-        if "allocation" in guardrail.required_for
-    ]
-    primary_passed = bool(primary) and all(item.passed is True for item in primary)
-    target_guards_passed = all(item.passed is True for item in target_guards)
-    allocation_guards_passed = all(item.passed is True for item in allocation_guards)
     allocation = _metric_evidence(
         campaign_frame,
         row,
         config.allocation_metric.metric,
         direction=config.allocation_metric.direction,
-    )
-    target_status = classify_target(
-        primary_kpis_passed=primary_passed,
-        critical_guardrails_passed=target_guards_passed,
-        evidence_status=evidence_status,
-    )
-    action = classify_next_cycle_action(
-        allocation_metric_passed=allocation.passed is True,
-        critical_guardrails_passed=allocation_guards_passed,
-        delivered_orders=int(row.get("delivered_orders", 0) or 0),
-        spend=float(row.get("spend", 0) or 0),
-        evidence_status=evidence_status,
     )
 
     limitations = list(quality.warnings)
@@ -378,7 +354,7 @@ def _campaign_pack_and_assessment(
             _entity_evidence(subset, child, level) for _, child in subset.iterrows()
         ]
 
-    pack = CampaignEvidencePack(
+    return CampaignEvidencePack(
         cycle_id=cycle_id,
         campaign_id=str(row["campaign_id"]),
         campaign_name=str(row["campaign_name"]),
@@ -389,6 +365,7 @@ def _campaign_pack_and_assessment(
         primary_kpis=primary,
         supporting_kpis=supporting,
         guardrails=guards,
+        allocation_kpi=allocation,
         campaign=campaign_entity,
         adsets=children[EntityLevel.ADSET],
         ads=children[EntityLevel.AD],
@@ -396,46 +373,99 @@ def _campaign_pack_and_assessment(
         audiences=children[EntityLevel.AUDIENCE],
         limitations=limitations,
     )
-    reasons: list[str] = []
-    if evidence_status is not EvidenceStatus.READY:
-        reasons.append(evidence_status.value)
-    reasons.extend(
-        f"primary:{item.metric}:{'pass' if item.passed else 'fail'}" for item in primary
-    )
-    reasons.extend(
-        f"guardrail:{item.metric}:fail" for item in allocation_guards if item.passed is not True
-    )
-    assessment = CampaignAssessment(
-        cycle_id=cycle_id,
-        campaign_id=str(row["campaign_id"]),
-        campaign_name=str(row["campaign_name"]),
-        campaign_type=campaign_type,
-        target_status=target_status,
-        next_cycle_action=action,
-        evidence_status=evidence_status,
-        primary_results=[
-            MetricAssessment(
-                metric=item.metric,
-                actual=item.actual,
-                benchmark=item.benchmark,
-                passed=item.passed,
-                reason=_assessment_reason(item),
-            )
-            for item in primary
-        ],
-        guardrail_results=[
-            MetricAssessment(
-                metric=item.metric,
-                actual=item.actual,
-                benchmark=item.benchmark,
-                passed=item.passed,
-                reason=_assessment_reason(item),
-            )
-            for item in guards
-        ],
-        reason_codes=reasons,
-    )
-    return pack, assessment
+
+
+def build_evidence_packs(
+    cycle_id: str,
+    scorecards: CycleScorecards,
+    registry: CampaignTypeRegistry,
+    quality: DataQualityReport,
+) -> list[CampaignEvidencePack]:
+    """Deterministic evidence for every campaign — the input to a CampaignAssessor."""
+    return [
+        _build_campaign_pack(cycle_id, row, scorecards, registry, quality)
+        for _, row in scorecards.campaign.iterrows()
+    ]
+
+
+def _entity_metric_actual(entity: EntityEvidence, metric: str) -> float | None:
+    return next((m.actual for m in entity.metrics if m.metric == metric), None)
+
+
+class DeterministicCampaignAssessor:
+    """Default `CampaignAssessor`: transparent, rule-based funding decisions.
+
+    Reproduces the decision from the evidence pack + campaign-type config alone
+    (which is why the pack carries ``allocation_kpi``).
+    """
+
+    def assess(
+        self, evidence: CampaignEvidencePack, config: CampaignTypeConfig
+    ) -> CampaignAssessment:
+        target_guards = [
+            item
+            for item, guardrail in zip(evidence.guardrails, config.guardrails)
+            if "target" in guardrail.required_for
+        ]
+        allocation_guards = [
+            item
+            for item, guardrail in zip(evidence.guardrails, config.guardrails)
+            if "allocation" in guardrail.required_for
+        ]
+        primary_passed = bool(evidence.primary_kpis) and all(
+            item.passed is True for item in evidence.primary_kpis
+        )
+        allocation_passed = (
+            evidence.allocation_kpi is not None
+            and evidence.allocation_kpi.passed is True
+        )
+        delivered = int(_entity_metric_actual(evidence.campaign, "delivered_orders") or 0)
+        spend = float(_entity_metric_actual(evidence.campaign, "spend") or 0.0)
+
+        target_status = classify_target(
+            primary_kpis_passed=primary_passed,
+            critical_guardrails_passed=all(item.passed is True for item in target_guards),
+            evidence_status=evidence.evidence_status,
+        )
+        action = classify_next_cycle_action(
+            allocation_metric_passed=allocation_passed,
+            critical_guardrails_passed=all(item.passed is True for item in allocation_guards),
+            delivered_orders=delivered,
+            spend=spend,
+            evidence_status=evidence.evidence_status,
+        )
+
+        reasons: list[str] = []
+        if evidence.evidence_status is not EvidenceStatus.READY:
+            reasons.append(evidence.evidence_status.value)
+        reasons.extend(
+            f"primary:{item.metric}:{'pass' if item.passed else 'fail'}"
+            for item in evidence.primary_kpis
+        )
+        reasons.extend(
+            f"guardrail:{item.metric}:fail"
+            for item in allocation_guards
+            if item.passed is not True
+        )
+        _mk = lambda item: MetricAssessment(
+            metric=item.metric,
+            actual=item.actual,
+            benchmark=item.benchmark,
+            passed=item.passed,
+            reason=_assessment_reason(item),
+        )
+        return CampaignAssessment(
+            cycle_id=evidence.cycle_id,
+            campaign_id=evidence.campaign_id,
+            campaign_name=evidence.campaign_name,
+            campaign_type=evidence.campaign_type,
+            target_status=target_status,
+            next_cycle_action=action,
+            evidence_status=evidence.evidence_status,
+            primary_results=[_mk(item) for item in evidence.primary_kpis],
+            guardrail_results=[_mk(item) for item in evidence.guardrails],
+            reason_codes=reasons,
+        )
 
 
 def _add_campaign_decisions(
@@ -528,23 +558,15 @@ def _add_child_decisions(
     return frame.merge(pd.DataFrame(rows), on="entity_id", how="left")
 
 
-def build_assessment_bundle(
-    cycle_id: str,
+def enrich_scorecards(
     scorecards: CycleScorecards,
+    assessments: list[CampaignAssessment],
     registry: CampaignTypeRegistry,
     quality: DataQualityReport,
-) -> AssessmentBundle:
-    packs: list[CampaignEvidencePack] = []
-    assessments: list[CampaignAssessment] = []
-    for _, row in scorecards.campaign.iterrows():
-        pack, assessment = _campaign_pack_and_assessment(
-            cycle_id, row, scorecards, registry, quality
-        )
-        packs.append(pack)
-        assessments.append(assessment)
-
+) -> CycleScorecards:
+    """Attach campaign and child decisions (incl. parent→child propagation) onto the scorecards."""
     assessment_lookup = {item.campaign_id: item for item in assessments}
-    enriched = CycleScorecards(
+    return CycleScorecards(
         campaign=_add_campaign_decisions(scorecards.campaign, assessments, registry),
         adset=_add_child_decisions(
             scorecards.adset, "adset", assessment_lookup, registry, quality
@@ -559,6 +581,22 @@ def build_assessment_bundle(
             scorecards.audience, "audience", assessment_lookup, registry, quality
         ),
     )
+
+
+def build_assessment_bundle(
+    cycle_id: str,
+    scorecards: CycleScorecards,
+    registry: CampaignTypeRegistry,
+    quality: DataQualityReport,
+) -> AssessmentBundle:
+    """Evidence + deterministic decisions (the default assessor path)."""
+    packs = build_evidence_packs(cycle_id, scorecards, registry, quality)
+    assessor = DeterministicCampaignAssessor()
+    assessments = [
+        assessor.assess(pack, registry.campaign_types[pack.campaign_type])
+        for pack in packs
+    ]
+    enriched = enrich_scorecards(scorecards, assessments, registry, quality)
     return AssessmentBundle(
         assessments=assessments, evidence_packs=packs, scorecards=enriched
     )

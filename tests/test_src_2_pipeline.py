@@ -9,9 +9,39 @@ from src_2.domain.models import EvidenceStatus
 from src_2.presentation import streamlit_app
 
 
+class _FakeAnalyst:
+    """Offline narrative port so deterministic-layer tests need no OpenAI key."""
+
+    def analyze(self, evidence):
+        return CampaignInsight(
+            campaign_id=evidence.campaign_id,
+            target_assessment="stub",
+            supporting_evidence=[],
+            strategic_lesson="stub",
+            evidence_status=evidence.evidence_status,
+        )
+
+
+class _FakeSynthesizer:
+    def synthesize(self, assessments, insights):
+        cycle_id = assessments[0].cycle_id if assessments else "stub-cycle"
+        return PortfolioInsight(cycle_id=cycle_id)
+
+
+class _FakeNarrator:
+    def narrate(self, portfolio, budget):
+        return StakeholderReport(cycle_id=portfolio.cycle_id, executive_summary="stub")
+
+
 @pytest.fixture(scope="module")
 def report():
-    return run_completed_cycle()
+    # Inject stub narrative ports; the assertions below exercise the deterministic
+    # measurement and decision layers, which run without any LLM call.
+    return run_completed_cycle(
+        campaign_analyst=_FakeAnalyst(),
+        portfolio_synthesizer=_FakeSynthesizer(),
+        report_narrator=_FakeNarrator(),
+    )
 
 
 def test_canonical_facts_match_sample2_inventory(report):
@@ -141,7 +171,7 @@ def test_streamlit_llm_mode_injects_all_prompt_adapters(monkeypatch):
         streamlit_app, "run_completed_cycle", fake_run_completed_cycle
     )
 
-    actual_report = streamlit_app._load_llm_report.__wrapped__(
+    actual_report = streamlit_app._load_report.__wrapped__(
         "sample-directory", "test-model"
     )
 

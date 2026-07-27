@@ -155,3 +155,130 @@ the model to make the numbers sum correctly.
 - Deterministic measurement (`ingestion`, `analytics/aggregations`)
 - The ability to run with no API key (deterministic remains the default and the
   fallback)
+
+## Status Update (2026-07-23)
+
+Two rollout items have since been implemented, which changes the baseline this
+integration plan builds on:
+
+- **Narrative layer is now LLM-only.** The deterministic narrative adapters were
+  removed; `run_completed_cycle` defaults its narrative ports to the OpenAI
+  adapters. There is no deterministic narrative fallback anymore — a missing key
+  or a failed/invalid LLM response stops the run.
+- **An evaluation subsystem exists** (`src_2/evaluation/`): a deterministic
+  narrative consistency checker + local JSON history + a Streamlit dashboard
+  (`app_eval.py`). This is the concrete form of the "evaluation harness" bullet
+  above, and it is what the decision-consistency check (below) extends.
+
+The `CampaignAssessor` / `BudgetAllocator` ports remain **not built** — the
+sections below are the plan for that work.
+
+## Integration: `CampaignAssessor` & `BudgetAllocator`
+
+### The seam runs *through* the analytics functions, not around them
+
+Neither decision function is a clean unit; each mixes deterministic measurement
+with the decision:
+
+- `build_assessment_bundle` → per campaign, `_campaign_pack_and_assessment` both
+  **builds the `CampaignEvidencePack`** (metric evidence, benchmark resolution,
+  child entities — deterministic, keep) **and calls** `classify_target` +
+  `classify_next_cycle_action` (the decision — swap point).
+- `build_budget_scenario` → **sizes type envelopes from historical spend share and
+  normalizes to 100 units** (deterministic, keep) **and chooses within-envelope
+  funding/priority + applies eligibility** (the decision — swap point).
+
+So integration is not "wrap the two functions with a port"; it is **extract the
+classification step behind a port and keep the measurement in place.**
+
+### Refactor
+
+```
+build_assessment_bundle  →  split into:
+   build_evidence_packs(...)            # deterministic packs + benchmarks   (KEEP)
+   assessor.assess(pack, config)        # PORT -> CampaignAssessment
+   _add_campaign/_child_decisions(...)  # deterministic enrichment           (KEEP)
+
+build_budget_scenario    →  split into:
+   compute_envelopes(...)               # deterministic spend-share sizing   (KEEP)
+   allocator.allocate(assessments, envelopes, policy)   # PORT -> BudgetScenario
+   normalize + apply_eligibility(...)   # deterministic: sum->100, blocked->0 (KEEP)
+```
+
+The existing rule bodies (`classify_target`, `classify_next_cycle_action`, the
+allocation KPI weighting) become `DeterministicCampaignAssessor` /
+`DeterministicBudgetAllocator` — moved behind the port, kept as the default and
+per-item fallback. Nothing is lost.
+
+### Ports (grounded in current types)
+
+```python
+class CampaignAssessor(Protocol):
+    def assess(self, evidence: CampaignEvidencePack,
+               config: CampaignTypeConfig) -> CampaignAssessment: ...
+
+class BudgetAllocator(Protocol):
+    def allocate(self, cycle_id: str, assessments: Sequence[CampaignAssessment],
+                 envelopes: dict[str, float], policy: BudgetPolicy) -> BudgetScenario: ...
+```
+
+Both emit the existing `CampaignAssessment` / `BudgetScenario` contracts, so
+scorecard enrichment, Streamlit, export, and the evaluator are unchanged, and the
+contracts double as the OpenAI Structured Outputs schema.
+
+### Two rules that must stay deterministic
+
+If the LLM assesses each campaign independently, cross-campaign consistency cannot
+be trusted to it:
+
+- **Parent → child propagation** (`_add_child_decisions`: a child cannot override a
+  blocked parent) — enforce deterministically *after* the port.
+- **Budget eligibility** (action legal for the pool per `action_eligibility`,
+  blocked → 0, units sum to `budget_units`) — enforce deterministically *around*
+  the allocator.
+
+Pattern: the LLM *proposes*, deterministic rules *constrain*.
+
+### Wiring into `run_completed_cycle`
+
+```python
+def run_completed_cycle(..., *, campaign_assessor=None, budget_allocator=None,
+                        campaign_analyst=None, ...):
+    evidence_packs = build_evidence_packs(cycle_id, raw_scorecards, registry, quality)
+    assessor = campaign_assessor or DeterministicCampaignAssessor()   # DETERMINISTIC default
+    assessments = [assessor.assess(p, registry[p.campaign_type]) for p in evidence_packs]
+    assessments = propagate_parent_child(assessments)                 # deterministic
+    scorecards  = enrich_scorecards(raw_scorecards, assessments)      # deterministic
+
+    envelopes = compute_envelopes(scorecards.campaign)                # deterministic
+    allocator = budget_allocator or DeterministicBudgetAllocator()
+    budget = normalize_and_gate(allocator.allocate(cycle_id, assessments, envelopes, policy))
+    # ... existing narrative ports follow ...
+```
+
+Data-dependency order is unchanged: evidence → **assess** → propagate → envelopes →
+**allocate** → gate → narrative → report.
+
+**Default these two ports to deterministic** (unlike the narrative ports, which
+default to OpenAI). They are money decisions, so safe-by-default matters; make the
+LLM opt-in.
+
+### Safety wrapper
+
+A `ValidatedAssessor(llm, deterministic)` decorator: call the LLM, validate the
+result (Pydantic covers schema; add semantic checks — action legal for pool, no
+invented metrics), and fall back to the deterministic implementation per campaign
+on any failure. Same for the allocator.
+
+### How evaluation extends
+
+The existing evaluator checks *narrative* faithfulness. When decisions move to the
+LLM, add a **decision-consistency** check: `DeterministicCampaignAssessor` is the
+regression oracle — diff LLM decision vs deterministic decision on the golden
+cycle, and the existing history/trend view surfaces divergence over time. This is
+what makes trusting an LLM decision defensible.
+
+### Net
+
+A refactor (split measurement from decision) + two ports + deterministic
+guardrails, with **zero change to contracts or downstream consumers.**

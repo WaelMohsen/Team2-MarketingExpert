@@ -1,1 +1,1 @@
-"""External storage, configuration, and model-provider adapters."""
+"""Infrastructure adapters (currently: YAML configuration loading)."""
