@@ -5,13 +5,17 @@ from __future__ import annotations
 from typing import Any, Protocol, Sequence
 
 from src_2.contracts import (
+    AdMessageContext,
+    AdMessageMatchSignal,
     BudgetScenario,
     CampaignAssessment,
     CampaignEvidencePack,
     CampaignInsight,
+    ConversationSignals,
     DataQualityReport,
     PortfolioInsight,
     StakeholderReport,
+    SemanticConversationInput,
 )
 from src_2.domain.config import BudgetPolicy, CampaignTypeConfig, CampaignTypeRegistry
 
@@ -54,3 +58,27 @@ class ReportNarrator(Protocol):
     def narrate(
         self, portfolio: PortfolioInsight, budget: BudgetScenario
     ) -> StakeholderReport: ...
+
+
+class ConversationSignalExtractor(Protocol):
+    """Classifies redacted messages into validated diagnostic signals."""
+
+    model: str
+    prompt_version: str
+    prompt_sha256: str
+
+    def extract(
+        self, model_input: SemanticConversationInput
+    ) -> ConversationSignals: ...
+
+
+class AdMessageMatchEvaluator(Protocol):
+    """Compares an ad promise with already-validated customer signals."""
+
+    model: str
+    prompt_version: str
+    prompt_sha256: str
+
+    def evaluate(
+        self, ad_context: AdMessageContext, signals: ConversationSignals
+    ) -> AdMessageMatchSignal: ...

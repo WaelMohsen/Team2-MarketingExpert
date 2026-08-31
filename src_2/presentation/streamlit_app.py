@@ -33,6 +33,7 @@ ACTION_LABELS = {
     "insufficient_evidence": "Insufficient evidence",
     "data_not_ready": "Data not ready",
 }
+FUNDING_LABELS = {"scale": "Scale", "hold": "Hold", "kill": "Kill"}
 TARGET_LABELS = {
     "achieved": "Achieved",
     "achieved_with_concerns": "Achieved with concerns",
@@ -72,11 +73,13 @@ def _percent(value: float | None) -> str:
 @st.cache_resource(show_spinner=False)
 def _load_report(input_directory: str, model: str) -> CompletedCycleReport:
     """Build the report with the LLM narrative pipeline (the only engine)."""
+    signal_path = os.getenv("CONVERSATION_SIGNALS_PATH", "").strip()
     return run_completed_cycle(
         input_directory,
         campaign_analyst=OpenAICampaignAnalyst(model=model),
         portfolio_synthesizer=OpenAIPortfolioSynthesizer(model=model),
         report_narrator=OpenAIReportNarrator(model=model),
+        conversation_signal_path=signal_path or None,
     )
 
 
@@ -251,15 +254,43 @@ def _campaign_table(frame: pd.DataFrame) -> pd.DataFrame:
     shown["campaign_type"] = shown["campaign_type"].str.replace("_", " ").str.title()
     shown["target_status"] = shown["target_status"].map(TARGET_LABELS)
     shown["next_cycle_action"] = shown["next_cycle_action"].map(ACTION_LABELS)
+    shown["funding_decision"] = shown["funding_decision"].map(FUNDING_LABELS)
+    shown["corrected_score_interval"] = shown.apply(
+        lambda row: f"{row['corrected_score_low']:.1%} to {row['corrected_score_high']:.1%}",
+        axis=1,
+    )
+    shown["lift_interval"] = shown.apply(
+        lambda row: f"{row['lift_low']:+.1%} to {row['lift_high']:+.1%}", axis=1
+    )
+    shown["customer_delivery_interval"] = shown.apply(
+        lambda row: (
+            f"{row['customer_delivered_rate_ci_low']:.1%} to "
+            f"{row['customer_delivered_rate_ci_high']:.1%}"
+        ),
+        axis=1,
+    )
     return shown[
         [
             "campaign_name",
             "campaign_type",
             "target_status",
             "next_cycle_action",
+            "funding_decision",
+            "score_metric",
+            "raw_score",
+            "corrected_score",
+            "corrected_score_interval",
+            "benchmark_score",
+            "lift_interval",
+            "probability_better",
             "spend",
             "observed_conversations",
+            "mature_conversations",
+            "open_or_pending_conversations",
+            "mature_unique_customers",
             "delivered_orders",
+            "customer_delivered_rate_pct",
+            "customer_delivery_interval",
             "net_revenue",
             "net_roas",
             "negative_outcome_rate_pct",
@@ -270,9 +301,22 @@ def _campaign_table(frame: pd.DataFrame) -> pd.DataFrame:
             "campaign_type": "Type",
             "target_status": "Target assessment",
             "next_cycle_action": "Next-cycle decision",
+            "funding_decision": "Statistical decision",
+            "score_metric": "Decision KPI",
+            "raw_score": "Raw score",
+            "corrected_score": "Corrected score",
+            "corrected_score_interval": "95% corrected range",
+            "benchmark_score": "Learned benchmark",
+            "lift_interval": "95% favorable lift",
+            "probability_better": "Probability better",
             "spend": "Spend",
             "observed_conversations": "Observed conversations",
+            "mature_conversations": "Mature outcomes",
+            "open_or_pending_conversations": "Unresolved",
+            "mature_unique_customers": "Mature customers",
             "delivered_orders": "Delivered orders",
+            "customer_delivered_rate_pct": "Customer delivery %",
+            "customer_delivery_interval": "95% customer interval",
             "net_revenue": "Net revenue",
             "net_roas": "Net ROAS",
             "negative_outcome_rate_pct": "Negative outcome %",
@@ -304,6 +348,11 @@ def _campaigns_view(report: CompletedCycleReport) -> None:
             "Net revenue": st.column_config.NumberColumn(format="EGP %.0f"),
             "Net ROAS": st.column_config.NumberColumn(format="%.2fx"),
             "Negative outcome %": st.column_config.NumberColumn(format="%.1f%%"),
+            "Customer delivery %": st.column_config.NumberColumn(format="%.1f%%"),
+            "Raw score": st.column_config.NumberColumn(format="%.1f%%"),
+            "Corrected score": st.column_config.NumberColumn(format="%.1f%%"),
+            "Learned benchmark": st.column_config.NumberColumn(format="%.1f%%"),
+            "Probability better": st.column_config.NumberColumn(format="%.1f%%"),
         },
     )
     st.subheader("Spend versus observed business outcome")
@@ -312,13 +361,23 @@ def _campaigns_view(report: CompletedCycleReport) -> None:
 
 def _benchmark_chart(pack) -> alt.Chart:
     rows = []
-    for metric in pack.primary_kpis:
+    if pack.decision_score is not None:
+        score = pack.decision_score
         rows.extend(
             [
-                {"Metric": metric.label, "Value type": "Actual", "Value": metric.actual},
-                {"Metric": metric.label, "Value type": "Benchmark", "Value": metric.benchmark},
+                {"Metric": score.metric.replace("_", " ").title(), "Value type": "Raw", "Value": score.raw_score},
+                {"Metric": score.metric.replace("_", " ").title(), "Value type": "Corrected", "Value": score.corrected_score},
+                {"Metric": score.metric.replace("_", " ").title(), "Value type": "Benchmark", "Value": score.benchmark_score},
             ]
         )
+    else:
+        for metric in pack.primary_kpis:
+            rows.extend(
+                [
+                    {"Metric": metric.label, "Value type": "Actual", "Value": metric.actual},
+                    {"Metric": metric.label, "Value type": "Benchmark", "Value": metric.benchmark},
+                ]
+            )
     return (
         alt.Chart(pd.DataFrame(rows))
         .mark_bar()
@@ -327,7 +386,10 @@ def _benchmark_chart(pack) -> alt.Chart:
             y=alt.Y("Value:Q", title=None),
             color=alt.Color(
                 "Value type:N",
-                scale=alt.Scale(domain=["Actual", "Benchmark"], range=["#3D8DFF", "#B8BCC4"]),
+                scale=alt.Scale(
+                    domain=["Raw", "Corrected", "Actual", "Benchmark"],
+                    range=["#7DB4FF", "#3D8DFF", "#3D8DFF", "#B8BCC4"],
+                ),
                 legend=None,
             ),
             column=alt.Column("Metric:N", title=None),
@@ -374,22 +436,49 @@ def _entity_table(frame: pd.DataFrame, level: str) -> pd.DataFrame:
         "entity_name",
         *[column for column in optional if column in frame],
         "next_cycle_action",
+        "funding_decision",
+        "score_metric",
+        "raw_score",
+        "corrected_score",
+        "corrected_score_low",
+        "corrected_score_high",
+        "expected_lift",
+        "lift_low",
+        "lift_high",
+        "probability_better",
         "spend",
         "observed_conversations",
+        "mature_conversations",
+        "open_or_pending_conversations",
         "delivered_orders",
+        "customer_delivered_rate_pct",
         "net_revenue",
         "net_roas",
         "decision_reason",
     ]
     shown = frame[columns].copy()
     shown["next_cycle_action"] = shown["next_cycle_action"].map(ACTION_LABELS)
+    shown["funding_decision"] = shown["funding_decision"].map(FUNDING_LABELS)
     return shown.rename(
         columns={
             "entity_name": level.title(),
             "next_cycle_action": "Decision",
+            "funding_decision": "Statistical decision",
+            "score_metric": "Decision KPI",
+            "raw_score": "Raw score",
+            "corrected_score": "Corrected score",
+            "corrected_score_low": "Score low",
+            "corrected_score_high": "Score high",
+            "expected_lift": "Expected lift",
+            "lift_low": "Lift low",
+            "lift_high": "Lift high",
+            "probability_better": "Probability better",
             "spend": "Spend",
             "observed_conversations": "Observed conversations",
+            "mature_conversations": "Mature outcomes",
+            "open_or_pending_conversations": "Unresolved",
             "delivered_orders": "Delivered orders",
+            "customer_delivered_rate_pct": "Customer delivery %",
             "net_revenue": "Net revenue",
             "net_roas": "Net ROAS",
             "decision_reason": "Reason",
@@ -424,12 +513,42 @@ def _deep_dive_view(report: CompletedCycleReport) -> None:
     st.markdown(f"### {pack.campaign_name}")
     st.write(f"**Business job:** {pack.business_job}")
     st.write(f"**Success question:** {pack.success_question}")
-    c1, c2, c3, c4 = st.columns(4)
+    c1, c2, c3, c4, c5 = st.columns(5)
     c1.metric("Target assessment", TARGET_LABELS[campaign["target_status"]])
-    c2.metric("Decision", ACTION_LABELS[campaign["next_cycle_action"]])
-    c3.metric("Observed net ROAS", _ratio(campaign["net_roas"]))
-    c4.metric("Observed conversations", f"{int(campaign['observed_conversations']):,}")
+    c2.metric("Statistical decision", FUNDING_LABELS[campaign["funding_decision"]])
+    c3.metric("Corrected score", _percent(campaign["corrected_score"]))
+    c4.metric("Mature outcomes", f"{int(campaign['mature_conversations']):,}")
+    c5.metric("Unresolved", f"{int(campaign['open_or_pending_conversations']):,}")
+    st.caption(
+        f"{campaign['score_metric'].replace('_', ' ').title()}: raw {campaign['raw_score']:.1%}, "
+        f"Empirical-Bayes corrected {campaign['corrected_score']:.1%} "
+        f"(95% range {campaign['corrected_score_low']:.1%} to "
+        f"{campaign['corrected_score_high']:.1%}); favorable lift "
+        f"{campaign['lift_low']:+.1%} to {campaign['lift_high']:+.1%}."
+    )
     st.altair_chart(_benchmark_chart(pack), use_container_width=True)
+
+    if int(campaign.get("semantic_conversations", 0) or 0):
+        st.subheader("Conversation diagnostics")
+        s1, s2, s3, s4 = st.columns(4)
+        s1.metric("Assessed transcripts", f"{int(campaign['semantic_conversations']):,}")
+        s2.metric("High purchase intent", _percent(campaign["high_purchase_intent_rate"]))
+        s3.metric("Barrier present", _percent(campaign["barrier_conversation_rate"]))
+        s4.metric("Helpful agent", _percent(campaign["agent_helpful_rate"]))
+        st.write(
+            f"Coverage {_percent(campaign.get('semantic_coverage_rate'))} | "
+            f"High urgency {_percent(campaign.get('high_urgency_rate'))} | "
+            f"Price blocking {_percent(campaign.get('price_blocking_rate'))} | "
+            f"Barrier resolution {_percent(campaign.get('barrier_resolution_rate'))} | "
+            f"Next-step completion {_percent(campaign.get('next_step_completion_rate'))} | "
+            f"Ad-message alignment {_percent(campaign.get('ad_message_alignment_rate'))}"
+        )
+        st.caption(
+            f"Top purpose: {campaign.get('top_conversation_purpose') or 'n/a'} | "
+            f"Top barrier: {campaign.get('top_barrier') or 'n/a'} | "
+            f"Top product: {campaign.get('top_mentioned_product') or 'n/a'}. "
+            "These are diagnostic LLM classifications and do not determine funding."
+        )
 
     insight = report.campaign_insight(campaign_id)
     _render_insight(insight)
@@ -453,6 +572,7 @@ def _deep_dive_view(report: CompletedCycleReport) -> None:
                     "Spend": st.column_config.NumberColumn(format="EGP %.0f"),
                     "Net revenue": st.column_config.NumberColumn(format="EGP %.0f"),
                     "Net ROAS": st.column_config.NumberColumn(format="%.2fx"),
+                    "Customer delivery %": st.column_config.NumberColumn(format="%.1f%%"),
                 },
             )
     with level_tabs[4]:
@@ -531,6 +651,30 @@ def _budget_view(report: CompletedCycleReport) -> None:
             "Share %": st.column_config.NumberColumn(format="%.2f%%"),
         },
     )
+    if scenario.exploration_tests:
+        st.subheader("Named exploration tests")
+        tests = pd.DataFrame(
+            [
+                {
+                    "Test": item.test_name,
+                    "Hypothesis": item.hypothesis,
+                    "Metric": item.primary_metric.replace("_", " ").title(),
+                    "Budget units": item.assigned_budget_units,
+                    "Success rule": item.success_rule,
+                    "Failure rule": item.failure_rule,
+                    "Stop rule": item.stop_rule,
+                }
+                for item in scenario.exploration_tests
+            ]
+        )
+        st.dataframe(
+            tests,
+            hide_index=True,
+            use_container_width=True,
+            column_config={
+                "Budget units": st.column_config.NumberColumn(format="%.2f")
+            },
+        )
     st.subheader("Scenario assumptions")
     for item in scenario.assumptions:
         st.markdown(f"- {item}")
@@ -560,9 +704,10 @@ def _methodology_view(report: CompletedCycleReport) -> None:
     st.markdown(
         "1. Evaluate the campaign type's primary KPI against an explicit or peer benchmark.\n"
         "2. Apply minimum-evidence and quality guardrails.\n"
-        "3. Assign scale, keep as test, do not fund, or insufficient evidence.\n"
-        "4. Build historical campaign-type envelopes and allocate within each type using one allocation KPI.\n"
-        "5. Leave blocked budget unallocated and let the narrative explain, never override, the calculation."
+        "3. Assign scale, hold, kill, or insufficient evidence from the favorable-lift range.\n"
+        "4. Allocate 70% to supported scale decisions and 30% to named hold tests.\n"
+        "5. Pre-register each test's hypothesis, decision rules, and stopping rule.\n"
+        "6. Leave unsupported budget unallocated and let the narrative explain, never override, the calculation."
     )
     st.subheader("Current POC assumptions")
     for warning in quality.warnings:

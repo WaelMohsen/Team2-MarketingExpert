@@ -1,5 +1,7 @@
 """Budget scenario and final report contracts."""
 
+from typing import Optional
+
 from pydantic import BaseModel, Field
 
 from src_2.domain.assessment_rules import NextCycleAction
@@ -16,6 +18,19 @@ class BudgetAllocation(BaseModel):
     reason: str
 
 
+class ExplorationTest(BaseModel):
+    entity_id: str
+    entity_name: str
+    test_name: str
+    hypothesis: str
+    primary_metric: str
+    assigned_budget_units: float = Field(gt=0)
+    benchmark_score: Optional[float] = None
+    success_rule: str
+    failure_rule: str
+    stop_rule: str
+
+
 class BudgetScenario(BaseModel):
     cycle_id: str
     scenario_name: str
@@ -24,6 +39,7 @@ class BudgetScenario(BaseModel):
     operational: bool
     assumptions: list[str]
     allocations: list[BudgetAllocation]
+    exploration_tests: list[ExplorationTest] = Field(default_factory=list)
     unallocated_units: float = Field(default=0, ge=0)
 
 

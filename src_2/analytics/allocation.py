@@ -2,30 +2,32 @@
 
 from __future__ import annotations
 
-from math import isfinite
-
 import pandas as pd
 
-from src_2.contracts import BudgetAllocation, BudgetScenario, CampaignAssessment, DataQualityReport
+from src_2.contracts import (
+    BudgetAllocation,
+    BudgetScenario,
+    CampaignAssessment,
+    DataQualityReport,
+    ExplorationTest,
+)
 from src_2.domain.assessment_rules import NextCycleAction
 from src_2.domain.config import BudgetPolicy, CampaignTypeRegistry
-from src_2.domain.models import BudgetPool, CampaignType, EntityLevel, EvidenceStatus
+from src_2.domain.models import EntityLevel, EvidenceStatus, FundingDecision
 
 
-def _allocation_weights(
-    rows: pd.DataFrame, metric: str, direction: str
-) -> dict[str, float]:
-    values = pd.to_numeric(rows[metric], errors="coerce")
-    valid = values.map(lambda value: isfinite(value) and value > 0 if pd.notna(value) else False)
-    eligible = rows[valid].copy()
-    if eligible.empty:
+def _weights(rows: pd.DataFrame, column: str, *, equal_fallback: bool = True) -> dict[str, float]:
+    if rows.empty:
         return {}
-    numeric = pd.to_numeric(eligible[metric], errors="coerce").astype(float)
-    raw = numeric if direction == "higher" else 1.0 / numeric
-    total = float(raw.sum())
+    source = rows[column] if column in rows else pd.Series(0.0, index=rows.index)
+    values = pd.to_numeric(source, errors="coerce").fillna(0).clip(lower=0)
+    total = float(values.sum())
     if total <= 0:
-        return {}
-    return dict(zip(eligible["campaign_id"], raw / total))
+        if not equal_fallback:
+            return {}
+        values = pd.Series(1.0, index=rows.index)
+        total = float(len(rows))
+    return dict(zip(rows["campaign_id"].astype(str), values / total))
 
 
 def build_budget_scenario(
@@ -36,7 +38,7 @@ def build_budget_scenario(
     policy: BudgetPolicy,
     quality: DataQualityReport,
 ) -> BudgetScenario:
-    """Allocate historical type envelopes using one allocation KPI within each type."""
+    """Allocate 70/30 exploit/explore envelopes without mixing entity levels."""
 
     assessment_by_id = {item.campaign_id: item for item in assessments}
     spend_by_type = campaign_scorecard.groupby("campaign_type")["spend"].sum()
@@ -44,47 +46,87 @@ def build_budget_scenario(
     type_shares = (
         spend_by_type / total_spend if total_spend > 0 else spend_by_type * 0
     )
-    allocations_by_id: dict[str, float] = {}
-    reasons: dict[str, str] = {}
+    allocations_by_id = {str(value): 0.0 for value in campaign_scorecard["campaign_id"]}
+    reasons: dict[str, list[str]] = {key: [] for key in allocations_by_id}
     unallocated = 0.0
-
-    for campaign_type_value, type_rows in campaign_scorecard.groupby("campaign_type"):
-        campaign_type = CampaignType(campaign_type_value)
-        config = registry.campaign_types[campaign_type]
-        pool = config.budget_pool
-        pool_key = pool.value
-        allowed_actions = set(policy.action_eligibility.get(pool_key, []))
-        envelope = policy.budget_units * float(type_shares.get(campaign_type_value, 0))
-        eligible_ids = [
-            campaign_id
-            for campaign_id in type_rows["campaign_id"]
-            if assessment_by_id[str(campaign_id)].next_cycle_action.value
-            in allowed_actions
-        ]
-        eligible = type_rows[type_rows["campaign_id"].isin(eligible_ids)]
-        metric = config.allocation_metric.metric
-        weights = _allocation_weights(
-            eligible, metric, config.allocation_metric.direction
-        )
-        allocated_in_type = 0.0
-        for campaign_id, weight in weights.items():
-            units = envelope * weight
-            allocations_by_id[str(campaign_id)] = units
-            allocated_in_type += units
-            reasons[str(campaign_id)] = (
-                f"Receives {weight:.1%} of the {campaign_type.value} envelope using "
-                f"{metric.replace('_', ' ')} ({config.allocation_metric.direction} is better)."
+    working = campaign_scorecard.copy()
+    if "statistical_decision" not in working:
+        action_map = {
+            "scale": FundingDecision.SCALE.value,
+            "do_not_fund": FundingDecision.KILL.value,
+        }
+        working["statistical_decision"] = working["campaign_id"].map(
+            lambda value: action_map.get(
+                assessment_by_id[str(value)].next_cycle_action.value,
+                FundingDecision.HOLD.value,
             )
-        unallocated += max(envelope - allocated_in_type, 0.0)
+        )
+
+    pools = (
+        (
+            "exploit",
+            policy.budget_units * policy.exploit_share,
+            FundingDecision.SCALE.value,
+            "probability_better",
+        ),
+        (
+            "explore",
+            policy.budget_units * policy.explore_share,
+            FundingDecision.HOLD.value,
+            "spend",
+        ),
+    )
+    for pool_name, pool_units, decision, weight_column in pools:
+        eligible = working[working["statistical_decision"].eq(decision)].copy()
+        eligible = eligible[
+            eligible["campaign_id"].map(
+                lambda value: assessment_by_id[str(value)].next_cycle_action
+                not in {NextCycleAction.DATA_NOT_READY, NextCycleAction.DO_NOT_FUND}
+            )
+        ]
+        if pool_name == "exploit" and not eligible.empty:
+            eligible["_pool_weight"] = 0.0
+            for campaign_type_value, type_rows in eligible.groupby("campaign_type"):
+                within_type = _weights(type_rows, weight_column)
+                type_share = float(type_shares.get(campaign_type_value, 0))
+                for campaign_id, weight in within_type.items():
+                    eligible.loc[
+                        eligible["campaign_id"].astype(str).eq(campaign_id),
+                        "_pool_weight",
+                    ] = type_share * weight
+            weights = _weights(eligible, "_pool_weight")
+        else:
+            weights = _weights(eligible, weight_column)
+        if not weights:
+            unallocated += pool_units
+            continue
+        for campaign_id, weight in weights.items():
+            units = pool_units * weight
+            allocations_by_id[campaign_id] += units
+            if pool_name == "exploit":
+                reasons[campaign_id].append(
+                    f"Exploit: {weight:.1%} of the exploit pool, preserving eligible campaign-type mix and weighting by probability of beating the peer benchmark."
+                )
+            else:
+                metric = str(
+                    eligible.loc[
+                        eligible["campaign_id"].astype(str).eq(campaign_id),
+                        "score_metric",
+                    ].iloc[0]
+                )
+                reasons[campaign_id].append(
+                    f"Explore: named test of whether {metric.replace('_', ' ')} can beat its peer benchmark; scale when the full lift range is positive, kill when fully negative, otherwise stop at the end of the next completed cycle."
+                )
 
     allocations: list[BudgetAllocation] = []
+    exploration_tests: list[ExplorationTest] = []
     for _, row in campaign_scorecard.iterrows():
         campaign_id = str(row["campaign_id"])
         assessment = assessment_by_id[campaign_id]
         units = float(allocations_by_id.get(campaign_id, 0.0))
-        reason = reasons.get(
-            campaign_id,
-            f"No units assigned because the deterministic action is {assessment.next_cycle_action.value}.",
+        reason = " ".join(reasons.get(campaign_id, [])) or (
+            f"No units assigned because the statistical decision is "
+            f"{row.get('statistical_decision', 'unavailable')}."
         )
         allocations.append(
             BudgetAllocation(
@@ -97,19 +139,53 @@ def build_budget_scenario(
                 reason=reason,
             )
         )
+        if units > 0 and row.get("statistical_decision") == FundingDecision.HOLD.value:
+            metric = str(row.get("score_metric", "primary KPI"))
+            benchmark = pd.to_numeric(
+                pd.Series([row.get("benchmark_score")]), errors="coerce"
+            ).iloc[0]
+            exploration_tests.append(
+                ExplorationTest(
+                    entity_id=campaign_id,
+                    entity_name=str(row["campaign_name"]),
+                    test_name=(
+                        f"Retest {row['campaign_name']}: "
+                        f"{metric.replace('_', ' ').title()}"
+                    ),
+                    hypothesis=(
+                        f"The next-cycle {metric.replace('_', ' ')} will be better "
+                        "than the compatible peer benchmark."
+                    ),
+                    primary_metric=metric,
+                    assigned_budget_units=units,
+                    benchmark_score=float(benchmark) if pd.notna(benchmark) else None,
+                    success_rule=(
+                        "SCALE only when the 95% favorable-lift lower bound is above zero."
+                    ),
+                    failure_rule=(
+                        "KILL only when the 95% favorable-lift upper bound is below zero."
+                    ),
+                    stop_rule=(
+                        "Stop data collection when the assigned explore budget is spent "
+                        "or the next cycle ends, whichever comes first; wait for the "
+                        "outcome maturity window before applying the decision rule."
+                    ),
+                )
+            )
 
     operational = (
         quality.status is EvidenceStatus.READY
         and quality.event_definitions_reconciled
     )
-    experimental_share = float(type_shares.get(CampaignType.EXPERIMENTAL.value, 0))
     assumptions = [
         "The scenario uses 100 normalized units, not an approved currency budget.",
-        "Campaign-type envelopes follow the previous cycle's observed spend share.",
-        f"The experimental test envelope is {experimental_share:.2%}, derived from experimental campaign spend.",
-        "Each campaign type uses one configured allocation KPI; no weighted composite score is used.",
+        f"Exploit is fixed at {policy.exploit_share:.0%} and only statistical scale decisions are eligible.",
+        f"Explore is fixed at {policy.explore_share:.0%} and funds named tests for statistical hold decisions.",
+        "Within both pools, campaign-type envelopes preserve the previous cycle's spend mix.",
+        "Exploit weighting uses probability of beating the learned benchmark; explore weighting preserves historical spend within type.",
+        "Budget is allocated only at campaign level, so adset, ad, creative, and audience recommendations are not double-counted.",
         "There is no maximum campaign concentration cap in this POC.",
-        "Funds blocked by deterministic eligibility rules remain unallocated.",
+        "Unused exploit or explore envelopes remain unallocated.",
     ]
     if not operational:
         assumptions.append(
@@ -123,6 +199,7 @@ def build_budget_scenario(
         operational=operational,
         assumptions=assumptions,
         allocations=allocations,
+        exploration_tests=exploration_tests,
         unallocated_units=unallocated,
     )
 

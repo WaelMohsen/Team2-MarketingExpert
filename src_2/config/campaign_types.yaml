@@ -26,6 +26,13 @@ campaign_types:
     allocation_metric:
       metric: cpm
       direction: lower
+    score_metric:
+      metric: link_ctr
+      numerator: link_clicks
+      denominator: impressions
+      direction: higher
+      model: beta_binomial
+      practical_lift_threshold: 0.0
     budget_pool: core
     analysis_guidance:
       - Treat downstream WhatsApp outcomes as diagnostic evidence, not the primary awareness objective.
@@ -57,6 +64,13 @@ campaign_types:
     allocation_metric:
       metric: net_roas
       direction: higher
+    score_metric:
+      metric: customer_delivered_rate
+      numerator: delivered_customers
+      denominator: mature_unique_customers
+      direction: higher
+      model: beta_binomial
+      practical_lift_threshold: 0.0
     budget_pool: core
     analysis_guidance:
       - Evaluate stability across time as well as the final return.
@@ -88,6 +102,13 @@ campaign_types:
     allocation_metric:
       metric: net_roas
       direction: higher
+    score_metric:
+      metric: customer_delivered_rate
+      numerator: delivered_customers
+      denominator: mature_unique_customers
+      direction: higher
+      model: beta_binomial
+      practical_lift_threshold: 0.0
     budget_pool: core
     analysis_guidance:
       - Separate offer-driven volume from delivered-order quality.
@@ -119,6 +140,13 @@ campaign_types:
     allocation_metric:
       metric: net_revenue_per_day
       direction: higher
+    score_metric:
+      metric: customer_delivered_rate
+      numerator: delivered_customers
+      denominator: mature_unique_customers
+      direction: higher
+      model: beta_binomial
+      practical_lift_threshold: 0.0
     budget_pool: core
     analysis_guidance:
       - Normalize volume by active days because seasonal windows differ.
@@ -150,6 +178,13 @@ campaign_types:
     allocation_metric:
       metric: cost_per_observed_conversation
       direction: lower
+    score_metric:
+      metric: order_creation_rate
+      numerator: mature_orders_created
+      denominator: mature_conversations
+      direction: higher
+      model: beta_binomial
+      practical_lift_threshold: 0.0
     budget_pool: test
     analysis_guidance:
       - Verify that test cells are comparable before naming a winner.
@@ -181,6 +216,13 @@ campaign_types:
     allocation_metric:
       metric: net_revenue
       direction: higher
+    score_metric:
+      metric: customer_delivered_rate
+      numerator: delivered_customers
+      denominator: mature_unique_customers
+      direction: higher
+      model: beta_binomial
+      practical_lift_threshold: 0.0
     budget_pool: core
     analysis_guidance:
       - Distinguish product breadth from revenue concentrated in one product.
@@ -212,6 +254,13 @@ campaign_types:
     allocation_metric:
       metric: observed_conversations
       direction: higher
+    score_metric:
+      metric: customer_delivered_rate
+      numerator: delivered_customers
+      denominator: mature_unique_customers
+      direction: higher
+      model: beta_binomial
+      practical_lift_threshold: 0.0
     budget_pool: core
     analysis_guidance:
       - Do not call volume growth successful when efficiency or quality deteriorates materially.
@@ -243,6 +292,13 @@ campaign_types:
     allocation_metric:
       metric: repeat_delivered_orders
       direction: higher
+    score_metric:
+      metric: retention_delivery_rate
+      numerator: returning_delivered_customers
+      denominator: mature_returning_unique_customers
+      direction: higher
+      model: beta_binomial
+      practical_lift_threshold: 0.0
     budget_pool: core
     analysis_guidance:
       - Confirm that customer identity and repeat-cycle definitions are reliable.

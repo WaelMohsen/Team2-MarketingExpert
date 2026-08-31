@@ -13,6 +13,7 @@ from src_2.analytics import (
     CycleScorecards,
     DeterministicBudgetAllocator,
     DeterministicCampaignAssessor,
+    add_empirical_bayes_scores,
     build_evidence_packs,
     build_scorecards,
     enrich_scorecards,
@@ -29,6 +30,7 @@ from src_2.contracts import (
     CampaignAssessment,
     CampaignEvidencePack,
     CampaignInsight,
+    ConversationSignalRecord,
     CycleManifest,
     DataQualityReport,
     PortfolioInsight,
@@ -49,6 +51,7 @@ from src_2.intelligence import (
     OpenAIPortfolioSynthesizer,
     OpenAIReportNarrator,
 )
+from src_2.application.conversation_signals import load_conversation_signal_records
 
 
 def _records(frame: pd.DataFrame) -> list[dict]:
@@ -60,6 +63,7 @@ class CompletedCycleReport:
     manifest: CycleManifest
     data_quality: DataQualityReport
     canonical_data: CanonicalCycleData
+    conversation_signal_records: list[ConversationSignalRecord]
     scorecards: CycleScorecards
     evidence_packs: list[CampaignEvidencePack]
     assessments: list[CampaignAssessment]
@@ -80,6 +84,7 @@ class CompletedCycleReport:
         return {
             "manifest": self.manifest.model_dump(mode="json"),
             "data_quality": self.data_quality.model_dump(mode="json"),
+            "conversation_signal_record_count": len(self.conversation_signal_records),
             "assessments": [item.model_dump(mode="json") for item in self.assessments],
             "insights": [item.model_dump(mode="json") for item in self.insights],
             "portfolio_insight": self.portfolio_insight.model_dump(mode="json"),
@@ -90,6 +95,38 @@ class CompletedCycleReport:
                 for level in ("campaign", "adset", "ad", "creative", "audience")
             },
         }
+
+    def to_excel(self, path: str | Path) -> Path:
+        """Write reviewable pipeline outputs without transcript text or customer PII."""
+
+        destination = Path(path).expanduser().resolve()
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        with pd.ExcelWriter(destination, engine="openpyxl") as writer:
+            pd.DataFrame([self.manifest.model_dump(mode="json")]).to_excel(
+                writer, sheet_name="manifest", index=False
+            )
+            quality = self.data_quality.model_dump(mode="json")
+            quality["warnings"] = " | ".join(quality.get("warnings", []))
+            pd.DataFrame([quality]).to_excel(
+                writer, sheet_name="data_quality", index=False
+            )
+            for level in ("campaign", "adset", "ad", "creative", "audience"):
+                self.scorecards.by_level(level).to_excel(
+                    writer, sheet_name=f"{level}_scorecard", index=False
+                )
+            pd.DataFrame(
+                [item.model_dump(mode="json") for item in self.assessments]
+            ).to_excel(writer, sheet_name="assessments", index=False)
+            pd.DataFrame(
+                [item.model_dump(mode="json") for item in self.budget_scenario.allocations]
+            ).to_excel(writer, sheet_name="budget_allocations", index=False)
+            pd.DataFrame(
+                [item.model_dump(mode="json") for item in self.budget_scenario.exploration_tests]
+            ).to_excel(writer, sheet_name="exploration_tests", index=False)
+            pd.DataFrame(
+                {"assumption": self.budget_scenario.assumptions}
+            ).to_excel(writer, sheet_name="assumptions", index=False)
+        return destination
 
 
 def _manifest(data: CanonicalCycleData) -> CycleManifest:
@@ -117,6 +154,7 @@ def run_completed_cycle(
     campaign_analyst: CampaignAnalyst | None = None,
     portfolio_synthesizer: PortfolioSynthesizer | None = None,
     report_narrator: ReportNarrator | None = None,
+    conversation_signal_path: str | Path | None = None,
 ) -> CompletedCycleReport:
     """Run the pipeline: deterministic measurement → decisions → LLM narrative.
 
@@ -137,16 +175,24 @@ def run_completed_cycle(
     quality = build_data_quality_report(canonical)
     registry = load_campaign_type_registry()
     policy = load_budget_policy()
-    raw_scorecards = build_scorecards(canonical)
+    conversation_signals = (
+        load_conversation_signal_records(conversation_signal_path)
+        if conversation_signal_path
+        else []
+    )
+    raw_scorecards = build_scorecards(canonical, conversation_signals)
+    scored_scorecards = add_empirical_bayes_scores(raw_scorecards, registry)
 
     # Deterministic evidence in → decision ports → enriched scorecards + budget.
-    evidence_packs = build_evidence_packs(manifest.cycle_id, raw_scorecards, registry, quality)
+    evidence_packs = build_evidence_packs(
+        manifest.cycle_id, scored_scorecards, registry, quality
+    )
     assessor = campaign_assessor or DeterministicCampaignAssessor()
     assessments = [
         assessor.assess(pack, registry.campaign_types[pack.campaign_type])
         for pack in evidence_packs
     ]
-    scorecards = enrich_scorecards(raw_scorecards, assessments, registry, quality)
+    scorecards = enrich_scorecards(scored_scorecards, assessments, registry, quality)
     allocator = budget_allocator or DeterministicBudgetAllocator()
     budget = allocator.allocate(
         manifest.cycle_id, scorecards.campaign, assessments, registry, policy, quality
@@ -163,6 +209,7 @@ def run_completed_cycle(
         manifest=manifest,
         data_quality=quality,
         canonical_data=canonical,
+        conversation_signal_records=conversation_signals,
         scorecards=scorecards,
         evidence_packs=evidence_packs,
         assessments=assessments,

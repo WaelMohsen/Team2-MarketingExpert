@@ -1,7 +1,7 @@
 """Business definitions and policy configuration."""
 
-from .config import BudgetPolicy, CampaignTypeRegistry
-from .models import BudgetPool, CampaignType, EntityLevel, EvidenceStatus
+from .config import BudgetPolicy, CampaignTypeRegistry, ScoreMetricConfig
+from .models import BudgetPool, CampaignType, EntityLevel, EvidenceStatus, FundingDecision
 
 __all__ = [
     "BudgetPolicy",
@@ -10,4 +10,6 @@ __all__ = [
     "CampaignTypeRegistry",
     "EntityLevel",
     "EvidenceStatus",
+    "FundingDecision",
+    "ScoreMetricConfig",
 ]

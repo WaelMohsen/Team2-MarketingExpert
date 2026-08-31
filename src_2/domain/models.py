@@ -32,3 +32,11 @@ class EvidenceStatus(str, Enum):
     LIMITED = "limited_evidence"
     INSUFFICIENT = "insufficient_evidence"
     DATA_NOT_READY = "data_not_ready"
+
+
+class FundingDecision(str, Enum):
+    """Three-way statistical recommendation for the next completed cycle."""
+
+    SCALE = "scale"
+    HOLD = "hold"
+    KILL = "kill"

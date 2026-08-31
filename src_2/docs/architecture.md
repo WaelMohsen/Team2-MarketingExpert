@@ -1,7 +1,7 @@
 # `src_2` — Architecture Diagrams
 
-Reflects the current code (post-cleanup: 5 ports, deterministic decisions, LLM-only
-narrative, evaluation layer). Diagrams are **Mermaid** — they render directly in
+Reflects the current code (6 ports, deterministic decisions, optional conversation
+semantics, LLM-only narrative, evaluation layer). Diagrams are **Mermaid** — they render directly in
 GitHub and VS Code, and stay diffable in version control.
 
 Contents:
@@ -21,8 +21,12 @@ node labels are the **contracts** passed between stages.
 flowchart TD
     RAW["3 JSON files: meta, conversations, products"] -->|load_sample2| RP[RawCyclePayload]
     RP -->|normalize_cycle| CAN["CanonicalCycleData (privacy-safe fact tables)"]
+    RP -->|redact message-only projection| SI["SemanticConversationInput[]"]
+    SI -->|ConversationSignalExtractor.extract| CSR["ConversationSignalRecord JSONL"]
     CAN -->|build_data_quality_report| DQ[DataQualityReport]
-    CAN -->|build_scorecards| SC["CycleScorecards (5 entity levels)"]
+    CAN -->|build_scorecards| RAWSC["Raw CycleScorecards (5 entity levels)"]
+    RAWSC -->|add_empirical_bayes_scores| SC["Corrected scorecards: raw + posterior + benchmark + lift"]
+    CSR -. optional diagnostic aggregation .-> SC
     SC -->|build_evidence_packs| EP["CampaignEvidencePack[]"]
     EP -->|"CampaignAssessor.assess (per campaign)"| AS["CampaignAssessment[]"]
     AS -->|enrich_scorecards| ES["enriched CycleScorecards"]
@@ -51,7 +55,7 @@ enrichment → narrative ports → assembled report → evaluation.
 
 ## 2. Hexagonal architecture / ports & adapters
 
-Dependencies point **inward** (edge → application → core → domain). The five ports
+Dependencies point **inward** (edge → application → core → domain). The six ports
 are the swappable sockets; adapters implement them.
 
 ```mermaid
@@ -62,7 +66,7 @@ flowchart TB
     end
     subgraph APP["Application (orchestration)"]
         RUN["run_completed_cycle"]
-        PORTS["ports.py — 5 Protocols"]
+        PORTS["ports.py — 6 Protocols"]
     end
     subgraph CORE["Deterministic core"]
         ING[ingestion]
@@ -88,33 +92,33 @@ flowchart TB
     PORTS -. "narrative ports (default: OpenAI)" .-> OAI
 ```
 
-**The 5 ports:** `CampaignAssessor`, `BudgetAllocator` (decision — default
+**The 6 ports:** `CampaignAssessor`, `BudgetAllocator` (decision — default
 deterministic), `CampaignAnalyst`, `PortfolioSynthesizer`, `ReportNarrator`
-(narrative — default OpenAI).
+(narrative — default OpenAI), and `ConversationSignalExtractor` (redacted,
+schema-validated diagnostic classification).
 
 ---
 
 ## 3. Decision rules
 
-The transparent logic inside `DeterministicCampaignAssessor`
-(`domain/assessment_rules.py`). No weighted scores — a sequence of explicit gates.
+The transparent logic combines objective-specific configuration with the
+Empirical-Bayes lift distribution. No weighted composite score is created.
 
 ### 3a. Next-cycle action
 
 ```mermaid
 flowchart TD
-    START["evidence pack + campaign-type config"] --> EV{"evidence status?"}
-    EV -->|data_not_ready| DNR["data_not_ready"]
-    EV -->|insufficient| INS["insufficient_evidence"]
-    EV -->|ready or limited| SP{"spend > 0 but 0 delivered orders?"}
-    SP -->|yes| DNF1["do_not_fund"]
-    SP -->|no| BOTH{"allocation KPI passed AND guardrails passed?"}
-    BOTH -->|yes| RDY{"evidence = ready?"}
-    RDY -->|yes| SCALE["scale"]
-    RDY -->|"no (limited)"| KEEP1["keep_as_test"]
-    BOTH -->|no| ONE{"allocation KPI OR guardrails passed?"}
-    ONE -->|yes| KEEP2["keep_as_test"]
-    ONE -->|no| DNF2["do_not_fund"]
+    START["entity successes/trials + compatible peers"] --> EB["fit empirical prior and corrected posterior"]
+    EB --> LIFT["sample favorable entity-minus-benchmark lift"]
+    LIFT --> LOW{"lift low > practical threshold?"}
+    LOW -->|yes| SCALE["statistical decision: scale"]
+    LOW -->|no| HIGH{"lift high < negative threshold?"}
+    HIGH -->|yes| KILL["statistical decision: kill"]
+    HIGH -->|no| HOLD["statistical decision: hold"]
+    SCALE --> GUARD{"quality and guardrails permit operation?"}
+    GUARD -->|yes| OPS["operational action: scale"]
+    GUARD -->|no| TEST["operational action: keep as test"]
+    KILL --> DNF["operational action: do not fund"]
 ```
 
 ### 3b. Target status (did it do its job?)
@@ -131,10 +135,8 @@ flowchart TD
     GG -->|yes| ACH[achieved]
 ```
 
-**Then, parent → child propagation** (`_add_child_decisions`): an adset/ad/creative
-can never override a blocked parent — if the campaign is `do_not_fund` /
-`data_not_ready`, its children inherit that; otherwise children are judged on their
-own within-campaign benchmark and minimum-evidence thresholds.
+**Then, parent → child propagation** (`_add_child_decisions`): every child keeps its
+own raw and corrected score for learning, but it cannot override a blocked parent.
 
 ---
 
@@ -147,10 +149,11 @@ AI only explains; the evaluator watches the AI.
 flowchart LR
     subgraph DET["Deterministic — reproducible & auditable"]
         direction TB
-        I[ingestion] --> S[scorecards] --> A["assessment (funding decisions)"] --> BU[budget]
+        I[ingestion] --> S["raw scorecards"] --> EB["Empirical-Bayes corrected scores"] --> A["range-based funding decisions"] --> BU["70/30 budget"]
     end
     subgraph AI["AI — explanation only, cannot change any number or decision"]
         direction TB
+        C["redacted conversation semantics"]
         N["analyze / synthesize / narrate"]
     end
     subgraph CHK["Evaluation — guardrail"]
@@ -160,6 +163,7 @@ flowchart LR
 
     A --> N
     BU --> N
+    C -. diagnostic context .-> S
     N --> R[CompletedCycleReport]
     R --> E
 
@@ -167,7 +171,7 @@ flowchart LR
     classDef ai fill:#fff3e0,stroke:#D89A2B,color:#15171a;
     classDef chk fill:#e9f7ef,stroke:#2E8B57,color:#15171a;
     class I,S,A,BU det;
-    class N ai;
+    class C,N ai;
     class E chk;
 ```
 

@@ -1,5 +1,7 @@
 version: 1
 budget_units: 100
+exploit_share: 0.70
+explore_share: 0.30
 
 campaign_type_envelopes:
   method: historical_spend_share
@@ -25,4 +27,4 @@ action_eligibility:
 
 metadata:
   purpose: POC normalized allocation scenario
-  note: The experimental envelope is part of the historical type mix and must not be counted twice.
+  note: Exploit is reserved for statistically supported winners; explore funds named tests for uncertain entities.

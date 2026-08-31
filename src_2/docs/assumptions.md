@@ -4,8 +4,19 @@
 - Campaign type is supplied by the Meta campaign record and resolved through `campaign_types.yaml`.
 - Meta media facts and WhatsApp outcome facts are aggregated separately before entity-level joins.
 - Net revenue and net ROAS are profitability proxies because product margin and fulfilment cost are unavailable.
-- Current evidence thresholds are POC assumptions, not statistically validated sample sizes.
+- The Empirical-Bayes prior is estimated from compatible current-cycle peers until a separate historical-cycle store is supplied.
+- The prior strength is capped by the average peer sample size and reduced when peer rates are heterogeneous.
+- Empirical-Bayes credible intervals are conditional on the fitted peer prior; future validation should assess interval coverage across cycles.
+- The practical favorable-lift threshold is zero for the POC and is not an approved minimum worthwhile effect.
+- Active and stuck-pending outcomes are unresolved and excluded from mature-outcome rate denominators.
+- Customer-level rates are the independence-aware companion to conversation-level operational rates.
+- Empirical-Bayes and Wilson ranges represent sampling uncertainty only; they do not measure LLM classification error or attribution bias.
+- Daily Meta reach is non-additive, and rows with reach greater than impressions are invalid for reach-dependent decisions.
 - The observed WhatsApp-to-Meta ratio is not considered literal coverage until both event definitions are reconciled.
 - Limited-evidence outcome scenarios are explanatory and require human review.
 - A child adset or ad cannot override a blocked parent campaign.
 - The LLM explains supplied evidence and deterministic decisions; it does not calculate them.
+- Conversation semantics are optional diagnostics from a versioned, redacted, schema-validated extraction artifact.
+- ConversationSignalsV2 fields default to unknown when a version-1 artifact is loaded; old records are not silently reinterpreted as new classifications.
+- The budget scenario uses 70% exploit and 30% explore, allocates only at campaign level, and leaves exploit unallocated when no entity has a conclusive scale range.
+- POC redaction is deliberately conservative and rules-based; its PII recall must be evaluated before real customer transcripts are sent to an external model.

@@ -148,6 +148,10 @@ def _normalize_media(
     media["meta_conversation_starts"] = media.get(
         "actions", pd.Series([[]] * len(media), index=media.index)
     ).map(lambda value: _extract_action_value(value, META_CONVERSATION_ACTION))
+    media["reach_exceeds_impressions"] = media["reach"].gt(media["impressions"])
+    media["valid_reach"] = media["reach"].where(
+        ~media["reach_exceeds_impressions"]
+    )
     media = media.drop_duplicates(["ad_id", "date_start"], keep="last")
 
     media = media.merge(
@@ -199,6 +203,8 @@ def _normalize_conversations(
             duration_minutes = (last_message_at - started_at).total_seconds() / 60
 
         has_order = bool(outcome.get("order_id"))
+        is_mature_outcome = outcome_type not in OPEN_OUTCOMES
+        is_returning_customer = cycle_number > 1
         delivered_revenue = total if outcome_type == "delivered" else 0.0
         if outcome_type == "delivered":
             net_revenue = total
@@ -231,14 +237,19 @@ def _normalize_conversations(
             "outcome_type": outcome_type,
             "order_id": _optional_id(outcome.get("order_id")),
             "has_order": has_order,
+            "has_mature_order": has_order and is_mature_outcome,
             "is_delivered": outcome_type == "delivered",
             "is_refunded": outcome_type == "refunded",
             "is_cancelled": outcome_type == "cancelled",
             "is_ghosted": outcome_type == "ghosted",
             "is_negative": outcome_type in NEGATIVE_OUTCOMES,
             "is_open_or_pending": outcome_type in OPEN_OUTCOMES,
+            "is_mature_outcome": is_mature_outcome,
             "is_repeat_cycle": cycle_number > 1,
-            "is_repeat_delivered": cycle_number > 1 and outcome_type == "delivered",
+            "is_returning_customer": is_returning_customer,
+            "is_mature_returning": is_returning_customer and is_mature_outcome,
+            "is_new_customer_conversation": cycle_number <= 1,
+            "is_repeat_delivered": is_returning_customer and outcome_type == "delivered",
             "gross_order_value": total if has_order else 0.0,
             "delivered_revenue": delivered_revenue,
             "net_revenue": net_revenue,
@@ -271,6 +282,10 @@ def _normalize_conversations(
     conversations = pd.DataFrame(conversation_rows)
     if not conversations.empty:
         conversations = conversations.drop_duplicates("conversation_id", keep="last")
+        customer_frequency = conversations.groupby("customer_id")[
+            "conversation_id"
+        ].transform("nunique")
+        conversations["is_repeated_customer_in_cycle"] = customer_frequency.gt(1)
     return conversations, pd.DataFrame(line_rows)
 
 

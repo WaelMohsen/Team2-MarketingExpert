@@ -76,6 +76,38 @@ def test_data_quality_preserves_reconciliation_warning(report):
     assert quality.unmatched_adsets == 0
     assert quality.unmatched_ads == 0
     assert quality.event_definitions_reconciled is False
+    assert quality.open_or_pending_conversations == 61
+    assert quality.repeated_customers == 123
+    assert quality.organic_direct_conversations == 171
+    assert quality.reach_exceeds_impressions_rows == 118
+    assert quality.daily_reach_is_non_additive is True
+
+
+def test_mature_and_customer_level_rates_do_not_count_unresolved_as_failures(report):
+    campaigns = report.scorecards.campaign
+
+    assert (
+        campaigns["mature_conversations"]
+        == campaigns["observed_conversations"]
+        - campaigns["open_or_pending_conversations"]
+    ).all()
+    assert (
+        campaigns["customer_delivered_rate_ci_low"]
+        <= campaigns["customer_delivered_rate"]
+    ).all()
+    assert (
+        campaigns["customer_delivered_rate"]
+        <= campaigns["customer_delivered_rate_ci_high"]
+    ).all()
+
+
+def test_awareness_reach_is_not_scored_from_invalid_non_additive_daily_rows(report):
+    awareness = next(
+        item for item in report.assessments if item.campaign_type.value == "awareness"
+    )
+
+    assert awareness.evidence_status is EvidenceStatus.DATA_NOT_READY
+    assert awareness.next_cycle_action.value == "data_not_ready"
 
 
 def test_decisions_use_campaign_type_primary_kpis(report):
@@ -92,10 +124,18 @@ def test_decisions_use_campaign_type_primary_kpis(report):
     assert eid.primary_results[0].passed is True
     assert eid.next_cycle_action.value == "keep_as_test"
     assert always_on.primary_results[0].metric == "net_roas"
-    assert always_on.next_cycle_action.value == "do_not_fund"
+    assert always_on.next_cycle_action.value == "keep_as_test"
+    always_on_row = report.scorecards.campaign.loc[
+        report.scorecards.campaign["campaign_name"].eq(
+            "Always-On Premium Acquisition"
+        )
+    ].iloc[0]
+    assert always_on_row["raw_score"] != pytest.approx(always_on_row["corrected_score"])
+    assert always_on_row["lift_low"] < 0 < always_on_row["lift_high"]
+    assert always_on_row["funding_decision"] == "hold"
 
 
-def test_budget_scenario_uses_historical_experimental_share(report):
+def test_budget_scenario_uses_the_agreed_70_30_split(report):
     scenario = report.budget_scenario
     campaigns = report.scorecards.campaign
     experimental_ids = set(
@@ -103,19 +143,11 @@ def test_budget_scenario_uses_historical_experimental_share(report):
             campaigns["campaign_type"].eq("experimental"), "campaign_id"
         ]
     )
-    expected_share = (
-        campaigns.loc[campaigns["campaign_type"].eq("experimental"), "spend"].sum()
-        / campaigns["spend"].sum()
-        * scenario.total_budget_units
-    )
-    actual_share = sum(
-        item.budget_units
-        for item in scenario.allocations
-        if item.entity_id in experimental_ids
-    )
-
     assert scenario.operational is False
-    assert actual_share == pytest.approx(expected_share)
+    assert sum(item.budget_units for item in scenario.allocations) == pytest.approx(30)
+    assert scenario.unallocated_units == pytest.approx(70)
+    assert any("Exploit is fixed at 70%" in item for item in scenario.assumptions)
+    assert any("Explore is fixed at 30%" in item for item in scenario.assumptions)
     assert sum(item.budget_units for item in scenario.allocations) + scenario.unallocated_units == pytest.approx(
         scenario.total_budget_units
     )
@@ -124,6 +156,13 @@ def test_budget_scenario_uses_historical_experimental_share(report):
         for item in scenario.allocations
         if item.action.value == "do_not_fund"
     )
+    assert len(scenario.exploration_tests) == sum(
+        item.budget_units > 0 for item in scenario.allocations
+    )
+    assert all(test.hypothesis and test.stop_rule for test in scenario.exploration_tests)
+    assert sum(
+        test.assigned_budget_units for test in scenario.exploration_tests
+    ) == pytest.approx(30)
 
 
 def test_export_is_structured_and_excludes_raw_customer_fields(report):

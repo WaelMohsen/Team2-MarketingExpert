@@ -56,6 +56,16 @@ def build_data_quality_report(data: CanonicalCycleData) -> DataQualityReport:
     unmatched_campaigns = int((~observed["campaign_id"].isin(campaign_ids)).sum())
     unmatched_adsets = int((~observed["adset_id"].isin(adset_ids)).sum())
     unmatched_ads = int((~observed["ad_id"].isin(ad_ids)).sum())
+    open_or_pending = int(data.conversations["is_open_or_pending"].sum())
+    repeated_customers = int(
+        data.conversations.loc[
+            data.conversations["is_repeated_customer_in_cycle"], "customer_id"
+        ].nunique()
+    )
+    organic_direct = int(
+        data.conversations["source_platform"].isin({"organic", "direct"}).sum()
+    )
+    invalid_reach_rows = int(data.media_daily["reach_exceeds_impressions"].sum())
 
     warnings: list[str] = []
     if ratio is not None and ratio < 0.8:
@@ -66,6 +76,25 @@ def build_data_quality_report(data: CanonicalCycleData) -> DataQualityReport:
         warnings.append(
             "Some supplied Meta-sourced conversations could not be joined to the Meta hierarchy."
         )
+    if open_or_pending:
+        warnings.append(
+            f"{open_or_pending} active or stuck-pending conversations are unresolved and are excluded from mature-outcome rate denominators."
+        )
+    if repeated_customers:
+        warnings.append(
+            f"{repeated_customers} customers occur more than once; customer-level rates are reported alongside conversation-level rates."
+        )
+    if organic_direct:
+        warnings.append(
+            f"{organic_direct} organic/direct conversations are retained as context and excluded from paid-campaign scoring."
+        )
+    if invalid_reach_rows:
+        warnings.append(
+            f"{invalid_reach_rows} Meta insight rows report reach greater than impressions; reach-dependent metrics are not decision-grade."
+        )
+    warnings.append(
+        "Daily reach is non-additive across dates; summed daily reach is retained only as a diagnostic proxy, not unique cycle reach."
+    )
     if ratio is None:
         status = EvidenceStatus.DATA_NOT_READY
         warnings.append("No Meta conversation-start denominator is available.")
@@ -83,5 +112,10 @@ def build_data_quality_report(data: CanonicalCycleData) -> DataQualityReport:
         unmatched_campaigns=unmatched_campaigns,
         unmatched_adsets=unmatched_adsets,
         unmatched_ads=unmatched_ads,
+        open_or_pending_conversations=open_or_pending,
+        repeated_customers=repeated_customers,
+        organic_direct_conversations=organic_direct,
+        reach_exceeds_impressions_rows=invalid_reach_rows,
+        daily_reach_is_non_additive=True,
         warnings=warnings,
     )

@@ -34,6 +34,19 @@ class AllocationMetricConfig(BaseModel):
     direction: Literal["higher", "lower"]
 
 
+class ScoreMetricConfig(BaseModel):
+    """Sufficient-statistic definition for a small-sample corrected score."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    metric: str
+    numerator: str
+    denominator: str
+    direction: Literal["higher", "lower"]
+    model: Literal["beta_binomial"] = "beta_binomial"
+    practical_lift_threshold: float = Field(default=0.0, ge=0, le=1)
+
+
 class CampaignTypeConfig(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -43,6 +56,7 @@ class CampaignTypeConfig(BaseModel):
     supporting_kpis: list[str] = Field(default_factory=list)
     guardrails: list[GuardrailConfig] = Field(default_factory=list)
     allocation_metric: AllocationMetricConfig
+    score_metric: ScoreMetricConfig
     budget_pool: BudgetPool = BudgetPool.CORE
     analysis_guidance: list[str] = Field(default_factory=list)
 
@@ -75,6 +89,8 @@ class BudgetPolicy(BaseModel):
 
     version: int = Field(ge=1)
     budget_units: float = Field(gt=0)
+    exploit_share: float = Field(default=0.7, ge=0, le=1)
+    explore_share: float = Field(default=0.3, ge=0, le=1)
     campaign_type_envelopes: EnvelopeConfig
     test_envelope: EnvelopeConfig
     maximum_campaign_concentration: float | None = Field(default=None, gt=0, le=1)
@@ -82,3 +98,9 @@ class BudgetPolicy(BaseModel):
     allow_limited_evidence_scenarios: bool = True
     action_eligibility: dict[str, list[str]]
     metadata: dict[str, Any] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def require_complete_split(self) -> "BudgetPolicy":
+        if abs(self.exploit_share + self.explore_share - 1.0) > 1e-9:
+            raise ValueError("exploit_share and explore_share must sum to 1")
+        return self

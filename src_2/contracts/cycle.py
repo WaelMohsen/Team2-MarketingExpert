@@ -28,4 +28,9 @@ class DataQualityReport(BaseModel):
     unmatched_campaigns: int = Field(default=0, ge=0)
     unmatched_adsets: int = Field(default=0, ge=0)
     unmatched_ads: int = Field(default=0, ge=0)
+    open_or_pending_conversations: int = Field(default=0, ge=0)
+    repeated_customers: int = Field(default=0, ge=0)
+    organic_direct_conversations: int = Field(default=0, ge=0)
+    reach_exceeds_impressions_rows: int = Field(default=0, ge=0)
+    daily_reach_is_non_additive: bool = True
     warnings: list[str] = Field(default_factory=list)

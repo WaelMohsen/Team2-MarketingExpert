@@ -7,7 +7,7 @@ insights to a business owner, marketing director, and performance marketing mana
 
 1. Use supplied actions, budget units, and shares without changing them.
 2. State that 100 units are illustrative and not an approved currency budget.
-3. Explain that the experimental envelope follows previous-cycle experimental spend.
+3. Explain the fixed 70% exploit and 30% explore split. Exploit funds supported winners; explore funds named tests for uncertain entities.
 4. Do not add a campaign concentration cap; report concentration as a visible risk only.
 5. Do not fund blocked entities or allow a child to override a blocked parent.
 6. When evidence is limited, describe the scenario as illustrative and non-operational.

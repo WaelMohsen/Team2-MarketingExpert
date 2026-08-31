@@ -40,9 +40,13 @@ The runnable v2 application provides:
 - The agreed normalized POC budget policy with no campaign concentration cap.
 - Prompt contracts for campaign analysis, portfolio synthesis, and narration.
 - Privacy-safe canonical media, conversation, order-line, and product facts.
+- Mature-outcome and customer-level KPIs with corrected numerator/denominator definitions.
+- Peer-fitted Empirical-Bayes raw/corrected scores, credible ranges, benchmark ranges, favorable lift, and probability better at all five levels.
+- Data-quality blocking for invalid and non-additive daily reach.
+- Optional versioned, redacted, Pydantic-validated conversation semantics with resumable extraction and high-value purchase-friction fields.
 - Campaign, adset, ad, creative, and audience scorecards without duplicated facts.
 - Campaign-type primary KPI assessment, evidence guardrails, and child decisions.
-- A historical campaign-type budget scenario with an experimental spend envelope.
+- An explicit 70% exploit / 30% explore campaign budget scenario with no double-counting across entity levels.
 - Deterministic reporting by default and optional structured OpenAI narration.
 - A Streamlit report with stakeholder views, campaign drill-downs, and exports.
 
@@ -55,14 +59,39 @@ python -m pip install -r requirements.txt
 python -m streamlit run app_v2.py
 ```
 
-The application opens at `http://localhost:8501`. It works without an API key.
-To enable the optional AI campaign narrative, copy `.env.example` to `.env` and
-set `OPENAI_API_KEY`.
+The application opens at `http://localhost:8501`. Copy `.env.example` to `.env`
+and set `OPENAI_API_KEY` for the narrative pipeline.
+
+To build a small stratified semantic POC artifact first:
+
+```bash
+python scripts/extract_conversation_signals.py --limit 40
+```
+
+For the Post-Eid walkthrough, target that campaign rather than taking a portfolio
+sample:
+
+```bash
+python scripts/extract_conversation_signals.py \
+  --campaign-name "Post-Eid Lookalike Test" \
+  --limit 5 \
+  --with-ad-message-match
+```
+
+After reviewing the five-record POC, rerun without `--limit`; extraction resumes
+and completes the remaining campaign conversations. The optional
+`--with-ad-message-match` flag runs a second structured call that compares the ad
+promise with validated customer needs; it never receives the order outcome.
+
+The command checkpoints validated records in
+`src_2/artifacts/conversation_signals.jsonl`. Set
+`CONVERSATION_SIGNALS_PATH` to that file before launching Streamlit to include the
+aggregated diagnostics. Omit the variable to run the report without semantic data.
 
 Run the v2 tests with:
 
 ```bash
-pytest tests/test_src_2_scaffold.py tests/test_src_2_pipeline.py -v
+pytest tests/test_src_2_scaffold.py tests/test_src_2_pipeline.py tests/test_src_2_conversation_signals.py -v
 ```
 
 ## Configuration Validation

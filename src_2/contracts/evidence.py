@@ -6,7 +6,42 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
-from src_2.domain.models import CampaignType, EntityLevel, EvidenceStatus
+from src_2.domain.models import (
+    CampaignType,
+    EntityLevel,
+    EvidenceStatus,
+    FundingDecision,
+)
+
+
+class EmpiricalBayesScore(BaseModel):
+    """Reviewable small-sample score and comparison to its learned peer prior."""
+
+    metric: str
+    numerator: str
+    denominator: str
+    direction: Literal["higher", "lower"]
+    successes: float = Field(ge=0)
+    trials: float = Field(ge=0)
+    raw_score: float | None = Field(default=None, ge=0, le=1)
+    corrected_score: float | None = Field(default=None, ge=0, le=1)
+    corrected_score_low: float | None = Field(default=None, ge=0, le=1)
+    corrected_score_high: float | None = Field(default=None, ge=0, le=1)
+    benchmark_score: float | None = Field(default=None, ge=0, le=1)
+    benchmark_low: float | None = Field(default=None, ge=0, le=1)
+    benchmark_high: float | None = Field(default=None, ge=0, le=1)
+    benchmark_source: str | None = None
+    benchmark_peer_count: int = Field(default=0, ge=0)
+    prior_alpha: float | None = Field(default=None, gt=0)
+    prior_beta: float | None = Field(default=None, gt=0)
+    prior_strength: float | None = Field(default=None, gt=0)
+    expected_lift: float | None = None
+    lift_low: float | None = None
+    lift_high: float | None = None
+    probability_better: float | None = Field(default=None, ge=0, le=1)
+    practical_lift_threshold: float = Field(default=0, ge=0, le=1)
+    decision: FundingDecision
+    interval_method: str | None = None
 
 
 class MetricEvidence(BaseModel):
@@ -18,6 +53,10 @@ class MetricEvidence(BaseModel):
     direction: Literal["higher", "lower", "range"]
     passed: bool | None
     evidence_count: int | None = Field(default=None, ge=0)
+    confidence_interval_low: float | None = None
+    confidence_interval_high: float | None = None
+    interval_method: str | None = None
+    comparison_conclusive: bool | None = None
 
 
 class EntityEvidence(BaseModel):
@@ -26,6 +65,7 @@ class EntityEvidence(BaseModel):
     entity_name: str
     metrics: list[MetricEvidence]
     dimensions: dict[str, Any] = Field(default_factory=dict)
+    decision_score: EmpiricalBayesScore | None = None
 
 
 class CampaignEvidencePack(BaseModel):
@@ -48,3 +88,4 @@ class CampaignEvidencePack(BaseModel):
     # Decision-grade allocation-KPI evidence (benchmark + direction-correct pass/fail),
     # so a CampaignAssessor can reproduce the funding decision from the pack alone.
     allocation_kpi: MetricEvidence | None = None
+    decision_score: EmpiricalBayesScore | None = None
