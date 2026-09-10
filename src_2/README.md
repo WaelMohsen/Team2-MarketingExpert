@@ -62,33 +62,51 @@ python -m streamlit run app_v2.py
 The application opens at `http://localhost:8501`. Copy `.env.example` to `.env`
 and set `OPENAI_API_KEY` for the narrative pipeline.
 
-To build a small stratified semantic POC artifact first:
-
-```bash
-python scripts/extract_conversation_signals.py --limit 40
-```
-
-For the Post-Eid walkthrough, target that campaign rather than taking a portfolio
-sample:
+After explicit approval to send a new pilot, build the paid-only schema-v3 pilot
+with ad-message alignment:
 
 ```bash
 python scripts/extract_conversation_signals.py \
-  --campaign-name "Post-Eid Lookalike Test" \
-  --limit 5 \
+  --paid-only \
+  --limit 10 \
   --with-ad-message-match
 ```
 
-After reviewing the five-record POC, rerun without `--limit`; extraction resumes
-and completes the remaining campaign conversations. The optional
-`--with-ad-message-match` flag runs a second structured call that compares the ad
-promise with validated customer needs; it never receives the order outcome.
+The paid-only default destination is the versioned
+`src_2/artifacts/conversation_signals_v3_paid.jsonl`. It excludes organic/direct
+conversations and preserves the v1 and v2 artifacts. Audit the pilot before
+continuing:
 
-The command checkpoints validated records in
-`src_2/artifacts/conversation_signals.jsonl`. Set
-`CONVERSATION_SIGNALS_PATH` to that file before launching Streamlit to include the
-aggregated diagnostics. Omit the variable to run the report without semantic data.
+```bash
+python scripts/audit_conversation_signals.py --expected-records 10
+python scripts/compare_conversation_signal_versions.py
+```
 
-Run the v2 tests with:
+After reviewing the pilot and receiving separate approval for the full external
+run, rerun without `--limit`; extraction resumes and completes the remaining paid
+conversations:
+
+```bash
+python scripts/extract_conversation_signals.py \
+  --paid-only \
+  --with-ad-message-match
+python scripts/audit_conversation_signals.py --expected-records 617
+```
+
+The `--with-ad-message-match` flag runs a second structured call that compares the
+ad promise with validated customer needs; it never receives the order outcome.
+
+Each newly saved signal record includes separate semantic and ad-alignment token
+usage. The extractor also appends one current-invocation summary to the adjacent
+`conversation_signals_v3_paid.usage.jsonl` file, including input, cached input,
+output, reasoning-output tokens, and an estimated USD cost. Validation retries are
+included. Existing pilot records created before usage logging remain readable but
+their historical usage cannot be reconstructed from the artifact.
+
+Set `CONVERSATION_SIGNALS_PATH` to the validated versioned artifact before launching
+Streamlit. Omit the variable to run the report without semantic data.
+
+Run the conversation and pipeline tests with:
 
 ```bash
 pytest tests/test_src_2_scaffold.py tests/test_src_2_pipeline.py tests/test_src_2_conversation_signals.py -v

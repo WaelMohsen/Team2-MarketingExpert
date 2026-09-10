@@ -1,0 +1,64 @@
+version: 1
+
+objectives:
+  OUTCOME_AWARENESS:
+    business_job: Create efficient visibility and measurable response.
+    success_question: Did the campaign create more link response than comparable awareness campaigns?
+    primary_metric: link_ctr
+    primary_numerator: link_clicks
+    primary_denominator: impressions
+    primary_direction: higher
+    efficiency_metric: cpm
+    efficiency_direction: lower
+    minimum_trials: 10
+    minimum_peer_entities: 2
+    fallback_benchmark_group: upper_funnel_link_ctr
+    semantic:
+      metric: ad_alignment
+      definition: The customer's central need is aligned with the ad promise; partial and mismatch are assessed negatives.
+
+  OUTCOME_ENGAGEMENT:
+    business_job: Generate measurable interaction with the ad or content.
+    success_question: Did the campaign create more link response than comparable engagement campaigns?
+    primary_metric: link_ctr
+    primary_numerator: link_clicks
+    primary_denominator: impressions
+    primary_direction: higher
+    efficiency_metric: cpc
+    efficiency_direction: lower
+    minimum_trials: 10
+    minimum_peer_entities: 2
+    fallback_benchmark_group: upper_funnel_link_ctr
+    semantic:
+      metric: meaningful_conversation
+      definition: Commercial inquiry with medium/high specificity, consideration/checkout stage, and aligned/partial ad match.
+
+  OUTCOME_LEADS:
+    semantic:
+      metric: qualified_conversation
+      definition: Commercial inquiry with medium/high specificity and medium/high purchase intent.
+    business_job: Generate WhatsApp leads that progress to a created order.
+    success_question: Did mature WhatsApp conversations progress to orders better than comparable lead campaigns?
+    primary_metric: order_creation_rate
+    primary_numerator: mature_orders_created
+    primary_denominator: mature_conversations
+    primary_direction: higher
+    efficiency_metric: cost_per_created_order
+    efficiency_direction: lower
+    minimum_trials: 10
+    minimum_peer_entities: 2
+
+  OUTCOME_SALES:
+    semantic:
+      metric: checkout_readiness
+      definition: Commercial inquiry with complete sales agreement and customer-accepted next step.
+    business_job: Generate delivered customer outcomes with acceptable revenue return.
+    success_question: Did mature unique customers reach delivery better than comparable sales campaigns?
+    primary_metric: customer_delivered_rate
+    primary_numerator: delivered_customers
+    primary_denominator: mature_unique_customers
+    primary_direction: higher
+    efficiency_metric: net_roas
+    efficiency_direction: higher
+    minimum_trials: 10
+    minimum_peer_entities: 2

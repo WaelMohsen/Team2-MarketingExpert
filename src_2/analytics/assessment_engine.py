@@ -75,21 +75,42 @@ METRIC_METADATA: dict[str, tuple[str, Direction]] = {
     "ad_count": ("Ads tested", "higher"),
     "spend": ("Spend", "higher"),
     "semantic_conversations": ("Semantically assessed conversations", "higher"),
+    "median_first_agent_response_minutes": ("Median first response time", "lower"),
+    "median_agent_response_minutes": ("Median response time", "lower"),
+    "p90_agent_response_minutes": ("90th-percentile response time", "lower"),
+    "customer_turn_response_rate": ("Customer-turn response rate", "higher"),
+    "unanswered_conversation_rate": ("Ended-unanswered conversation rate", "lower"),
     "high_purchase_intent_rate": ("High purchase-intent rate", "higher"),
     "barrier_conversation_rate": ("Conversation barrier rate", "lower"),
     "agent_helpful_rate": ("Helpful agent-conversation rate", "higher"),
     "semantic_coverage_rate": ("Conversation-signal coverage rate", "higher"),
     "high_urgency_rate": ("High-urgency conversation rate", "higher"),
+    "specific_customer_need_rate": ("Specific customer-need rate", "higher"),
+    "high_specificity_rate": ("High-specificity conversation rate", "higher"),
+    "urgency_elicited_by_agent_rate": ("Agent-elicited urgency rate", "higher"),
     "price_sensitive_rate": ("Price-sensitive conversation rate", "lower"),
     "price_blocking_rate": ("Price-blocking conversation rate", "lower"),
     "deal_seeking_rate": ("Deal-seeking conversation rate", "lower"),
+    "financing_discussion_rate": ("Financing-discussion rate", "higher"),
+    "strong_financing_rate": ("Strong financing-intent rate", "higher"),
     "delivery_ready_rate": ("Delivery-ready conversation rate", "higher"),
+    "delivery_elicited_by_agent_rate": ("Agent-elicited delivery rate", "higher"),
     "sales_agreement_rate": ("Sales-agreement conversation rate", "higher"),
     "blocking_barrier_rate": ("Blocking-barrier conversation rate", "lower"),
     "barrier_resolution_rate": ("Barrier-resolution rate", "higher"),
     "competitor_mention_rate": ("Competitor-mention rate", "lower"),
+    "brand_preference_rate": ("Brand-preference rate", "higher"),
+    "feature_priority_rate": ("Feature-priority rate", "higher"),
+    "bulk_purchase_interest_rate": ("Bulk-purchase interest rate", "higher"),
+    "customization_interest_rate": ("Customization interest rate", "higher"),
+    "positive_agent_tone_rate": ("Positive agent-tone rate", "higher"),
+    "mixed_agent_tone_rate": ("Mixed agent-tone rate", "lower"),
+    "negative_agent_tone_rate": ("Negative agent-tone rate", "lower"),
     "next_step_agreement_rate": ("Next-step agreement rate", "higher"),
-    "next_step_completion_rate": ("Agreed next-step completion rate", "higher"),
+    "next_step_order_progression_rate": (
+        "Agreed next step followed by an observed order rate",
+        "higher",
+    ),
 }
 
 RATE_COMPONENTS: dict[str, tuple[str, str]] = {
@@ -108,16 +129,61 @@ RATE_COMPONENTS: dict[str, tuple[str, str]] = {
     ),
     "high_purchase_intent_rate": (
         "high_purchase_intent_conversations",
-        "semantic_conversations",
+        "assessable_purchase_intent_conversations",
     ),
     "barrier_conversation_rate": ("barrier_conversations", "semantic_conversations"),
-    "agent_helpful_rate": ("agent_helpful_conversations", "semantic_conversations"),
-    "high_urgency_rate": ("high_urgency_conversations", "semantic_conversations"),
-    "price_sensitive_rate": ("price_sensitive_conversations", "semantic_conversations"),
-    "price_blocking_rate": ("price_blocking_conversations", "semantic_conversations"),
-    "deal_seeking_rate": ("deal_seeking_conversations", "semantic_conversations"),
-    "delivery_ready_rate": ("delivery_ready_conversations", "semantic_conversations"),
-    "sales_agreement_rate": ("sales_agreement_conversations", "semantic_conversations"),
+    "agent_helpful_rate": (
+        "agent_helpful_conversations",
+        "assessable_agent_helpfulness_conversations",
+    ),
+    "specific_customer_need_rate": (
+        "specific_customer_need_conversations",
+        "assessable_specificity_conversations",
+    ),
+    "high_specificity_rate": (
+        "high_specificity_conversations",
+        "assessable_specificity_conversations",
+    ),
+    "high_urgency_rate": (
+        "high_urgency_conversations",
+        "assessable_urgency_conversations",
+    ),
+    "urgency_elicited_by_agent_rate": (
+        "urgency_elicited_by_agent_conversations",
+        "urgency_present_conversations",
+    ),
+    "price_sensitive_rate": (
+        "price_sensitive_conversations",
+        "assessable_price_sensitivity_conversations",
+    ),
+    "price_blocking_rate": (
+        "price_blocking_conversations",
+        "assessable_price_sensitivity_conversations",
+    ),
+    "deal_seeking_rate": (
+        "deal_seeking_conversations",
+        "assessable_deal_seeking_conversations",
+    ),
+    "financing_discussion_rate": (
+        "financing_discussion_conversations",
+        "assessable_financing_conversations",
+    ),
+    "strong_financing_rate": (
+        "strong_financing_conversations",
+        "assessable_financing_conversations",
+    ),
+    "delivery_ready_rate": (
+        "delivery_ready_conversations",
+        "assessable_delivery_intent_conversations",
+    ),
+    "delivery_elicited_by_agent_rate": (
+        "delivery_elicited_by_agent_conversations",
+        "delivery_present_conversations",
+    ),
+    "sales_agreement_rate": (
+        "sales_agreement_conversations",
+        "assessable_sales_agreement_conversations",
+    ),
     "blocking_barrier_rate": ("blocking_barrier_conversations", "semantic_conversations"),
     "barrier_resolution_rate": (
         "resolved_barrier_conversations",
@@ -127,13 +193,49 @@ RATE_COMPONENTS: dict[str, tuple[str, str]] = {
         "competitor_mention_conversations",
         "semantic_conversations",
     ),
-    "next_step_agreement_rate": (
-        "next_step_agreed_conversations",
+    "brand_preference_rate": (
+        "brand_preference_conversations",
         "semantic_conversations",
     ),
-    "next_step_completion_rate": (
-        "next_step_observed_conversations",
+    "feature_priority_rate": (
+        "feature_priority_conversations",
+        "semantic_conversations",
+    ),
+    "bulk_purchase_interest_rate": (
+        "bulk_purchase_interest_conversations",
+        "semantic_conversations",
+    ),
+    "customization_interest_rate": (
+        "customization_interest_conversations",
+        "semantic_conversations",
+    ),
+    "positive_agent_tone_rate": (
+        "positive_agent_tone_conversations",
+        "assessable_agent_tone_conversations",
+    ),
+    "mixed_agent_tone_rate": (
+        "mixed_agent_tone_conversations",
+        "assessable_agent_tone_conversations",
+    ),
+    "negative_agent_tone_rate": (
+        "negative_agent_tone_conversations",
+        "assessable_agent_tone_conversations",
+    ),
+    "next_step_agreement_rate": (
         "next_step_agreed_conversations",
+        "assessable_next_step_agreement_conversations",
+    ),
+    "next_step_order_progression_rate": (
+        "next_step_order_progression_conversations",
+        "next_step_agreed_conversations",
+    ),
+    "customer_turn_response_rate": (
+        "answered_customer_turns",
+        "response_eligible_turns",
+    ),
+    "unanswered_conversation_rate": (
+        "unanswered_conversations",
+        "response_eligible_conversations",
     ),
 }
 
@@ -141,17 +243,30 @@ SEMANTIC_METRICS = {
     "high_purchase_intent_rate",
     "barrier_conversation_rate",
     "agent_helpful_rate",
+    "specific_customer_need_rate",
+    "high_specificity_rate",
     "high_urgency_rate",
+    "urgency_elicited_by_agent_rate",
     "price_sensitive_rate",
     "price_blocking_rate",
     "deal_seeking_rate",
+    "financing_discussion_rate",
+    "strong_financing_rate",
     "delivery_ready_rate",
+    "delivery_elicited_by_agent_rate",
     "sales_agreement_rate",
     "blocking_barrier_rate",
     "barrier_resolution_rate",
     "competitor_mention_rate",
+    "brand_preference_rate",
+    "feature_priority_rate",
+    "bulk_purchase_interest_rate",
+    "customization_interest_rate",
+    "positive_agent_tone_rate",
+    "mixed_agent_tone_rate",
+    "negative_agent_tone_rate",
     "next_step_agreement_rate",
-    "next_step_completion_rate",
+    "next_step_order_progression_rate",
 }
 
 OUTCOME_METRICS = {
@@ -391,7 +506,9 @@ def _metric_evidence(
     interval_comparison = _compare_interval(
         actual, benchmark, resolved_direction, low, high
     )
-    if metric in {"customer_delivered_rate", "customer_negative_outcome_rate"}:
+    if metric in RATE_COMPONENTS:
+        evidence_count_field = RATE_COMPONENTS[metric][1]
+    elif metric in {"customer_delivered_rate", "customer_negative_outcome_rate"}:
         evidence_count_field = "mature_unique_customers"
     elif metric in OUTCOME_METRICS:
         evidence_count_field = "mature_conversations"
@@ -533,21 +650,39 @@ def _entity_evidence(
         "cost_per_delivered_order",
         "negative_outcome_rate",
         "semantic_conversations",
+        "median_first_agent_response_minutes",
+        "median_agent_response_minutes",
+        "p90_agent_response_minutes",
+        "customer_turn_response_rate",
+        "unanswered_conversation_rate",
         "high_purchase_intent_rate",
         "barrier_conversation_rate",
         "agent_helpful_rate",
         "semantic_coverage_rate",
         "high_urgency_rate",
+        "specific_customer_need_rate",
+        "high_specificity_rate",
+        "urgency_elicited_by_agent_rate",
         "price_sensitive_rate",
         "price_blocking_rate",
         "deal_seeking_rate",
+        "financing_discussion_rate",
+        "strong_financing_rate",
         "delivery_ready_rate",
+        "delivery_elicited_by_agent_rate",
         "sales_agreement_rate",
         "blocking_barrier_rate",
         "barrier_resolution_rate",
         "competitor_mention_rate",
+        "brand_preference_rate",
+        "feature_priority_rate",
+        "bulk_purchase_interest_rate",
+        "customization_interest_rate",
+        "positive_agent_tone_rate",
+        "mixed_agent_tone_rate",
+        "negative_agent_tone_rate",
         "next_step_agreement_rate",
-        "next_step_completion_rate",
+        "next_step_order_progression_rate",
     ]
     evidence = [
         _metric_evidence(frame, row, metric)
@@ -651,6 +786,9 @@ def _build_campaign_pack(
     if semantic_count:
         limitations.append(
             f"Semantic summaries cover {semantic_count} validated LLM classifications and are diagnostic only; they do not determine funding."
+        )
+        limitations.append(
+            "Semantic rates use their assessable counts as denominators; unknown and not-assessable classifications are reported but are not treated as negative cases."
         )
     else:
         limitations.append(

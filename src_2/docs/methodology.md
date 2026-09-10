@@ -54,13 +54,22 @@ records, attribution, structured outcomes, revenue, and order status stay outsid
 the API request. Pydantic Structured Outputs produce joinable JSONL records with
 prompt/model provenance; attribution is added deterministically afterward.
 
-ConversationSignalsV2 adds urgency, price sensitivity, deal seeking, delivery
-readiness, sales agreement, barrier severity and resolution, competitor mentions,
-value drivers, explicit exit reasons, and agreed next steps. Structured outcomes
-determine whether an agreed step actually completed. Unknown and not-assessable
-labels are never counted as failures. These fields explain a deterministic funding
-decision and generate tests; they do not override it without a human-reviewed
-validation set.
+ConversationSignalsV3 retains the v2 fields and adds customer specificity,
+financing intent, agent-elicitation flags for urgency and delivery, controlled
+commercial traits, richer agent-tone labels, and product-quality, timing, and
+financing barrier types. Every diagnostic rate exposes its raw numerator and
+assessable denominator; `unknown` and `not_assessable` labels are excluded rather
+than counted as failures. Structured outcomes determine whether an agreed step was
+followed by an observed order. This is an order-progression proxy, not proof that
+every promised follow-up was completed. These fields explain a deterministic
+funding decision and generate tests; they do not override it without a
+human-reviewed validation set.
+
+Agent responsiveness is not an LLM opinion. Timestamped customer turns form a
+separate response-event fact table. Scorecards report first-response medians,
+overall response medians and p90s, answered customer turns, and conversations that
+ended with an unanswered customer turn. No good/bad SLA label is assigned until the
+business provides an approved service threshold.
 
 Ad-message match is a separate semantic evaluation. It compares the ad headline,
 message, theme, and angle with the validated customer need signals, never with the

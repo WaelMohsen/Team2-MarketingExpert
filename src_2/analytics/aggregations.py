@@ -41,6 +41,16 @@ OUTCOME_COLUMNS = [
     "pending_value",
     "inbound_messages",
     "outbound_messages",
+    "response_eligible_turns",
+    "answered_customer_turns",
+    "unanswered_customer_turns",
+]
+
+RESPONSE_TIMING_COLUMNS = [
+    "median_first_agent_response_minutes",
+    "p90_first_agent_response_minutes",
+    "median_agent_response_minutes",
+    "p90_agent_response_minutes",
 ]
 
 
@@ -273,6 +283,9 @@ def _aggregate_outcomes(data: CanonicalCycleData, level: str) -> pd.DataFrame:
         avg_message_count=("message_count", "mean"),
         inbound_messages=("inbound_messages", "sum"),
         outbound_messages=("outbound_messages", "sum"),
+        response_eligible_turns=("response_eligible_turns", "sum"),
+        answered_customer_turns=("answered_customer_turns", "sum"),
+        unanswered_customer_turns=("unanswered_customer_turns", "sum"),
     )
 
     mature = frame[frame["is_mature_outcome"]].copy()
@@ -300,6 +313,54 @@ def _aggregate_outcomes(data: CanonicalCycleData, level: str) -> pd.DataFrame:
         negative_outcome_customers=("customer_negative", "sum"),
     )
     return aggregated.merge(customer_summary, on="entity_id", how="left")
+
+
+def _aggregate_responsiveness(
+    data: CanonicalCycleData, level: str
+) -> pd.DataFrame:
+    frame = data.response_events.copy()
+    if frame.empty:
+        return pd.DataFrame(columns=["entity_id"])
+    frame["entity_id"] = _entity_ids(frame, level)
+    frame = frame.dropna(subset=["entity_id"])
+    if frame.empty:
+        return pd.DataFrame(columns=["entity_id"])
+
+    frame["response_minutes"] = pd.to_numeric(
+        frame["response_minutes"], errors="coerce"
+    )
+    conversation_summary = frame.groupby(
+        ["entity_id", "conversation_id"], as_index=False
+    ).agg(
+        conversation_answered=("answered", "max"),
+        conversation_has_unanswered=("answered", lambda values: (~values).any()),
+    )
+    first_turns = frame.loc[frame["customer_turn_index"].eq(1)].copy()
+
+    summary = frame.groupby("entity_id", as_index=False).agg(
+        response_eligible_conversations=("conversation_id", "nunique"),
+        median_agent_response_minutes=("response_minutes", "median"),
+        p90_agent_response_minutes=(
+            "response_minutes",
+            lambda values: values.dropna().quantile(0.90),
+        ),
+    )
+    conversation_counts = conversation_summary.groupby(
+        "entity_id", as_index=False
+    ).agg(
+        answered_conversations=("conversation_answered", "sum"),
+        unanswered_conversations=("conversation_has_unanswered", "sum"),
+    )
+    first_response = first_turns.groupby("entity_id", as_index=False).agg(
+        median_first_agent_response_minutes=("response_minutes", "median"),
+        p90_first_agent_response_minutes=(
+            "response_minutes",
+            lambda values: values.dropna().quantile(0.90),
+        ),
+    )
+    return summary.merge(conversation_counts, on="entity_id", how="left").merge(
+        first_response, on="entity_id", how="left"
+    )
 
 
 def _aggregate_products(data: CanonicalCycleData, level: str) -> pd.DataFrame:
@@ -408,6 +469,13 @@ def _add_kpis(scorecard: pd.DataFrame) -> pd.DataFrame:
     scorecard["observed_conversations_per_day"] = _safe_divide(
         scorecard["observed_conversations"], scorecard["period_days"]
     )
+    scorecard["customer_turn_response_rate"] = _safe_divide(
+        scorecard["answered_customer_turns"], scorecard["response_eligible_turns"]
+    )
+    scorecard["unanswered_conversation_rate"] = _safe_divide(
+        scorecard["unanswered_conversations"],
+        scorecard["response_eligible_conversations"],
+    )
     scorecard["delivered_rate_pct"] = scorecard["delivered_rate"] * 100
     scorecard["negative_outcome_rate_pct"] = (
         scorecard["negative_outcome_rate"] * 100
@@ -471,6 +539,7 @@ def build_level_scorecard(
         _dimensions(data, level)
         .merge(_aggregate_media(data, level), on="entity_id", how="left")
         .merge(_aggregate_outcomes(data, level), on="entity_id", how="left")
+        .merge(_aggregate_responsiveness(data, level), on="entity_id", how="left")
         .merge(_aggregate_products(data, level), on="entity_id", how="left")
         .merge(_setup_counts(data, level), on="entity_id", how="left")
     )
@@ -494,11 +563,18 @@ def build_level_scorecard(
         "ad_count",
         "adset_count",
         "unique_creatives",
+        "response_eligible_conversations",
+        "answered_conversations",
+        "unanswered_conversations",
     ]
     for column in numeric:
         if column not in scorecard:
             scorecard[column] = 0.0
         scorecard[column] = pd.to_numeric(scorecard[column], errors="coerce").fillna(0)
+    for column in RESPONSE_TIMING_COLUMNS:
+        if column not in scorecard:
+            scorecard[column] = pd.NA
+        scorecard[column] = pd.to_numeric(scorecard[column], errors="coerce")
     scorecard["entity_level"] = level
     scorecard = _add_kpis(scorecard)
     if conversation_signals:
@@ -508,22 +584,52 @@ def build_level_scorecard(
         scorecard = scorecard.merge(semantic, on="entity_id", how="left")
         semantic_counts = [
             "semantic_conversations",
+            "assessable_purchase_intent_conversations",
             "high_purchase_intent_conversations",
             "barrier_conversations",
+            "assessable_agent_helpfulness_conversations",
             "agent_helpful_conversations",
+            "assessable_specificity_conversations",
+            "specific_customer_need_conversations",
+            "high_specificity_conversations",
+            "assessable_urgency_conversations",
+            "urgency_present_conversations",
             "high_urgency_conversations",
+            "urgency_elicited_by_agent_conversations",
+            "assessable_price_sensitivity_conversations",
             "price_sensitive_conversations",
             "price_blocking_conversations",
+            "assessable_deal_seeking_conversations",
             "deal_seeking_conversations",
             "deal_required_conversations",
+            "assessable_financing_conversations",
+            "financing_discussion_conversations",
+            "strong_financing_conversations",
+            "assessable_delivery_intent_conversations",
+            "delivery_present_conversations",
             "delivery_ready_conversations",
+            "delivery_elicited_by_agent_conversations",
+            "assessable_sales_agreement_conversations",
             "sales_agreement_conversations",
             "blocking_barrier_conversations",
             "assessable_barrier_conversations",
             "resolved_barrier_conversations",
             "competitor_mention_conversations",
+            "brand_preference_conversations",
+            "feature_priority_conversations",
+            "bulk_purchase_interest_conversations",
+            "customization_interest_conversations",
+            "assessable_agent_tone_conversations",
+            "positive_agent_tone_conversations",
+            "mixed_agent_tone_conversations",
+            "negative_agent_tone_conversations",
+            "assessable_next_step_agreement_conversations",
             "next_step_agreed_conversations",
-            "next_step_observed_conversations",
+            "next_step_order_progression_conversations",
+            "assessable_ad_message_match_conversations",
+            "ad_message_aligned_conversations",
+            "ad_message_partial_conversations",
+            "ad_message_mismatch_conversations",
         ]
         for column in semantic_counts:
             scorecard[column] = pd.to_numeric(

@@ -51,9 +51,12 @@ class ConversationStage(str, Enum):
 class BarrierType(str, Enum):
     PRICE = "price"
     PRODUCT_AVAILABILITY = "product_availability"
+    PRODUCT_QUALITY = "product_quality"
     PRODUCT_FIT = "product_fit"
     DELIVERY = "delivery"
+    TIMING = "timing"
     PAYMENT = "payment"
+    FINANCING = "financing"
     PROMOTION_CONFUSION = "promotion_confusion"
     TRUST = "trust"
     AGENT_EXPERIENCE = "agent_experience"
@@ -95,6 +98,22 @@ class AgreementLevel(str, Enum):
     NONE = "none"
     PARTIAL = "partial"
     COMPLETE = "complete"
+    UNKNOWN = "unknown"
+
+
+class SpecificityLevel(str, Enum):
+    NONE = "none"
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+    UNKNOWN = "unknown"
+
+
+class FinancingLevel(str, Enum):
+    NONE = "none"
+    INQUIRY = "inquiry"
+    CONSIDERATION = "consideration"
+    STRONG = "strong"
     UNKNOWN = "unknown"
 
 
@@ -153,6 +172,44 @@ class AgentRating(str, Enum):
     NOT_ASSESSABLE = "not_assessable"
 
 
+class AgentToneLabel(str, Enum):
+    PROFESSIONAL = "professional"
+    FRIENDLY = "friendly"
+    EMPATHETIC = "empathetic"
+    NEUTRAL = "neutral"
+    PERSUASIVE = "persuasive"
+    CONCISE = "concise"
+    INFORMATIVE = "informative"
+    APOLOGETIC = "apologetic"
+    IMPATIENT = "impatient"
+    DISMISSIVE = "dismissive"
+    AGGRESSIVE = "aggressive"
+    CONFUSING = "confusing"
+    OTHER = "other"
+
+
+class AgentToneQuality(str, Enum):
+    POSITIVE = "positive"
+    NEUTRAL = "neutral"
+    NEGATIVE = "negative"
+    MIXED = "mixed"
+    NOT_ASSESSABLE = "not_assessable"
+
+
+class CommercialTrait(str, Enum):
+    BRAND_PREFERENCE = "brand_preference"
+    FEATURE_PRIORITY = "feature_priority"
+    BULK_PURCHASE_INTEREST = "bulk_purchase_interest"
+    CUSTOMIZATION_INTEREST = "customization_interest"
+
+
+class CommercialTraitStrength(str, Enum):
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+    UNKNOWN = "unknown"
+
+
 class SemanticMessage(StrictModel):
     message_index: int = Field(ge=0)
     role: MessageRole
@@ -183,6 +240,7 @@ class BarrierSignal(StrictModel):
 class UrgencySignal(StrictModel):
     level: UrgencyLevel
     evidence_message_indexes: list[int]
+    elicited_by_agent: bool | None = None
 
 
 class PriceSensitivitySignal(StrictModel):
@@ -198,11 +256,29 @@ class DealSeekingSignal(StrictModel):
 class DeliveryIntentSignal(StrictModel):
     level: DeliveryIntentLevel
     evidence_message_indexes: list[int]
+    elicited_by_agent: bool | None = None
 
 
 class SalesAgreementSignal(StrictModel):
     level: AgreementLevel
     agreed_elements: list[str]
+    evidence_message_indexes: list[int]
+
+
+class SpecificitySignal(StrictModel):
+    level: SpecificityLevel
+    evidence_message_indexes: list[int]
+
+
+class FinancingSignal(StrictModel):
+    level: FinancingLevel
+    evidence_message_indexes: list[int]
+
+
+class CommercialTraitSignal(StrictModel):
+    trait: CommercialTrait
+    strength: CommercialTraitStrength
+    detail: str | None
     evidence_message_indexes: list[int]
 
 
@@ -255,6 +331,12 @@ class AgentEvaluation(StrictModel):
     objection_handling: AgentRating
     progression: AgentRating
     tone: AgentRating
+    evidence_message_indexes: list[int]
+
+
+class AgentToneSignal(StrictModel):
+    labels: list[AgentToneLabel]
+    quality: AgentToneQuality
     evidence_message_indexes: list[int]
 
 
@@ -311,6 +393,24 @@ class ConversationSignals(StrictModel):
             agreed=None, next_step=None, evidence_message_indexes=[]
         )
     )
+    specificity: SpecificitySignal = Field(
+        default_factory=lambda: SpecificitySignal(
+            level=SpecificityLevel.UNKNOWN, evidence_message_indexes=[]
+        )
+    )
+    financing: FinancingSignal = Field(
+        default_factory=lambda: FinancingSignal(
+            level=FinancingLevel.UNKNOWN, evidence_message_indexes=[]
+        )
+    )
+    commercial_traits: list[CommercialTraitSignal] = Field(default_factory=list)
+    agent_tone: AgentToneSignal = Field(
+        default_factory=lambda: AgentToneSignal(
+            labels=[],
+            quality=AgentToneQuality.NOT_ASSESSABLE,
+            evidence_message_indexes=[],
+        )
+    )
 
 
 class ConversationAttribution(StrictModel):
@@ -322,9 +422,27 @@ class ConversationAttribution(StrictModel):
     audience_type: str | None
 
 
+class LLMTokenUsage(StrictModel):
+    """API-reported token usage plus an auditable pricing snapshot."""
+
+    request_count: int = Field(default=0, ge=0)
+    input_tokens: int = Field(default=0, ge=0)
+    cached_input_tokens: int = Field(default=0, ge=0)
+    output_tokens: int = Field(default=0, ge=0)
+    reasoning_output_tokens: int = Field(default=0, ge=0)
+    total_tokens: int = Field(default=0, ge=0)
+    model: str | None = None
+    input_usd_per_million: float | None = Field(default=None, ge=0)
+    cached_input_usd_per_million: float | None = Field(default=None, ge=0)
+    output_usd_per_million: float | None = Field(default=None, ge=0)
+    pricing_as_of: str | None = None
+    estimated_cost_usd: float | None = Field(default=None, ge=0)
+
+
 class ConversationSignalRecord(StrictModel):
     conversation_id: str
     attribution: ConversationAttribution
+    input_projection_version: str = "semantic-input-v1"
     prompt_version: str
     prompt_sha256: str
     model: str
@@ -341,3 +459,5 @@ class ConversationSignalRecord(StrictModel):
     ad_match_prompt_version: str | None = None
     ad_match_prompt_sha256: str | None = None
     ad_match_model: str | None = None
+    semantic_usage: LLMTokenUsage = Field(default_factory=LLMTokenUsage)
+    ad_match_usage: LLMTokenUsage = Field(default_factory=LLMTokenUsage)

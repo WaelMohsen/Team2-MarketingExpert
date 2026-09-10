@@ -1,0 +1,7 @@
+version: 1
+budget_units: 100.0
+currency: units
+allocation_mode: score_based
+objective_envelope_basis: previous_cycle_spend_share
+campaign_weight: primary_probability_x_semantic_lower_bound
+concentration_cap: null

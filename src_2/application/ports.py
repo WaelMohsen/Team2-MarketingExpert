@@ -13,6 +13,7 @@ from src_2.contracts import (
     CampaignInsight,
     ConversationSignals,
     DataQualityReport,
+    LLMTokenUsage,
     PortfolioInsight,
     StakeholderReport,
     SemanticConversationInput,
@@ -66,6 +67,7 @@ class ConversationSignalExtractor(Protocol):
     model: str
     prompt_version: str
     prompt_sha256: str
+    last_usage: LLMTokenUsage
 
     def extract(
         self, model_input: SemanticConversationInput
@@ -78,6 +80,7 @@ class AdMessageMatchEvaluator(Protocol):
     model: str
     prompt_version: str
     prompt_sha256: str
+    last_usage: LLMTokenUsage
 
     def evaluate(
         self, ad_context: AdMessageContext, signals: ConversationSignals

@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable, Iterable
 
@@ -13,13 +14,18 @@ from src_2.contracts import (
     AdMessageContext,
     ConversationAttribution,
     ConversationSignalRecord,
+    LLMTokenUsage,
 )
 from src_2.ingestion import load_sample2, normalize_cycle
 from src_2.intelligence import (
     OpenAIConversationSignalExtractor,
     build_semantic_input,
     build_signal_record,
+    merge_token_usage,
+    validate_evidence_message_indexes,
+    validate_semantic_evidence_rules,
 )
+from src_2.intelligence.conversation_signals import SEMANTIC_INPUT_VERSION
 from src_2.paths import ARTIFACT_DIR
 from src_2.application.ports import AdMessageMatchEvaluator, ConversationSignalExtractor
 
@@ -31,6 +37,13 @@ class ConversationExtractionSummary:
     extracted: int
     skipped: int
     failed: int
+    usage_log_path: Path | None = None
+    semantic_usage: LLMTokenUsage = field(default_factory=LLMTokenUsage)
+    ad_match_usage: LLMTokenUsage = field(default_factory=LLMTokenUsage)
+
+    @property
+    def total_usage(self) -> LLMTokenUsage:
+        return merge_token_usage(self.semantic_usage, self.ad_match_usage)
 
 
 def load_conversation_signal_records(
@@ -127,6 +140,7 @@ def extract_conversation_signals(
     limit: int | None = None,
     campaign_id: str | None = None,
     campaign_name: str | None = None,
+    paid_only: bool = False,
     resume: bool = True,
     extractor: ConversationSignalExtractor | None = None,
     ad_match_evaluator: AdMessageMatchEvaluator | None = None,
@@ -152,6 +166,15 @@ def extract_conversation_signals(
         selected_campaign_id = str(matches[0])
 
     conversations = payload.conversations
+    if paid_only:
+        paid_ids = set(
+            canonical.conversations.loc[
+                canonical.conversations["campaign_id"].notna(), "conversation_id"
+            ]
+        )
+        conversations = [
+            item for item in conversations if str(item.get("id")) in paid_ids
+        ]
     if selected_campaign_id:
         eligible_ids = set(
             canonical.conversations.loc[
@@ -167,9 +190,12 @@ def extract_conversation_signals(
                 f"No conversations found for campaign {selected_campaign_id!r}"
             )
     selected = _stratified_selection(conversations, limit)
-    destination = Path(
-        output_path or ARTIFACT_DIR / "conversation_signals.jsonl"
-    ).expanduser().resolve()
+    default_name = (
+        "conversation_signals_v3_paid.jsonl"
+        if paid_only
+        else "conversation_signals_v3_all.jsonl"
+    )
+    destination = Path(output_path or ARTIFACT_DIR / default_name).expanduser().resolve()
     destination.parent.mkdir(parents=True, exist_ok=True)
     failure_path = destination.with_suffix(".errors.jsonl")
     signal_extractor = extractor or OpenAIConversationSignalExtractor()
@@ -179,6 +205,7 @@ def extract_conversation_signals(
     completed = {
         (
             record.conversation_id,
+            record.input_projection_version,
             record.prompt_sha256,
             record.model,
             record.ad_match_prompt_sha256 or "",
@@ -188,6 +215,8 @@ def extract_conversation_signals(
     extracted = 0
     skipped = 0
     failed = 0
+    semantic_usage_total = LLMTokenUsage()
+    ad_match_usage_total = LLMTokenUsage()
     mode = "a" if resume else "w"
     with destination.open(mode, encoding="utf-8") as output, failure_path.open(
         mode, encoding="utf-8"
@@ -196,6 +225,7 @@ def extract_conversation_signals(
             conversation_id = str(conversation.get("id") or "")
             key = (
                 conversation_id,
+                SEMANTIC_INPUT_VERSION,
                 signal_extractor.prompt_sha256,
                 signal_extractor.model,
                 match_evaluator.prompt_sha256 if match_evaluator else "",
@@ -209,17 +239,40 @@ def extract_conversation_signals(
                 continue
             if progress:
                 progress(f"[{position}/{len(selected)}] {conversation_id}: extracting")
+            semantic_usage = LLMTokenUsage()
+            ad_match_usage = LLMTokenUsage()
+            semantic_invoked = False
+            ad_match_invoked = False
             try:
                 row = canonical_lookup.loc[conversation_id]
                 model_input = build_semantic_input(conversation)
+                semantic_invoked = True
                 signals = signal_extractor.extract(model_input)
+                semantic_usage = getattr(
+                    signal_extractor, "last_usage", LLMTokenUsage()
+                )
+                valid_indexes = set(range(len(model_input.messages)))
+                validate_evidence_message_indexes(
+                    signals,
+                    valid_indexes,
+                    context="Conversation signals",
+                )
+                validate_semantic_evidence_rules(signals, model_input)
                 attribution = _attribution(row)
                 context = _ad_context(attribution.creative_id, creative_lookup)
-                ad_message_match = (
-                    match_evaluator.evaluate(context, signals)
-                    if match_evaluator and context
-                    else None
-                )
+                ad_message_match = None
+                if match_evaluator and context:
+                    ad_match_invoked = True
+                    ad_message_match = match_evaluator.evaluate(context, signals)
+                    ad_match_usage = getattr(
+                        match_evaluator, "last_usage", LLMTokenUsage()
+                    )
+                if ad_message_match is not None:
+                    validate_evidence_message_indexes(
+                        ad_message_match,
+                        valid_indexes,
+                        context="Ad-message match",
+                    )
                 record = build_signal_record(
                     conversation_id=conversation_id,
                     attribution=attribution,
@@ -227,17 +280,40 @@ def extract_conversation_signals(
                     extractor=signal_extractor,
                     ad_message_match=ad_message_match,
                     ad_match_evaluator=match_evaluator if context else None,
+                    semantic_usage=semantic_usage,
+                    ad_match_usage=ad_match_usage,
                 )
                 _write_json_line(output, record.model_dump(mode="json"))
+                semantic_usage_total = merge_token_usage(
+                    semantic_usage_total, semantic_usage
+                )
+                ad_match_usage_total = merge_token_usage(
+                    ad_match_usage_total, ad_match_usage
+                )
                 completed.add(key)
                 extracted += 1
                 if progress:
                     progress(f"[{position}/{len(selected)}] {conversation_id}: saved")
             except Exception as exc:
+                if semantic_invoked:
+                    semantic_usage = getattr(
+                        signal_extractor, "last_usage", semantic_usage
+                    )
+                if ad_match_invoked:
+                    ad_match_usage = getattr(
+                        match_evaluator, "last_usage", ad_match_usage
+                    )
+                semantic_usage_total = merge_token_usage(
+                    semantic_usage_total, semantic_usage
+                )
+                ad_match_usage_total = merge_token_usage(
+                    ad_match_usage_total, ad_match_usage
+                )
                 _write_json_line(
                     failures,
                     {
                         "conversation_id": conversation_id,
+                        "input_projection_version": SEMANTIC_INPUT_VERSION,
                         "prompt_sha256": signal_extractor.prompt_sha256,
                         "model": signal_extractor.model,
                         "ad_match_prompt_sha256": (
@@ -245,6 +321,8 @@ def extract_conversation_signals(
                         ),
                         "error_type": type(exc).__name__,
                         "error": str(exc),
+                        "semantic_usage": semantic_usage.model_dump(mode="json"),
+                        "ad_match_usage": ad_match_usage.model_dump(mode="json"),
                     },
                 )
                 failed += 1
@@ -253,10 +331,31 @@ def extract_conversation_signals(
                         f"[{position}/{len(selected)}] {conversation_id}: failed ({type(exc).__name__})"
                     )
 
-    return ConversationExtractionSummary(
+    usage_log_path = destination.with_suffix(".usage.jsonl")
+    summary = ConversationExtractionSummary(
         output_path=destination,
         selected=len(selected),
         extracted=extracted,
         skipped=skipped,
         failed=failed,
+        usage_log_path=usage_log_path,
+        semantic_usage=semantic_usage_total,
+        ad_match_usage=ad_match_usage_total,
     )
+    with usage_log_path.open("a" if resume else "w", encoding="utf-8") as usage_log:
+        _write_json_line(
+            usage_log,
+            {
+                "logged_at": datetime.now().astimezone().isoformat(),
+                "output_path": str(destination),
+                "selected": summary.selected,
+                "extracted": summary.extracted,
+                "skipped": summary.skipped,
+                "failed": summary.failed,
+                "scope": "current_invocation_only",
+                "semantic_usage": summary.semantic_usage.model_dump(mode="json"),
+                "ad_match_usage": summary.ad_match_usage.model_dump(mode="json"),
+                "total_usage": summary.total_usage.model_dump(mode="json"),
+            },
+        )
+    return summary

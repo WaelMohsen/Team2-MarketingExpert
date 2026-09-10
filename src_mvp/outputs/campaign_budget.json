@@ -1,0 +1,264 @@
+{
+  "allocations": [
+    {
+      "campaign_id": "120209876543220001",
+      "campaign_name": "Always-On Premium Acquisition",
+      "objective": "OUTCOME_SALES",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 82.35595462841007,
+      "allocation_weight": 0.040118202907366736,
+      "recommended_budget_units": 3.303972898412444,
+      "recommended_budget_share": 0.03303972898412444,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.1324,
+      "semantic_priority": 0.5488516085326339,
+      "allocation_priority": 0.07266795296972073,
+      "previous_spend_budget_units": 34.996963765849124,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220002",
+      "campaign_name": "Awareness Boost January",
+      "objective": "OUTCOME_AWARENESS",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 3.7221610589223317,
+      "allocation_weight": 0.3204691374553411,
+      "recommended_budget_units": 1.1928377440226987,
+      "recommended_budget_share": 0.011928377440226987,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.1224,
+      "semantic_priority": 0.12629489787633416,
+      "allocation_priority": 0.0154584955000633,
+      "previous_spend_budget_units": 1.4832304616567427,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "SAME_OBJECTIVE_PEERS_INSUFFICIENT",
+        "FALLBACK_TO_SHARED_PRIMARY_KPI_GROUP",
+        "FALLBACK_ACTION_CAPPED_AT_TEST",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220003",
+      "campaign_name": "Pre-Ramadan Bundle Promo",
+      "objective": "OUTCOME_LEADS",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 13.221492162667772,
+      "allocation_weight": 0.28215557565580146,
+      "recommended_budget_units": 3.730517732186193,
+      "recommended_budget_share": 0.03730517732186193,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.4204,
+      "semantic_priority": 0.6981202251331627,
+      "allocation_priority": 0.2934897426459816,
+      "previous_spend_budget_units": 3.469947794869693,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220004",
+      "campaign_name": "January Trial Bundle Test",
+      "objective": "OUTCOME_ENGAGEMENT",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 0.700392149999811,
+      "allocation_weight": 1.0,
+      "recommended_budget_units": 0.700392149999811,
+      "recommended_budget_share": 0.00700392149999811,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.9436,
+      "semantic_priority": 0.23923670608744013,
+      "allocation_priority": 0.2257437558641085,
+      "previous_spend_budget_units": 0.700392149999811,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "SAME_OBJECTIVE_PEERS_INSUFFICIENT",
+        "FALLBACK_TO_SHARED_PRIMARY_KPI_GROUP",
+        "FALLBACK_ACTION_CAPPED_AT_TEST",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220005",
+      "campaign_name": "Ramadan Suhoor Specials",
+      "objective": "OUTCOME_SALES",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 82.35595462841007,
+      "allocation_weight": 0.23830933581419828,
+      "recommended_budget_units": 19.626192847840652,
+      "recommended_budget_share": 0.1962619284784065,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.6892,
+      "semantic_priority": 0.626321389193496,
+      "allocation_priority": 0.43166070143215746,
+      "previous_spend_budget_units": 8.027694711254977,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220006",
+      "campaign_name": "Ramadan Iftar Premium Bundles",
+      "objective": "OUTCOME_SALES",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 82.35595462841007,
+      "allocation_weight": 0.10849584563763419,
+      "recommended_budget_units": 8.935278940703984,
+      "recommended_budget_share": 0.08935278940703985,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.3278,
+      "semantic_priority": 0.5995226780914636,
+      "allocation_priority": 0.19652353387838178,
+      "previous_spend_budget_units": 14.193104491995815,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220007",
+      "campaign_name": "Eid Gifting Premium",
+      "objective": "OUTCOME_SALES",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 82.35595462841007,
+      "allocation_weight": 0.15976442934361187,
+      "recommended_budget_units": 13.157552094256326,
+      "recommended_budget_share": 0.13157552094256325,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.511,
+      "semantic_priority": 0.5663183685758885,
+      "allocation_priority": 0.289388686342279,
+      "previous_spend_budget_units": 3.722889417041054,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220008",
+      "campaign_name": "Post-Eid Lookalike Test",
+      "objective": "OUTCOME_LEADS",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 13.221492162667772,
+      "allocation_weight": 0.2933555257806659,
+      "recommended_budget_units": 3.878597784984358,
+      "recommended_budget_share": 0.038785977849843584,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.4354,
+      "semantic_priority": 0.7008258931439598,
+      "allocation_priority": 0.3051395938748801,
+      "previous_spend_budget_units": 1.9295573790085299,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220009",
+      "campaign_name": "Summer Premium Launch",
+      "objective": "OUTCOME_SALES",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 82.35595462841007,
+      "allocation_weight": 0.3090856390200843,
+      "recommended_budget_units": 25.455042863431196,
+      "recommended_budget_share": 0.25455042863431193,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.8722,
+      "semantic_priority": 0.6418953070324196,
+      "allocation_priority": 0.5598610867936763,
+      "previous_spend_budget_units": 17.051992141488213,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220010",
+      "campaign_name": "Lookalike Scale Cycle 3",
+      "objective": "OUTCOME_LEADS",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 13.221492162667772,
+      "allocation_weight": 0.42448889856353256,
+      "recommended_budget_units": 5.61237664549722,
+      "recommended_budget_share": 0.056123766454972204,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.634,
+      "semantic_priority": 0.6964362520392913,
+      "allocation_priority": 0.44154058379291067,
+      "previous_spend_budget_units": 7.821986988789549,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220011",
+      "campaign_name": "Mid-Year Sale",
+      "objective": "OUTCOME_SALES",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 82.35595462841007,
+      "allocation_weight": 0.14422654727710454,
+      "recommended_budget_units": 11.877914983765463,
+      "recommended_budget_share": 0.11877914983765463,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.4774,
+      "semantic_priority": 0.5472228807164069,
+      "allocation_priority": 0.26124420325401265,
+      "previous_spend_budget_units": 4.363310100780899,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    },
+    {
+      "campaign_id": "120209876543220012",
+      "campaign_name": "Summer Retention Push",
+      "objective": "OUTCOME_AWARENESS",
+      "action": "keep_as_test",
+      "budget_pool": "score_based",
+      "objective_envelope_units": 3.7221610589223317,
+      "allocation_weight": 0.6795308625446589,
+      "recommended_budget_units": 2.529323314899633,
+      "recommended_budget_share": 0.025293233148996327,
+      "allocation_basis": "primary_probability_x_semantic_lower_bound",
+      "primary_probability_component": 0.5502,
+      "semantic_priority": 0.0595757628985083,
+      "allocation_priority": 0.032778584746759265,
+      "previous_spend_budget_units": 2.238930597265589,
+      "reason_codes": [
+        "PRIMARY_LIFT_RANGE_CROSSES_ZERO",
+        "SAME_OBJECTIVE_PEERS_INSUFFICIENT",
+        "FALLBACK_TO_SHARED_PRIMARY_KPI_GROUP",
+        "FALLBACK_ACTION_CAPPED_AT_TEST",
+        "BUDGET_WEIGHTED_BY_PRIMARY_PROBABILITY_X_SEMANTIC_LOWER_BOUND"
+      ]
+    }
+  ],
+  "unallocated_budget_units": 0.0,
+  "decision_policy": {
+    "allocation_mode": "score_based",
+    "objective_envelope_basis": "previous_cycle_spend_share",
+    "campaign_weight": "primary_probability_x_semantic_lower_bound",
+    "missing_component_rule": "zero_allocation",
+    "concentration_cap": null,
+    "scale_rule": "SCALE when the 95% favorable-lift lower bound is above zero.",
+    "kill_rule": "KILL when the 95% favorable-lift upper bound is below zero.",
+    "hold_rule": "HOLD when the 95% favorable-lift range crosses zero."
+  }
+}

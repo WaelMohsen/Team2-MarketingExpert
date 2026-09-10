@@ -27,6 +27,7 @@ class CanonicalCycleData:
     creatives: pd.DataFrame
     media_daily: pd.DataFrame
     conversations: pd.DataFrame
+    response_events: pd.DataFrame
     order_lines: pd.DataFrame
     products: pd.DataFrame
     source_directory: str
@@ -169,10 +170,11 @@ def _normalize_media(
 
 def _normalize_conversations(
     raw: list[dict[str, Any]], ads: pd.DataFrame, adsets: pd.DataFrame
-) -> tuple[pd.DataFrame, pd.DataFrame]:
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     ad_lookup = ads.set_index("ad_id").to_dict("index")
     audience_lookup = adsets.set_index("adset_id")["audience_type"].to_dict()
     conversation_rows: list[dict[str, Any]] = []
+    response_rows: list[dict[str, Any]] = []
     line_rows: list[dict[str, Any]] = []
 
     for item in raw:
@@ -257,6 +259,78 @@ def _normalize_conversations(
             "cancelled_value": total if outcome_type == "cancelled" else 0.0,
             "pending_value": total if outcome_type == "stuck_pending" else 0.0,
         }
+
+        ordered_messages: list[tuple[pd.Timestamp, int, str]] = []
+        for message_index, message in enumerate(messages):
+            sent_at = pd.to_datetime(message.get("sent_at"), errors="coerce", utc=True)
+            if pd.notna(sent_at):
+                ordered_messages.append(
+                    (sent_at, message_index, str(message.get("direction") or ""))
+                )
+        ordered_messages.sort(key=lambda value: (value[0], value[1]))
+        pending_customer_at: pd.Timestamp | None = None
+        customer_turn_index = 0
+        conversation_response_rows: list[dict[str, Any]] = []
+        for sent_at, _, direction in ordered_messages:
+            if direction == "inbound" and pending_customer_at is None:
+                pending_customer_at = sent_at
+                customer_turn_index += 1
+            elif direction == "outbound" and pending_customer_at is not None:
+                response_minutes = (sent_at - pending_customer_at).total_seconds() / 60
+                conversation_response_rows.append(
+                    {
+                        "conversation_id": row["conversation_id"],
+                        "campaign_id": campaign_id,
+                        "adset_id": adset_id,
+                        "ad_id": ad_id,
+                        "creative_id": creative_id,
+                        "audience_type": audience_type,
+                        "customer_turn_index": customer_turn_index,
+                        "customer_message_at": pending_customer_at,
+                        "agent_response_at": sent_at,
+                        "response_minutes": max(response_minutes, 0.0),
+                        "answered": True,
+                    }
+                )
+                pending_customer_at = None
+        if pending_customer_at is not None:
+            conversation_response_rows.append(
+                {
+                    "conversation_id": row["conversation_id"],
+                    "campaign_id": campaign_id,
+                    "adset_id": adset_id,
+                    "ad_id": ad_id,
+                    "creative_id": creative_id,
+                    "audience_type": audience_type,
+                    "customer_turn_index": customer_turn_index,
+                    "customer_message_at": pending_customer_at,
+                    "agent_response_at": pd.NaT,
+                    "response_minutes": None,
+                    "answered": False,
+                }
+            )
+        response_rows.extend(conversation_response_rows)
+        answered_response_rows = [
+            event for event in conversation_response_rows if event["answered"]
+        ]
+        first_turn = next(
+            (
+                event
+                for event in conversation_response_rows
+                if event["customer_turn_index"] == 1
+            ),
+            None,
+        )
+        row["first_agent_response_minutes"] = (
+            first_turn["response_minutes"]
+            if first_turn is not None and first_turn["answered"]
+            else None
+        )
+        row["response_eligible_turns"] = len(conversation_response_rows)
+        row["answered_customer_turns"] = len(answered_response_rows)
+        row["unanswered_customer_turns"] = (
+            len(conversation_response_rows) - len(answered_response_rows)
+        )
         conversation_rows.append(row)
 
         for line in outcome.get("line_items") or []:
@@ -286,13 +360,13 @@ def _normalize_conversations(
             "conversation_id"
         ].transform("nunique")
         conversations["is_repeated_customer_in_cycle"] = customer_frequency.gt(1)
-    return conversations, pd.DataFrame(line_rows)
+    return conversations, pd.DataFrame(response_rows), pd.DataFrame(line_rows)
 
 
 def normalize_cycle(payload: RawCyclePayload) -> CanonicalCycleData:
     campaigns, adsets, ads, creatives = _normalize_dimensions(payload.meta)
     media = _normalize_media(payload.meta, ads, adsets)
-    conversations, order_lines = _normalize_conversations(
+    conversations, response_events, order_lines = _normalize_conversations(
         payload.conversations, ads, adsets
     )
 
@@ -311,6 +385,7 @@ def normalize_cycle(payload: RawCyclePayload) -> CanonicalCycleData:
         creatives=creatives,
         media_daily=media,
         conversations=conversations,
+        response_events=response_events,
         order_lines=order_lines,
         products=products,
         source_directory=str(payload.source_directory),

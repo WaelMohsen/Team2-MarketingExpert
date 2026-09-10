@@ -1,0 +1,97 @@
+{
+  "baseline_artifact": "/Users/abdelmoo/Desktop/CAPI Analysis/Team2-MarketingExpert/src_2/artifacts/conversation_signals_v2_paid.jsonl",
+  "baseline_prompt_versions": {
+    "conversation-signals-v2.1": 10
+  },
+  "baseline_records": 10,
+  "baseline_schema_versions": {
+    "2": 10
+  },
+  "candidate_artifact": "/Users/abdelmoo/Desktop/CAPI Analysis/Team2-MarketingExpert/src_2/artifacts/conversation_signals_v3_paid.jsonl",
+  "candidate_prompt_versions": {
+    "conversation-signals-v3.2": 10
+  },
+  "candidate_records": 10,
+  "candidate_schema_versions": {
+    "3": 10
+  },
+  "overlapping_conversations": 10,
+  "shared_field_agreement": {
+    "ad_message_match": 0.9,
+    "agent_helpfulness": 0.6,
+    "conversation_stage": 0.6,
+    "deal_seeking": 1.0,
+    "delivery_intent": 0.7,
+    "price_sensitivity": 0.8,
+    "purchase_intent": 0.9,
+    "purpose": 0.9,
+    "sales_agreement": 0.7,
+    "urgency": 0.6
+  },
+  "unknown_rates": {
+    "ad_message_match": {
+      "baseline": 0.0,
+      "candidate": 0.0
+    },
+    "agent_helpfulness": {
+      "baseline": 0.0,
+      "candidate": 0.0
+    },
+    "agent_tone_quality": {
+      "baseline": null,
+      "candidate": 0.0
+    },
+    "commercial_traits": {
+      "baseline": null,
+      "candidate": 0.0
+    },
+    "conversation_stage": {
+      "baseline": 0.0,
+      "candidate": 0.0
+    },
+    "deal_seeking": {
+      "baseline": 0.0,
+      "candidate": 0.0
+    },
+    "delivery_elicited_by_agent": {
+      "baseline": null,
+      "candidate": 0.4
+    },
+    "delivery_intent": {
+      "baseline": 0.0,
+      "candidate": 0.0
+    },
+    "financing": {
+      "baseline": null,
+      "candidate": 0.0
+    },
+    "price_sensitivity": {
+      "baseline": 0.1,
+      "candidate": 0.2
+    },
+    "purchase_intent": {
+      "baseline": 0.0,
+      "candidate": 0.0
+    },
+    "purpose": {
+      "baseline": 0.0,
+      "candidate": 0.0
+    },
+    "sales_agreement": {
+      "baseline": 0.1,
+      "candidate": 0.2
+    },
+    "specificity": {
+      "baseline": null,
+      "candidate": 0.0
+    },
+    "urgency": {
+      "baseline": 0.2,
+      "candidate": 0.0
+    },
+    "urgency_elicited_by_agent": {
+      "baseline": null,
+      "candidate": 0.4
+    }
+  }
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "campaign_id": "120209876543220002",
+    "campaign_name": "Awareness Boost January",
+    "objective": "OUTCOME_AWARENESS",
+    "assigned_budget_units": 1.1928377440226987,
+    "hypothesis": "Clarify the offer and address the observed product_fit barrier in a named variant against the current message. Hypothesis: this increases ad alignment and improves link ctr in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "link_ctr",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220012",
+    "campaign_name": "Summer Retention Push",
+    "objective": "OUTCOME_AWARENESS",
+    "assigned_budget_units": 2.529323314899633,
+    "hypothesis": "Clarify the offer and address the observed product_fit barrier in a named variant against the current message. Hypothesis: this increases ad alignment and improves link ctr in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "link_ctr",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220004",
+    "campaign_name": "January Trial Bundle Test",
+    "objective": "OUTCOME_ENGAGEMENT",
+    "assigned_budget_units": 0.700392149999811,
+    "hypothesis": "Clarify the offer and address the observed product_fit barrier in a named variant against the current message. Hypothesis: this increases meaningful conversation and improves link ctr in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "link_ctr",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220003",
+    "campaign_name": "Pre-Ramadan Bundle Promo",
+    "objective": "OUTCOME_LEADS",
+    "assigned_budget_units": 3.730517732186193,
+    "hypothesis": "Clarify the offer and address the observed product_fit barrier in a named variant against the current message. Hypothesis: this increases qualified conversation and improves order creation rate in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "order_creation_rate",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220008",
+    "campaign_name": "Post-Eid Lookalike Test",
+    "objective": "OUTCOME_LEADS",
+    "assigned_budget_units": 3.878597784984358,
+    "hypothesis": "Clarify the offer and address the observed price barrier in a named variant against the current message. Hypothesis: this increases qualified conversation and improves order creation rate in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "order_creation_rate",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220010",
+    "campaign_name": "Lookalike Scale Cycle 3",
+    "objective": "OUTCOME_LEADS",
+    "assigned_budget_units": 5.61237664549722,
+    "hypothesis": "Clarify the offer and address the observed product_quality barrier in a named variant against the current message. Hypothesis: this increases qualified conversation and improves order creation rate in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "order_creation_rate",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220001",
+    "campaign_name": "Always-On Premium Acquisition",
+    "objective": "OUTCOME_SALES",
+    "assigned_budget_units": 3.303972898412444,
+    "hypothesis": "Clarify the offer and address the observed price barrier in a named variant against the current message. Hypothesis: this increases checkout readiness and improves customer delivered rate in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "customer_delivered_rate",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220005",
+    "campaign_name": "Ramadan Suhoor Specials",
+    "objective": "OUTCOME_SALES",
+    "assigned_budget_units": 19.626192847840652,
+    "hypothesis": "Clarify the offer and address the observed delivery barrier in a named variant against the current message. Hypothesis: this increases checkout readiness and improves customer delivered rate in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "customer_delivered_rate",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220006",
+    "campaign_name": "Ramadan Iftar Premium Bundles",
+    "objective": "OUTCOME_SALES",
+    "assigned_budget_units": 8.935278940703984,
+    "hypothesis": "Clarify the offer and address the observed timing barrier in a named variant against the current message. Hypothesis: this increases checkout readiness and improves customer delivered rate in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "customer_delivered_rate",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220007",
+    "campaign_name": "Eid Gifting Premium",
+    "objective": "OUTCOME_SALES",
+    "assigned_budget_units": 13.157552094256326,
+    "hypothesis": "Clarify the offer and address the observed product_quality barrier in a named variant against the current message. Hypothesis: this increases checkout readiness and improves customer delivered rate in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "customer_delivered_rate",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220009",
+    "campaign_name": "Summer Premium Launch",
+    "objective": "OUTCOME_SALES",
+    "assigned_budget_units": 25.455042863431196,
+    "hypothesis": "Clarify the offer and address the observed price barrier in a named variant against the current message. Hypothesis: this increases checkout readiness and improves customer delivered rate in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "customer_delivered_rate",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  },
+  {
+    "campaign_id": "120209876543220011",
+    "campaign_name": "Mid-Year Sale",
+    "objective": "OUTCOME_SALES",
+    "assigned_budget_units": 11.877914983765463,
+    "hypothesis": "Clarify the offer and address the observed product_fit barrier in a named variant against the current message. Hypothesis: this increases checkout readiness and improves customer delivered rate in the next cycle. The observed association is a hypothesis, not an established cause.",
+    "primary_metric": "customer_delivered_rate",
+    "success_rule": "At cycle end, check the primary favorable-lift range, efficiency, and the separate semantic range. A provisional Link CTR benchmark remains capped at KEEP_AS_TEST.",
+    "failure_rule": "At cycle end, DO_NOT_FUND requires a decision-grade primary lift upper bound below zero with sufficient evidence. Semantic quality alone does not determine the final action.",
+    "stop_rule": "Stop when the assigned budget is spent or the next cycle ends, whichever comes first; wait for outcomes to mature before scoring."
+  }
+]

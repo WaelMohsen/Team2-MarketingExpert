@@ -70,6 +70,10 @@ def _percent(value: float | None) -> str:
     return "n/a" if value is None or pd.isna(value) else f"{value:.1%}"
 
 
+def _minutes(value: float | None) -> str:
+    return "n/a" if value is None or pd.isna(value) else f"{value:,.1f} min"
+
+
 @st.cache_resource(show_spinner=False)
 def _load_report(input_directory: str, model: str) -> CompletedCycleReport:
     """Build the report with the LLM narrative pipeline (the only engine)."""
@@ -528,6 +532,31 @@ def _deep_dive_view(report: CompletedCycleReport) -> None:
     )
     st.altair_chart(_benchmark_chart(pack), use_container_width=True)
 
+    if int(campaign.get("response_eligible_conversations", 0) or 0):
+        st.subheader("Conversation response operations")
+        r1, r2, r3, r4 = st.columns(4)
+        r1.metric(
+            "Median first response",
+            _minutes(campaign.get("median_first_agent_response_minutes")),
+        )
+        r2.metric(
+            "Median response",
+            _minutes(campaign.get("median_agent_response_minutes")),
+        )
+        r3.metric(
+            "90th percentile response",
+            _minutes(campaign.get("p90_agent_response_minutes")),
+        )
+        r4.metric(
+            "Ended unanswered",
+            _percent(campaign.get("unanswered_conversation_rate")),
+        )
+        st.caption(
+            "Response time is calculated from message timestamps. Consecutive "
+            "customer messages before one agent reply form one customer turn. "
+            "No SLA pass/fail label is applied without a business threshold."
+        )
+
     if int(campaign.get("semantic_conversations", 0) or 0):
         st.subheader("Conversation diagnostics")
         s1, s2, s3, s4 = st.columns(4)
@@ -538,16 +567,25 @@ def _deep_dive_view(report: CompletedCycleReport) -> None:
         st.write(
             f"Coverage {_percent(campaign.get('semantic_coverage_rate'))} | "
             f"High urgency {_percent(campaign.get('high_urgency_rate'))} | "
+            f"High specificity {_percent(campaign.get('high_specificity_rate'))} | "
             f"Price blocking {_percent(campaign.get('price_blocking_rate'))} | "
+            f"Financing discussed {_percent(campaign.get('financing_discussion_rate'))} | "
             f"Barrier resolution {_percent(campaign.get('barrier_resolution_rate'))} | "
-            f"Next-step completion {_percent(campaign.get('next_step_completion_rate'))} | "
+            "Agreed next step followed by an observed order "
+            f"{_percent(campaign.get('next_step_order_progression_rate'))} | "
             f"Ad-message alignment {_percent(campaign.get('ad_message_alignment_rate'))}"
         )
         st.caption(
             f"Top purpose: {campaign.get('top_conversation_purpose') or 'n/a'} | "
             f"Top barrier: {campaign.get('top_barrier') or 'n/a'} | "
             f"Top product: {campaign.get('top_mentioned_product') or 'n/a'}. "
+            f"Top commercial trait: {campaign.get('top_commercial_trait') or 'n/a'} | "
+            f"Top agent tone: {campaign.get('top_agent_tone') or 'n/a'}. "
             "These are diagnostic LLM classifications and do not determine funding."
+        )
+        st.caption(
+            "The next-step measure is an order-progression proxy. It does not prove "
+            "that every promised follow-up action was completed."
         )
 
     insight = report.campaign_insight(campaign_id)

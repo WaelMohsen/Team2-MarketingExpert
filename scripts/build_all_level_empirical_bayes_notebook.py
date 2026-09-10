@@ -253,7 +253,7 @@ cells = [
 
         Version-2 signals explain why a corrected score may be strong, weak, or uncertain:
         urgency, price blocking, deal seeking, delivery readiness, agreement, barrier
-        resolution, value drivers, stated exit reasons, and next-step completion. A
+        resolution, value drivers, stated exit reasons, and next-step order progression. A
         version-1 artifact loads safely with new fields marked unknown. Semantic coverage
         must be shown, and these diagnostics do not change funding until human validation.
         Ad-message match is a separate comparison between the creative promise and the
@@ -266,7 +266,7 @@ cells = [
             "campaign_name", "semantic_conversations", "semantic_coverage_rate",
             "high_purchase_intent_rate", "high_urgency_rate", "price_blocking_rate",
             "deal_seeking_rate", "delivery_ready_rate", "sales_agreement_rate",
-            "barrier_resolution_rate", "next_step_completion_rate",
+            "barrier_resolution_rate", "next_step_order_progression_rate",
             "ad_message_alignment_rate", "ad_message_mismatch_rate",
             "top_conversation_purpose", "top_barrier", "top_value_driver",
             "top_stated_exit_reason",

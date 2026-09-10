@@ -1,0 +1,21 @@
+{
+  "ad_match_prompt_versions": {
+    "ad-message-match-v1": 10
+  },
+  "artifact": "/Users/abdelmoo/Desktop/CAPI Analysis/Team2-MarketingExpert/src_2/artifacts/conversation_signals_v3_paid.jsonl",
+  "campaigns_covered": 7,
+  "expected_records": 10,
+  "input_projection_versions": {
+    "semantic-input-v2": 10
+  },
+  "issues": 0,
+  "paid_population": 617,
+  "passed": true,
+  "prompt_versions": {
+    "conversation-signals-v3.2": 10
+  },
+  "schema_versions": {
+    "3": 10
+  },
+  "validated_records": 10
+}

@@ -112,6 +112,7 @@ cells = [
         from src_2.analytics.empirical_bayes import fit_beta_prior, score_beta_binomial
         from src_2.application import load_conversation_signal_records
         from src_2.ingestion import build_data_quality_report, load_sample2, normalize_cycle
+        from src_2.intelligence import build_semantic_input, merge_token_usage
 
         pd.set_option("display.max_columns", 180)
         pd.set_option("display.max_colwidth", 180)
@@ -124,7 +125,18 @@ cells = [
 
         load_dotenv(ROOT / ".env")
         INPUT = ROOT / "src_2" / "data" / "input" / "sampe_2"
-        SIGNALS = ROOT / "src_2" / "artifacts" / "conversation_signals.jsonl"
+        configured_signal_path = os.getenv("CONVERSATION_SIGNALS_PATH", "").strip()
+        SIGNALS = (
+            Path(configured_signal_path).expanduser()
+            if configured_signal_path
+            else ROOT / "src_2" / "artifacts" / "conversation_signals_v2_paid.jsonl"
+        )
+        if not SIGNALS.is_absolute():
+            SIGNALS = ROOT / SIGNALS
+        PILOT_SIGNALS = (
+            ROOT / "src_2" / "artifacts" / "conversation_signals_v3_paid.jsonl"
+        )
+        PILOT_SIZE = 10
         LLM_CACHE = ROOT / "outputs" / "objective_leads_learning_llm"
         FOCUS_OBJECTIVE = "OUTCOME_LEADS"
         POST_EID_NAME = "Post-Eid Lookalike Test"
@@ -144,7 +156,8 @@ cells = [
     ),
     code(
         """
-        canonical = normalize_cycle(load_sample2(INPUT))
+        raw_payload = load_sample2(INPUT)
+        canonical = normalize_cycle(raw_payload)
         quality = build_data_quality_report(canonical)
         signal_records = load_conversation_signal_records(SIGNALS) if SIGNALS.exists() else []
 
@@ -164,6 +177,534 @@ cells = [
         display(objective_map.style.set_properties(
             subset=["campaigns"], **{"white-space": "pre-wrap", "text-align": "left"}
         ))
+        """
+    ),
+    markdown(
+        """
+        ## 2A. Schema-v3 Paid Pilot: What Are These 10 Records?
+
+        Before using semantic signals in scorecard explanations, inspect the output itself.
+        This chapter always selects the **first 10 validated records** from the versioned
+        schema-v3 paid artifact, even after the artifact grows to 617 conversations.
+
+        The pilot was outcome-stratified to exercise different conversation shapes. It is
+        useful for schema validation and qualitative review, but it is **not a representative
+        sample for estimating portfolio rates**.
+
+        Each conversation went through two independent model calls:
+
+        1. **Semantic extraction:** redacted message text became structured intent, need,
+           barriers, products, commercial signals, stage, summary, and agent evaluation.
+        2. **Ad-message alignment:** the creative promise was compared with the validated
+           conversation need.
+
+        Neither call received customer identity, phone, address, order outcome, revenue, campaign
+        score, or budget. Those deterministic fields are joined only afterward for analysis.
+        """
+    ),
+    code(
+        """
+        all_v3_records = (
+            load_conversation_signal_records(PILOT_SIGNALS)
+            if PILOT_SIGNALS.exists()
+            else []
+        )
+        pilot_signal_records = all_v3_records[:PILOT_SIZE]
+        if len(pilot_signal_records) != PILOT_SIZE:
+            raise RuntimeError(
+                f"Expected at least {PILOT_SIZE} schema-v3 pilot records at {PILOT_SIGNALS}; "
+                f"found {len(pilot_signal_records)}."
+            )
+
+        conversation_lookup = canonical.conversations.set_index("conversation_id")
+        campaign_lookup = canonical.campaigns.set_index("campaign_id")
+        adset_names = canonical.adsets.set_index("adset_id")["adset_name"].to_dict()
+        ad_names = canonical.ads.set_index("ad_id")["ad_name"].to_dict()
+        creative_names = (
+            canonical.creatives.set_index("creative_id")["creative_name"].to_dict()
+        )
+
+        pilot_rows = []
+        for record in pilot_signal_records:
+            outcome = conversation_lookup.loc[record.conversation_id]
+            campaign = campaign_lookup.loc[record.attribution.campaign_id]
+            signals = record.signals
+            total_usage = merge_token_usage(
+                record.semantic_usage, record.ad_match_usage
+            )
+            pilot_rows.append({
+                "conversation_id": record.conversation_id,
+                "objective": campaign["objective"],
+                "campaign": campaign["campaign_name"],
+                "adset": adset_names.get(record.attribution.adset_id),
+                "ad": ad_names.get(record.attribution.ad_id),
+                "creative": creative_names.get(record.attribution.creative_id),
+                "audience": record.attribution.audience_type,
+                "actual_outcome_after_join": outcome["outcome_type"],
+                "mature_outcome": bool(outcome["is_mature_outcome"]),
+                "order_observed": bool(outcome["has_order"]),
+                "purpose": signals.conversation_purpose.value,
+                "customer_need": signals.customer_need,
+                "purchase_intent": signals.purchase_intent.level.value,
+                "stage": signals.conversation_stage.value,
+                "urgency": signals.urgency.level.value,
+                "price_sensitivity": signals.price_sensitivity.level.value,
+                "deal_seeking": signals.deal_seeking.level.value,
+                "delivery_intent": signals.delivery_intent.level.value,
+                "sales_agreement": signals.sales_agreement.level.value,
+                "specificity": signals.specificity.level.value,
+                "financing": signals.financing.level.value,
+                "competitor_mentioned": signals.competitor_mention.mentioned,
+                "stated_exit_reason": signals.stated_exit_reason.reason.value,
+                "next_step_agreed": signals.next_step_agreed.agreed,
+                "barrier_count": len(signals.barriers),
+                "product_count": len(signals.mentioned_products),
+                "value_driver_count": len(signals.value_drivers),
+                "commercial_trait_count": len(signals.commercial_traits),
+                "agent_helpfulness": signals.agent_evaluation.helpfulness.value,
+                "agent_progression": signals.agent_evaluation.progression.value,
+                "agent_tone_quality": signals.agent_tone.quality.value,
+                "ad_message_match": record.ad_message_match.level.value,
+                "schema_version": record.signal_schema_version,
+                "prompt_version": record.prompt_version,
+                "model": record.model,
+                "usage_logged": total_usage.request_count > 0,
+                "api_output": signals.conversation_summary,
+            })
+
+        pilot = pd.DataFrame(pilot_rows)
+        pilot_snapshot = pd.DataFrame([
+            ["Validated records inspected", len(pilot)],
+            ["Objectives represented", pilot["objective"].nunique()],
+            ["Campaigns represented", pilot["campaign"].nunique()],
+            ["Schema versions", ", ".join(map(str, sorted(pilot["schema_version"].unique())))],
+            ["Prompt versions", ", ".join(sorted(pilot["prompt_version"].unique()))],
+            ["Records with API usage logging", int(pilot["usage_logged"].sum())],
+        ], columns=["pilot fact", "value"])
+        display(pilot_snapshot)
+        """
+    ),
+    markdown(
+        """
+        ## 2B. Understand The Nested Output Contract
+
+        A JSONL line is one `ConversationSignalRecord`. It has five conceptual blocks:
+
+        | Block | What it contains | Why it exists |
+        |---|---|---|
+        | Identity and attribution | Conversation, campaign, ad set, ad, creative, audience | Joins semantics back to the correct marketing entity |
+        | Version and provenance | Input, prompt, schema, model, timestamp | Makes every label reproducible and auditable |
+        | Conversation signals | Intent, need, barriers, products, stage, commercial traits, agent quality | Explains what the conversation appears to contain |
+        | Ad-message match | Alignment level, rationale, evidence indexes | Tests whether the acquired need matches the creative promise |
+        | API usage | Tokens, cached tokens, reasoning tokens, price snapshot, cost | Measures extraction cost and includes validation retries |
+
+        Nested objects preserve meaning. For example, `purchase_intent` is not only a
+        label: it also says whether the agent elicited it and which message indexes support it.
+        Arrays such as `barriers` preserve multiple observations instead of forcing one label.
+        """
+    ),
+    code(
+        """
+        example_record = pilot_signal_records[0]
+        example_payload = example_record.model_dump(mode="json")
+
+        def flatten_structure(value, path="record"):
+            rows = []
+            if isinstance(value, dict):
+                if not value:
+                    rows.append({"path": path, "data type": "object", "example": "{}"})
+                for key, child in value.items():
+                    rows.extend(flatten_structure(child, f"{path}.{key}"))
+            elif isinstance(value, list):
+                rows.append({
+                    "path": path,
+                    "data type": "list",
+                    "example": f"{len(value)} item(s)",
+                })
+                if value:
+                    rows.extend(flatten_structure(value[0], f"{path}[]"))
+            else:
+                text = "null" if value is None else str(value)
+                rows.append({
+                    "path": path,
+                    "data type": type(value).__name__,
+                    "example": text[:100],
+                })
+            return rows
+
+        structure_table = pd.DataFrame(flatten_structure(example_payload))
+        display(structure_table.style.set_properties(
+            subset=["path", "example"], **{"text-align": "left"}
+        ))
+        print("Expandable example JSON for", example_record.conversation_id)
+        display(JSON(example_payload, expanded=False))
+        """
+    ),
+    markdown(
+        """
+        ## 2C. Provenance And Attribution For All 10
+
+        Attribution is deterministic. The LLM does not choose the campaign, ad set, ad,
+        creative, or audience. These identifiers come from the canonical source join.
+
+        The outcome column is deliberately labeled **after join**: it is useful for later
+        diagnostics but was never part of either model request.
+        """
+    ),
+    code(
+        """
+        provenance_columns = [
+            "conversation_id", "objective", "campaign", "adset", "ad", "creative",
+            "audience", "actual_outcome_after_join", "schema_version",
+            "prompt_version", "model",
+        ]
+        display(pilot[provenance_columns].style.set_properties(
+            subset=["campaign", "adset", "ad", "creative"],
+            **{"text-align": "left"},
+        ))
+        """
+    ),
+    markdown(
+        """
+        ## 2D. Flatten The Semantic Interpretation
+
+        This view turns nested JSON into one row per conversation for exploration. It does
+        not replace the nested artifact. `unknown` and `not_assessable` are valid evidence
+        states, not failures and not zeros.
+
+        Read each row as: “Given only the redacted messages, the model classified this
+        conversation this way, with evidence indexes available for verification.”
+        """
+    ),
+    code(
+        """
+        core_columns = [
+            "conversation_id", "purpose", "customer_need", "purchase_intent", "stage",
+            "barrier_count", "product_count", "agent_helpfulness", "agent_progression",
+            "agent_tone_quality", "ad_message_match",
+        ]
+        commercial_columns = [
+            "conversation_id", "urgency", "price_sensitivity", "deal_seeking",
+            "delivery_intent", "sales_agreement", "specificity", "financing",
+            "competitor_mentioned", "stated_exit_reason", "next_step_agreed",
+            "value_driver_count", "commercial_trait_count",
+        ]
+
+        display(Markdown("### Core semantic fields"))
+        display(pilot[core_columns].style.set_properties(
+            subset=["customer_need"], **{"text-align": "left"}
+        ))
+        display(Markdown("### Added commercial diagnostic fields"))
+        display(pilot[commercial_columns])
+        """
+    ),
+    markdown(
+        """
+        ## 2E. Known Versus Unknown Evidence
+
+        Coverage answers a different question from performance:
+
+        - **Known:** the conversation contained enough evidence to assign a value.
+        - **Unknown/not assessable:** the evidence was absent or insufficient.
+
+        A signal with low known coverage should not be turned into a campaign percentage
+        without displaying its assessable denominator.
+        """
+    ),
+    code(
+        """
+        coverage_fields = {
+            "Purpose": "purpose",
+            "Customer need": "customer_need",
+            "Purchase intent": "purchase_intent",
+            "Stage": "stage",
+            "Urgency": "urgency",
+            "Price sensitivity": "price_sensitivity",
+            "Deal seeking": "deal_seeking",
+            "Delivery intent": "delivery_intent",
+            "Sales agreement": "sales_agreement",
+            "Specificity": "specificity",
+            "Financing": "financing",
+            "Agent helpfulness": "agent_helpfulness",
+            "Agent progression": "agent_progression",
+            "Agent tone": "agent_tone_quality",
+            "Ad-message match": "ad_message_match",
+        }
+        unknown_values = {"unknown", "not_assessable", "", None}
+        coverage_rows = []
+        for label, column in coverage_fields.items():
+            for value in pilot[column]:
+                status = (
+                    "Unknown / not assessable"
+                    if pd.isna(value) or value in unknown_values
+                    else "Known"
+                )
+                coverage_rows.append({"signal": label, "status": status})
+        coverage = (
+            pd.DataFrame(coverage_rows)
+            .groupby(["signal", "status"], as_index=False)
+            .size()
+            .rename(columns={"size": "conversations"})
+        )
+        coverage["share"] = coverage["conversations"] / len(pilot)
+
+        coverage_chart = (
+            alt.Chart(coverage)
+            .mark_bar()
+            .encode(
+                y=alt.Y(
+                    "signal:N",
+                    sort=list(coverage_fields),
+                    title=None,
+                ),
+                x=alt.X(
+                    "conversations:Q",
+                    stack="normalize",
+                    axis=alt.Axis(format="%"),
+                    title="Share of the 10 pilot conversations",
+                ),
+                color=alt.Color(
+                    "status:N",
+                    scale=alt.Scale(
+                        domain=["Known", "Unknown / not assessable"],
+                        range=["#187a6b", "#d6d9dc"],
+                    ),
+                    title=None,
+                ),
+                tooltip=[
+                    alt.Tooltip("signal:N"),
+                    alt.Tooltip("status:N"),
+                    alt.Tooltip("conversations:Q"),
+                    alt.Tooltip("share:Q", format=".0%"),
+                ],
+            )
+            .properties(height=420, title="Semantic assessability in the schema-v3 pilot")
+        )
+        display(coverage_chart)
+        """
+    ),
+    markdown(
+        """
+        ## 2F. Explore Repeated Arrays Without Losing Detail
+
+        Barriers, products, value drivers, and commercial traits are one-to-many fields.
+        Exploding them creates analytical child tables while keeping the original
+        conversation ID as the join key.
+
+        - Barrier severity describes how strongly an objection blocks progress.
+        - Barrier resolution requires later customer evidence, not only an agent answer.
+        - Canonical product ID is nullable when a reference cannot be matched safely.
+        - Value drivers capture what matters to the customer.
+        - Commercial traits capture reusable demand patterns such as feature priority.
+        """
+    ),
+    code(
+        """
+        barrier_rows, product_rows, driver_rows, trait_rows = [], [], [], []
+        for record in pilot_signal_records:
+            conversation_id = record.conversation_id
+            for item in record.signals.barriers:
+                barrier_rows.append({
+                    "conversation_id": conversation_id,
+                    "barrier_type": item.barrier_type.value,
+                    "severity": item.severity.value,
+                    "resolution": item.resolution.value,
+                    "description": item.description,
+                    "evidence_indexes": item.evidence_message_indexes,
+                })
+            for item in record.signals.mentioned_products:
+                product_rows.append({
+                    "conversation_id": conversation_id,
+                    "product_reference": item.product_reference,
+                    "canonical_product_id": item.canonical_product_id,
+                    "evidence_indexes": item.evidence_message_indexes,
+                })
+            for item in record.signals.value_drivers:
+                driver_rows.append({
+                    "conversation_id": conversation_id,
+                    "value_driver": item.driver.value,
+                    "evidence_indexes": item.evidence_message_indexes,
+                })
+            for item in record.signals.commercial_traits:
+                trait_rows.append({
+                    "conversation_id": conversation_id,
+                    "trait": item.trait.value,
+                    "strength": item.strength.value,
+                    "detail": item.detail,
+                    "evidence_indexes": item.evidence_message_indexes,
+                })
+
+        def show_child_table(title, rows):
+            display(Markdown(f"### {title}"))
+            frame = pd.DataFrame(rows)
+            if frame.empty:
+                print("No records in this pilot.")
+            else:
+                display(frame.style.set_properties(**{"text-align": "left"}))
+
+        show_child_table("Barriers", barrier_rows)
+        show_child_table("Mentioned products", product_rows)
+        show_child_table("Value drivers", driver_rows)
+        show_child_table("Commercial traits", trait_rows)
+        """
+    ),
+    markdown(
+        """
+        ## 2G. Trace One Output Back To Redacted Evidence
+
+        Evidence indexes are positions in the exact redacted message list sent to the
+        semantic extractor. They allow a reviewer to verify a label without storing raw
+        transcript text in the signal artifact.
+
+        The example below reconstructs the privacy-safe input locally. The model saw role,
+        relative timing, redacted text, and product references. It did not see customer or
+        outcome objects.
+        """
+    ),
+    code(
+        """
+        example_id = pilot_signal_records[0].conversation_id
+        raw_by_id = {str(item["id"]): item for item in raw_payload.conversations}
+        example_input = build_semantic_input(raw_by_id[example_id])
+        example_signals = pilot_signal_records[0].signals
+
+        redacted_messages = pd.DataFrame([
+            {
+                "message_index": message.message_index,
+                "role": message.role.value,
+                "relative_minute": message.relative_minute,
+                "redacted_text": message.redacted_text,
+                "product_references": message.product_references,
+            }
+            for message in example_input.messages
+        ])
+        display(Markdown(f"### Redacted model input: {example_id}"))
+        display(redacted_messages.style.set_properties(
+            subset=["redacted_text"], **{"text-align": "left", "white-space": "pre-wrap"}
+        ))
+
+        evidence_rows = []
+        def add_evidence(signal, value, indexes):
+            evidence_rows.append({
+                "signal": signal,
+                "extracted_value": value,
+                "evidence_message_indexes": indexes,
+            })
+
+        add_evidence(
+            "purchase_intent",
+            example_signals.purchase_intent.level.value,
+            example_signals.purchase_intent.evidence_message_indexes,
+        )
+        add_evidence(
+            "urgency",
+            example_signals.urgency.level.value,
+            example_signals.urgency.evidence_message_indexes,
+        )
+        add_evidence(
+            "delivery_intent",
+            example_signals.delivery_intent.level.value,
+            example_signals.delivery_intent.evidence_message_indexes,
+        )
+        add_evidence(
+            "sales_agreement",
+            example_signals.sales_agreement.level.value,
+            example_signals.sales_agreement.evidence_message_indexes,
+        )
+        add_evidence(
+            "next_step_agreed",
+            example_signals.next_step_agreed.agreed,
+            example_signals.next_step_agreed.evidence_message_indexes,
+        )
+        for position, item in enumerate(example_signals.barriers, start=1):
+            add_evidence(
+                f"barrier_{position}:{item.barrier_type.value}",
+                f"{item.severity.value} / {item.resolution.value}",
+                item.evidence_message_indexes,
+            )
+        for position, item in enumerate(example_signals.mentioned_products, start=1):
+            add_evidence(
+                f"product_{position}",
+                item.product_reference,
+                item.evidence_message_indexes,
+            )
+        add_evidence(
+            "agent_evaluation",
+            example_signals.agent_evaluation.helpfulness.value,
+            example_signals.agent_evaluation.evidence_message_indexes,
+        )
+        add_evidence(
+            "ad_message_match",
+            pilot_signal_records[0].ad_message_match.level.value,
+            pilot_signal_records[0].ad_message_match.evidence_message_indexes,
+        )
+        display(Markdown("### Output-to-evidence map"))
+        display(pd.DataFrame(evidence_rows))
+        """
+    ),
+    markdown(
+        """
+        ## 2H. Join Outcomes Only After Extraction
+
+        This is the governed handoff:
+
+        `privacy-safe semantic output + deterministic attribution + structured outcome`
+
+        The joined table can help investigate hypotheses such as whether unresolved price
+        barriers appear more often in cancelled conversations. With only 10 deliberately
+        stratified records, these are examples of questions, not reliable findings.
+
+        The first pilot predates API usage logging. Therefore zero logged requests means
+        **historical usage unavailable**, not zero cost. New records will contain actual
+        semantic and ad-alignment usage separately.
+        """
+    ),
+    code(
+        """
+        outcome_diagnostic = pilot[[
+            "conversation_id", "objective", "campaign", "actual_outcome_after_join",
+            "mature_outcome", "order_observed", "purchase_intent", "stage",
+            "price_sensitivity", "barrier_count", "stated_exit_reason",
+            "ad_message_match",
+        ]]
+        display(outcome_diagnostic)
+
+        usage_rows = []
+        for record in pilot_signal_records:
+            for stage_name, usage in [
+                ("semantic extraction", record.semantic_usage),
+                ("ad-message alignment", record.ad_match_usage),
+            ]:
+                usage_rows.append({
+                    "conversation_id": record.conversation_id,
+                    "stage": stage_name,
+                    "requests": usage.request_count,
+                    "input_tokens": usage.input_tokens,
+                    "cached_input_tokens": usage.cached_input_tokens,
+                    "output_tokens": usage.output_tokens,
+                    "reasoning_output_tokens": usage.reasoning_output_tokens,
+                    "estimated_cost_usd": usage.estimated_cost_usd,
+                    "status": (
+                        "logged" if usage.request_count else "historical usage unavailable"
+                    ),
+                })
+        usage_detail = pd.DataFrame(usage_rows)
+        display(Markdown("### Usage logging by LLM stage"))
+        display(usage_detail)
+        """
+    ),
+    markdown(
+        """
+        ## 2I. How To Read This Pilot Correctly
+
+        1. Validate structure, privacy, evidence indexes, and attribution first.
+        2. Read `unknown` as missing evidence, never as a negative customer signal.
+        3. Keep arrays at child-table grain before aggregating them.
+        4. Join outcomes after extraction, then use semantics to explain possible reasons.
+        5. Do not use this outcome-stratified group of 10 to estimate campaign prevalence.
+        6. Do not allow semantic labels to change the Empirical-Bayes funding score.
+        7. After all 617 records pass audit, aggregate counts and assessable denominators at
+           campaign, ad set, ad, creative, and audience levels.
         """
     ),
     markdown(
@@ -841,10 +1382,13 @@ cells = [
         | Stated exit reason | Explain cancellation, ghosting, or abandonment |
         | Competitor mention and value driver | Understand alternatives and what customers value |
         | Ad-message alignment | Test whether the conversation need matches the ad promise |
-        | Next-step completion | Test whether an agreed action actually progressed |
+        | Next-step order progression | Test whether an agreement was followed by an observed order |
 
         Once available, aggregate each as `count / assessable conversations`, and always
         report unknown coverage beside it.
+
+        The order-progression field is a proxy. It does not prove that every promised
+        follow-up action was completed.
         """
     ),
     markdown(

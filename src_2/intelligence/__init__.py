@@ -11,6 +11,10 @@ from .conversation_signals import (
     OpenAIConversationSignalExtractor,
     build_semantic_input,
     build_signal_record,
+    merge_token_usage,
+    response_token_usage,
+    validate_evidence_message_indexes,
+    validate_semantic_evidence_rules,
 )
 
 __all__ = [
@@ -21,5 +25,9 @@ __all__ = [
     "OpenAIConversationSignalExtractor",
     "build_semantic_input",
     "build_signal_record",
+    "merge_token_usage",
+    "response_token_usage",
+    "validate_evidence_message_indexes",
+    "validate_semantic_evidence_rules",
     "load_prompt",
 ]
