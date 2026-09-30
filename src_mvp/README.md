@@ -32,7 +32,46 @@ capped at `KEEP_AS_TEST`. The whole-portfolio same-metric benchmark is descripti
 context only. Efficiency is a separate same-objective peer comparison and acts as a
 scale gate; effectiveness and efficiency are never blended into a weighted score.
 
-## Run
+## Simple chatbot question preprocessing
+
+`chat.py` provides two LangChain functions: `classify_question` returns
+`in_scope` or `out_of_scope`, and `normalize_question` rewrites an accepted question
+without answering it. Both use an LLM; normalization happens before the separate
+answering call. Pass the current step and relevant recent conversation as `context`
+to support follow-up questions. Scope covers the MVP's steps and decision logic.
+
+Install the optional dependencies from the repository root:
+
+```bash
+python -m pip install -r src_mvp/requirements-chat.txt
+```
+
+Example (requires `OPENAI_API_KEY`, optionally loaded from your `.env`):
+
+```python
+import os
+from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
+from src_mvp.chat import classify_question, normalize_question
+
+load_dotenv()
+llm = ChatOpenAI(model=os.getenv("OPENAI_MODEL", "gpt-5-mini"))
+question = "why did it choose hold?"
+context = "Current step: campaign scoring. The selected campaign's action is HOLD."
+
+if classify_question(question, llm, context) == "in_scope":
+    normalized = normalize_question(question, llm, context)
+    print(normalized)  # Pass this to your answering LLM with actual step evidence.
+else:
+    print("Please ask about this project's steps, calculations, or decisions.")
+```
+
+These helpers do not yet add a chat UI or generate answers. The answering LLM
+should receive the relevant scorecard, policy or report evidence along with the
+normalized question. Classification is model-based and is not an authorization
+boundary. Each accepted question uses two preprocessing calls.
+
+## Run the pipeline
 
 From the repository root:
 
